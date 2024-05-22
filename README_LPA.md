@@ -135,6 +135,30 @@ o	Evidence of LPA market saturation becomes more pronounced
 o	Worsening of geo-political events and disruptive impact on the UK economy worsens the current cost of living crisis reducing LPA demand.
 o	There is always an increasing risk of unknown unknowns . 
 
+# MLPA Project Data Requirements (OPG Data):
+1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
+2. Understand the expected source of the required data for highest priority requirements
+3. Understand how we access the required data and who owns it
+4. Explore options for how we store and report on the data
+
+## Data Requirements & Prioritisation Questions
+1. What is the data and does it currently exist?
+2. Where is/will the data be held?
+3. What is the justification for needing this data?
+4. What priority is this data in the overall context?
+5. Must have in place for day one of private beta (October 2024)
+6. Must have in place before full go-live (initial target April 2025)
+7. Nice to have at some point in the future
+
+*Note:* 
+The links to the workshop presentation slides as this may provide some further context:
+https://justiceuk.sharepoint.com/:x:/s/MLPAModelOfficeDatarequirements/EQlqQ6r-a3NOm_9mSKlhd2gBmA9PUDMy0tjOyP-yxvK3dQ?CID=0815868E-19DB-4742-A5E3-2552C35614D2&wdLOR=c754D2377-1644-496B-A2FE-3C389D82AFA6 
+
+https://justiceuk.sharepoint.com/:p:/s/MLPAModelOfficeDatarequirements/Eb-Tacu42N9Cq6TDk2oRgRIBDMa3Q0wTSEUa02VrzpmGKg?CID=CBF3B356-D9AE-4AD8-BE69-BDAB70A97D69&wdLOR=c5BF25DD4-1AE4-4375-8564-951C3018AA71
+
+Please note that individual data points have not yet been identified and will be our next step in this process (along with understanding which data tables/source these data points sit).
+In the spreadsheet the green tabs were from the workshop – the information has collated into a summary tab which is easier to navigate (blue tab), so I would advise you to refer to the summary tab (the green tabs hold further information/discussion points for each of the data requirements – these may help understanding (the summary tab contains links to these). 
+
 
 
 # LPA Data:
