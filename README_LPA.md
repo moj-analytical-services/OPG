@@ -1,6 +1,6 @@
 # Short And Long Term Demand Forecasts for LPA
 
-## Business Need  (Priority: Business As Usual)
+## Business Need (Priority: Business As Usual)
 
 Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
 Short term forecasting is a critical function supporting plans for resources needed to handle applications and 
