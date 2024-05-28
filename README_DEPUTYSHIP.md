@@ -24,6 +24,7 @@ There are three kind of way that we could get a deputyships:
 ## Deputyship Forecasting Model
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. 
 
+- **If we imagine that water is flowing out of the bath through the plug hole, that is what the termination date is showing. So we have these people here who had died and the death of clients mainly changed their status from Active to being Closed. So to work out the active caseload each year, we need to work out how many new cases are going to be added and how many cases are going to be terminated. Those are the two key things that we need to know and then we can run the model forward in that way. 
 
 Here we break down how the stopped-flow technique can be related to the bathtub model and how it might apply to understanding and calculating the rate of new deputyships orders in the Office of Public Guardian (OPG) for active supervision with termination dates due to death or order closure. In summary, the stopped-flow technique and the bathtub model analogy provide insights into dynamic systems, whether in chemical reactions or administrative processes like managing deputyships orders. By applying these concepts, the OPG can better understand and manage its caseload, ensuring effective supervision and timely responses to changing circumstances.
 
@@ -56,11 +57,11 @@ The key points in modelling:
 * Ref: https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_%28Physical_and_Theoretical_Chemistry%29/Kinetics/02%3A_Reaction_Rates/2.01%3A_Experimental_Determination_of_Kinetics/2.1.06%3A_Stopped_Flow
 
 
-It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that's why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputy ships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
+It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that is why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputy ships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
 
 For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
 
-So anyway, just to complete that analogy with the bath the the other side of that of course is that if you imagine that water is flowing out of the bar through the plug hole, that's what the the termination bit is. So we have these people here who.
+
 
 
 
@@ -86,23 +87,38 @@ The data should enables us to work out what the size of the active caseload is b
 
 5. Ord Stat: Active/Closed
 
-6. Ord Type
-7. Desc
-8. Made Date
-9. Issue Date
-10. Caseload Date
+6. Ord Type: 
+
+7. Desc: Order Descrption: Property & Affairs Deputy (Financial) / Replacement P&A Order / Interim P&A Order / Health & Welfare Deputy
+
+8. Made Date:
+
+9. Issue Date:
+
+10. Caseload Date:
+
 11. Sex
 12. DOB
 13. Postcode
 14. Term Date
 15. Term Type
-16. Desc
-17. Ord Risk Lvl
+16. Desc:
+
+17. Ord Risk Lvl: Order Risk Level: a risk assessment level of deputyships under active supervision 
+
 18. Remis
 19. Exempt
 20. Exempt Desc
 21. Award Date
 22. Order Cnt
+
+
+#### Desc (Order)
+Order Descrption can be categorised in: 
+1. Property & Affairs Deputy (Financial) 
+2. Replacement P&A Order 
+3. Interim P&A Order 
+4. Health & Welfare Deputy
 
 
 Example:
@@ -121,6 +137,84 @@ It is like LPA data in the sense that if somebody might have the order of renewe
 #### Term date
 For example, when the Term date (termination date) is empty, this would suggest that this initial order made in 2006 and was never terminated. Then, for some reason or other, a replacement order was made in 2011. The assupmtion could be a reason they required a new deputy to act on their behalf. So they went back to the Court of Protection for an update to the deputieship order. 
 But effectively what we can infer from this, assuming that these are just the two data points that we have for this person, this person with this case reference, is that the original order was made in 2006. And then it was updated in 2011, and that order has been in place. Subsequently, and so you know this data, I think was received in 2022. So this has been a long term deputyship order, so this is probably somebody has needed a deputy ship since birth, probably or since they were quite young. 
+
+
+The termination date is not always filled by a date, the reason is there might be an active orders for this case. Therefore, we could sort the records to see if they are Closed because, there's been some amendment to the order, so there is not a termination date as the deputyship has not been terminated, the person has not died or anything like that. Therefore, the case has gone back to the Court of Protection. A replacement order has been made and in this case. As can be seen in the records for this person, there was a new property and affairs deputyship order was actually made in. There is also a whole history here for this person here, e.g., the order was originally made in 1996 and then it was a replacement order was made in 2010 and then again, a further order was made in 2018. So in fact there have been three orders in this particular individual's case, but the order has been live throughout this whole period. The Closed status in here simply refers to the fact that the previous orders are now closed and now this is the active order. 
+
+Example:
+
+| Create    | Order No | Case     | AppNo | Ord Stat | Ord Type                           | Desc                                 | Made Date  | Issue Date  | Caseload Date | Sex | DOB        | Postcode  | Term Date   | Term Type   | Desc   | Ord Risk Lvl   | Remis   | Exempt   | Exempt Desc      | Award Date | Order Cnt |
+|-----------|----------|----------|-------|----------|------------------------------------|--------------------------------------|------------|-------------|---------------|-----|------------|-----------|-------------|-------------|--------|----------------|---------|----------|------------------|------------|-----------|
+| 28-Sep-07 | 00000006 | 10001403 | 1     | Closed   | 1                                  | Property & Affairs Deputy (Financial) | 29-Oct-1996 | 29-Oct-1996 | 29-Oct-1996   | F   | 13-May-1965 | NG17 4BR  |             |             | 2      | 0              | 7       | Other not known | 01-Apr-2023 | 3         |
+| 22-Sep-10 | 00068457 | 10001403 | 2     | Closed   | 40                                 | Replacement P&A Order                 | 16-Sep-2010 | 12-Nov-2010 | 29-Oct-1996   | F   | 13-May-1965 | NG17 4BR  |             |             | 2      | 0              | 7       | Other not known | 01-Apr-2023 | 3         |
+| 30-Jan-18 | 00180158 | 10001403 | 3     | Active   | 1                                  | Property & Affairs Deputy (Financial) | 22-Jan-2018 | 20-Mar-2018 | 29-Oct-1996   | F   | 13-May-1965 | NG17 4BR  |             |             | 2      | 0              | 7       | Other not known | 01-Apr-2023 | 3         |
+
+
+So there will only be a termination where there should be a termination date and all order should be closed. In this particular instance there is no previous history. So it seems that in this case the order was made in 1997. There were no revisions to that order over that period. There is no indication of any further orders being made. Simply the person either died in 2015 or rather, the deputy deceased, so the order came to an end. So in this case, the person did not die, the deputyship came to an end and the case was closed. So that is no longer a case that is under Active supervision and case is closed and there is atermination date on this record.
+
+
+Example:
+
+| Create    | Order No | Case     | AppNo | Ord Stat | Ord Type                           | Desc                                 | Made Date    | Issue Date   | Caseload Date | Sex | DOB         | Postcode | Term Date   | Term Type | Desc           | Ord Risk Lvl | Remis | Exempt | Exempt Desc     | Award Date  | Order Cnt |
+|-----------|----------|----------|-------|----------|------------------------------------|--------------------------------------|--------------|--------------|---------------|-----|-------------|----------|-------------|-----------|----------------|--------------|-------|--------|-----------------|-------------|-----------|
+| 28-Sep-07 | 00000011 | 10002199 | 1     | Closed   | 1                                  | Property & Affairs Deputy (Financial) | 17-Jan-1997  | 17-Jan-1997  | 17-Jan-1997   | M   | 25-Feb-1959 | ME10 4JA | 16-Jun-2015 | R         | Deputy Deceased | 3            | 0     | 0      |                 |             | 1         |
+
+
+*Note: we can use the "Desc" variable and the "Term Date" to figure out the termination rates, i.e., how many people are flowing out of this bath.*
+
+#### Desc (Termination) 
+
+The descriotion of the termination can be categorised in the following terms:
+1. Death of Client 
+2. Deputy Deceased
+3. Duplicate case
+4. Deputy Discharged
+5. Rule 24.5 clt regain capacity
+6. No Further Proceedings
+7. Deputy Suspended
+8. Full Order Expired
+9. Funds Exhausted
+10. Order Revoked
+11. Blank
+
+Another reason that we cannot really just apply mortality rates (like LPA) is because, this is not like a random selection of the population. These are often people who Don't have capacity already? Extremely, they would not have the mortality rates of the population as a whole, but also there are other reasons why the case might be terminated, like in this case the deputy died.
+
+### Ord Type
+This is related to the Desc variable and categorised the description of the termination.
+
+### Ord Risk Lvl
+This refers to the Order Risk Level of deputyships, in which are under active supervision, and this is based on an assessment of the risk level, which is coded here are charged at two different rates:
+1. The full what they call a general fee.
+Currently 360 pounds a year.
+
+2. A minimal fee level 
+Currently, £32 a year.
+
+- If the person has more than £30,000 in liquid assets, they would go into the higher general fee category. 
+- If it's under 30,000, it would be the minimal fee. So that's a fairly kind of arbitrary cut off.
+The reason for this is relevant to the questions raised before about whether that is a sensible cut off, or whether there should be any cut off at all? And there have been moves in the past to try to equalise those fees, so everybody pays the same.
+
+This information of supervision in which OPG is derived variable and was collected from financial information about protected persons, which is just was not routinely collected within the old data (CASRAC). It also raised questions about how that was actually being assessed around the collected data to see if it was possible to distinguish Whether somebody was entitled to a remission or an exemption. This is because Because if they are in receipt of certain possible benefits, they would automatically get an A fee exemption. then the same way could be with powers of attorney. E.g., if their income was under a certain amount (12k a year) they would get a remission. Otherwise they would have to pay the full fee.
+But that is only true for general fee payers. If they are a minimal fee payer, they either pay it or you get a full exemption. So there are all these kind of issues around, what benefits people get, what their income. That were very hard to deal with the data that exists.
+
+**The deputyship model is set up, at the moment, to forecast the active caseload in total and the numbers of new deputyships. What it does not do is split that between the minimal fee payers and general fee payers and then further between who pays a full fee and who gets a remission or an exemption. This would give much more information about the likely income, that the OPG would generate from deputyships, and how that will be changing over time? So at the moment it only the model is only looks at the kind of high level numbers of active caseloads. It does not decompose that into these different groups. With a known population of people who pay rermissions and exemptions within general and minimal fees, and then age that over a 5-10 year period to see how that might change over that period of time. If OPG essentially reports that the number of general fee payers is going to decline and within that they likely to get an increase in the number of exemptions then obviously that means that the amount of income that they would generate would generate from that would be quite, all of that would be relevant to trying to answer policy questions about, how you might equalise fees as well.**
+
+*Note: This required kind of **Family Resources Survey** to look at the kind of household income and family circumstances and the age of population, in order to be able to collect more information around the differences between minimal and general fee payers.
+
+The deputyship model, at the moment, is essentially does it in exactly the same way as the LPA model. So, it is a basically applying survival rates to a kind of it takes the sort of the numbers of new deputyships by single years. Here and then it ages them each subsequent year in the model to kind of.
+So if we sort of pick a pick a higher number down here, if we talk at say 66 year olds, you know each year the numbers drop because the expected number that are going to terminate in each of those years reduces that number so. Obviously that adds a level of complication to the model that might not be necessary. 
+
+A simpler way to do this is, to add the number of new starters / new deputyships to the active caseload, and a simpler way to do it might simply be to say. And then simply each year, assume that a certain proportion, which we calculate from the termination rates to work out a percentage termination rate. 
+Leave that population so we assume that, we add in 50 cases age 29 to the active caseload and we assume that 1% of those that population will terminate by the following year. And then so that updates it for the next year and then we do the same thing for the next year. So that gives you a new active caseload we add in what we expect the new cases to be that year and then we assume another 1% will terminate. Rather than the way we have done it, which is sort of try to work out sort of cohort based sort of termination rates. Our forecast of the caseload by, minimal, general and remissions / exemptions because those numbers are much smaller, it would be easier just to apply Percentage termination rates at each step in the process, rather than a cohort based model which would make it more complicated.
+So instead of trying to say if we started with 1000 people, how many do we expect to die after one year, two year, three-year, four years and five years? Because we have a survival rate for that.
+The simplest way to do it would simply be to say, if we have 1000 people aged, given a particular of a particular age, what proportion of those people would die next year? Age 26 and and we simply use that and then use that as the new total for that next age population.
+We add in the new deputy ships and then, we say whatever percentage 1% die that year and again that we then update that to the next year increment.
+
+
+
+
+
+
 
 ### Ord Stat = Active/Closed
 
