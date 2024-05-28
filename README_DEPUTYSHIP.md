@@ -25,22 +25,11 @@ There are three kind of way that we could get a deputyships:
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship.  That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
 
 
-
-## Data Sources
-The response from Stuart Stach was suggesting that the deputyship data is now being recorded in Sirius . Previously I had noted that deputyship “orders” had been recorded in the Sirius data that we received but this no longer seems to be the case, and what was recorded was not the level of detail previously available from CASREC (the database that previously captured deputyship data). 
- For the previous data, please look at a file called “order1” derived from CASREC to give you an indication of the data fields actually required. 
- What is needed is to go back to Stuart and others and obtain all of the data required to update the model.
- 
-We would need to find useful information like when the order was made whether it's still active or not and we could work out the age of a **P: Protective People**.
-
-The data should enables us to work out what the size of the active caseload is but also to work out the termination rate, how quickly people flow off the active caseload, so this whole issue with mortality rates. The termination refer to those records whether somebody dies or just leaves but the order is just not renewed. Thus, we would need to bounce calculator as well and that was very age dependent, generally the younger somebody is that termination rate is going to be lower.
-
 ### Control Assuptions and Sensitivity Analysis:
 
 * ref: SUPERVISION CONTROL ASSUMPTIONS (tab) in the excel model
 
-To find out what data is available and how to access that.
-We need to dig into new data to populate the model.
+To find out what data is available and how to access that, we would need to dig into new data to populate the model.
 
 To simply the model, as there's a lot of redundancy in the excel model as there is as there was with the the LPA
 
@@ -76,7 +65,7 @@ The LPA model is making a forecast of how many living LPA holders, so there will
 
 There is nothing here for anyone under the age of 18 and that's because there are no LPA holders under the age of 18 or they shouldn't be that might be something or erroneously given at a younger age but that's that shouldn't be correct so there should be none.
 
-This part of the sheet is just doing is simply taking that that information here about LPA holders minus living MBA holders and then categorising them into age groups see go population 18 plus minus living LPA holders sort of categorised by age and the reason and the reason for doing that is because it makes it obviously if you're trying to build some control assumptions around deputyships as a proportion of remaining people without an LPA and break that down down some age categories as it is been very hard to do it by single year of age
+This part of the sheet is just doing is simply taking that that information here about LPA holders minus living MBA holders and then categorising them into age groups see go population 18 plus minus living LPA holders sort of categorised by age and the reason and the reason for doing that is because it makes it obviously if you're trying to build some control assumptions around deputyships as a proportion of remaining people without an LPA and break that down down some age categories as it is been very hard to do it by single year of age.
 
 this is a summary of the numbers of new deputyships each year by age group and this is really a summation of those two sheets, which Paul was using to try to estimate some of these figures, where we be good to kind of find out what the current status of the data is and whether it includes better historical data, so do we just need to rely on the information that we had after 2019 and we are just park that and added new data then or actually do we have that historical data now, so it might mean that we just need to park this historical data and then kind of add on to it if we've got new data since 2019 yeah, we could review this once once we have been able to kind of review the status of the day so that we have what it what it tells us.
 
@@ -88,10 +77,19 @@ Essentially all what is happening here is working out this, how many deputyships
 
 In fact, for childern up to age 18 is more a nive extracolation of this figures and not worth doing much more coplicated work on that, as the number are very small. and so it is a simple exponential smoothing forecasting.
 
+## Data Sources
+The new deputyship data is now being recorded in Sirius. Previously, the deputyship “orders” had been recorded in the Sirius data that we received but this no longer seems to be the case, and what was recorded was not the level of detail previously available from CASREC (the database that previously captured deputyship data). 
+
+For the previous data, please look at a file called “order1” derived from CASREC to give you an indication of the data fields actually required. 
+ 
+We would need to find useful information like when the order was made whether, it's still active or not and we could work out the age of a **P: Protective People**.
+
+The data should enables us to work out what the size of the active caseload is but also to work out the termination rate, how quickly people flow off the active caseload, so this whole issue with mortality rates. The termination refer to those records whether somebody dies or just leaves but the order is just not renewed. Thus, we would need to bounce calculator as well and that was very age dependent, generally the younger somebody is that termination rate is going to be lower.
+
 
 ## Deputyship Meta-data for the lagacy order data:
 
-### Variables
+### The current CASRAC old Variables are listed below
 1. Create: date of order was placed.
 
 2. Order No: a ref that the Court of Protection is using.
@@ -155,8 +153,7 @@ This records are used to calculate how many active cases were there in the histo
 This is to answer the follwoing research question:
 **2. The trend in the number of new deputyship orders**
 
-This records are used to calculate how old are the people under active supervision in the historical data. So in other words.
-You can work out how old the person was when.
+This records are used to calculate how old are the people under active supervision in the historical data. So in other words, we can work out how old the person was when.
 
 
 In theory, these variables are used to identify all those cases with a complete record of all deputyships made, and you ought to be able to identify when the first order was made for that person, and in what year? So in other words, you ought to then be able to count how many new orders were made each year. The possible flaw with this has been, because there is often a delay in OPG recording in the legacy database (CASRAC), and when tried before with the current estimate of that figure, it is not clear how many order have been made in the last six months or 12 months for example, unless we have had to rely in the past on OPG giving us a separate account for that because it exists somewhere else on a separate database.
@@ -194,7 +191,7 @@ The key points in modelling:
 * Ref: https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_%28Physical_and_Theoretical_Chemistry%29/Kinetics/02%3A_Reaction_Rates/2.01%3A_Experimental_Determination_of_Kinetics/2.1.06%3A_Stopped_Flow
 
 
-It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that's why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputy ships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
+It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that's why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputyships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
 
 For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
 
