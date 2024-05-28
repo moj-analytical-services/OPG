@@ -1,7 +1,5 @@
 # Demand Forecasts for Deputyship
 
-
-
 What we initially need to do is get an update of the available deputyship data. What we need to know is:
 1. The current active caseload ie those cases under active supervision
 we we needed the database of the active caseload so yeah caseload is it those people who've got deputyships who were there still active and they all subject to active supervision by OPG.
@@ -26,10 +24,6 @@ There are three kind of way that we could get a deputyships:
 ## Deputyship Forecasting Model
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship.  That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
 
-
-
-
-CASREC
 
 
 ## Data Sources
@@ -59,8 +53,6 @@ In most the cases, it is generally going down. An explanation for this could be 
 We would need to adjust these control assupmtions and play around with what looks like a set of four sensitivity tests.
 
 Manily on this controller is really what the key survival rates when we have got the deputyship data we can work now what are termination rates, when the order was made when somebody left the active caseload and on other orders were made and we can work out the period of time and how old they were when the order was made and when the case was terminated. In other words, we can work out what is the termination rate and it is a bit like mortality rate. So we can see the order that those termination rates tend to increase. 
-
-
 
 Initially, it then sort of reflects something about the difference in the type of population because somebody in their 50s or 60s requiring a deputyship, probably because they have had an accident or something and they may be quite ill and so it's likely that they died quickly whithin the order was made. However, in some other reasons, they might have lost their mental capacity through dementia illness, thus, that was not terminal then there would live and bunch of other people who would survive for many years. Also, there are people who have had their deputyship for decades.
 
@@ -95,3 +87,118 @@ As can be seen, there is a bit of a bimodal peak in the sort of 18 to 24, that m
 Essentially all what is happening here is working out this, how many deputyships there are here as a ratio or percentage of rate compared to the number of non LPA holders and this is information that's used in the controlled assumptions so this is when we're looking at these charts this is where that information is coming from it's over what that does is then generates a forecast for the number of new deputyships per 100,000 of the population without an LPA so if you if you generate that as a rate then you could then apply that for the LPA so create forecasts the size of population without an LPA. We have got rate and population to be multiplied with each other and to estimate the number of new deputyships. If there are estimsting there are 4 new deputyships in 2030, 100 thousand of polulation without LPA and we can work out how many new deputyships we expecting in 2030 and how many left without LPA?
 
 In fact, for childern up to age 18 is more a nive extracolation of this figures and not worth doing much more coplicated work on that, as the number are very small. and so it is a simple exponential smoothing forecasting.
+
+
+## Deputyship Meta-data for the lagacy order data:
+
+### Variables
+1. Create: date of order was placed.
+
+2. Order No: a ref that the Court of Protection is using.
+
+3. Case: a unique identifier for one person and should be for a specific individual (same dob and postcode).
+
+4. AppNo: nuber of orders for an individual and so the corrsponding case number.
+
+5. Ord Stat
+6. Ord Type
+7. Desc
+8. Made Date
+9. Issue Date
+10. Caseload Date
+11. Sex
+12. DOB
+13. Postcode
+14. Term Date
+15. Term Type
+16. Desc
+17. Ord Risk Lvl
+18. Remis
+19. Exempt
+20. Exempt Desc
+21. Award Date
+22. Order Cnt
+
+
+Example:
+
+| Create     | Order No   | Case      | AppNo     | Ord Stat | Ord Type | Desc                   | Made Date    | Issue Date   | Caseload Date | Sex | DOB         | Postcode | Term Date   | Term Type | Desc | Ord Risk Lvl | Remis | Exempt | Exempt Desc | Award Date | Order Cnt |
+|------------|------------|-----------|-----------|----------|----------|------------------------|--------------|--------------|---------------|-----|-------------|----------|-------------|-----------|------|--------------|-------|--------|-------------|------------|-----------|
+| 17-Jun-11  | 00079746   | 10000037  | 2         | Active   | 40       | Replacement P&A Order  | 14-Jun-2011  | 17-Jun-2011  | 24-Jul-2006   | M   | 10-Jul-1977 | FY8 1PN  |             | 2         | 0    | 0            |       |        |             |            | 2         |
+
+
+The deputyships are made by the Court of Protection, so they are not made through an application process like an LPA. So there is an order number and the order number is the court order number. We actually look at the physical court order. It would have that reference number on it, so an order was made. In fact, you can hear sorry jumping around. The main date, so this order was actually made on the 14th of June 2011, so there will be a court order made on the 14th of June 2011 for this person and the order number will be this 00079746.
+
+It is like LPA data in the sense that if somebody might have the order of renewed, then there is going to be sort of multiple records, if you like through the data. An individual protetected person within the deputyship data and trying to tracking the people through the data. This might be alittle bit tricky to use kid of case numbers, so if the case for that individuals was closed in 2007 and become active in 2011. Thus, for some reason or other there was a replacement of a property and affairs. Therefore, the orders was at the sort of jusncture or order status. We are interested to find those orders that are active in OPG Supervision.
+
+*Note: the case number should be used as a unique identifier for one person not the order number. The order number and case number should be for a specific individual (same dob and postcode). The order number is a ref that the Court of Protection is using.*
+
+#### Term date
+For example, when the Term date (termination date) is empty, this would suggest that this initial order made in 2006 and was never terminated. Then, for some reason or other, a replacement order was made in 2011. The assupmtion could be a reason they required a new deputy to act on their behalf. So they went back to the Court of Protection for an update to the deputieship order. 
+But effectively what we can infer from this, assuming that these are just the two data points that we have for this person, this person with this case reference, is that the original order was made in 2006. And then it was updated in 2011, and that order has been in place. Subsequently, and so you know this data, I think was received in 2022. So this has been a long term deputyship order, so this is probably somebody has needed a deputy ship since birth, probably or since they were quite young. 
+
+
+### Active Caseloads (Under Active Supervision): Ord Stat = Active/Closed
+
+So in other words, under active supervision by OPG and that is one of the things that we are trying to **forecast over the next sort of five to 10 years, how many active cases were there and how old are the people under active supervision?**
+
+E.g., somebody was 20 years old when the original order was made, they've had an order for 15 years before they took before that order was terminated. So in other words, you can work out what is the probability that somebody aged 20 is going to have that order terminated after so many years.
+
+1. When the order status (Ord Stat) is **Active**:
+This is to answer the follwoing research question:
+**1. The current active caseload ie those cases under active supervision**
+
+This records are used to calculate how many active cases were there in the historical data. The the previous orders that were made is because what that tells you is when the original order was made and the reason that is useful is because you could then **cross reference that with the termination date**.
+
+
+2. When the order status (Ord Stat) is **Closed**. 
+This is to answer the follwoing research question:
+**2. The trend in the number of new deputyship orders**
+
+This records are used to calculate how old are the people under active supervision in the historical data. So in other words.
+You can work out how old the person was when.
+
+
+In theory, these variables are used to identify all those cases with a complete record of all deputyships made, and you ought to be able to identify when the first order was made for that person, and in what year? So in other words, you ought to then be able to count how many new orders were made each year. The possible flaw with this has been, because there is often a delay in OPG recording in the legacy database (CASRAC), and when tried before with the current estimate of that figure, it is not clear how many order have been made in the last six months or 12 months for example, unless we have had to rely in the past on OPG giving us a separate account for that because it exists somewhere else on a separate database.
+
+*Note: we get updated data and understand how currently being curated in Sirius?*
+
+Here we break down how the stopped-flow technique can be related to the bathtub model and how it might apply to understanding and calculating the rate of new deputyships orders in the Office of Public Guardian (OPG) for active supervision with termination dates due to death or order closure. In summary, the stopped-flow technique and the bathtub model analogy provide insights into dynamic systems, whether in chemical reactions or administrative processes like managing deputyships orders. By applying these concepts, the OPG can better understand and manage its caseload, ensuring effective supervision and timely responses to changing circumstances.
+
+##### Application of Bathtub Model Analogy to OPG Deputyships Orders:
+The bathtub model is a classic example of a dynamic system involving the flow of water in and out of a bathtub. We consider the following components:
+1. Faucet: Represents the inflow of new deputyships orders (e.g., due to appointments, court decisions).
+The faucet taps into an infinite source of new orders, similar to how the OPG receives new cases.
+
+2. Drain: Represents the outflow of deputyships orders (e.g., due to death, order closure).
+The drain removes orders beyond the system (e.g., due to death or closure).
+
+3. Tub: Represents the total number of active deputyships orders at any given time.
+The rate of flow through the drain depends on the size of the drain opening and the amount of water (i.e., active orders) in the tub.
+
+The key points in modelling:
+- More water in the tub (more active orders) leads to a greater rate of flow through the drain.
+- The system is open, as ultimate sources and sinks (e.g., legal decisions, court rulings) are external to the OPG.
+- Over time, the rates of flow and the number of active orders may change.
+* Ref: https://www.mfpt.org/wp-content/uploads/2019/10/Heiser-Thomas-Bathtub-Failure-Distribution-MTBF-Paper.pdf
+
+- Analogously, the OPG’s deputyship orders system involves a dynamic process where new orders come in (faucet) and existing orders are terminated (drain).
+
+##### Application of stopped-flow to OPG Deputyships Orders:
+- Imagine using the stopped-flow technique to monitor the rate of new deputyships orders entering the OPG system.
+- The “mixing chamber” in this case would represent the OPG’s processes for handling new orders.
+- By observing the rate of incoming orders and the rate of terminated orders (due to death or closure), the OPG can calculate the net rate of change in active orders.
+- This information is crucial for active supervision and resource allocation within the OPG.
+- The analogy helps us understand how the system dynamics (flow rates, order numbers) impact the overall process.
+* Ref: https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_%28Physical_and_Theoretical_Chemistry%29/Kinetics/02%3A_Reaction_Rates/2.01%3A_Experimental_Determination_of_Kinetics/2.1.06%3A_Stopped_Flow
+* Ref: https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_%28Physical_and_Theoretical_Chemistry%29/Kinetics/02%3A_Reaction_Rates/2.01%3A_Experimental_Determination_of_Kinetics/2.1.06%3A_Stopped_Flow
+
+
+It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that's why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputy ships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
+
+For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
+
+So anyway, just to complete that analogy with the bath the the other side of that of course is that if you imagine that water is flowing out of the bar through the plug hole, that's what the the termination bit is. So we have these people here who.
+
+##### Control Assumption
+The number of the deputyship cases should be equivalent to the subtracted the LPA number of the LP as from the population. So that is why we are subtracting the number, the cumulative total number of people, that have an LPA from the population, because that then tells us **what is the population at risk of needing a deputyship and how likely it is to generate a new, and at which rate?** e.g., if we know the rate in whitch from 100,000 people without an LPA generates 20,000 deputyships, we can work out what that rate is and how that rate is changing over time, as can be seen in the control assumptions. So the assumption is, if we dropped from 100,000 people without an LPA down to 50,000 people without an LPA, then we would expect the number of new deputyships to drop as well because the the population at risk of needing an LPA is less.
