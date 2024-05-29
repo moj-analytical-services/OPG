@@ -74,6 +74,22 @@ We would need to find useful information like when the order was made whether it
 
 The data should enables us to work out what the size of the active caseload is but also to work out the termination rate, how quickly people flow off the active caseload, so this whole issue with mortality rates. The termination refer to those records whether somebody dies or just leaves but the order is just not renewed. Thus, we would need to bounce calculator as well and that was very age dependent, generally the younger somebody is that termination rate is going to be lower.
 
+
+### S3 Bucket Access
+Data from the current python script lands here: 
+s3://alpha-opg-analytical/sirius_data_cuts_3/
+
+### Current Python Script
+https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/opg-analytical-endpoint-3.py
+
+
+### Data Engineering Database Access 
+-	sirius-prod (raw data, includes LPA and deputyship data), 
+-	Solicitors Regulation Authority, 
+-	curated data warehouse tables. 
+
+
+
 ## Deputyship Meta-data for the lagacy order data:
 
 ### The current CASRAC old Variables are listed below:
@@ -302,3 +318,16 @@ Essentially all what is happening in the charts is to work out how many deputysh
 
 In fact, for childern up to age 18 is more a nive extracolation of this figures and not worth doing much more coplicated work on that, as the number are very small and so it is a simple exponential smoothing forecasting.
 
+## Data Quality
+### AQA Template
+https://aqa-website.apps.live.cloud-platform.service.justice.gov.uk/tools.html
+
+*Note:Data and Analysis have just relaunched their website and are changing the AQA process, so this is likely to change. 
+
+### OPG Internal Checks
+We usually provide samples of our tables in CSV format for the OPG data team to manually check accuracy and flag data issues. I strongly recommend including these checks in your AQA because there are lots of problems with the data which vary by business epoch. For that I would contact Mandy directly when you have a table which is ready for use. 
+
+### Ethics Assurance Template
+Our team currently use this template from the UKSA: 
+https://uksa.statisticsauthority.gov.uk/the-authority-board/committees/national-statisticians-advisory-committees-and-panels/national-statisticians-data-ethics-advisory-committee/ethics-self-assessment-tool/
+MoJ have been working with the Alan Turing Institute for a while on reissuing the MoJ ethics assessment, but I’ve not been able to find anything hence defaulting to the UKSA version. 
