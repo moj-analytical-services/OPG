@@ -1,25 +1,163 @@
-# Demand Forecasts for Deputyship
+# Demand Forecast modelling for Deputyship in OPG
+This document serves as a user guide to the OPG deputyship Forecasting Model in Python, held in this repository: 
+https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 
-What we initially need to do is get an update of the available deputyship data. What we need to know is:
-1. The current active caseload ie those cases under active supervision
-we we needed the database of the active caseload so yeah caseload is it those people who've got deputyships who were there still active and they all subject to active supervision by OPG.
-So they're the people that well either be being charged a fee supervision of affair cases some of the well received full exemptions or missions but not all of them and that is one of the things that we need to try and forecast.
+&nbsp;
+&nbsp;
 
-The reason for forecasting is that OPG needs to estimate the income generated from their fees. In addition, it affects the balance between LPA fees and deputyship fees. The reason behind this is that one of tasks that OPG currently do is the deputyship is partly subsidised by the LPA fee so depending on what that kind of balance is and kind of how much they subsidise e.g., the deputyship fee. Also the other reason they need to forecast is because they need to make sure they hve got enough staff in order to bond supervise the 50,000 plus deputyships are kind of and under active supervision.
+# Contents
 
+* What the Demand Forecasting for Deputyship Model does
+* Why the Demand Forecasting for Deputyship Model is useful
+* How users can get started with the Demand Forecasting for Deputyship Model
+* Where users can get help with Demand Forecasting for Deputyship Model
+* Who maintains and contributes to the Demand Forecasting for Deputyship Model
+
+&nbsp;
+# [Demand Forecasting for Deputyship Model](#summ) - summary of the quantitative methods used for forecasting deputyships.  
+&nbsp;   
+# [Inputs](#inputs)
+&nbsp;
+# [Outputs](#outputs)
+&nbsp;
+# [Higher-level Process flow Diagrams](#high-process-flow) - proccess flow diagrames of main inputs/outputs for the Demand Forecasting for Deputyship Model.
+&nbsp;
+# [Aim](#aim) 
+&nbsp;
+# [Objectives](#objectives)
+&nbsp;   
+# [Background Knowledge](#Background)
+&nbsp;
+# [Control Assumptions and Sensitivity Analysis](#control-assumptions)
+&nbsp;
+# [Data Sources](#data-sources)
+&nbsp;
+# [Model Calculation](#calc-model) - details of model calculation
+&nbsp;
+# [Feature Engineering and Data Preparation](#preprocessing)
+&nbsp;
+# [Implementing the Demand Forecasting for Deputyship Model](#model) - details of model scripts
+&nbsp;
+&nbsp;
+# __Technical Guidance__
+&nbsp;
+## [Getting started](#start)
+&nbsp;
+## [Running the model](#run-model) - step by step instructions
+&nbsp;
+## [Loading python packages](#pack)
+&nbsp;
+## [Setting up a Python virtual environment](#setup) 
+&nbsp;
+## [Analytical Platform (AP) and AWS S3 access](#ap-s3) - instructions on setting up AP and s3 access
+&nbsp;
+## [Accessing the model from Github and Error handelling solutions](#github) - Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+&nbsp;
+# [Data Marts (the old Demand Forecasting for Deputyship Model)](#data-mart)
+&nbsp;
+# [How to Data Modelling](#howto-d-m) - Data Modelling using Create-a-Derived-Table (CaDT) 
+&nbsp;
++ [*1 - Data Sources and Pipelines*](#0how2)
++ [*2 - Data Modelling using Create-a-Derived-Table (CaDT)*](#1how2)
++ [*3 - Lookup Tables (seed in CaDT)*](#2how2)
++ [*4 - Macros (macros in CaDT)*](#3how2)
++ [*5 - Running Updates*](#4how2)
++ [*6 - Connection with Python code in Jupyter Lab*](#5how2)
+&nbsp;
+# [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access
+&nbsp;
+# [Python libraries and versions](#pythobpack) - details of python version and package versions used
+&nbsp;
+# [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
+&nbsp;
+# [Exporting Output into CSV and Excel](#export)
+&nbsp;
+# [Evaluation of the model](#evaluation)
+&nbsp;
+# [Plotting The Forecasted vs Actual values](#plot)
+&nbsp;
+# [Process flow Diagrams](#processflow) - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow 
+&nbsp;
+# [Parameters](#parameters) - model parameters explained
+&nbsp;
+# [Logging](#logging) - information about output and error logging
+&nbsp;
+# [Data Register](#data-register) - a link to the Model data register log
+&nbsp;
+# [Assumptions](#assumptions) - a link to the Model assumptions log
+&nbsp;
+# [Risks](#risks) - a link to the risk register log
+&nbsp;
+# [Quality Assurance (QA)](#qa) - directions to the folder that holds the logs and evidence of initial model v1 QA
+&nbsp;
+# [Future Development](#future) - instructions on how to do some potential model developments
+&nbsp;   
+# [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
+&nbsp;  
+&nbsp; 
+&nbsp; 
+
+<a name="summ"></a>
+# Demand Forecasting for Deputyship Model
+The forecast method used for the Demand Forecasting for Deputyship Model in summerised below:
+- To estimate the the number of the active caseloads for those people who have got deputyships and their order status is still active, so they all subject to active supervision by OPG and provide forecast demands for the number of client under active supersion in 5-10 years. 
+
+&nbsp;
+<a name="inputs"></a>
+# Inputs
+1. The deputyships orders made for each individual cases by the Court of Protection from CASRAC and Sirius databases
+2. Financial information for the deputyship demands for each indiviual/case
+3. ONS polulation Projection (e.g., Mortality Rate)
+4. Family Survay Data
+5. Indidual information
+7. Number of LPA application (to be suntracted for the polulation to provide number of deputyships)
+
+&nbsp; 
+<a name="outputs"></a>
+# Outputs
+1. Forecasted figures for those caseloads under active supervisons of deputyship 
+2. Trends and pattern of new deputyship orders
+
+&nbsp;
+<a name="high-process-flow"></a>
+# Higher-level Process flow Diagrams
+The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for Deputyship Model.
+
+*under constuction!
+
+&nbsp;  
+<a name="aim"></a>         
+# Aim 
+- The aim of this project is to Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
+- This model should provide input for the OPG projects in term of resource managment (staff and income).
+ 
+&nbsp;
+<a name="objectives"></a> 
+# Objectives
+1. The current active caseload, i.e., those cases under active supervision
+To estimate the number of the active caseloads for those people who have got deputyships and their order status is still active, so they all subject to active supervision by OPG and provide forecast demands for the number of client under active supersion in 5-10 years. So they are the people that well either be being charged a fee supervision of affair cases some of the well received full exemptions or missions but not all of them and that is one of the things that we need to try and forecast.
 
 2. The trend in the number of new deputyship orders
+The active caseload there is not a reason they need to forecast bar is because they obviously generating come from that. It the same time we need to forecast the numbers of new orders. It is a bit like the sort of stopped-flow module. In which, basically it is a bit like the bath where the active caseload is the bath of water when they got new orders (new cases deputyships) that are flooding into it.
 
-The active caseload there isn't a reason they need to forecast bar is because they obviously generating come from that
+&nbsp; 
+<a name="Background"></a> 
+# Background Knowledge
 
-It the same time we need to forecast the numbers of new orders. It is a bit like the sort of stopped-flow module. In which, basically it is a bit like the bath where the active caseload is the bath of water when they got new orders (new cases deputyships) that are flooding into it.
+- The reason for forecasting is that OPG needs to estimate the income generated from their fees. In addition, it affects the balance between LPA fees and deputyship fees. The reason behind this is that one of tasks that OPG currently do is the deputyship is partly subsidised by the LPA fee so depending on what that kind of balance is and kind of how much they subsidise e.g., the deputyship fee. Also the other reason they need to forecast is because they need to make sure they hve got enough staff in order to bond supervise the 50,000 plus deputyships are kind of and under active supervision.
 
-The deputyships are made by the Court of Protection. It is usually cases where people cannot apply for a power of attorney so because they did not have one.
+- The deputyships are made by the Court of Protection. It is usually cases where people cannot apply for a power of attorney so because they did not have one. There are three kind of way that we could get a deputyships: 
+    1. Adults who lost their mental capacity because they did not have a power of attorney in which case the Court of Protection would order a deputy to act on your behalf.
+    2. Adults who never had have mental capacity. They have some sort of disability or some mental disability but did not have the capacity to make power of attorney and again the Court of Protection can order a deputy to act on your behalf and often in this case might be a local authority.
+    3. Childern born with a disability and they do not have anybody there especially make the Court of Protection to act on their behalf and have a deputyships. The deputyship can be a family member or power of atherney or local authority, financial advisor, and soliciter to act on behalf and mange their affairs. The difference in here is that the Court of Protection made the decision for ordering the deputyship and they do not have any choice about it.
+    
+&nbsp;    
+&nbsp;
+## ######################################################################## ##
+&nbsp;
 
-There are three kind of way that we could get a deputyships: 
-1. Adults who lost their mental capacity because they did not have a power of attorney in which case the Court of Protection would order a deputy to act on your behalf.
-2. Adults who never had have mental capacity. They have some sort of disability or some mental disability but did not have the capacity to make power of attorney and again the Court of Protection can order a deputy to act on your behalf and often in this case might be a local authority.
-3. Childern born with a disability and they do not have anybody there especially make the Court of Protection to act on their behalf and have a deputyships. The deputyship can be a family member or power of atherney or local authority, financial advisor, and soliciter to act on behalf and mange their affairs. The difference in here is that the Court of Protection made the decision for ordering the deputyship and they do not have any choice about it.
+
+
 
 ## Deputyship Forecasting Model
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. 
@@ -61,11 +199,10 @@ It is exactly analogous to basically a bath that is being filled up with water w
 
 For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
 
-
-
-
-
-## Data Sources
+&nbsp;
+&nbsp; 
+<a name="data-sources"></a> 
+# Data Sources
 The evidence is suggesting that the deputyship data is now being recorded in Sirius . Previously I had noted that deputyship “orders” had been recorded in the Sirius data that we received but this no longer seems to be the case, and what was recorded was not the level of detail previously available from CASREC (the database that previously captured deputyship data). 
 
 For the previous data, please look at a file called “order1” derived from CASREC to give you an indication of the data fields actually required. What is needed is to obtain all of the data required to update the model.
@@ -75,15 +212,15 @@ We would need to find useful information like when the order was made whether it
 The data should enables us to work out what the size of the active caseload is but also to work out the termination rate, how quickly people flow off the active caseload, so this whole issue with mortality rates. The termination refer to those records whether somebody dies or just leaves but the order is just not renewed. Thus, we would need to bounce calculator as well and that was very age dependent, generally the younger somebody is that termination rate is going to be lower.
 
 
-### S3 Bucket Access
+## S3 Bucket Access
 Data from the current python script lands here: 
 s3://alpha-opg-analytical/sirius_data_cuts_3/
 
-### Current Python Script
+## Current Python Script
 https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/opg-analytical-endpoint-3.py
 
 
-### Data Engineering Database Access 
+## Data Engineering Database Access 
 -	sirius-prod (raw data, includes LPA and deputyship data), 
 -	Solicitors Regulation Authority, 
 -	curated data warehouse tables. 
@@ -114,18 +251,27 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 10. Caseload Date:
 
 11. Sex
+
 12. DOB
+
 13. Postcode
+
 14. Term Date
+
 15. Term Type
-16. Desc:
+
+16. Desc
 
 17. Ord Risk Lvl: Order Risk Level: a risk assessment level of deputyships under active supervision 
 
 18. Remis
+
 19. Exempt
+
 20. Exempt Desc
+
 21. Award Date
+
 22. Order Cnt
 
 
@@ -227,11 +373,6 @@ The simplest way to do it would simply be to say, if we have 1000 people aged, g
 We add in the new deputy ships and then, we say whatever percentage 1% die that year and again that we then update that to the next year increment.
 
 
-
-
-
-
-
 ### Ord Stat = Active/Closed
 
 #### Active Caseloads (Under Active Supervision): Ord Stat = Active
@@ -260,11 +401,62 @@ In theory, these variables are used to identify all those cases with a complete 
 *Note: we would need to get the deputyships data updated and understand how currently being curated in Sirius?*
 
 ### Deputyship Sirius data
-In deputyship Sirius data, or each client they should have their own caserecnumber (its also known directly as 'court number' in Sirius), multiple orders can be attached to each court number, but the earliest date for a given court number will give the first order. There is some vagueness over which date you choose as the 'start date', since there are multiple points when a date is recorded, e.g., made, issued, when opg assign a risk level etc.
+
+- For each client they should have their own caserecnumber (its also known directly as 'court number' in Sirius), multiple orders can be attached to each court number, but the earliest date for a given court number will give the first order. However, there is some vagueness over which date you choose as the 'start date', since there are multiple points when a date is recorded, e.g., made, issued, when opg assign a risk level etc.
+
+- Look at the schema on Athena (CoP -> Sirius/OPG), you can add in fields that you want for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
+
+- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG havent prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
+
+- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted
+
+## Supervision caseflow report update
+The follwoing text is written by Stuart Stach and I categorised the information he provided below: 
+*Note: we would need to finalise the plan and objectives and get back to him.
+
+- Missing Records (more dependence on CASREC migrated data):
+we should be thresholding only clients which 'started' before the cut-off of the seven-year data retention period. This cuts out about half the clients, leaving just over 70k clients in the report. If that isn't ok with you, then I need to go back to digital and fully understand what data they DIDNT transfer from CASREC due to data retention policy. If we do include ALL clients going back to the start of supervisions then the below issues will be more substantial (more dependence on CASREC migrated data).
+
+- Missing values (termination dates and Desc (reasons)):
+There are still some clients that are missing termination dates and reasons, from both Sirius and the CASREC report I have access too. The number is small but if you think this will impact any modelling work, they should probably be manually checked - we can get Dawn or someone else from Research+Data at OPG to find term dates and reasons for these cases.
+
+- Missing details on remission/exemptions ('Exempt Desc'):
+There seems to be a lot of details on remission/exemptions that were being supplied by CASREC that I can't find in Sirius. If the 'Exempt Desc' column from the old CASREC report is important to you, then I'll go back to digital and see what is happening there.
+
+- More information added, e.g., 'type' of the feepaying deputy (e.g. Pro/Lay/PA) and the 'client accommodation type' and their marital status, and 'from_casrec' flag (current work-in-progress):
+For openness, I have uploaded a current work-in-progress copy of the excel output to an s3 bucket which I believe I have given both of you access to. This can be found here: 
+
+**s3://alpha-opg-mi-dashboard/Supervisions/caseflow/supervision_clients_caseflow_20230403.xlsx
+
+This excel sheet might be a bit hard to parse at first, since its currently containing a lot of unnecessary information. It does combine the Sirius data with the CASREC report I was provided for debugging. I have added in info for each client such as the 'type' of the feepaying deputy (e.g. Pro/Lay/PA) and the 'client accommodation type' and their marital status...I am sure there is more information that might be useful to you that could be found in Sirius. **Where the termination date and reason is taken from the CASREC data and not from Sirius there is a 'from_casrec' flag.
+
+If you want to see how this sheet is being made, the code for it is currently at:
+https://github.com/moj-analytical-services/opg-supervision-mi/blob/dev/client_caseflow.py
+
+*Note: This isn't QA'ed yet but should give you an idea of the scale of the data that we have access to.
 
 
+- For the more detailed description of the work (e.g., 'order_made_date' and 'Caseload Date'):
+We can pull every supervision client that is currently in Sirius, and for each client we can look to see what are the earliest 'order_made_date' for any order that the client is attached to. This is the closest proxy I can find for the 'start' date and it does match the 'Caseload Date' that was being supplied by the CASREC report and thus I suspect consistent with how what you were previously using.
 
-### Control Assuptions and Sensitivity Analysis:
+- Concerns regarding replicating a Casrec report on Sirius due to the data retention period rules:
+As to which clients we could/should be pulling; Matt Machell has warned about attempts to replicate a Casrec report on Sirius due to the data retention period rules. Digital apparently didn't port over all data from cases which closed before that period. In the absence of an actual list of how and what data wasn't ported over due to data retention.... for now I've thresholded to clients which have their earliest order_made_date within the last seven years. As-of 3rd April 2023, thats about 70833 clients (cf 140461 total clients in Sirius), if more historical data is required we can go back to Matt and try to properly understand what Digital mean by: 'it had data in it that was beyond retention period so wasn’t brought across to Sirius and was just inconsistent.
+
+- 'termination date' from the CASREC report and 'orderclosurereason' before and after migration:
+In theory this is now supplied by looking to the status_date for the last order that gets closed and the termination reason from the 'orderclosurereason'. These seem to be consistently getting filled in for orders which are getting closed after the CASREC->Sirius migration but don't appear to be consistently filled for orders closed before the migration. Where the client died, this is less of an issue since death_confirmations/notifications HAVE transferred over (probably due to being stored in their own table) but that still results in ~500 or so clients being 'CLOSED' but with no termination dates or reasons (although unlikely to be due to death).
+
+- Number of 'missing' clients's termination dates and reasons from within CASREC before it was shut down:
+To try and mitigate this I have matched the old CASREC excel spreadsheet report that Daniel supplied to the Sirius output to see how many of these 'missing' clients have their termination dates and reasons from within CASREC before it was shut down. That excel report does supply termination dates and reasons for the majority of these 'missing' client termination's but there does remain **79 clients which are 'CLOSED' but there is no termination date or reason.** This is probably a small enough pool that somebody could manually check these court_numbers in the Sirius frontend and see when and why these clients became 'closed'.
+
+
+- 'ACTIVE' client was set as deceased due to Deputy error:
+Another fun issue is that I can see a number of clients which are 'ACTIVE' but apparently have a dateofdeath attached to them in. There were a couple more of these supposedly dead but active clients that I have manually cleansed because there was a note attached to their orders notifying the client was set as deceased due to Deputy error.... so it would seem that Sirius doesn't have the capability of removing erroneous death notifications? either way, in the spreadsheet I have supplied, there are **13 ACTIVE clients with termination dates due to client being dead...these might not be correct and should probably be manually checked along with the 79 clients with no termination reason.**
+
+&nbsp;
+
+
+<a name="control-assumptions"></a> 
+# Control Assumptions and Sensitivity Analysis
 
 * ref: SUPERVISION CONTROL ASSUMPTIONS (tab) in the excel model
 
@@ -318,7 +510,169 @@ Essentially all what is happening in the charts is to work out how many deputysh
 
 In fact, for childern up to age 18 is more a nive extracolation of this figures and not worth doing much more coplicated work on that, as the number are very small and so it is a simple exponential smoothing forecasting.
 
-## Data Quality
+&nbsp;
+&nbsp;
+## ######################################################################## ##
+&nbsp; 
+<a name="calc-model"></a> 
+# Model Calculation - details of model calculation.
+
+
+&nbsp; 
+<a name="preprocessing"></a> 
+# Feature Engineering and Data Preparation
+
+
+&nbsp; 
+<a name="model"></a> 
+# Implementing the Demand Forecasting for Deputyship Model - details of model scripts.
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+## ######################################################################## ##
+&nbsp;
+&nbsp;
+## ######################################################################## ##
+&nbsp;
+# __Technical Guidance__
+<a name="start"></a> 
+## Getting started
+
+&nbsp;
+
+&nbsp;
+&nbsp;
+## ######################################################################## ##
+
+
+&nbsp;
+<a name="run-model"></a> 
+## Running the model
+- step by step instructions
+
+&nbsp;
+<a name="pack"></a> 
+## Loading python packages
+
+&nbsp;
+<a name="setup"></a> 
+## Setting up a Python virtual environment
+
+&nbsp;
+<a name="ap-s3"></a> 
+## Analytical Platform (AP) and AWS S3 access
+- instructions on setting up AP and s3 access
+
+&nbsp;
+<a name="github"></a> 
+## Accessing the model from Github and Error handelling solutions
+- Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+
+&nbsp;
+<a name="data-mart"></a> 
+# Data Marts (the old Demand Forecasting for Deputyship Model)
+
+&nbsp;
+<a name="howto-d-m"></a> 
+# How to Data Modelling
+- Data Modelling using Create-a-Derived-Table (CaDT)
+
+
+&nbsp;
+<a name="0how2"></a> 
++ *1 - Data Sources and Pipelines* 
+
+&nbsp;
+<a name="1how2"></a> 
++ *2 - Data Modelling using Create-a-Derived-Table (CaDT)* 
+
+&nbsp;
+<a name="2how2"></a> 
++ *3 - Lookup Tables (seed in CaDT)*
+
+&nbsp;
+<a name="3how2"></a> 
++ *4 - Macros (macros in CaDT)*
+
+&nbsp;
+<a name="4how2"></a> 
++ *5 - Running Updates*
+
+&nbsp;
+<a name="5how2"></a> 
++ *6 - Connection with Python code in Jupyter Lab* 
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+<a name="ap-detailed"></a> 
+# Managing files on the Analytical Platform
+- a detailed instructions on setting up AP, Git and s3 access
+
+&nbsp;
+<a name="python-pack"></a> 
+# Python libraries and versions 
+- details of python version and package versions used
+
+&nbsp;
+<a name="data-setup"></a> 
+# Data setup
+- step by step instructions Data Engineering in Jupyter Lab
+
+&nbsp;
+<a name="export"></a> 
+# Exporting Output into CSV and Excel
+
+&nbsp;
+<a name="evaluation"></a> 
+# Evaluation of the model
+
+&nbsp;
+<a name="plot"></a> 
+# Plotting The Forecasted vs Actual values
+
+&nbsp;
+<a name="processflow"></a> 
+# Process flow Diagrams
+- proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
+
+&nbsp;
+<a name="parameters"></a> 
+# Parameters
+- model parameters explained
+
+&nbsp;
+<a name="logging"></a> 
+# Logging 
+- information about output and error logging
+
+&nbsp;
+<a name="data-register"></a> 
+# Data Register
+- a link to the Model data register log
+
+&nbsp;
+<a name="assumptions"></a> 
+# Assumptions
+- a link to the Model assumptions log
+
+&nbsp;
+<a name="risks"></a> 
+# Risks
+- a link to the risk register log
+
+&nbsp;
+&nbsp;
+<a name="qa"></a> 
+# Quality Assurance (QA)
+- directions to the folder that holds the logs and evidence of initial model v1 QA
+
+## Data Quality Assurance
+
 ### AQA Template
 https://aqa-website.apps.live.cloud-platform.service.justice.gov.uk/tools.html
 
@@ -331,3 +685,17 @@ We usually provide samples of our tables in CSV format for the OPG data team to 
 Our team currently use this template from the UKSA: 
 https://uksa.statisticsauthority.gov.uk/the-authority-board/committees/national-statisticians-advisory-committees-and-panels/national-statisticians-data-ethics-advisory-committee/ethics-self-assessment-tool/
 MoJ have been working with the Alan Turing Institute for a while on reissuing the MoJ ethics assessment, but I’ve not been able to find anything hence defaulting to the UKSA version. 
+
+&nbsp;
+<a name="future"></a> 
+# Future Development 
+- instructions on how to do some potential model developments
+
+
+&nbsp;
+<a name="old-model"></a>   
+# Previous implementation of the model 
+- instructions on how the previous model was implemented
+
+
+&nbsp;  
