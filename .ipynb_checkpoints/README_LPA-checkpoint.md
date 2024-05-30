@@ -1,30 +1,189 @@
-# Short And Long Term Demand Forecasts
+# Demand Forecast modelling for LPA in OPG
+This document serves as a user guide to the OPG LPA Forecasting Model in Python, held in this repository: 
+https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
-## Business Need  (Priority: Business As Usual)
+&nbsp;
+&nbsp;
 
-Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
-Short term forecasting is a critical function supporting plans for resources needed to handle applications and 
-calls etc and in-year monitoring of external impacts particularly around broadcast / media events, and early indications of the impact of marketing events.
+# Contents
 
-## Key Deliverables
+* What the Demand Forecasting for LPA Model does
+* Why the Demand Forecasting for LPA Model is useful
+* How users can get started with the Demand Forecasting for LPA Model
+* Where users can get help with Demand Forecasting for LPA Model
+* Who maintains and contributes to the Demand Forecasting for LPA Model
 
-### Short Term LPA Forecast: 
-Key outputs: 
-projections of 12 months or less of LPA applications received and numbers registered as a month profile. Frequency (to be agreed). Supports long term forecast.
+&nbsp;
+# [Demand Forecasting for LPA Model](#summ) - summary of the quantitative methods used for # Short And Long Term Demand Forecasts for LPA.  
+&nbsp;   
+# [Inputs](#inputs)
+&nbsp;
+# [Outputs](#outputs)
+&nbsp;
+# [Higher-level Process flow Diagrams](#high-process-flow) - proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
+&nbsp;
+# [Aim](#aim) 
+&nbsp;
+# [Objectives](#objectives)
+&nbsp;   
+# [Background Knowledge](#Background)
+&nbsp;
+# [Control Assumptions and Sensitivity Analysis](#control-assumptions)
+&nbsp;
+# [Data Sources](#data-sources)
+&nbsp;
+# [Model Calculation](#calc-model) - details of model calculation
+&nbsp;
+# [Feature Engineering and Data Preparation](#preprocessing)
+&nbsp;
+# [Implementing the Demand Forecasting for LPA Model](#model) - details of model scripts
+&nbsp;
+&nbsp;
+# __Technical Guidance__
+&nbsp;
+## [Getting started](#start)
+&nbsp;
+## [Running the model](#run-model) - step by step instructions
+&nbsp;
+## [Loading python packages](#pack)
+&nbsp;
+## [Setting up a Python virtual environment](#setup) 
+&nbsp;
+## [Analytical Platform (AP) and AWS S3 access](#ap-s3) - instructions on setting up AP and s3 access
+&nbsp;
+## [Accessing the model from Github and Error handelling solutions](#github) - Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+&nbsp;
+# [Data Marts (the old Demand Forecasting for LPA Model)](#data-mart)
+&nbsp;
+# [How to Data Modelling](#howto-d-m) - Data Modelling using Create-a-Derived-Table (CaDT) 
+&nbsp;
++ [*1 - Data Sources and Pipelines*](#0how2)
++ [*2 - Data Modelling using Create-a-Derived-Table (CaDT)*](#1how2)
++ [*3 - Lookup Tables (seed in CaDT)*](#2how2)
++ [*4 - Macros (macros in CaDT)*](#3how2)
++ [*5 - Running Updates*](#4how2)
++ [*6 - Connection with Python code in Jupyter Lab*](#5how2)
 
-### Long Term LPA Forecast: 
-Key outputs: 
-necessary to forecast LPA income, and forecast trends in deputyships an investigations. Long term projections (5 years +). Annual numbers of LPA applications received and registered with uncertainty ranges. Frequency: Annual updates. 
+&nbsp;
+# [Python libraries and versions](#pythobpack) - details of python version and package versions used
+&nbsp;
+# [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
+&nbsp;
+# [Exporting Output into CSV and Excel](#export)
+&nbsp;
+# [Evaluation of the model](#evaluation)
+&nbsp;
+# [Plotting The Forecasted vs Actual values](#plot)
+&nbsp;
+# [Process flow Diagrams](#processflow) - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow 
+&nbsp;
+# [Parameters](#parameters) - model parameters explained
+&nbsp;
+# [Logging](#logging) - information about output and error logging
+&nbsp;
+# [Data Register](#data-register) - a link to the Model data register log
+&nbsp;
+# [Assumptions](#assumptions) - a link to the Model assumptions log
+&nbsp;
+# [Risks](#risks) - a link to the risk register log
+&nbsp;
+# [Quality Assurance (QA)](#qa) - directions to the folder that holds the logs and evidence of initial model v1 QA
+&nbsp;
+# [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
+&nbsp; 
+# [Future Development](#future) - instructions on how to do some potential model developments
+&nbsp;    
+&nbsp;
+# [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access
+&nbsp; 
+&nbsp; 
 
-### Long Term Deputyships Forecast: 
-Key outputs: 
-necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.  
+<a name="summ"></a>
+# Demand Forecasting for LPA Model
+The forecast method used for the Demand Forecasting for LPA Model in summerised below:
+- To estimate the the number of the active caseloads for those people who have got LPAs and their order status is registered by OPG and provide forecast demands for the number of LPA demands in 5-10 years. 
 
-### Long Term Investigations Forecast: 
-Key outputs: necessary to understand resource demands (and costs) of expected increasing numbers of investigations from the rapidly rising numbers of existing LPA holders. Long term projections (5 years +) . Numbers pf projections split by origin LPAs, Deputyships , EPA and others.   
+## Business Need (Priority: Business As Usual)
+- Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
+- Short term forecasting is a critical function supporting plans for resources needed to handle applications and  calls etc and in-year monitoring of external impacts particularly around broadcast / media events, and early indications of the impact of marketing events.
 
-## Development Work
 
+&nbsp;
+<a name="inputs"></a>
+# Inputs
+1. The LPAs orders made for each individual cases by the Court of Protection from CASRAC and Sirius databases
+2. Financial information for the LPA demands for each indiviual/case
+3. ONS polulation Projection (e.g., Mortality Rate / Survival Rate)
+4. Family Survay Data
+5. Individual information
+7. Number of LPA application
+
+&nbsp; 
+<a name="outputs"></a>
+# Outputs
+1. Short Term LPA Forecast: 
+    projections of 12 months or less of LPA applications received and numbers registered as a month profile. Frequency (to be agreed). Supports long term forecast.
+
+2. Long Term LPA Forecast: 
+    It is necessary to forecast LPA income, and forecast trends in deputyships an investigations. Long term projections (5 years +). Annual numbers of LPA applications received and registered with uncertainty ranges. Frequency: Annual updates. 
+
+3. Long Term Deputyships Forecast: 
+    necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.  
+
+4. Long Term Investigations Forecast: 
+    necessary to understand resource demands (and costs) of expected increasing numbers of investigations from the rapidly rising numbers of existing LPA holders. Long term projections (5 years +) . Numbers pf projections split by origin LPAs, Deputyships , EPA and others.   
+
+&nbsp;
+<a name="high-process-flow"></a>
+# Higher-level Process flow Diagrams
+The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
+
+*under constuction!
+
+&nbsp;  
+<a name="aim"></a>         
+# Aim 
+- The aim of this project is to Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
+- This model should provide input for the OPG projects in term of resource managment (staff and income).
+
+## Business Needs
+Analytical resource is required to support OPGs plans to develop a fully digital LPA. Specifically : 
+
+1. To explore what impact, under a range of options, would fully digital LPAs have on overall  demand ?
+2. What will be the residual need for paper applications ?
+3. What impact will fully digital LPAs have on LPA demand across a range of protected characteristics  
+
+&nbsp;
+<a name="objectives"></a> 
+# Objectives
+1. Forecasted figures for Living LPAs 
+2. Trends and pattern of the LPA orders
+
+## MLPA Project Data Requirements (OPG Data):
+1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
+2. Understand the expected source of the required data for highest priority requirements
+3. Understand how we access the required data and who owns it
+4. Explore options for how we store and report on the data
+
+## Data Requirements & Prioritisation Questions
+1. What is the data and does it currently exist?
+2. Where is/will the data be held?
+3. What is the justification for needing this data?
+4. What priority is this data in the overall context?
+5. Must have in place for day one of private beta (October 2024)
+6. Must have in place before full go-live (initial target April 2025)
+7. Nice to have at some point in the future
+
+*Note:* 
+The links to the workshop presentation slides as this may provide some further context:
+https://justiceuk.sharepoint.com/:x:/s/MLPAModelOfficeDatarequirements/EQlqQ6r-a3NOm_9mSKlhd2gBmA9PUDMy0tjOyP-yxvK3dQ?CID=0815868E-19DB-4742-A5E3-2552C35614D2&wdLOR=c754D2377-1644-496B-A2FE-3C389D82AFA6 
+
+https://justiceuk.sharepoint.com/:p:/s/MLPAModelOfficeDatarequirements/Eb-Tacu42N9Cq6TDk2oRgRIBDMa3Q0wTSEUa02VrzpmGKg?CID=CBF3B356-D9AE-4AD8-BE69-BDAB70A97D69&wdLOR=c5BF25DD4-1AE4-4375-8564-951C3018AA71
+
+Please note that individual data points have not yet been identified and will be our next step in this process (along with understanding which data tables/source these data points sit).
+In the spreadsheet the green tabs were from the workshop – the information has collated into a summary tab which is easier to navigate (blue tab), so I would advise you to refer to the summary tab (the green tabs hold further information/discussion points for each of the data requirements – these may help understanding (the summary tab contains links to these). 
+
+## FULLY DIGITAL LPAS - Development Work
 1. Develop assumptions for the impact of fully digital LPAs on the long term LPA forecast under a range of options. See project notes on FULLY DIGITAL LPAs.
 
 2. Extend forecast of the impact of fully digital LPAs on demand to impact on deputyships and investigations.
@@ -37,18 +196,31 @@ Key outputs: necessary to understand resource demands (and costs) of expected in
 
 6. Develop geographic LPA demand forecasts.
 
+## Future Development
+   
+1. Invest in automating and improving data pipelines to improve data quality and timeliness
+    - Optimise the SQL scripts and use Parallelisation in CaDT
+3. Automate models 
+    - Quicker, more flexible models in AP 
+    - Review models and improve methodology 
+4. New tools, models and products 
+    - Investment in wider portfolio of products and tools to deliver insight/analysis and to improve modelling  
+5. Wider Modelling Hub vision
+    - Contribute to delivery of wider modelling hub vision
+    - maximise benefits from the hub, in particular  
+    
+&nbsp; 
+<a name="Background"></a> 
+# Background Knowledge
 
-## FULLY DIGITAL LPAS
-
-### Business Needs
-Analytical resource is required to support OPGs plans to develop a fully digital LPA. Specifically : 
-
-1. To explore what impact, under a range of options, would fully digital LPAs have on overall  demand ?
-2. What will be the residual need for paper applications ?
-3. What impact will fully digital LPAs have on LPA demand across a range of protected characteristics  
-
-
-### Deliverables
+## What has been achieved so far?  
+1. We have previously been asked to develop scenario based forecasts for the take-up of online LPAs under a range of alternative assumptions. 
+2. To support the consultation on modernising LPAs we have explored patterns in take-up of online applications. To support work on the impact of fully digital LPAs it would be useful to additionally explore: 
+    1. If the rollout of the online tool increased LPA take-up (ie was there a digital dividend)? 
+    2. Can digital services provide a way to access harder to reach customers ? Where might changes to digital access be needed? 
+    3. What might be potential barriers to access ? (eg noteable low use in rural areas).
+    4. Incorporating Covid period uncertanties around data and how to apply this to the cohort model for forecasting LPA?
+## Key Deliverables
 
 Likely to include:
 1. Adaptation of the long term and short term LPA forecasts to include scenario based assumptions on how fully digital LPAs will impact on LPA take-up. These scenarios will also Impact on Deputyship and Investigations Forecasts.
@@ -57,87 +229,69 @@ Likely to include:
 
 3. Background analysis of online applicants to inform assumptions on digital take-up (see what has been achieved so far). Integration with work by Lisa Moretti (OPGs Digital Sociologist) and Behavioural modelling.
 
-Notes
+*Notes:
 1. Need to work closely with Jude Rattle (OPG/MOJ Digital), Samera Aslam, and Mandy Roper
 2. Recent improvements making records of online applications mandatory within Sirius will help significantly with this (however, this also limits analysis of historic data. 
 
-Useful Contacts
+## Useful Contacts
 Sam Cuthbertson (sam.cuthbertson@hmrc.gov.uk) in HMRC: 
 Lisa Barret: Director at GDS
 DWP (need contact) rollout of digital services eg carer allowance (below)
 
+In OPG’s strategy team we’re starting the work to prepare OPG’s overarching 3-5yr strategy, the first phase of which is collecting a range of evidence. Just wondered what suitable documents you might have that outline analysis on unmet need, fees, horizon scanning etc. 
 
-
-# What has been achieved so far?  
-1. We have previously been asked to develop scenario based forecasts for the take-up of online LPAs under a range of alternative assumptions. 
-
-2. To support the consultation on modernising LPAs we have explored patterns in take-up of online applications. To support work on the impact of fully digital LPAs it would be useful to additionally explore: 
-    1. If the rollout of the online tool increased LPA take-up (ie was there a digital dividend)? 
-    2. Can digital services provide a way to access harder to reach customers ? Where might changes to digital access be needed? 
-    3. What might be potential barriers to access ? (eg noteable low use in rural areas).
-    4. Incorporating Covid period uncertanties around data and how to apply this to the cohort model for forecasting LPA?
-
-
-
-## In OPG’s strategy team we’re starting the work to prepare OPG’s overarching 3-5yr strategy, the first phase of which is collecting a range of evidence. Just wondered what suitable documents you might have that outline analysis on unmet need, fees, horizon scanning etc. 
 
 ### POTENTIAL UNMET NEED FOR LPAS
-
-Key Points
-•	Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
-•	Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
-•	A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
+- Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
+- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+- A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
 ### WHY DON’T PEOPLE TAKE OUT LPAs
-Key Points
-•	It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
-•	Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
-•	A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
+- It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
+- Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
+- A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 
 ### MODERNISING LPAS: 
-Key Points
-•	This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
-•	Again it is hard to summarise such a complex policy effect but some of the long term strategic concerns might be: 
-o	How this will impact overall LPA demand in the longer term; plausible arguments can be made for demand increasing (assuming LPAs are made more accessible eg not requiring a printer) or reducing (where digital capability or need to employ a solicitor becomes an issue). It would probably be best to characterise the potential impact on LPA demand as highly uncertain. 
-o	Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
-o	Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
+- This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
+- Again it is hard to summarise such a complex policy effect but some of the long term strategic concerns might be: 
+    - How this will impact overall LPA demand in the longer term; plausible arguments can be made for demand increasing (assuming LPAs are made more accessible eg not requiring a printer) or reducing (where digital capability or need to employ a solicitor becomes an issue). It would probably be best to characterise the potential impact on LPA demand as highly uncertain. 
+    - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
+    - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
 
 ### REMISSIONS AND EXEMPTIONS FOR FEES
-Key points
-•	The OPG means test has not been updated for more than a decade; attempts to update it previously have proved problematic for a variety of reasons;
-o	The current test is incredibly simple and highly unusual in that it is an assessment of individual financial circumstances rather than joint / benefit unit level circumstances. Attempts to update the test particularly for Supervision to allow for protected persons with low income but high levels of capital have necessitated making the test more complex which have raised both practical  and legal issues about consistency with the Attorney scheme.
-o	Changing the test will have an impact (potentially negative) on OPGs income adding to the uncertainty around income . But if OPG wants to make LPAs more accessible to a wider range of customers then it will also need to increase take up of the remissions and exemptions scheme.
-o	OPG does not collect sufficient information on its customers to adequately test options for updating the remissions and exemption schemes for LPAs or Deputyships.  
-•	The quality of the data collected on the existing remissions and exemption schemes is uncertain ; this is suggested by the proportion of donors claiming exemptions which is extremely low. 
+- The OPG means test has not been updated for more than a decade; attempts to update it previously have proved problematic for a variety of reasons;
+    - The current test is incredibly simple and highly unusual in that it is an assessment of individual financial circumstances rather than joint / benefit unit level circumstances. Attempts to update the test particularly for Supervision to allow for protected persons with low income but high levels of capital have necessitated making the test more complex which have raised both practical  and legal issues about consistency with the Attorney scheme.
+    - Changing the test will have an impact (potentially negative) on OPGs income adding to the uncertainty around income . But if OPG wants to make LPAs more accessible to a wider range of customers then it will also need to increase take up of the remissions and exemptions scheme.
+    - OPG does not collect sufficient information on its customers to adequately test options for updating the remissions and exemption schemes for LPAs or Deputyships.  
+- The quality of the data collected on the existing remissions and exemption schemes is uncertain ; this is suggested by the proportion of donors claiming exemptions which is extremely low. 
 
 ### SUPERVISION AND LPA FEES
-Key Points
-•	Attempting to correctly balance Supervision and LPA fees over the longer term will depend on much of what has been suggested above particularly changing LPA demand , income , impact of MLPAs, any planned changes around remissions and exemptions, the success or otherwise of making LPAs more widely accessible and the impact on income, and specific decisions such as the level of cross-subsidy .
-•	Another significant factor is the cost of Investigations (see below) .
+- Attempting to correctly balance Supervision and LPA fees over the longer term will depend on much of what has been suggested above particularly changing LPA demand , income , impact of MLPAs, any planned changes around remissions and exemptions, the success or otherwise of making LPAs more widely accessible and the impact on income, and specific decisions such as the level of cross-subsidy .
+- Another significant factor is the cost of Investigations (see below) .
 
 ### INVESTIGATIONS  
-Key Points
-•	Whilst we are in the process of updating this forecast , it is reasonable to say that the number of investigations that OPG will need to deal with will continue to rapidly increase for two reasons:
-o	The proportion of living LPA holders will continue to increase and generate more concerns
-o	The proportion of those with LPAs where the LPA is actually in use will continue to increase as the age of living LPA holders increases. 
-•	Whilst numbers of investigations will increase these remain a very small percentage of the overall number of living LPA holders relative to comparable figures on elder financial abuse produced by Age Uk etc.  This itself may be a concern as this may indicate that a large amount of abuse goes undetected. 
-•	It is unclear what impact MLPAs will have on investigations.
-•	Should reducing investigations / safeguarding concerns be a strategic concern ?
+- Whilst we are in the process of updating this forecast , it is reasonable to say that the number of investigations that OPG will need to deal with will continue to rapidly increase for two reasons:
+    - The proportion of living LPA holders will continue to increase and generate more concerns
+- The proportion of those with LPAs where the LPA is actually in use will continue to increase as the age of living LPA holders increases. 
+    - Whilst numbers of investigations will increase these remain a very small percentage of the overall number of living LPA holders relative to comparable figures on elder financial abuse produced by Age Uk etc.  This itself may be a concern as this may indicate that a large amount of abuse goes undetected. 
+- It is unclear what impact MLPAs will have on investigations.
+- Should reducing investigations / safeguarding concerns be a strategic concern ?
 
 ### FORECASTING LONG TERM LPA DEMAND
-Key Points
-•	This is difficult but necessary. 
-•	Strategically it is useful to understand the causes of uncertainty and risks around LPA demand.
-•	Current horizon scanning tries to reflect both the impact and probability of events on LPA demand . Currently three events are identified as having the potential to have a large impact on LPA demand with a high probability in the short to medium term; these are MLPAs, Suppressed demand due to the pandemic and the cost of living crisis. 
-•	Other potential risks to LPA demand and OPG more generally might include:
-o	Cyber Risk, generally or more specifically on Government Systems including OPG systems. Risk likely increased with MLPAs , AI and broader geo-political events.
-o	Evidence of LPA market saturation becomes more pronounced 
-o	Worsening of geo-political events and disruptive impact on the UK economy worsens the current cost of living crisis reducing LPA demand.
-o	There is always an increasing risk of unknown unknowns . 
+- This is difficult but necessary. 
+- Strategically it is useful to understand the causes of uncertainty and risks around LPA demand.
+- Current horizon scanning tries to reflect both the impact and probability of events on LPA demand . Currently three events are identified as having the potential to have a large impact on LPA demand with a high probability in the short to medium term; these are MLPAs, Suppressed demand due to the pandemic and the cost of living crisis. 
+- Other potential risks to LPA demand and OPG more generally might include:
+    - Cyber Risk, generally or more specifically on Government Systems including OPG systems. Risk likely increased with MLPAs , AI and broader geo-political events.
+    - Evidence of LPA market saturation becomes more pronounced 
+    - Worsening of geo-political events and disruptive impact on the UK economy worsens the current cost of living crisis reducing LPA demand.
+    - There is always an increasing risk of unknown unknowns . 
 
 
-
-# LPA Data:
+&nbsp;
+&nbsp; 
+<a name="data-sources"></a> 
+# Data Sources
 
 ## Meta data and Variable selection and Data Cleaning for the LPA data in Data Warehouse:
 
@@ -151,6 +305,57 @@ S:\hq\102PF\Shared\CJG\FMDU\Data Share Area\OPGDOCS\LPA Data\LPA Data To March 2
 
 
 ### Unique case reference for each donor = [donor_dob + donor_postcode + donor_gender]
+From what I can see of your code, it looks like you need to extract a list of Power of Attorney receipts with the following columns: ['receiptdate', 'uid', 'type', 'casesubtype', 'status', 'donor_postcode', 'donor_gender', 'age'].
+
+That’s something that can definitely be done using the dimensional model we’ve built on Sirius. I presume you’re using postcode to link to other geographical classifications? This is something we’ve already done, so you can pick up any geographical column you like directly from the data warehouse rather than the postcode, or we can easily add one if it isn’t already there. In the examples below and attached I’ve used region as an example.
+
+From here you have two options:
+1. Query the warehouse tables directly from Python/R.
+
+```sql
+with events as (
+	select *
+	from "dim_guardianship_dev_dbt"."fct_case_receipts"
+	where extract_type = 'latest_extract'
+		and receipt_date >= date_parse('01-01-2008', '%d-%m-%Y')
+),
+dates as (
+	select *
+	from "common_lookup_dev_dbt"."dim_date"
+),
+donors as (
+	select *
+	from "dim_guardianship_dev_dbt"."dim_donors"
+),
+cases as (
+	select *
+	from "dim_guardianship_dev_dbt"."dim_cases"
+),
+attributes as (
+	select dates.calendar_year as receipt_year,
+		events.receipt_date,
+		cases.case_id,
+		cases.case_type,
+		cases.case_subtype,
+		cases.case_status,
+		cases.donor_age_at_receipt,
+		donors.gender,
+		donors.region_name,
+		events.extract_date
+	from events
+		left join dates on events.receipt_date = dates.date_name
+		left join cases on events.extract_case_id = ces.extract_case_id
+		left join donors on events.extract_donor_id = donors.extract_donor_id
+)
+select *
+from attributes
+```
+
+2. Build the table in create-a-derived table. I’ve already done this, and it’s available in Athena at guardianship_derived_dev_dbt.case_receipts. If you’re happy with this, we can move this table into prod once we’ve added any additional columns you need.
+
+One thing to note is that these tables are updated daily with new information from Sirius so we’ll need to make some adjustments if you need a fixed table.
+
+To understand how these tables join together, it would be worth familiarising yourself with Dimensional Modelling, which is the methodology we’ve used for the OPG warehouse. In this case,  fct_case_receipts is the fact table containing all POA receipt dates, while dim_donors and dim_cases are the dimension tables which contain information on the donor and case respectively.
 
 #### Sort by the unique id and count how many application
 
@@ -160,6 +365,7 @@ S:\hq\102PF\Shared\CJG\FMDU\Data Share Area\OPGDOCS\LPA Data\LPA Data To March 2
 
 ##### Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
 
+```sql
 Select 
     uid, # unique identifier 
     type, # type od appliation # type = lpa (living power of atthorney)
@@ -239,250 +445,18 @@ Select
     donor_cameo_CAMEO_UKPG_name, # 
     donor_cameo_CAMEOINTL_group, # 
     donor_cameo_CAMEOINTL_type
+```
 
+&nbsp;
 
+&nbsp; 
+<a name="preprocessing"></a> 
+# Feature Engineering and Data Preparation
 
-# ONS mortality statistics 
-## Source Data For Mortality Statistics and Modelled Age Specific Survival Rates (Model Input Set By Control Assumptions)
 
-
-the best source of information for the ONS mortality statistics which are here: 
-Mortality rates (qx), by single year of age - Office for National Statistics (ons.gov.uk)
-
-The main issue with these figures is that they are only provided separately for England , and separately for Wales , and not as a combined rate for England and Wales. This is frustrating but comparing the rates the differences are extremely small so probably would not make any practical difference if we chose to use the figures for just England.
-
-To be clear what these figures are showing are equivalent to the mortality rates in columns O and P on the Mortality Statistics sheet in the model. Looking at the mortality rates in the model in column O for example showing male morality at age 18 this gives a figure of 0.3 per 1000 adults or 0.0003 (ie 0.3/1000). The equivalent figure in the ONS mortality tables for males aged 18 for 2017-2019 is 0.00039 so slightly higher. The actual ONS mortality rates suggest that the model currently over-estimates mortality rates for donors aged 90 and over so it will be useful to update these.
-
-I think to simplify things and given the very small difference in mortality rates between England and Wales for 2017-19 that we could just use the mortality rates for England . Once we have more time we can add some complexity by adding variants such as rates for Wales or combined England and Wales estimates.  
-
-
-		
-	Mortality Statistics	
-		
-		
-		
-MALE: ESTIMATED AGE SPECIFIC SURVIVAL		FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL
-		
-		
-Copy Nemerical Values in column C and transpose paste in column F		Copy Nemerical Values in column C and transpose paste in column F
-		
-		
-Source: Office for National Statistics: 		Source: Office for National Statistics: 
-nationallifetables3yearenglandandwales.xlsx		nationallifetables3yearenglandandwales.xlsx
-Sheet: '2020-2022'		Sheet: '2020-2022'
-Released: 11 January 2024		Released: 11 January 2024
-Downloaded from:		Downloaded from:
-National life tables: England and Wales - Office for National Statistics		National life tables: England and Wales - Office for National Statistics
-
-# LPA Control Assumptions
-Specific Key Assumptions that control expected demand, LPA market size and saturation.
-
-
-
-
-
-
-# POPULATION PROJECTION data
-
-## understanding the data (“Population Forecast Model Input” tab in the excel model):
-
-As this data is fed from other tabs ( Population Variants England and Wales).
-
-In the last version of the model, the source of data was 2016-based and 2018-based which are zipped files including:
-
-“HIGH FERTILITY PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH POPULATION PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH LIFE EXPECTANCY PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH MIGRATION PROJECTION 2018 (2016 BASED TO 2017)”, “PRINCIPLE POPULATION PROJECTION 2018 (2016 BASED TO 2017)”  and similar data for the “LOW” figures in xml files.
-
-I have just find out that the national population projections data files (in the National population projections: 2021-based interim (located in National population projections table of contents - Office for National Statistics) has been changed in terms of formatting since 2020 and there is one excel file (e.g., for 2021-based, there is only one worksheet: “2021-based interim edition of this dataset” in Zipped population projections data files, England - Office for National Statistics), which only provided the PRINCIPLE POPULATION PROJECTION data.
-
-They explained that:
-‘The use of the term ‘interim’ in the release title is to reflect that these projections reuse mortality and fertility assumptions from the previous 2020-based NPPs, do not include the range of variant projections that are usually published, and are being published as a headline-only release ahead of 2022-based NPPs.’
-
-Thus, I am not quite sure if I have to reuse mortality and fertility assumptions from the previous years and exclude years without this information?
-
-Also, I could also add more data by using “Zero net migration (natural change only) variant - England population in age groups - Office for National Statistics (ons.gov.uk)” data in the following link:
-Zero net migration (natural change only) variant - England population in age groups - Office for National Statistics (ons.gov.uk), which represent “Projected populations at mid-years by age last birthday in five-year age groups”. 
-
-
-## Calculationas: Population Forecast Model Input
-             
-**The follwoing formula calculate the National Population Projections: 2018-based Statistical Bulletin - Office for National Statistics, older versions used for older data**
-
-Calculating the total Sum of **'Population Variants England' and 'Population Variants Wales' (Males + Females) based on year - age: 18+** the follwoing database based on the LPA assumption of model input categories listed below:
-
-1. High Population Variant
-2. High Fertility Variant
-3. Low Population Variant
-4. Low Fertlity Variant
-5. High Life Expectancy Variant
-6. Low Life Expectancy Variant
-7. High Migration Variant
-8. Low Migration Variant
-9. Principle Projection
-
-**The corresponding excel formula:**
-
-('Population Variants England'!C245+'Population Variants Wales'!C245)*'LPA Control Assumptions'!$B$62+('Population Variants England'!AI245+'Population Variants Wales'!AI245)*'LPA Control Assumptions'!$B$63+('Population Variants England'!BM245+'Population Variants Wales'!BM245)*'LPA Control Assumptions'!$B$64+('Population Variants England'!CR245+'Population Variants Wales'!CR245)*'LPA Control Assumptions'!$B$65+('Population Variants England'!DW245+'Population Variants Wales'!DW245)*'LPA Control Assumptions'!$B$66+('Population Variants England'!FB245+'Population Variants Wales'!FB245)*'LPA Control Assumptions'!$B$67+('Population Variants England'!GG245+'Population Variants Wales'!GG245)*'LPA Control Assumptions'!$B$68+('Population Variants England'!HL245+'Population Variants Wales'!HL245)*'LPA Control Assumptions'!$B$69+('Population Variants England'!IQ245+'Population Variants Wales'!IQ245)*'LPA Control Assumptions'!$B$70              
-
-
-# LPA MARKET SHAPE 
-The forecast assumes that the "Shape" of the LPA market = LPAs as a % of Population Totals
-LPAs as % of Population Totals = Assumed Market "Shape"
-
-* ref: LPA MODEL / LPA MARKET SHAPE
-
-## Calculation:
-The total SUM (donor counts (age specific for two consecusive years)) 
-
-DIVIDED BY (the total SUM of 'Population Forecast Model Input' (age specific for two consecusive years))
-
-**Excel Formula**
-=SUM(AO8:AP8)/SUM('Population Forecast Model Input'!O25:P25)
-
-# Assumed Potential Maximum Market
-For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine theerfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current  maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
-
-* ref: LPA MODEL / Assumed Potential Maximum Market
-
-## Calculation:
-Peak_age = 90
-
-IF 'LPA Control Assumptions: Assume Market Shape Based On LPA Age Distribution Applies' = 1 (TRUE) 
-
-THEN 'Assumed Potential Maximum Market' at Peak_age 
-
-MULTIPLIED BY ('LPA MARKET SHAPE' by the corresponding age and year DIVIDED BY 'LPA MARKET SHAPE' at Peak_age)
-
-OTHERWISE 1
-
-
-**Excel Formula**
-=IF('LPA Control Assumptions'!$B$520=1,$AW$80*AU8/$AU$80,1)
-
-
-
-# MAX MARKET ESTIMATES
-This calculates the maximum market estimates based on proportion of the ONS population projection at the specicific age and year
-
-* ref: LPA MODEL / Assumed Potential Maximum Market
-
-## Calculation:
-'Population Forecast Model Input' (the corresponding age and year)
-
-MULTIPLIED BY Assumed Potential Maximum Market (age specific)
-
-
-**Excel Formula**
-='Population Forecast Model Input'!D25*AW8
-
-# LPA SURVIVAL TABLES:
-Meta data and Variable selection and Data Cleaning for the Mortality statastics data based on population projections:
-* ref: LPA MODEL/LPA SURVIVAL TABLES
-
-
-## Goal: percentage of people are died in one year
-### What proportion of the UK population are likely to buy LPA and still alive?
-*How many people are still alive (Living Donors bought LPA)*
-*Based on ONS Data of Population of Engalnd and Wales, how many people are still alive and how many of them are dead?*
-*e.g., if there are 1000 people and 100 of them are still alive and bought LPA,
-so there are 900 of them still didn't buy LPA.
-
-
-
-
-**1. These rates are standardised to the 2013 European Standard Population, expressed per million population; 
-they allow comparisons between populations with different age structures, including between males and females and over time. 
-**2.  Deaths per 1,000 live births. 
-**3.  Death figures are based on deaths registered rather than deaths occurring in a calendar year.
-
-*if a 1000 40 years old male bought an LPA in 2008, what proportion of are still alove today?
-
-#The model taking each age categories (categorical variable) and assumed that they are 
-singe age-specifics in the age category 18 to 90 and provide figure what percentage of people for male died within one year?
-
-e.g., in the 15-19 age category, 0.3 percent of males died within one year in the UK and 0.03 per 1000
-
-e.g., in the 25-29 age category, 0.6 percent of males died within one year in the UK and 0.06 per 1000
-
-e.g., in the 70-74 age category, 23.7 percent of males died within one year in the UK or 2.37 per 1000
-
-*if you started at age 18, 7 years and become 25 years old ahead, 
-as the ages goes up you will fall into a higher mortality category (from 0.3 to 0.6)
-
-### Data Path
-**qx: is the mortality rate between age x and (x +1), that is the probability that a person aged x exact will die before reaching age (x +1).**
-
-**We extract data from Age 18+.**
-
-
-
-## LPA SURVIVAL TABLES: (BY YEAR OF APPLICATION)
-
-## Calculation:
-
-**prior year = the corresponding year REDUCTED from the starting (base) year 2007 = the number of previous years till the corresponding year to track back and calculate the ESTIMATE AGE SPECIFIC SURVIVAL for male/female.**
-
-IF 'LPA Control Assumptions: FORECAST ASSUMPTIONS: MORTALITY RATES' = 1 (Male) 
-
-THEN ((the number of donors for **prior_year** years before the corresponding year (age - **prior_year**))
-MULTIPLIED BY ('Mortality Statistics': MALE: ESTIMATED AGE SPECIFIC SURVIVAL) for the corresponding age)
-
-OTHERWISE ((the number of donors for **prior_year** years before the corresponding year (age - **prior_year**))   
-MULTIPLIED BY ('Mortality Statistics': FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL) for the corresponding age)
-
-**Excel Formula**
-=IF('LPA Control Assumptions'!$B$45=1,CD8*'Mortality Statistics'!$BC$4,CD8*'Mortality Statistics'!$DU$4)
-
-=IF('LPA Control Assumptions'!$B$45=1,CD8*'Mortality Statistics'!$BG$4,CD8*'Mortality Statistics'!$DY$4)
-
-
-# 
-
-**Excel Formula**
-=$C$98/$Q$98*Q8
-
-Q8: C8*'Sirius Donor Attorney Splits'!AS7 in Donor Estimates & Actuals
-
-Multiply "Donor Estimates & Actuals" for the year from LPA data by sum of (Raw Age Distributions (Donors & Attorneys)) devided by sum of (Donor Estimates & Actuals) for that specific age on the choosen year
-
-
-
-C8:
-male = 1
-female = 2
-randomise = 3
-
-If the applications are for male = 1 then MALE: ESTIMATED AGE SPECIFIC SURVIVAL in year and age 
-    
-
-
-
-### For information on registration delays for a range of causes, see: 
-    https://webarchive.nationalarchives.gov.uk/ukgwa/20160106020016/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/impact-of-registration-delays-on-mortality-statistics/index.html
-
-A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates 
-for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
-surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
-
-For the 2018 LPA forecast , Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
-a standard log power law that best fits existing mortality rates to age. 
-
-*numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
-clearly not possible.
-
-
-
-
-
-
-
-
-
-
-
-
-# ########## FUTURE WORK ############# #
-# FUTURE WORK
-
+&nbsp; 
+<a name="model"></a> 
+# Implementing the Demand Forecasting for LPA Model - details of model scripts.
 # Long-Term Forecasting (Cohort-Based Model)
 Cohort-based forecasting is a method used to predict future trends in customer behavior based on historical data. Unlike traditional forecasting methods that rely solely on aggregated data, cohort-based forecasting breaks down customer data into smaller groups with similar characteristics and looks at each group individually.
 * ref: https://kohort.io/the-metrics-blog/cohort-based-forecasting-what-is-it-and-what-do-you-mean-its-kinda-like-football
@@ -569,528 +543,6 @@ Extrapolate the metrics for the next 5 years.
 Consider different scenarios (e.g., changes in LPA regulations, increased awareness) and their impact on cohort behavior.
 Adjust your forecasts accordingly.
 
-## Risk of usig excel model: 
-Remember that Excel has limitations for complex forecasting models, especially when dealing with large datasets. WE might switch to more sophisticated modeling, consider using specialized statistical software or programming languages like Python or R.
-
-
-## Visualizing cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
-
-**Conditional Formatting:**
-Highlight key insights from your cohort table using conditional formatting.
-Select your cohort data.
-Click on Home > Conditional Formatting > Color Scales.
-Choose a color scale that suits your data.
-Adjust the scale to enhance the contrast between high and low rates.
-Colors will reveal patterns in customer retention.
-
-**Charting and Graphing:**
-Excel offers a range of charting and graphing options to visualize your cohort analysis results.
-
-**Create:**
-Line Charts: Represent how metrics change over time within different cohorts.
-Bar Graphs: Compare metrics across different cohorts.
-
-**Heatmaps:**
-Show variations in metrics by color intensity.
-Visualizations make it easier to identify trends and patterns within your data2.
-Remember to organize your data with the necessary attributes and timestamps, define your cohorts, and calculate relevant metrics before creating visualizations.
-
-
-*Can you show me an example of a cohort line chart?
-
-*What are the common challenges in LPA forecasting?
-
-## Risk, assumptions, and challenges forecasting for LPA
-*When it comes to forecasting for Lasting Power of Attorney (LPA) applications, there are several challenges that organizations and individuals may encounter. 
-
-Let’s explore some of these common challenges:
-
-### Legal Validity and Challenges:
-1. Lack of Capacity: 
-An LPA must be created by someone with the required mental capacity as defined in the Mental Capacity Act 2005. If there are doubts about the donor’s capacity during the creation of the LPA, it can lead to legal challenges1.
-2. Fraud or Duress: 
-LPAs created fraudulently or under duress can be challenged. If an LPA is suspected to be invalid due to coercion or deception, legal action may follow1.
-3. Attorney Suitability and Abuse:
-4. Unsuitable Attorneys: Sometimes, appointed attorneys may not act in the best interests of the donor. Relatives or concerned parties can challenge an LPA if they believe an attorney is unsuitable.
-5. Abuse of Position: If an attorney abuses their position (e.g., mismanaging finances, neglecting the donor’s welfare), it can lead to disputes and legal challenges1.
-6. Notification and Objection:
-7. Notification Process: When someone creates an LPA, they can list individuals to be notified by the Office of the Public Guardian (OPG). These notified individuals have the chance to object to the registration of the LPA.
-8. Relatives’ Awareness: 
-In some cases, relatives may not know that the donor has made an LPA until later, which can complicate matters if they wish to challenge it1.
-9. Personality Clashes and Autonomy:
-Reasonable Grounds: Challenges must have genuine and reasonable grounds. A mere personality clash with an attorney is not sufficient to have them removed. Autonomy in choosing attorneys is essential.
-Balancing Autonomy and Protection: Balancing the individual’s autonomy to choose attorneys with the need to protect their interests can be challenging1.
-Complex Application Process:
-Errors in Completion: Completing the LPA application correctly is crucial. Errors can lead to delays or rejection by the OPG. Avoiding common mistakes during the application process is essential2.
-Health and Welfare LPAs:
-Timing: Health and welfare LPAs only take effect once the donor has lost mental capacity. Forecasting the timing of capacity loss accurately can be challenging.
-Changing Circumstances: Health conditions and circumstances can change, affecting the applicability of health and welfare LPAs1.
-In summary, LPA forecasting involves legal, practical, and ethical considerations. Organizations and individuals must navigate these challenges to ensure effective decision-making and protection for donors.
-
-Learn more
-
-1
-
-ftadviser.com
-2
-
-gov.uk
-3
-
-publicguardian.blog.gov.uk
-You
-Can you explain how to address capacity fluctuations in forecasting?
-Copilot
-Certainly! Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. Here are some strategies to consider:
-
-Understand Capacity Fluctuations:
-Recognize that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
-Monitor the individual’s cognitive abilities and assess their capacity periodically.
-Historical Data Analysis:
-Examine historical LPA applications to identify patterns related to capacity fluctuations.
-Look for trends in the timing of capacity loss or improvement.
-Consider whether certain age groups or health conditions are more prone to fluctuations.
-Segmentation by Risk Factors:
-Divide your data into segments based on risk factors (e.g., age, health status).
-Analyze how capacity fluctuations vary across these segments.
-Adjust your forecasting models accordingly for each segment.
-Probabilistic Models:
-Use probabilistic models to account for uncertainty.
-Bayesian models, Markov models, or survival analysis can incorporate changing probabilities of capacity loss.
-These models allow you to update predictions as new information becomes available.
-Scenario-Based Forecasting:
-Create scenarios that simulate different capacity trajectories.
-For example:
-Stable Capacity: Assume capacity remains stable over time.
-Gradual Decline: Assume a gradual decline in capacity.
-Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
-Forecast LPAs under each scenario and assess their impact.
-Collaborate with Healthcare Professionals:
-Consult with healthcare providers who can assess capacity objectively.
-Obtain medical opinions and consider their insights in your forecasting process.
-Sensitivity Analysis:
-Test the sensitivity of your forecasts to capacity fluctuations.
-Vary the assumptions about capacity loss rates and observe the impact on LPA applications.
-Educate Attorneys and Donors:
-Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
-Encourage them to review and update LPAs periodically to reflect changing circumstances.
-Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. If you have further questions or need additional guidance, feel free to ask! 😊
-
-You
-Can you provide an example of a cohort analysis chart?
-Copilot
-Certainly! A cohort analysis chart is a powerful tool for understanding user behavior over time. It allows you to group users based on specific characteristics (such as acquisition date) and track their actions or metrics over subsequent periods. Let’s take a look at an example of a cohort analysis chart:
-
-Example Cohort Analysis Chart (Weekly Revenue per Group):
-
-In this chart, we’ll focus on revenue generated by cohorts of customers acquired in specific weeks.
-The vertical axis represents the cohorts, with the oldest cohorts at the top and the newest ones at the bottom.
-Each row corresponds to a cohort of customers who started using a product or service during a particular week.
-The horizontal axis represents time (e.g., weeks, months) after the cohort’s acquisition.
-The cells in the chart display the revenue generated by each cohort during each time period.
-Here’s a simplified representation of how the chart might look:
-
-Week 1   Week 2   Week 3   Week 4   ...   Week N
--------------------------------------------------
-Cohort 1:   $100     $120     $110     $130          ...
-Cohort 2:   $80      $90      $100     $95           ...
-Cohort 3:   $150     $140     $160     $155          ...
-...         ...      ...      ...      ...           ...
-Cohort M:   $200     $210     $220     $205          ...
-
-Each cell shows the revenue generated by a specific cohort during a particular week.
-You can read across the rows to see how a cohort’s revenue changes over time.
-Reading from top to bottom allows you to compare different cohorts during a specific time period.
-Diagonally, you get a snapshot of how each cohort performs at a specific point in time.
-In this example, you’d analyze how revenue evolves for each cohort as weeks progress. This information can guide strategic decisions, such as optimizing marketing efforts, improving product features, or addressing customer retention.
-
-Remember that cohort analysis can be customized based on the specific metrics you’re interested in (e.g., user engagement, churn rate, conversion rate). The key is to segment users into meaningful groups and track their behavior over time to uncover valuable insights1. If you have any further questions or need additional examples, feel free to ask! 😊
-
-Learn more
-
-1
-
-g2.com
-2
-
-datamation.com
-3
-
-canonicalized.com
-
-You
-How can I incorporate Bayesian models in LPA forecasting?
-Copilot
-Certainly! Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
-
-Understanding Bayesian Models:
-Bayesian models are based on Bayes’ theorem, which updates our beliefs (probabilities) based on new evidence.
-These models incorporate prior knowledge (prior distribution) and update it with observed data to obtain a posterior distribution.
-In the context of LPA forecasting, Bayesian models allow us to quantify uncertainty and make informed predictions.
-Dynamic Linear Models (DLMs):
-DLMs are a class of Bayesian state space models commonly used for time series forecasting.
-They consist of two components:
-State Equation: Describes how the underlying state (e.g., capacity fluctuations) evolves over time.
-Observation Equation: Relates the observed data (e.g., LPA applications) to the underlying state.
-DLMs can handle time-varying parameters, seasonality, and irregularities in data.
-Steps to Incorporate Bayesian Models:
-Prior Specification:
-Define prior distributions for model parameters (e.g., capacity loss rates, trend coefficients).
-Priors can be informative (based on domain knowledge) or non-informative (flat priors).
-Likelihood Function:
-Specify the likelihood function that relates observed data to the model parameters.
-For LPA forecasting, this could be based on historical LPA application data.
-Posterior Inference:
-Use Bayes’ theorem to update the prior distribution based on observed data.
-Markov Chain Monte Carlo (MCMC) methods or variational inference can estimate the posterior distribution.
-Prediction:
-Simulate from the posterior distribution to obtain predictive samples.
-These samples represent possible future scenarios, accounting for uncertainty.
-Model Selection:
-Choose an appropriate DLM structure:
-Local Level Model: Represents a random walk (e.g., gradual capacity decline).
-Local Linear Trend Model: Includes both level and slope components.
-Seasonal Models: Capture seasonal patterns.
-Regression Models: Incorporate external predictors (e.g., health indicators).
-Model selection can be guided by cross-validation or information criteria (e.g., Bayesian Information Criterion).
-Updating Over Time:
-As new LPA application data becomes available, update the model using Bayesian methods.
-This allows the model to adapt to changing conditions (e.g., shifts in capacity fluctuations).
-Scenario Analysis:
-Generate probabilistic forecasts for different scenarios:
-Gradual capacity decline.
-Sudden capacity loss due to health events.
-Capacity improvement (if relevant).
-Assess the impact of these scenarios on LPA applications.
-Remember that Bayesian models provide a flexible framework for incorporating prior knowledge, handling uncertainty, and adapting to changing conditions. While implementing Bayesian models in Excel directly may be challenging, consider using specialized statistical software (e.g., Python with libraries like pymc3 or Stan) for more complex modeling12. If you need further assistance or have specific questions, feel free to ask! 😊
-
-Learn more
-
-1
-
-www2.stat.duke.edu
-2
-
-towardsdatascience.com
-3
-
-link.springer.com
-4
-
-link.springer.com
-You
-What are the limitations of Bayesian models in LPA forecasting?
-Copilot
-Certainly! While Bayesian models offer several advantages, they also come with limitations, especially when applied to Lasting Power of Attorney (LPA) forecasting. Let’s explore some of these limitations:
-
-Computational Complexity:
-Bayesian models involve complex calculations, especially when estimating posterior distributions using Markov Chain Monte Carlo (MCMC) methods.
-For large datasets or high-dimensional models, the computational burden can be significant.
-Subjectivity in Prior Selection:
-Bayesian models require specifying prior distributions for model parameters.
-The choice of priors can impact the results, and different analysts may choose different priors based on their beliefs or domain knowledge.
-Subjective priors can introduce bias if not carefully considered.
-Data Requirements:
-Bayesian models perform well when sufficient data is available.
-Sparse or noisy data can lead to unreliable posterior estimates.
-In the case of LPAs, historical data may be limited, especially for specific subgroups (e.g., rare health conditions).
-Model Misspecification:
-If the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations), the results may be misleading.
-Model misspecification can lead to biased parameter estimates.
-Assumptions of Independence:
-Many Bayesian models assume independence between observations.
-In reality, dependencies may exist (e.g., correlations between LPAs within the same family).
-Ignoring dependencies can affect the accuracy of forecasts.
-Interpretability:
-Bayesian models provide posterior distributions, which are more informative than point estimates.
-However, interpreting complex posterior distributions can be challenging for non-experts.
-Communicating uncertainty effectively to stakeholders may require additional effort.
-Limited Excel Integration:
-Implementing Bayesian models directly in Excel can be cumbersome due to its limitations in handling probabilistic calculations.
-Specialized statistical software (e.g., Python, R) is better suited for Bayesian modeling.
-Assumption of Stationarity:
-Some Bayesian time series models assume stationarity (constant statistical properties over time).
-In practice, capacity fluctuations may exhibit non-stationary behavior (e.g., trends, seasonality).
-Model Complexity vs. Parsimony:
-Bayesian models can become overly complex if too many parameters are included.
-Balancing model complexity with parsimony is essential to avoid overfitting.
-Updating Models Over Time:
-Incorporating new data into Bayesian models requires re-estimating posterior distributions.
-Real-time updates can be computationally intensive.
-Despite these limitations, Bayesian models remain valuable tools for handling uncertainty, incorporating prior knowledge, and making informed predictions. When using Bayesian methods, it’s essential to address these challenges appropriately and communicate results transparently. If you have further questions or need clarification, feel free to ask! 😊
-
-You
-How can I address model misspecification in Bayesian LPA forecasting?
-What are the alternatives to MCMC for estimating posterior distributions?
-Can you explain how to perform sensitivity analysis on priors in a Bayesian model?What are the legal implications of capacity fluctuations in LPAs?
-Can you provide an example of a sensitivity analysis for LPA applications?
-Copilot
-Certainly! Let’s address each of your questions:
-
-Model Misspecification in Bayesian LPA Forecasting:
-Model misspecification occurs when the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations).
-To address this:
-Prior Sensitivity Analysis: Explore different prior distributions for model parameters. Assess how changes in priors impact the posterior distribution and predictions.
-Alternative Models: Consider alternative Bayesian models (e.g., different likelihood functions, non-parametric models) and compare their performance.
-Gaussian-Process Approximations: Use Gaussian-process approximations to improve posterior estimates12.
-Alternatives to MCMC for Estimating Posterior Distributions:
-While MCMC is widely used, other methods exist:
-Variational Inference: Solves an optimization problem to approximate the posterior faster than simple MCMC.
-Importance Sampling: Estimates properties of posteriors by sampling from an approximation.
-Analytical Solutions: In some cases, posterior distributions can be computed analytically34.
-Performing Sensitivity Analysis on Priors in a Bayesian Model:
-Sensitivity analysis assesses how changes in priors affect model outcomes.
-Steps:
-Define a range of prior values (e.g., mean, variance).
-Run the model with different priors.
-Observe how posterior distributions and predictions vary.
-Compare estimated parameters and make conclusions based on context5.
-Legal Implications of Capacity Fluctuations in LPAs:
-LPAs grant decision-making authority to attorneys when the donor lacks capacity.
-Legal implications:
-Freezing of Accounts: Without an LPA, banks may freeze accounts if a signatory lacks capacity.
-Deputyship Applications: If no LPA exists, a third party can apply to be appointed as a deputy by the Court of Protection.
-Business LPAs: For business accounts, lacking an LPA can impact financial operations678.
-Example of Sensitivity Analysis for LPA Applications:
-Suppose we have an LPA model with priors for mean1 and mean2 (related to capacity).
-Vary the priors (e.g., mean1, tau1, tau2) within reasonable ranges.
-Observe how estimated parameters (e.g., A, mean1) change.
-Conclude based on the impact of different priors on LPA decisions5.
-Remember that sensitivity analysis helps assess the robustness of Bayesian models and informs decision-making. If you need further details or have specific scenarios, feel free to ask! 😊69
-
-Learn more
-
-1
-
-arxiv.org
-2
-
-projecteuclid.org
-3
-
-stats.stackexchange.com
-4
-
-arxiv.org
-5
-
-stats.stackexchange.com
-6
-
-landmarkchambers.co.uk
-7
-
-lawgazette.co.uk
-8
-
-phb.co.uk
-9
-
-cambridge.org
-10
-
-academic.oup.com
-11
-
-link.springer.com
-12
-
-arxiv.org
-13
-
-stats.stackexchange.com
-14
-
-link.springer.com
-15
-
-psycnet.apa.org
-16
-
-frontiersin.org
-17
-
-mills-reeve.com
-18
-
-gurobi.com
-19
-
-academia.edu
-20
-
-pubs.sciepub.com
-21
-
-doi.org
-+17 more
-You
-Can you explain how to handle missing data in Bayesian models?
-Copilot
-Certainly! Handling missing data in Bayesian models is essential for accurate inference. Let’s explore some approaches:
-
-Conceptual Understanding of Missing Data:
-Missing data can arise due to various reasons, such as design issues or factors beyond researchers’ control.
-We’ll focus on a hypothetical regression problem where we predict voting intention (YY) using people’s age (XX).
-Types of Missing Data Mechanisms:
-MCAR (Missing Completely at Random):
-Missingness is unrelated to any research question.
-Example: Interviewer accidentally erases responses (unrelated to age or voting intention).
-Under MCAR, using cases with no missing values provides valid inferences and unbiased estimations.
-MAR (Missing at Random):
-Missingness depends on observed variables (e.g., XX) but not the unobserved outcome (YY).
-Example: Older people more likely to give a missing response (related to XX).
-NMAR (Not Missing at Random):
-Missingness depends on unobserved factors (e.g., ZZ) related to neither XX nor YY.
-Example: People with lower voting intention less likely to respond (related to YY itself).
-Bayesian Approaches to Handle Missing Data:
-Treat Missing Data as Parameters:
-Assign priors to missing values (kid_score in our example).
-Estimate their posterior distributions.
-Incorporate all available information in the analysis.
-Multiple Imputation:
-Generate multiple imputed datasets by imputing missing values.
-Analyze each dataset separately and combine results.
-Bayesian origin: Impute missing values using predictive distributions.
-Checking for MCAR:
-Compare the distribution of XX for cases with and without missing data on YY.
-If means and variances of XX are similar, it suggests MCAR.
-Regression lines remain stable with or without missing data.
-Remember that Bayesian models allow us to treat missing data as parameters, leveraging all available information. Multiple imputation is another powerful technique to handle missingness. Choose the approach based on the specific context and assumptions about missing data12. If you have further questions or need more details, feel free to ask! 😊
-
-Learn more
-
-1
-
-bookdown.org
-2
-
-support.sas.com
-3
-
-bmcmedresmethodol.biomedcentral.com
-4
-
-research-repository.st-andrews.ac.uk
-5
-srmart.in
-+2 more
-You
-How can I perform multiple imputation in a Bayesian framework?
-Copilot
-Certainly! Multiple imputation (MI) is a powerful technique for handling missing data, and incorporating it into a Bayesian framework provides a robust and flexible approach. Let’s explore how to perform multiple imputation within a Bayesian context:
-
-Conceptual Understanding of Missing Data:
-Missing data can arise due to various reasons, such as design issues or factors beyond researchers’ control.
-In Bayesian modeling, we treat missing values as unknown parameters and estimate their posterior distributions.
-Types of Missing Data Mechanisms:
-There are three main types of missing data mechanisms:
-MCAR (Missing Completely at Random): Missingness unrelated to any research question.
-MAR (Missing at Random): Missingness depends on observed variables but not the unobserved outcome.
-NMAR (Not Missing at Random): Missingness depends on unobserved factors unrelated to observed variables.
-Bayesian Approach to Handling Missing Data:
-Treat Missing Data as Parameters:
-In Bayesian models, we incorporate missing data directly into the model.
-Missing values become parameters with prior distributions.
-The posterior distribution accounts for both observed and missing data.
-This approach leverages all available information and avoids discarding cases with missing values.
-Multiple Imputation (MI):
-MI generates multiple synthetic datasets by imputing missing values.
-Each dataset represents a plausible completion of the missing data.
-Bayesian MI involves the following steps:
-Impute Missing Values: Impute missing data using predictive distributions (e.g., regression models).
-Analyze Each Imputed Dataset Separately: Perform Bayesian analysis on each imputed dataset.
-Combine Results: Combine parameter estimates, credible intervals, and other inferences across multiple imputed datasets.
-Account for Uncertainty: The variability across imputed datasets reflects the uncertainty due to missing data.
-Benefits of Bayesian MI:
-Incorporates Uncertainty: Bayesian methods naturally propagate uncertainty.
-Integrates Prior Information: Prior distributions provide additional context.
-Flexible and Robust: Handles different missing data mechanisms.
-Valid Inferences: Provides valid parameter estimates and credible intervals.
-Example Application:
-Suppose we have a regression model predicting voting intention (YY) based on age (XX).
-Impute missing YY values using Bayesian regression models.
-Analyze each imputed dataset separately (e.g., compute posterior distributions for regression coefficients).
-Combine results across imputed datasets to obtain overall parameter estimates.
-Remember that Bayesian MI allows us to handle missing data while maintaining the richness of uncertainty. It’s a powerful tool for robust statistical inference.
-
-
-What are the assumptions of Bayesian multiple imputation?
-Copilot
-Certainly! Bayesian multiple imputation is a powerful technique for handling missing data, but it relies on certain assumptions. Let’s explore these assumptions:
-
-Missing at Random (MAR):
-The MAR assumption is crucial for multiple imputation.
-It implies that the probability of missingness depends only on observed variables (not the unobserved outcome) after accounting for other observed variables.
-In other words, missingness is related to the available information in the dataset.
-If data are MAR, imputing missing values based on observed variables can lead to unbiased parameter estimates.
-Predictive Model Assumption:
-Bayesian multiple imputation imputes missing values using predictive models.
-The assumption is that the predictive model accurately captures the relationship between observed and missing data.
-If the model is misspecified, imputed values may be biased.
-Assumption of Ignorable Missingness Mechanism:
-Ignorable missingness means that the missing data mechanism does not introduce systematic bias.
-If data are MCAR or MAR, the missingness mechanism is considered ignorable.
-Ignorable missingness allows valid inferences using multiple imputation.
-Appropriate Choice of Imputation Model:
-Selecting an appropriate predictive model for imputation is essential.
-The model should reflect the underlying data-generating process.
-Consider linear regression, logistic regression, or other relevant models.
-Sufficient Number of Imputations:
-Multiple imputation generates several imputed datasets.
-The number of imputations affects the precision of estimates.
-More imputations reduce uncertainty due to missing data.
-Assumption of Exchangeability:
-Exchangeability assumes that the imputed datasets are exchangeable (i.e., interchangeable).
-This allows combining results across imputed datasets.
-In practice, exchangeability is often reasonable.
-Sensitivity to Prior Distributions:
-Bayesian imputation involves specifying prior distributions for model parameters.
-Sensitivity analysis explores how different priors impact results.
-Robustness to prior choices is desirable.
-Remember that while Bayesian multiple imputation is a powerful tool, understanding and validating these assumptions are critical for reliable results
-
-# ############################################################################################################################################## #
-# Incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG
-* how to incorporate covid period demands and uncertainty around the data in long-term and short-term forecasting of demands(Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) to provide accurate forecats for the LPA demands?
-
-*Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
-
-## Data Analysis: 
-Begin by analysing historical data, but with a focus on identifying patterns that emerged specifically during the COVID period. 
-This includes changes in application rates, processing times, and any other relevant metrics.
-
-## Scenario Planning: 
-Develop multiple forecasting scenarios to account for various levels of COVID-19 impact and recovery rates. This approach helps in preparing for different possible futures.
-
-## Continuous Monitoring: 
-Set up a system for continuous monitoring of demand signals and indicators that could suggest shifts in LPA application rates.
-
-## Feedback Loop: 
-Create a feedback loop where the forecast is regularly compared against actual demand, and adjustments are made accordingly.
-
-## Stakeholder Communication: 
-Keep communication open with stakeholders to understand potential changes in demand due to policy shifts or public sentiment.
-
-## Technology Adoption: 
-Embrace digital solutions that can streamline the application process and potentially alter demand. 
-The OPG has plans to allow for completely online LPA applications, which could change the demand landscape3.
-
-## Resilience Building: 
-Invest in building resilience into your models to account for decremental demand causal factors, such as health warnings or other emergencies2.
-
-
-## Demand Intelligence: 
-Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into your forecasts. 
-This can help in understanding the impact of current events on demand.
-
-*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) in long-term forecasting model (cohort-based model) and short-term (exponential smoothing). 
-
-*Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
-
-* ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
-
-Incorporating demand intelligence tools, data science models, and machine learning techniques into your long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. Let’s explore some strategies tailored to both time horizons:
 
 ### Long-Term Forecasting (Cohort-Based Model):
 
@@ -1164,6 +616,1042 @@ BSTS performs best when historical data is abundant and informative. Sparse or n
 
 *Despite these limitations, BSTS remains a valuable tool for time series analysis, especially when combined with domain knowledge and other techniques. 
 Researchers should carefully consider their specific use case and explore alternative methods if necessary
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp; 
+<a name="calc-model"></a> 
+# Model Calculation - details of model calculation.
+# __Technical Guidance__
+<a name="start"></a> 
+## Getting started
+&nbsp;
+<a name="run-model"></a> 
+## Running the model
+- step by step instructions
+&nbsp;
+
+## LPA Control Assumptions
+Specific Key Assumptions that control expected demand, LPA market size and saturation.
+
+## ONS Mortality Statistics 
+### Source Data For Mortality Statistics and Modelled Age Specific Survival Rates (Model Input Set By Control Assumptions)
+
+* ref: 'LPA MODEL': 	Mortality Statistics	MALE: ESTIMATED AGE SPECIFIC SURVIVAL		FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL
+
+Copy Nemerical Values in column C and transpose paste in column F		Copy Nemerical Values in column C and transpose paste in column F
+
+* ref: Source: Office for National Statistics: 		Source: Office for National Statistics: nationallifetables3yearenglandandwales.xlsx		nationallifetables3yearenglandandwales.xlsx		Sheet: '2020-2022'		Sheet: '2020-2022'	Released: 11 January 2024		Released: 11 January 2024
+
+* ref: Downloaded from: National life tables: England and Wales - Office for National Statistics		National life tables: England and Wales - Office for National Statistics
+
+* ref: The best source of information for the ONS mortality statistics which are here: Mortality rates (qx), by single year of age - Office for National Statistics (ons.gov.uk)
+
+#### risks in Mortality Statistics
+The main issue with these figures is that they are only provided separately for England , and separately for Wales , and not as a combined rate for England and Wales. This is frustrating but comparing the rates the differences are extremely small so probably would not make any practical difference if we chose to use the figures for just England.
+
+To be clear what these figures are showing are equivalent to the mortality rates in columns O and P on the Mortality Statistics sheet in the model. Looking at the mortality rates in the model in column O for example showing male morality at age 18 this gives a figure of 0.3 per 1000 adults or 0.0003 (ie 0.3/1000). The equivalent figure in the ONS mortality tables for males aged 18 for 2017-2019 is 0.00039 so slightly higher. The actual ONS mortality rates suggest that the model currently over-estimates mortality rates for donors aged 90 and over so it will be useful to update these.
+
+I think to simplify things and given the very small difference in mortality rates between England and Wales for 2017-19 that we could just use the mortality rates for England. Once we have more time we can add some complexity by adding variants such as rates for Wales or combined England and Wales estimates.  
+
+
+
+## POPULATION PROJECTION data
+
+### understanding the data (“Population Forecast Model Input” tab in the excel model):
+
+* ref: As this data is fed from other tabs 'Population Variants England' and 'Population Variants Wales'.
+
+In the last version of the model, the source of data was 2016-based and 2018-based which are zipped files including:
+“HIGH FERTILITY PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH POPULATION PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH LIFE EXPECTANCY PROJECTION 2018 (2016 BASED TO 2017)”, “HIGH MIGRATION PROJECTION 2018 (2016 BASED TO 2017)”, “PRINCIPLE POPULATION PROJECTION 2018 (2016 BASED TO 2017)”  and similar data for the “LOW” figures in xml files.
+
+I have just find out that the national population projections data files (in the National population projections: 2021-based interim (located in National population projections table of contents - Office for National Statistics) has been changed in terms of formatting since 2020 and there is one excel file (e.g., for 2021-based, there is only one worksheet: “2021-based interim edition of this dataset” in Zipped population projections data files, England - Office for National Statistics), which only provided the PRINCIPLE POPULATION PROJECTION data.
+
+* Note:
+‘The use of the term ‘interim’ in the release title is to reflect that these projections reuse mortality and fertility assumptions from the previous 2020-based NPPs, do not include the range of variant projections that are usually published, and are being published as a headline-only release ahead of 2022-based NPPs.’ Thus, I am not quite sure if I have to reuse mortality and fertility assumptions from the previous years and exclude years without this information? Also, I could also add more data by using “Zero net migration (natural change only) variant - England population in age groups - Office for National Statistics (ons.gov.uk)” data in the following link: Zero net migration (natural change only) variant - England population in age groups - Office for National Statistics (ons.gov.uk), which represent “Projected populations at mid-years by age last birthday in five-year age groups”. 
+
+
+### Calculationas: Population Forecast Model Input
+             
+**The follwoing formula calculate the National Population Projections: 2018-based Statistical Bulletin - Office for National Statistics, older versions used for older data**
+
+Calculating the total Sum of **'Population Variants England' and 'Population Variants Wales' (Males + Females) based on year - age: 18+** the follwoing database based on the LPA assumption of model input categories listed below:
+
+1. High Population Variant
+2. High Fertility Variant
+3. Low Population Variant
+4. Low Fertlity Variant
+5. High Life Expectancy Variant
+6. Low Life Expectancy Variant
+7. High Migration Variant
+8. Low Migration Variant
+9. Principle Projection
+
+**The corresponding excel formula:**
+
+('Population Variants England'!C245+'Population Variants Wales'!C245)*'LPA Control Assumptions'!$B$62+('Population Variants England'!AI245+'Population Variants Wales'!AI245)*'LPA Control Assumptions'!$B$63+('Population Variants England'!BM245+'Population Variants Wales'!BM245)*'LPA Control Assumptions'!$B$64+('Population Variants England'!CR245+'Population Variants Wales'!CR245)*'LPA Control Assumptions'!$B$65+('Population Variants England'!DW245+'Population Variants Wales'!DW245)*'LPA Control Assumptions'!$B$66+('Population Variants England'!FB245+'Population Variants Wales'!FB245)*'LPA Control Assumptions'!$B$67+('Population Variants England'!GG245+'Population Variants Wales'!GG245)*'LPA Control Assumptions'!$B$68+('Population Variants England'!HL245+'Population Variants Wales'!HL245)*'LPA Control Assumptions'!$B$69+('Population Variants England'!IQ245+'Population Variants Wales'!IQ245)*'LPA Control Assumptions'!$B$70              
+* NOTE: The dependencies tables: 
+
+
+## LPA MARKET SHAPE 
+The forecast assumes that the "Shape" of the LPA market = LPAs as a % of Population Totals
+LPAs as % of Population Totals = Assumed Market "Shape"
+
+* ref: LPA MODEL / LPA MARKET SHAPE
+
+### Calculation:
+The total SUM (donor counts (age specific for two consecusive years)) 
+
+DIVIDED BY (the total SUM of 'Population Forecast Model Input' (age specific for two consecusive years))
+
+**The corresponding excel formula:**
+=SUM(AO8:AP8)/SUM('Population Forecast Model Input'!O25:P25)
+
+* NOTE: The dependencies tables: 
+
+## Assumed Potential Maximum Market
+For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine theerfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current  maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
+
+* ref: LPA MODEL / Assumed Potential Maximum Market
+
+### Calculation:
+Peak_age = 90
+
+IF: 'LPA Control Assumptions: Assume Market Shape Based On LPA Age Distribution Applies' = 1 (TRUE) 
+
+THEN: 'Assumed Potential Maximum Market' at Peak_age 
+
+MULTIPLIED BY ('LPA MARKET SHAPE' by the corresponding age and year DIVIDED BY 'LPA MARKET SHAPE' at Peak_age)
+
+OTHERWISE: 1
+
+
+**The corresponding excel formula:**
+=IF('LPA Control Assumptions'!$B$520=1,$AW$80*AU8/$AU$80,1)
+
+* NOTE: The dependencies tables: 
+
+## MAX MARKET ESTIMATES
+This calculates the maximum market estimates based on proportion of the ONS population projection at the specicific age and year
+
+* ref: LPA MODEL / Assumed Potential Maximum Market
+
+### Calculation:
+'Population Forecast Model Input' (the corresponding age and year)
+MULTIPLIED BY "Assumed Potential Maximum Market" (age specific)
+
+
+**The corresponding excel formula:**
+='Population Forecast Model Input'!D25*AW8
+
+
+* NOTE: The dependencies tables: 
+
+## LPA SURVIVAL TABLES:
+Meta data and Variable selection and Data Cleaning for the Mortality statastics data based on population projections:
+* ref: LPA MODEL/LPA SURVIVAL TABLES
+
+
+### Goal: percentage of people are died in one year
+#### What proportion of the UK population are likely to buy LPA and still alive?
+*How many people are still alive (Living Donors bought LPA)*
+*Based on ONS Data of Population of Engalnd and Wales, how many people are still alive and how many of them are dead?*
+*e.g., if there are 1000 people and 100 of them are still alive and bought LPA,
+so there are 900 of them still didn't buy LPA.
+
+
+**1. These rates are standardised to the 2013 European Standard Population, expressed per million population; 
+they allow comparisons between populations with different age structures, including between males and females and over time. 
+**2.  Deaths per 1,000 live births. 
+**3.  Death figures are based on deaths registered rather than deaths occurring in a calendar year.
+
+*if a 1000 40 years old male bought an LPA in 2008, what proportion of are still alove today?
+
+#The model taking each age categories (categorical variable) and assumed that they are 
+singe age-specifics in the age category 18 to 90 and provide figure what percentage of people for male died within one year?
+
+e.g., in the 15-19 age category, 0.3 percent of males died within one year in the UK and 0.03 per 1000
+
+e.g., in the 25-29 age category, 0.6 percent of males died within one year in the UK and 0.06 per 1000
+
+e.g., in the 70-74 age category, 23.7 percent of males died within one year in the UK or 2.37 per 1000
+
+*if you started at age 18, 7 years and become 25 years old ahead, 
+as the ages goes up you will fall into a higher mortality category (from 0.3 to 0.6)
+
+#### Data Path
+**qx: is the mortality rate between age x and (x +1), that is the probability that a person aged x exact will die before reaching age (x +1).**
+
+**We extract data from Age 18+.**
+
+* NOTE: The dependencies tables: 
+
+### LPA SURVIVAL TABLES: (BY YEAR OF APPLICATION)
+
+### Calculation:
+1. For each year, we would need to fill the corresponding year by the actual LPA DATA. For each corresponsing year and age group (e.g., year = 2007 to 2023 and age = 18 to 106): 
+Fill the column age specific from the number of donors actual LPA DATA
+
+2. For the follwoing years after the corresponding year, we would need to use the 'Mortality Statistics': MALE/FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL tables and calculate the number of donors based on the survival rate:
+**prior year = the corresponding year REDUCTED from the starting (base) year 2007 = the number of previous years till the corresponding year to track back and calculate the ESTIMATE AGE SPECIFIC SURVIVAL for male/female.**
+
+IF: 'LPA Control Assumptions: FORECAST ASSUMPTIONS: MORTALITY RATES' = 1 (Male) 
+THEN: ((the number of donors for **prior_year** years before the corresponding year (age - **prior_year**))
+MULTIPLIED BY ('Mortality Statistics': MALE: ESTIMATED AGE SPECIFIC SURVIVAL) for the corresponding age and +**prior_year**)
+OTHERWISE: ((the number of donors for **prior_year** years before the corresponding year (age - **prior_year**))   
+MULTIPLIED BY ('Mortality Statistics': FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL) for the corresponding age and +**prior_year**)
+**The corresponding excel formula:**
+=IF('LPA Control Assumptions'!$B$45=1,CD8*'Mortality Statistics'!$BC$4,CD8*'Mortality Statistics'!$DU$4)
+
+3. For the consecutive tables: for each year - age specific, generate a table that start with the consecutive year of the above table. For the corresponsing year, fill the column for the year (from 2008 to 2023)  similar to the the number 1 equation above: Fill the column age specific from the number of donors actual "LPA DATA". Then for the forecasting years (from 2024 to 2030): Fill the column age specific from the forecasted number of donors in "NEW LPA FORECAST". For the rest of consecutive years in the table, follow equation in number 2 above. 
+
+
+* NOTE: The dependencies tables: actuals from LPA DATA table, and 'Mortality Statistics': MALE/FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL tables
+
+
+## LPA SURVIVAL TABLES: (TOTAL)
+
+### Calculation:
+* For each corresponsing year and age (e.g., year = 2007 to 2030 and age = 18 to 106):
+SUM (LPA SURVIVAL TABLES: (BY YEAR OF APPLICATION))
+
+
+**The corresponding excel formula:**
+
+* From 2007 to 2030
+=CD8+CD100+CD192+CD284+CD376+CD468+CD560+CD652+CD744
+
+
+* NOTE: The dependencies tables: LPA SURVIVAL TABLES: (BY YEAR OF APPLICATION), NEW LPA FORECAST, and LPAS AS A % OF REMAINING CUSTOMERS (UNADJUSTED  for media events)
+
+## LPAS AS A % OF REMAINING CUSTOMERS (UNADJUSTED  for media events)
+
+### Calculation:
+1. for each corresponsing year and age group (e.g., year = 2024 and age = 18-20):
+SUM (number of donor applications: Fill the column age specific from the number of donors actual LPA DATA) 
+DIVIDED BY 
+SUM (LPA SURVIVAL TABLES: (TOTAL))
+
+2. Controls The % of the Previous Value
+SUM (
+(% for (year - 1) and (age: 21-25))
+MULTIPLY BY 
+('LPA Control Assumptions': Smoothing Factor: Aged 18-20 (% of Previous Value): 10-30% = RANDBETWEEN(lower bound *1000, upper bound * 1000) / 1000))
+
+(1 - ('LPA Control Assumptions': Smoothing Factor: Aged 18-20 (% of Previous Value): 10-30% = RANDBETWEEN(lower bound *1000, upper bound * 1000) / 1000))
+MULTIPLY BY 
+(( % for (year - 1) and (age: 21-25)) - ( % for (year - 1) and (age: 26-30))))
+
+(% for (year - 1) and (age: 21-25))
+)
+
+**The corresponding excel formula:**
+1. From 2007 to 2023
+=SUM(AD8:AD10)/SUM(EH8:EH10)
+
+2. from 2024 to 2030
+=FY9*'LPA Control Assumptions'!$B$123+(1-'LPA Control Assumptions'!$B$123)*('LPA MODEL'!FY9-'LPA MODEL'!FX9+'LPA MODEL'!FY9)
+
+* NOTE: The dependencies tables: 
+
+## NEW LPA FORECAST
+
+### Calculation:
+1. for each corresponsing year and age group (e.g., year = 2007 to 2023 and age = 18 to 106): Fill the column age specific from the number of donors actual LPA DATA
+
+2. MULTIPLY "REMAINING CUSTOMERS" by "Controls The % of the Previous Value"
+
+**The corresponding excel formula:**
+1. For 2007 to 2023
+
+
+2. From 2008 to 2030
+=FZ9*EY8
+
+3. SUMMARY: ()
+Historic: SUM ()
+Forecast: SUM ()
+
+* NOTE: The dependencies tables: "REMAINING CUSTOMERS" by "Controls The % of the Previous Value"
+
+
+## REMAINING CUSTOMERS
+This table calculates the maximum market estimates based on proportion of the ONS population projection at the specicific age and year
+
+* ref: LPA MODEL / Assumed Potential Maximum Market
+
+### Calculation:
+1. for each corresponsing year and age group (e.g., year = 2007 and age = 18 to 106): Fill the column age specific from the "MAX MARKET ESTIMATES" 
+
+2. IF the "MAX MARKET ESTIMATES" greater than "REMAINING CUSTOMERS" by "Controls The % of the Previous Value"
+
+**The corresponding excel formula:**
+1. For 2007 to 2023
+
+
+2. From 2008 to 2030
+
+**The corresponding excel formula:**
+=MAX(0,BB8-DF8)
+
+
+* NOTE: The dependencies tables: 
+
+
+
+
+## Donor Estimates & Actuals
+Unadjusted estimates: 2007 - 2015. Applies the age specific percentage of donors (known values from 2016 & 2017 data) to historic Meris data to estimate numbers of donors. Totals are unadjusted as they do not equal the total number of LPA appplications witin each year.
+
+Adjusted estimates to LPA totals: Initial estimates of the numbers of donors are scaled up to equal actual LPA totals.
+
+
+**The corresponding excel formula:**
+=$C$98/$Q$98*Q8
+
+Q8: C8*'Sirius Donor Attorney Splits'!AS7 in Donor Estimates & Actuals
+
+Multiply "Donor Estimates & Actuals" for the year from LPA data by sum of (Raw Age Distributions (Donors & Attorneys)) devided by sum of (Donor Estimates & Actuals) for that specific age on the choosen year
+
+C8:
+male = 1
+female = 2
+randomise = 3
+
+If the applications are for male = 1 then MALE: ESTIMATED AGE SPECIFIC SURVIVAL in year and age 
+    
+* NOTE: The dependencies tables: LPA DATA (actuals)
+
+    
+* NOTE: This was used in the previous version of LPA MODEL, now is skipped to simplify the model.
+
+#### For information on registration delays for a range of causes, see: 
+    https://webarchive.nationalarchives.gov.uk/ukgwa/20160106020016/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/impact-of-registration-delays-on-mortality-statistics/index.html
+
+A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates 
+for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
+surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
+
+For the 2018 LPA forecast , Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
+a standard log power law that best fits existing mortality rates to age. 
+
+*numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
+clearly not possible.
+&nbsp;
+
+
+
+&nbsp;
+<a name="data-setup"></a> 
+# Data setup
+- step by step instructions Data Engineering in Jupyter Lab
+&nbsp;
+<a name="data-mart"></a> 
+# Data Marts (the old Demand Forecasting for Deputyship Model)
+
+&nbsp;
+<a name="howto-d-m"></a> 
+# How to Data Modelling
+- Data Modelling using Create-a-Derived-Table (CaDT)
+
+
+&nbsp;
+<a name="0how2"></a> 
++ *1 - Data Sources and Pipelines* 
+
+&nbsp;
+<a name="1how2"></a> 
++ *2 - Data Modelling using Create-a-Derived-Table (CaDT)* 
+
+&nbsp;
+<a name="2how2"></a> 
++ *3 - Lookup Tables (seed in CaDT)*
+Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
+
+⚠️ Seeds must not contain sensitive data. ⚠️
+    
+The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
+
+**Selecting seeds to run**
+Specific seeds can be run using the --select flag to dbt seed. Example:
+```console
+>> cd mojap_derived_tables
+>> dbt seed 
+>> dbt seed --select "...__..."    
+```
+&nbsp;
+<a name="3how2"></a> 
++ *4 - Macros (macros in CaDT)*
+Macros in Jinja are pieces of code that can be reused multiple times 
+– they are analogous to "functions" in other programming languages, and are extremely useful if you find yourself repeating code across multiple models. 
+Macros are defined in .sql files, in the macros directory (create-a-derived-table/mojap_derived_tables/macros/income/income__get_latest_snapshot.sql).
+
+The base derived tables should be to get the up-dated data through a macro "income__get_latest_snapshot" to get the most recent data from the FamilyMan derived tables by passing extract_date to the sql code.
+    
+The following code shows the macro, I wrote to filter the source derived table based on the most up-to-date data created by data engineering team:
+    
+```console
+
+{% macro income__get_latest_snapshot(tables) %}
+
+{% set latest_common_export_date_query %}
+with exports as (
+{%- for table_name in tables %}
+select distinct mojap_snapshot_date
+from {{ source('familyman_derived_live_v4', table_name) }}
+{%- if not loop.last %}intersect{% endif -%}
+{% endfor %}
+)
+select max(mojap_snapshot_date) AS latest_glueexporteddate
+from exports
+{% endset %}
+
+{% set results = run_query(latest_common_export_date_query) %}
+
+{% if execute %}
+  {% if results|length > 0 %}
+  {% set result = results.columns[0].values()[0] %}
+  {% else %}
+  {% set result = null %}
+  {% endif %}
+{% else %}
+{% set result = null %}
+{% endif %}
+
+{{ return(result) }}
+
+{% endmacro %}
+```
+   
+#### Set variables at the top of a model
+{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
+
+
+&nbsp;
+<a name="4how2"></a> 
++ *5 - Running Updates*
+**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
+
+**2. Check and run the seeds (using "dbt seed").**
+
+&nbsp;
+<a name="5how2"></a> 
++ *6 - Connection with Python code in Jupyter Lab* 
+To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
+For more information see below.
+https://docs.getdbt.com/reference/dbt-commands
+
+&nbsp;
+&nbsp;
+
+
+&nbsp;
+<a name="ap-s3"></a> 
+## Analytical Platform (AP) and AWS S3 access
+- instructions on setting up AP and s3 access
+Go the the repo in Git:
+https://github.com/moj-analytical-services/OPG
+
+Open Terminal:
+```console
+git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.git
+```
+
+If there is any error then follow the instruction below:
+Create and add JupyterLab SSH key to GitHub
+
+&nbsp;
+<a name="setup"></a> 
+## Setting up a Python virtual environment
+```console
+pip install -r requirements.txt
+```
+    
+```python 
+!. venv/bin/activate
+#!pip install arrow-pd-parser
+``` 
+
+
+&nbsp;
+<a name="github"></a> 
+## Accessing the model from Github and Error handelling solutions
+- Pulling the OPG repo to your local area of the AP from GitHub
+When working on your models it is likely that your branch will get out of date with the main branch. 
+To update you branch with the latest changes from main open a terminal and run the following:
+
+Check your working tree, commit/push any changes if required:
+
+```console
+git status
+```
+
+Switch to the main branch and collect the latest changes, if any
+
+```console
+git switch main
+git fetch
+git pull
+```
+
+Switch back to your branch and merge in the changes from main
+
+```console
+git checkout -b <your initial>/model-a-development
+git switch <your initial>/model-a-development
+git merge main -m "update branch with main"
+```
+
+&nbsp;
+<a name="python-pack"></a> 
+# Python libraries and versions 
+- details of python version and package versions used
+
+<a name="pack"></a> 
+## Loading python packages
+Before you can run this project, you need to install some Python packages using the terminal:
+```python 
+
+```
+
+&nbsp;
+<a name="export"></a> 
+# Exporting Output into CSV and Excel
+
+&nbsp;
+<a name="evaluation"></a> 
+# Evaluation of the model
+
+&nbsp;
+<a name="plot"></a> 
+# Plotting The Forecasted vs Actual values
+
+## Visualizing cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
+
+**Conditional Formatting:**
+Highlight key insights from your cohort table using conditional formatting.
+Select your cohort data.
+Click on Home > Conditional Formatting > Color Scales.
+Choose a color scale that suits your data.
+Adjust the scale to enhance the contrast between high and low rates.
+Colors will reveal patterns in customer retention.
+
+**Charting and Graphing:**
+Excel offers a range of charting and graphing options to visualize your cohort analysis results.
+
+**Create:**
+Line Charts: Represent how metrics change over time within different cohorts.
+Bar Graphs: Compare metrics across different cohorts.
+
+**Heatmaps:**
+Show variations in metrics by color intensity.
+Visualizations make it easier to identify trends and patterns within your data2.
+Remember to organize your data with the necessary attributes and timestamps, define your cohorts, and calculate relevant metrics before creating visualizations.
+
+
+**an example of a cohort line chart?**
+
+A cohort analysis chart is a powerful tool for understanding user behavior over time. It allows you to group users based on specific characteristics (such as acquisition date) and track their actions or metrics over subsequent periods. Let’s take a look at an example of a cohort analysis chart:
+
+**Example Cohort Analysis Chart (Weekly Revenue per Group):**
+
+In this chart, we’ll focus on revenue generated by cohorts of customers acquired in specific weeks.
+The vertical axis represents the cohorts, with the oldest cohorts at the top and the newest ones at the bottom.
+Each row corresponds to a cohort of customers who started using a product or service during a particular week.
+The horizontal axis represents time (e.g., weeks, months) after the cohort’s acquisition.
+The cells in the chart display the revenue generated by each cohort during each time period.
+Here’s a simplified representation of how the chart might look:
+
+Week 1   Week 2   Week 3   Week 4   ...   Week N
+-------------------------------------------------
+Cohort 1:   $100     $120     $110     $130          ...
+Cohort 2:   $80      $90      $100     $95           ...
+Cohort 3:   $150     $140     $160     $155          ...
+...         ...      ...      ...      ...           ...
+Cohort M:   $200     $210     $220     $205          ...
+
+Each cell shows the revenue generated by a specific cohort during a particular week.
+You can read across the rows to see how a cohort’s revenue changes over time.
+Reading from top to bottom allows you to compare different cohorts during a specific time period.
+Diagonally, you get a snapshot of how each cohort performs at a specific point in time.
+In this example, you’d analyze how revenue evolves for each cohort as weeks progress. This information can guide strategic decisions, such as optimizing marketing efforts, improving product features, or addressing customer retention.
+
+Remember that cohort analysis can be customized based on the specific metrics you’re interested in (e.g., user engagement, churn rate, conversion rate). The key is to segment users into meaningful groups and track their behavior over time to uncover valuable insights1. 
+
+
+&nbsp;
+<a name="processflow"></a> 
+# Process flow Diagrams
+- proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
+The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
+
+*under constuction!
+
+&nbsp;
+<a name="parameters"></a> 
+# Parameters
+- model parameters explained
+
+&nbsp;
+<a name="logging"></a> 
+# Logging 
+- information about output and error logging
+
+&nbsp;
+<a name="data-register"></a> 
+# Data Register
+- a link to the Model data register log
+
+&nbsp;
+<a name="assumptions"></a> 
+# Assumptions
+- a link to the Model assumptions log
+
+&nbsp;
+<a name="risks"></a> 
+# Risks
+- a link to the risk register log
+*What are the common challenges in LPA forecasting?
+
+## Risk of usig excel model: 
+Remember that Excel has limitations for complex forecasting models, especially when dealing with large datasets. WE might switch to more sophisticated modeling, consider using specialized statistical software or programming languages like Python or R.
+
+## Risk, assumptions, and challenges forecasting for LPA
+*When it comes to forecasting for Lasting Power of Attorney (LPA) applications, there are several challenges that organizations and individuals may encounter. 
+
+Let’s explore some of these common challenges:
+
+### Legal Validity and Challenges:
+1. Lack of Capacity: 
+An LPA must be created by someone with the required mental capacity as defined in the Mental Capacity Act 2005. If there are doubts about the donor’s capacity during the creation of the LPA, it can lead to legal challenges1.
+2. Fraud or Duress: 
+LPAs created fraudulently or under duress can be challenged. If an LPA is suspected to be invalid due to coercion or deception, legal action may follow1.
+3. Attorney Suitability and Abuse:
+4. Unsuitable Attorneys: 
+Sometimes, appointed attorneys may not act in the best interests of the donor. Relatives or concerned parties can challenge an LPA if they believe an attorney is unsuitable.
+5. Abuse of Position: 
+If an attorney abuses their position (e.g., mismanaging finances, neglecting the donor’s welfare), it can lead to disputes and legal challenges1.
+6. Notification and Objection:
+7. Notification Process: 
+When someone creates an LPA, they can list individuals to be notified by the Office of the Public Guardian (OPG). These notified individuals have the chance to object to the registration of the LPA.
+8. Relatives’ Awareness: 
+In some cases, relatives may not know that the donor has made an LPA until later, which can complicate matters if they wish to challenge it1.
+9. Personality Clashes and Autonomy:
+10. Reasonable Grounds: 
+Challenges must have genuine and reasonable grounds. A mere personality clash with an attorney is not sufficient to have them removed. Autonomy in choosing attorneys is essential.
+11. Balancing Autonomy and Protection: 
+Balancing the individual’s autonomy to choose attorneys with the need to protect their interests can be challenging1.
+12. Complex Application Process:
+13. Errors in Completion: 
+Completing the LPA application correctly is crucial. Errors can lead to delays or rejection by the OPG. Avoiding common mistakes during the application process is essential2.
+14. Health and Welfare LPAs:
+15. Timing: 
+Health and welfare LPAs only take effect once the donor has lost mental capacity. Forecasting the timing of capacity loss accurately can be challenging.
+16. Changing Circumstances: 
+Health conditions and circumstances can change, affecting the applicability of health and welfare LPAs1.
+In summary, LPA forecasting involves legal, practical, and ethical considerations. Organizations and individuals must navigate these challenges to ensure effective decision-making and protection for donors.
+
+
+
+### Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. Here are some strategies to consider:
+
+
+#### Understand Capacity Fluctuations:
+Recognize that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
+Monitor the individual’s cognitive abilities and assess their capacity periodically.
+
+#### Historical Data Analysis:
+Examine historical LPA applications to identify patterns related to capacity fluctuations.
+Look for trends in the timing of capacity loss or improvement.
+Consider whether certain age groups or health conditions are more prone to fluctuations.
+
+#### Segmentation by Risk Factors:
+Divide your data into segments based on risk factors (e.g., age, health status).
+Analyze how capacity fluctuations vary across these segments.
+Adjust your forecasting models accordingly for each segment.
+
+#### Probabilistic Models:
+Use probabilistic models to account for uncertainty.
+Bayesian models, Markov models, or survival analysis can incorporate changing probabilities of capacity loss.
+These models allow you to update predictions as new information becomes available.
+
+#### Scenario-Based Forecasting:
+Create scenarios that simulate different capacity trajectories. For example:
+- Stable Capacity: Assume capacity remains stable over time.
+- Gradual Decline: Assume a gradual decline in capacity.
+- Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
+- Forecast LPAs under each scenario and assess their impact.
+- Collaborate with Healthcare Professionals:
+- Consult with healthcare providers who can assess capacity objectively.
+- Obtain medical opinions and consider their insights in your forecasting process.
+#### Sensitivity Analysis:
+- Test the sensitivity of your forecasts to capacity fluctuations.
+- Vary the assumptions about capacity loss rates and observe the impact on LPA applications.
+- Educate Attorneys and Donors:
+- Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
+- Encourage them to review and update LPAs periodically to reflect changing circumstances.
+- Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. 
+
+
+&nbsp;
+&nbsp;
+<a name="qa"></a> 
+# Quality Assurance (QA)
+- directions to the folder that holds the logs and evidence of initial model v1 QA
+
+**Optimisations of the SQL Query Checks:**
+1. Avoid nested joins: Instead of nesting multiple joins, we can perform them in a single level, which can improve readability and potentially performance.
+2. Simplify aggregation: Instead of using the GROUP BY clause at the top level, we use it within the TRANSFORM clause, simplifying the query structure.
+3. Optimize join conditions: Ensure that join conditions are efficient and necessary indexes are in place for better performance. However, this depends on the database system and schema.
+
+## Data Quality Assurance
+
+### AQA Template
+https://aqa-website.apps.live.cloud-platform.service.justice.gov.uk/tools.html
+
+*Note:Data and Analysis have just relaunched their website and are changing the AQA process, so this is likely to change. 
+
+### OPG Internal Checks
+We usually provide samples of our tables in CSV format for the OPG data team to manually check accuracy and flag data issues. I strongly recommend including these checks in your AQA because there are lots of problems with the data which vary by business epoch. For that I would contact Mandy directly when you have a table which is ready for use. 
+
+### Ethics Assurance Template
+Our team currently use this template from the UKSA: 
+https://uksa.statisticsauthority.gov.uk/the-authority-board/committees/national-statisticians-advisory-committees-and-panels/national-statisticians-data-ethics-advisory-committee/ethics-self-assessment-tool/
+MoJ have been working with the Alan Turing Institute for a while on reissuing the MoJ ethics assessment, but I’ve not been able to find anything hence defaulting to the UKSA version. 
+
+&nbsp;
+<a name="future"></a> 
+# Future Development 
+- instructions on how to do some potential model developments
+
+
+
+### Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
+
+
+#### Understanding Bayesian Models:
+Bayesian models are based on Bayes’ theorem, which updates our beliefs (probabilities) based on new evidence.
+These models incorporate prior knowledge (prior distribution) and update it with observed data to obtain a posterior distribution.
+In the context of LPA forecasting, Bayesian models allow us to quantify uncertainty and make informed predictions.
+
+#### Dynamic Linear Models (DLMs):
+DLMs are a class of Bayesian state space models commonly used for time series forecasting.
+
+#### They consist of two components:
+State Equation: Describes how the underlying state (e.g., capacity fluctuations) evolves over time.
+Observation Equation: Relates the observed data (e.g., LPA applications) to the underlying state.
+DLMs can handle time-varying parameters, seasonality, and irregularities in data.
+
+### Steps to Incorporate Bayesian Models:
+
+#### Prior Specification:
+Define prior distributions for model parameters (e.g., capacity loss rates, trend coefficients).
+Priors can be informative (based on domain knowledge) or non-informative (flat priors).
+
+#### Likelihood Function:
+Specify the likelihood function that relates observed data to the model parameters.
+For LPA forecasting, this could be based on historical LPA application data.
+
+#### Posterior Inference:
+Use Bayes’ theorem to update the prior distribution based on observed data.
+Markov Chain Monte Carlo (MCMC) methods or variational inference can estimate the posterior distribution.
+
+#### Prediction:
+Simulate from the posterior distribution to obtain predictive samples.
+These samples represent possible future scenarios, accounting for uncertainty.
+Model Selection:
+
+#### Choose an appropriate DLM structure:
+Local Level Model: Represents a random walk (e.g., gradual capacity decline).
+Local Linear Trend Model: Includes both level and slope components.
+Seasonal Models: Capture seasonal patterns.
+Regression Models: Incorporate external predictors (e.g., health indicators).
+Model selection can be guided by cross-validation or information criteria (e.g., Bayesian Information Criterion).
+
+#### Updating Over Time:
+As new LPA application data becomes available, update the model using Bayesian methods.
+This allows the model to adapt to changing conditions (e.g., shifts in capacity fluctuations).
+
+#### Scenario Analysis:
+Generate probabilistic forecasts for different scenarios:
+Gradual capacity decline.
+Sudden capacity loss due to health events.
+Capacity improvement (if relevant).
+Assess the impact of these scenarios on LPA applications.
+Remember that Bayesian models provide a flexible framework for incorporating prior knowledge, handling uncertainty, and adapting to changing conditions. While implementing Bayesian models in Excel directly may be challenging, consider using specialized statistical software (e.g., Python with libraries like pymc3 or Stan) for more complex modeling12. 
+
+
+
+
+### While Bayesian models offer several advantages, they also come with limitations, especially when applied to Lasting Power of Attorney (LPA) forecasting. Let’s explore some of these limitations:
+#### Computational Complexity:
+Bayesian models involve complex calculations, especially when estimating posterior distributions using Markov Chain Monte Carlo (MCMC) methods.
+For large datasets or high-dimensional models, the computational burden can be significant.
+
+#### Subjectivity in Prior Selection:
+Bayesian models require specifying prior distributions for model parameters.
+The choice of priors can impact the results, and different analysts may choose different priors based on their beliefs or domain knowledge.
+Subjective priors can introduce bias if not carefully considered.
+
+#### Data Requirements:
+Bayesian models perform well when sufficient data is available.
+Sparse or noisy data can lead to unreliable posterior estimates.
+In the case of LPAs, historical data may be limited, especially for specific subgroups (e.g., rare health conditions).
+
+#### Model Misspecification:
+If the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations), the results may be misleading.
+Model misspecification can lead to biased parameter estimates.
+
+#### Assumptions of Independence:
+Many Bayesian models assume independence between observations.
+In reality, dependencies may exist (e.g., correlations between LPAs within the same family).
+Ignoring dependencies can affect the accuracy of forecasts.
+
+#### Interpretability:
+Bayesian models provide posterior distributions, which are more informative than point estimates.
+However, interpreting complex posterior distributions can be challenging for non-experts.
+Communicating uncertainty effectively to stakeholders may require additional effort.
+
+#### Limited Excel Integration:
+Implementing Bayesian models directly in Excel can be cumbersome due to its limitations in handling probabilistic calculations.
+Specialized statistical software (e.g., Python, R) is better suited for Bayesian modeling.
+
+#### Assumption of Stationarity:
+Some Bayesian time series models assume stationarity (constant statistical properties over time).
+In practice, capacity fluctuations may exhibit non-stationary behavior (e.g., trends, seasonality).
+
+#### Model Complexity vs. Parsimony:
+Bayesian models can become overly complex if too many parameters are included.
+Balancing model complexity with parsimony is essential to avoid overfitting.
+
+#### Updating Models Over Time:
+Incorporating new data into Bayesian models requires re-estimating posterior distributions.
+Real-time updates can be computationally intensive.
+Despite these limitations, Bayesian models remain valuable tools for handling uncertainty, incorporating prior knowledge, and making informed predictions. When using Bayesian methods, it’s essential to address these challenges appropriately and communicate results transparently. 
+
+
+
+**How can I address model misspecification in Bayesian LPA forecasting?
+What are the alternatives to MCMC for estimating posterior distributions?
+Can you explain how to perform sensitivity analysis on priors in a Bayesian model?What are the legal implications of capacity fluctuations in LPAs?
+Can you provide an example of a sensitivity analysis for LPA applications?**
+
+
+
+### Model Misspecification in Bayesian LPA Forecasting:
+Model misspecification occurs when the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations).To address this:
+
+#### Prior Sensitivity Analysis: 
+Explore different prior distributions for model parameters. Assess how changes in priors impact the posterior distribution and predictions.
+
+#### Alternative Models: 
+Consider alternative Bayesian models (e.g., different likelihood functions, non-parametric models) and compare their performance.
+
+#### Gaussian-Process Approximations: 
+Use Gaussian-process approximations to improve posterior estimates12.
+
+#### Alternatives to MCMC for Estimating Posterior Distributions:
+
+#### While MCMC is widely used, other methods exist:
+Variational Inference: Solves an optimization problem to approximate the posterior faster than simple MCMC.
+Importance Sampling: Estimates properties of posteriors by sampling from an approximation.
+Analytical Solutions: In some cases, posterior distributions can be computed analytically34.
+
+#### Performing Sensitivity Analysis on Priors in a Bayesian Model:
+Sensitivity analysis assesses how changes in priors affect model outcomes.
+
+##### Steps:
+Define a range of prior values (e.g., mean, variance).
+Run the model with different priors.
+Observe how posterior distributions and predictions vary.
+Compare estimated parameters and make conclusions based on context5.
+Legal Implications of Capacity Fluctuations in LPAs:
+LPAs grant decision-making authority to attorneys when the donor lacks capacity.
+Legal implications:
+Freezing of Accounts: Without an LPA, banks may freeze accounts if a signatory lacks capacity.
+Deputyship Applications: If no LPA exists, a third party can apply to be appointed as a deputy by the Court of Protection.
+Business LPAs: For business accounts, lacking an LPA can impact financial operations678.
+Example of Sensitivity Analysis for LPA Applications:
+Suppose we have an LPA model with priors for mean1 and mean2 (related to capacity).
+Vary the priors (e.g., mean1, tau1, tau2) within reasonable ranges.
+Observe how estimated parameters (e.g., A, mean1) change.
+Conclude based on the impact of different priors on LPA decisions5.
+Remember that sensitivity analysis helps assess the robustness of Bayesian models and informs decision-making. 
+
+
+
+
+### Handling missing data in Bayesian models is essential for accurate inference. Let’s explore some approaches:
+#### Conceptual Understanding of Missing Data:
+Missing data can arise due to various reasons, such as design issues or factors beyond researchers’ control.
+We’ll focus on a hypothetical regression problem where we predict voting intention (YY) using people’s age (XX).
+
+### Types of Missing Data Mechanisms:
+
+#### MCAR (Missing Completely at Random):
+Missingness is unrelated to any research question.
+Example: Interviewer accidentally erases responses (unrelated to age or voting intention).
+Under MCAR, using cases with no missing values provides valid inferences and unbiased estimations.
+
+#### MAR (Missing at Random):
+Missingness depends on observed variables (e.g., XX) but not the unobserved outcome (YY).
+Example: Older people more likely to give a missing response (related to XX).
+
+#### NMAR (Not Missing at Random):
+Missingness depends on unobserved factors (e.g., ZZ) related to neither XX nor YY.
+Example: People with lower voting intention less likely to respond (related to YY itself).
+
+#### Bayesian Approaches to Handle Missing Data:
+
+##### Treat Missing Data as Parameters:
+Assign priors to missing values (kid_score in our example).
+Estimate their posterior distributions.
+Incorporate all available information in the analysis.
+
+##### Multiple Imputation:
+Generate multiple imputed datasets by imputing missing values.
+Analyze each dataset separately and combine results.
+
+##### Bayesian origin: 
+Impute missing values using predictive distributions.
+
+##### Checking for MCAR:
+Compare the distribution of XX for cases with and without missing data on YY.
+If means and variances of XX are similar, it suggests MCAR.
+Regression lines remain stable with or without missing data.
+Remember that Bayesian models allow us to treat missing data as parameters, leveraging all available information. Multiple imputation is another powerful technique to handle missingness. Choose the approach based on the specific context and assumptions about missing data12. 
+
+
+
+### Multiple imputation (MI) is a powerful technique for handling missing data, and incorporating it into a Bayesian framework provides a robust and flexible approach. Let’s explore how to perform multiple imputation within a Bayesian context:
+
+
+#### Conceptual Understanding of Missing Data:
+Missing data can arise due to various reasons, such as design issues or factors beyond researchers’ control.
+In Bayesian modeling, we treat missing values as unknown parameters and estimate their posterior distributions.
+
+#### Types of Missing Data Mechanisms:
+There are three main types of missing data mechanisms:
+MCAR (Missing Completely at Random): Missingness unrelated to any research question.
+MAR (Missing at Random): Missingness depends on observed variables but not the unobserved outcome.
+NMAR (Not Missing at Random): Missingness depends on unobserved factors unrelated to observed variables.
+
+#### Bayesian Approach to Handling Missing Data:
+Treat Missing Data as Parameters:
+In Bayesian models, we incorporate missing data directly into the model.
+Missing values become parameters with prior distributions.
+The posterior distribution accounts for both observed and missing data.
+This approach leverages all available information and avoids discarding cases with missing values.
+
+#### Multiple Imputation (MI):
+MI generates multiple synthetic datasets by imputing missing values.
+Each dataset represents a plausible completion of the missing data.
+
+#### Bayesian MI involves the following steps:
+Impute Missing Values: Impute missing data using predictive distributions (e.g., regression models).
+Analyze Each Imputed Dataset Separately: Perform Bayesian analysis on each imputed dataset.
+Combine Results: Combine parameter estimates, credible intervals, and other inferences across multiple imputed datasets.
+
+#### Account for Uncertainty: 
+The variability across imputed datasets reflects the uncertainty due to missing data.
+
+#### Benefits of Bayesian MI:
+Incorporates Uncertainty: Bayesian methods naturally propagate uncertainty.
+Integrates Prior Information: Prior distributions provide additional context.
+Flexible and Robust: Handles different missing data mechanisms.
+Valid Inferences: Provides valid parameter estimates and credible intervals.
+
+#### Example Application:
+Suppose we have a regression model predicting voting intention (YY) based on age (XX).
+Impute missing YY values using Bayesian regression models.
+Analyze each imputed dataset separately (e.g., compute posterior distributions for regression coefficients).
+Combine results across imputed datasets to obtain overall parameter estimates.
+Remember that Bayesian MI allows us to handle missing data while maintaining the richness of uncertainty. It’s a powerful tool for robust statistical inference.
+
+
+
+### Bayesian multiple imputation is a powerful technique for handling missing data, but it relies on certain assumptions. Let’s explore these assumptions:
+#### Missing at Random (MAR):
+The MAR assumption is crucial for multiple imputation.
+It implies that the probability of missingness depends only on observed variables (not the unobserved outcome) after accounting for other observed variables.
+In other words, missingness is related to the available information in the dataset.
+If data are MAR, imputing missing values based on observed variables can lead to unbiased parameter estimates.
+
+#### Predictive Model Assumption:
+Bayesian multiple imputation imputes missing values using predictive models.
+The assumption is that the predictive model accurately captures the relationship between observed and missing data.
+If the model is misspecified, imputed values may be biased.
+
+#### Assumption of Ignorable Missingness Mechanism:
+Ignorable missingness means that the missing data mechanism does not introduce systematic bias.
+If data are MCAR or MAR, the missingness mechanism is considered ignorable.
+Ignorable missingness allows valid inferences using multiple imputation.
+
+#### Appropriate Choice of Imputation Model:
+Selecting an appropriate predictive model for imputation is essential.
+The model should reflect the underlying data-generating process.
+Consider linear regression, logistic regression, or other relevant models.
+
+#### Sufficient Number of Imputations:
+Multiple imputation generates several imputed datasets.
+The number of imputations affects the precision of estimates.
+More imputations reduce uncertainty due to missing data.
+
+#### Assumption of Exchangeability:
+Exchangeability assumes that the imputed datasets are exchangeable (i.e., interchangeable).
+This allows combining results across imputed datasets.
+In practice, exchangeability is often reasonable.
+
+#### Sensitivity to Prior Distributions:
+Bayesian imputation involves specifying prior distributions for model parameters.
+Sensitivity analysis explores how different priors impact results.
+Robustness to prior choices is desirable.
+Remember that while Bayesian multiple imputation is a powerful tool, understanding and validating these assumptions are critical for reliable results
+
+# ############################################################################################################################################## #
+# Incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG
+* how to incorporate covid period demands and uncertainty around the data in long-term and short-term forecasting of demands(Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) to provide accurate forecats for the LPA demands?
+
+*Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
+
+## Data Analysis: 
+Begin by analysing historical data, but with a focus on identifying patterns that emerged specifically during the COVID period. 
+This includes changes in application rates, processing times, and any other relevant metrics.
+
+## Scenario Planning: 
+Develop multiple forecasting scenarios to account for various levels of COVID-19 impact and recovery rates. This approach helps in preparing for different possible futures.
+
+## Continuous Monitoring: 
+Set up a system for continuous monitoring of demand signals and indicators that could suggest shifts in LPA application rates.
+
+## Feedback Loop: 
+Create a feedback loop where the forecast is regularly compared against actual demand, and adjustments are made accordingly.
+
+## Stakeholder Communication: 
+Keep communication open with stakeholders to understand potential changes in demand due to policy shifts or public sentiment.
+
+## Technology Adoption: 
+Embrace digital solutions that can streamline the application process and potentially alter demand. 
+The OPG has plans to allow for completely online LPA applications, which could change the demand landscape3.
+
+## Resilience Building: 
+Invest in building resilience into your models to account for decremental demand causal factors, such as health warnings or other emergencies2.
+
+
+## Demand Intelligence: 
+Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into your forecasts. 
+This can help in understanding the impact of current events on demand.
+
+*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) in long-term forecasting model (cohort-based model) and short-term (exponential smoothing). 
+
+*Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
+
+* ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
+
+Incorporating demand intelligence tools, data science models, and machine learning techniques into your long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
+
+
 
 ## External Factors: 
 Consider external factors that could influence demand, such as changes in legislation, economic conditions, and societal trends. 
@@ -1386,7 +1874,7 @@ Keep your model updated with the latest behavioral data to ensure that the feedb
 #### Validation and Testing: 
 Regularly validate and test your model against actual data to ensure that the behavioral feedbacks are correctly influencing the forecast.
 
-# How to use SARIMA method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?
+### How to use SARIMA method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?
 The SARIMA (Seasonal Autoregressive Integrated Moving Average) method is a powerful tool for forecasting time series data that exhibits seasonal patterns. It’s particularly useful for dealing with uncertainties like those introduced during the COVID-period. 
 By following these steps, you can create a robust SARIMA forecasting model that accounts for both seasonal patterns and the uncertain effects of the COVID-period on LPA demand outcomes. Remember, the key to effective forecasting is not only in the initial model development but also in ongoing model refinement and adaptation to new data.
 
@@ -1397,148 +1885,323 @@ SARIMA extends the ARIMA model by including seasonal terms. It is represented as
 ( P, D, Q ) are the seasonal orders for autoregression, differencing, and moving average.
 ( s ) is the number of periods in a season1.
 
-Data Preparation: 
+#### Data Preparation: 
 Organize your LPA demand data into a time series format. Include a timestamp for each data point to identify seasonal patterns.
 
-Stationarity Check: 
+#### Stationarity Check: 
 Ensure your data is stationary, meaning its statistical properties do not change over time. Use differencing to stabilize the mean if necessary.
 
-Identify Seasonality: 
+#### Identify Seasonality: 
 Determine the seasonality in your data (e.g., monthly, quarterly) and use seasonal differencing if required to remove seasonal trends and achieve stationarity.
 
-Model Selection: 
+#### Model Selection: 
 Choose the SARIMA model parameters (p, d, q, P, D, Q, s) based on your data’s autocorrelation and partial autocorrelation functions. You may need to experiment with different combinations to find the best fit.
 
-Incorporate COVID-period Effects: 
+#### Incorporate COVID-period Effects: 
 To account for the COVID-period effects, you can include dummy variables representing pre-COVID, during-COVID, and post-COVID periods or use external regressors that capture related impacts.
 
-Uncertainty Handling: 
+#### Uncertainty Handling: 
 Use the confidence intervals provided by the SARIMA model to understand the range of possible outcomes. This helps in dealing with uncertainty in your forecasts.
 
-Model Fitting: 
+#### Model Fitting: 
 Fit the SARIMA model to your historical LPA demand data, including any COVID-period effects you’ve identified.
 
-Validation: 
+#### Validation: 
 Validate your model by comparing its forecasts against actual data. Adjust the model parameters if necessary to improve accuracy.
 
-Forecasting: 
+#### Forecasting: 
 Once validated, use the SARIMA model to forecast short-term and long-term LPA demands. The model will provide a point forecast along with confidence intervals for each predicted value.
 
-Update Regularly: 
+#### Update Regularly: 
 Continuously update your model with new data to refine the forecasts and adjust for any changes in trends or seasonal patterns.
 
-**How do I choose the right SARIMA parameters?**
+### **How do I choose the right SARIMA parameters?**
 Choosing the right parameters for a SARIMA model is a critical step in time series forecasting. , the goal is to find a parsimonious model 
 that adequately captures the patterns in the data without overfitting. It’s a balance between model complexity and forecast accuracy123.
 Here’s a structured approach to selecting the appropriate parameters:
 
-Seasonal Identification: 
+#### Seasonal Identification: 
 Determine if your data exhibits a strong seasonal pattern and identify the length of the season (s). This could be based on domain knowledge or exploratory data analysis.
 
-Stationarity Check: 
+#### Stationarity Check: 
 Ensure that your time series is stationary, as SARIMA requires this. You may need to apply differencing to achieve stationarity.
 
-ACF and PACF Analysis: 
+#### ACF and PACF Analysis: 
 Use Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots to get initial estimates of the parameters. The ACF shows the correlation of the time series with its own lagged values, while the PACF shows the partial correlation of the time series with its own lagged values, controlling for the values of the time series at all shorter lags.
 
-Parameter Estimation:
+#### Parameter Estimation:
 Non-seasonal parameters (p, d, q): Look for the lag after which the PACF cuts off for the AR parameter (p), and the lag after which the ACF tails off for the MA parameter (q). The differencing parameter (d) is determined based on the number of differences required to achieve stationarity.
 Seasonal parameters (P, D, Q): Similar to the non-seasonal parameters, but you look at the seasonal lags in the ACF and PACF plots. For example, if your data has a seasonal period of 12, you would look at lags 12, 24, 36, etc.
 
-Model Fitting: 
+#### Model Fitting: 
 Fit the SARIMA model with the chosen parameters and evaluate its performance. Look at the AIC (Akaike Information Criterion) or BIC (Bayesian Information Criterion) values to compare different models.
 
-Grid Search: 
+#### Grid Search: 
 Perform a grid search over a range of parameter values to find the optimal combination that minimizes the AIC or BIC.
 
-Residual Analysis: 
+#### Residual Analysis: 
 After fitting the model, analyze the residuals to ensure that there are no patterns (which would suggest that the model can be improved) and that the residuals are approximately normally distributed.
 
-Validation: 
+#### Validation: 
 Validate the model using a hold-out sample or cross-validation to ensure that it performs well on unseen data.
 
-Iterative Refinement: 
+#### Iterative Refinement: 
 It’s often an iterative process. You may need to go back and forth adjusting the parameters and refitting the model until you find the best parameters for your specific dataset.
 
 
 
-**How to use LSTM method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?**
+### **How to use LSTM method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?**
 Using the LSTM (Long Short-Term Memory) method for forecasting LPA demands can be particularly effective for capturing complex patterns and dealing with uncertainties, 
 such as those introduced during the COVID-period. 
 Applying LSTM for both short-term and long-term forecasting:
 
-Data Preparation: 
+#### Data Preparation: 
 Organize your LPA demand data into a sequence that can be used for training the LSTM model. This includes normalizing the data and possibly transforming it into a supervised learning problem.
 
-Feature Selection: 
+#### Feature Selection: 
 Choose relevant features that could influence LPA demands, including historical demand data, COVID-period indicators, and possibly external factors like economic indicators or policy changes.
 
-Model Architecture: 
+#### Model Architecture: 
 Design your LSTM network architecture. This typically involves defining the number of layers, the number of neurons in each layer, and the connections between the layers.
 
-Incorporate COVID-period Effects: 
+#### Incorporate COVID-period Effects: 
 Integrate COVID-period effects by including them as input features or by creating a separate model that specifically predicts the impact of COVID-related variables on LPA demands.
 
-Train the Model: 
+#### Train the Model: 
 Use historical data to train your LSTM model. This involves feeding the input features into the network and adjusting the weights through backpropagation based on the error between the predicted and actual values.
 
-Validation: 
+#### Validation: 
 Validate your model using a separate dataset to ensure that it generalizes well to new, unseen data.
 
-Uncertainty Handling: 
+#### Uncertainty Handling: 
 To deal with uncertainty, you can use techniques like Monte Carlo simulations or Bayesian methods to get a distribution of possible outcomes rather than a single point estimate.
 
-Forecasting: 
+#### Forecasting: 
 Use the trained LSTM model to forecast future LPA demands. For short-term forecasting, you might use a smaller window of historical data, while for long-term forecasting, 
 you would use a larger window to capture more trends and cycles.
 
-Model Updating: 
+#### Model Updating: 
 Regularly update your model with new data to capture the latest trends and improve the accuracy of your forecasts.
 
-Interpretation: 
+#### Interpretation: 
 Interpret the model’s outputs carefully, considering the confidence intervals or prediction intervals to understand the range of possible future scenarios.
 LSTM models are powerful because they can capture long-term dependencies and are capable of learning patterns in time series data, which is essential when dealing with the irregularities and uncertainties of the COVID-period123. To monitor the performance of your LSTM model and be prepared to adjust the architecture or retrain the model as more data becomes available or as the situation evolves.
 
-**How do I choose the right architecture for my LSTM model?**
+### **How do I choose the right architecture for my LSTM model?**
 Choosing the right architecture for your LSTM (Long Short-Term Memory) model is essential for effective time series forecasting. 
 Select the appropriate architecture for your LPA demands forecasting model:
 
-Define Your Problem: 
+#### Define Your Problem: 
 Understand the specifics of your forecasting task, including the nature of the LPA demand data, the impact of the COVID-period, and the level of uncertainty.
 
-Data Preprocessing: 
+#### Data Preprocessing: 
 Prepare your data by normalizing or standardizing it, and structure it into sequences that are suitable for LSTM.
 
-Determine Sequence Length: 
+#### Determine Sequence Length: 
 The length of the input sequences should capture the relevant temporal dependencies. For LPA demands, consider the typical cycles and seasonality.
 
-Select Number of Layers: 
+#### Select Number of Layers: 
 Start with one or two LSTM layers. Deep LSTMs, with more layers, can model more complex patterns but may also require more data and training time.
 
-Choose Number of Neurons: 
+#### Choose Number of Neurons: 
 The number of neurons in each layer should reflect the complexity of the problem. More neurons can capture more information but can also lead to overfitting.
 
-Decide on Dropout: 
+#### Decide on Dropout: 
 Implement dropout to prevent overfitting, especially if you have a lot of data or a complex model.
 
-Batch Size and Epochs: 
+#### Batch Size and Epochs: 
 Choose a batch size and number of epochs that balance the speed of learning with the stability of the convergence.
 Optimization and Loss Functions: Select an optimizer like Adam or RMSprop, which are generally good choices for LSTMs. 
 Use a loss function that matches your specific forecasting objective, such as mean squared error for regression tasks.
 
-Regularization: 
+#### Regularization: 
 Apply L1 or L2 regularization if you’re dealing with overfitting.
 
-Hyperparameter Tuning: 
+#### Hyperparameter Tuning: 
 Use techniques like grid search, random search, or Bayesian optimization to systematically explore different model architectures.
 
-Validation Strategy: 
+#### Validation Strategy: 
 Use a hold-out validation set or k-fold cross-validation to evaluate the performance of different architectures.
 
-Model Evaluation: 
+#### Model Evaluation: 
 Assess the model using appropriate metrics for forecasting, such as MAE (Mean Absolute Error) or RMSE (Root Mean Squared Error).
 
-Iterative Refinement: 
+#### Iterative Refinement: 
 It’s often an iterative process. You may need to adjust the architecture based on the performance of the model and refine it until you achieve satisfactory results.
 There’s no one-size-fits-all architecture for LSTM models. It’s a process of experimentation and refinement to find the architecture that works best for your specific dataset and forecasting needs123. 
 Be prepared to iterate and possibly combine different approaches to handle the complexities introduced by the COVID-period effects.
+
+
+&nbsp;
+<a name="ap-detailed"></a> 
+# Managing files on the Analytical Platform
+- a detailed instructions on setting up AP, Git and s3 access
+At the beginning of every session on the AP:
+
+1\. Log into the Analytical Platform
+
+<https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
+
+2\. Log into AWS:
+
+<https://alpha-analytics-moj.eu.auth0.com/login?state=VqVz4r7DsapzNRWrZ1HqTXJ3SzYoJjVx&client=NpfImg4P3ynU6HFx7ivYmqUZWQHfwi3Y&protocol=samlp>
+
+Log into Github:
+
+<https://github.com/moj-analytical-services>
+
+Guidance on coding standards and platform guidance are pinned to the top of the front page.
+
+```
+To create a repo
+
+1\. Log in to Github
+
+2\. Create new repository
+
+3\. Add folders in standard configuration
+
+Clone the repo in Jupyter
+
+1\. Open Jupyter from the Analytical Platform control panel
+
+2\. Clone the Github repo from the shell by typing:
+
+git clone <git@github.com>:moj-anlaytical-services/&lt;your repo&gt;.git
+
+This downloads the repository if not in the local system. It also allows the AP to co-ordinate updates to the Github when you “push” updates to Github. You should see the repo as a folder both in R-Studio and Jupyter.
+
+Or clone the repo in R-Studio
+
+On Github, click the Clone or Download button and copy the SSH key.
+
+In R, go to the Git panel:
+
+File -> New project-> Version control -> Git
+
+Paste SSH key here.
+
+The repo should be seen in the local folder path and a Git tab should appear in the top right window.
+
+Git commands in the Jupyter UNIX shell
+
+git status
+
+Shows a status report of all the files added to the current tracked list as well as any known untracked files.
+
+git branch
+
+Shows all local branches (branches in your UNIX shell)
+
+git branch -a
+
+Shows all available branches
+
+git branch &lt;branch name&gt;
+
+Creates a new local branch with specified name
+
+git branch -d &lt;branch name&gt;
+
+Deletes local branch of specified name
+
+git checkout &lt;branch name&gt;
+
+Makes &lt;branch name&gt; the current branch. Existing adds will be remembered. Any further adds will be to this branch only.
+
+git checkout -b &lt;branch name&gt;
+
+Creates a new branch with the specified name and makes that branch the current branch (i.e. simultaneously performs a branch and a checkout.
+
+git add &lt;filename1&gt; &lt;filename2&gt;
+
+Adds listed files to the tracked list (if not on the list already) and adds the same files to a list for the next commit
+
+git add -u
+
+Adds all tracked files to the list for the next commit
+
+git add &lt;folder name&gt;/\*
+
+Adds the specified folder and all files and folders therein to the tracked list and to the list for the next commit.
+
+git fetch
+
+Checks what changes have been made to your repo at GitHub
+
+git commit -m “&lt;message&gt;”
+
+Commits all adds since the last commit to the bundle to be pushed to GitHub. Specified message to appear on GitHub with this commit.
+
+git push origin &lt;GitHub branch name&gt;
+
+Pushes everything in the latest commit to the specified branch on GitHub (or creates a new branch there, if not already created).
+
+git pull origin &lt;GitHub branch name&gt;
+
+Pulls new content from the specified GitHub branch into the current local branch.
+
+The Git flow
+
+Step 0: Clone an existing repository from GitHub. (See above).
+
+Step 1: Create a new local branch (and optionally view current status report).
+
+git branch tmp1
+
+git checkout tmp1
+
+(git status)
+
+Step 2: Add modified files (and optionally view current status report).
+
+git add -u
+
+(git status)
+
+Step 3: Commit added files to the commit bundle.
+
+git commit -m “This is my latest commit”
+
+git (status)
+
+Step 4: Push commit bundle to GitHub.
+
+git push origin tmp1_GH
+
+Step 5: Login to GitHub, view changes and pull the new branch into the master. (See ‘Compare and Pull Request’ and the ‘Merge Pull Request’ buttons. Delete the temporary branch.
+
+Step 6. Return to Jupyter and leave the local temporary branch.
+
+git checkout master
+
+Step 7: Pull the master from GitHub into the local master clone.
+
+git pull origin master
+
+Step 8: Delete the local temporary branch.
+
+git branch -d tmp1
+
+AP guidance:
+
+<https://moj-analytical-services.github.io/platform_user_guidance/quick-start.html>
+
+AP principles guidance:
+
+<https://github.com/moj-analytical-services/data_warehouse_database_template>
+
+ETL Manager guidance:
+
+<https://github.com/moj-analytical-services/etl_manager>
+
+Robin’s data engineering principles:
+
+<https://docs.google.com/document/d/1tJShbVnZqW8X8ULCAsHVx1y6dbFp1MFsnWFxBBzvpw8/edit?ts=5b90f868#heading=h.h191f44swt4c>
+
+The general Git flow
+
+<https://docs.google.com/presentation/d/1dRhbprKugJUrN39AKdmSitSaw7dnRaAZROJlymXSQ-U/edit?usp=sharing>
+```
+
+&nbsp;
