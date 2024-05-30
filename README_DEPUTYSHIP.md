@@ -530,10 +530,6 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 &nbsp;
 &nbsp;
 &nbsp;
-## ######################################################################## ##
-&nbsp;
-&nbsp;
-## ######################################################################## ##
 &nbsp;
 # __Technical Guidance__
 <a name="start"></a> 
@@ -541,9 +537,6 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 
 &nbsp;
 
-&nbsp;
-&nbsp;
-## ######################################################################## ##
 
 
 &nbsp;
