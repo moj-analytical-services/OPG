@@ -26,7 +26,7 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;
 # [Objectives](#objectives)
 &nbsp;   
-# [Background Knowledge](#Background)
+# [Background Knowledge](#background)
 &nbsp;
 # [Control Assumptions and Sensitivity Analysis](#control-assumptions)
 &nbsp;
@@ -47,11 +47,15 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;
 ## [Loading python packages](#pack)
 &nbsp;
+# [Python libraries and versions](#pythobpack) - details of python version and package versions used
+&nbsp;
 ## [Setting up a Python virtual environment](#setup) 
 &nbsp;
 ## [Analytical Platform (AP) and AWS S3 access](#ap-s3) - instructions on setting up AP and s3 access
 &nbsp;
 ## [Accessing the model from Github and Error handelling solutions](#github) - Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+&nbsp;
+# [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
 &nbsp;
 # [Data Marts (the old Demand Forecasting for Deputyship Model)](#data-mart)
 &nbsp;
@@ -63,12 +67,8 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 + [*4 - Macros (macros in CaDT)*](#3how2)
 + [*5 - Running Updates*](#4how2)
 + [*6 - Connection with Python code in Jupyter Lab*](#5how2)
-&nbsp;
-# [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access
-&nbsp;
-# [Python libraries and versions](#pythobpack) - details of python version and package versions used
-&nbsp;
-# [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
+
+
 &nbsp;
 # [Exporting Output into CSV and Excel](#export)
 &nbsp;
@@ -80,6 +80,8 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;
 # [Parameters](#parameters) - model parameters explained
 &nbsp;
+# [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
+&nbsp; 
 # [Logging](#logging) - information about output and error logging
 &nbsp;
 # [Data Register](#data-register) - a link to the Model data register log
@@ -92,8 +94,8 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;
 # [Future Development](#future) - instructions on how to do some potential model developments
 &nbsp;   
-# [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
-&nbsp;  
+&nbsp;
+# [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access 
 &nbsp; 
 &nbsp; 
 
@@ -101,6 +103,7 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 # Demand Forecasting for Deputyship Model
 The forecast method used for the Demand Forecasting for Deputyship Model in summerised below:
 - To estimate the the number of the active caseloads for those people who have got deputyships and their order status is still active, so they all subject to active supervision by OPG and provide forecast demands for the number of client under active supersion in 5-10 years. 
+- It is necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.
 
 &nbsp;
 <a name="inputs"></a>
@@ -117,6 +120,8 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 # Outputs
 1. Forecasted figures for those caseloads under active supervisons of deputyship 
 2. Trends and pattern of new deputyship orders
+3. Long Term Deputyships Forecast
+  
 
 &nbsp;
 <a name="high-process-flow"></a>
@@ -134,14 +139,65 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 &nbsp;
 <a name="objectives"></a> 
 # Objectives
+
+## Key Objectives:
 1. The current active caseload, i.e., those cases under active supervision
 To estimate the number of the active caseloads for those people who have got deputyships and their order status is still active, so they all subject to active supervision by OPG and provide forecast demands for the number of client under active supersion in 5-10 years. So they are the people that well either be being charged a fee supervision of affair cases some of the well received full exemptions or missions but not all of them and that is one of the things that we need to try and forecast.
 
 2. The trend in the number of new deputyship orders
 The active caseload there is not a reason they need to forecast bar is because they obviously generating come from that. It the same time we need to forecast the numbers of new orders. It is a bit like the sort of stopped-flow module. In which, basically it is a bit like the bath where the active caseload is the bath of water when they got new orders (new cases deputyships) that are flooding into it.
 
+## MLPA Project Data Requirements (OPG Data):
+1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
+2. Understand the expected source of the required data for highest priority requirements
+3. Understand how we access the required data and who owns it
+4. Explore options for how we store and report on the data
+
+## Data Requirements & Prioritisation Questions
+1. What is the data and does it currently exist?
+2. Where is/will the data be held?
+3. What is the justification for needing this data?
+4. What priority is this data in the overall context?
+5. Must have in place for day one of private beta (October 2024)
+6. Must have in place before full go-live (initial target April 2025)
+7. Nice to have at some point in the future
+
+*Note:* 
+The links to the workshop presentation slides as this may provide some further context:
+https://justiceuk.sharepoint.com/:x:/s/MLPAModelOfficeDatarequirements/EQlqQ6r-a3NOm_9mSKlhd2gBmA9PUDMy0tjOyP-yxvK3dQ?CID=0815868E-19DB-4742-A5E3-2552C35614D2&wdLOR=c754D2377-1644-496B-A2FE-3C389D82AFA6 
+
+https://justiceuk.sharepoint.com/:p:/s/MLPAModelOfficeDatarequirements/Eb-Tacu42N9Cq6TDk2oRgRIBDMa3Q0wTSEUa02VrzpmGKg?CID=CBF3B356-D9AE-4AD8-BE69-BDAB70A97D69&wdLOR=c5BF25DD4-1AE4-4375-8564-951C3018AA71
+
+Please note that individual data points have not yet been identified and will be our next step in this process (along with understanding which data tables/source these data points sit).
+In the spreadsheet the green tabs were from the workshop – the information has collated into a summary tab which is easier to navigate (blue tab), so I would advise you to refer to the summary tab (the green tabs hold further information/discussion points for each of the data requirements – these may help understanding (the summary tab contains links to these). 
+
+## FULLY DIGITAL LPAS - Development Work
+1. Develop assumptions for the impact of fully digital Deputyships on the long term Deputyship forecast under a range of options. See project notes on FULLY DIGITAL Deputyships.
+
+2. Extend forecast of the impact of fully digital Deputyships on demand to impact on LPAs and investigations.
+
+3. Explore potential improvements to assumptions on the risk of investigations. See project notes on INVESTIGATIONS: Developing Insights and Practical Applications To Improve Safeguarding. 
+
+4. Update to Missing Persons Deputyships.
+
+5. Build insights on OPG Customer Segmentation Forecasts into Long Term Deputyship Forecast.
+
+6. Develop geographic Deputyship demand forecasts.
+
+## Future Development
+1. Invest in automating and improving data pipelines to improve data quality and timeliness
+    - Optimise the SQL scripts and use Parallelisation in CaDT
+2. Automate models 
+    - Quicker, more flexible models in AP 
+    - Review models and improve methodology 
+3. New tools, models and products 
+    - Investment in wider portfolio of products and tools to deliver insight/analysis and to improve modelling  
+4. Wider Modelling Hub vision
+    - Contribute to delivery of wider modelling hub vision
+    - maximise benefits from the hub, in particular  
+
 &nbsp; 
-<a name="Background"></a> 
+<a name="background"></a> 
 # Background Knowledge
 
 - The reason for forecasting is that OPG needs to estimate the income generated from their fees. In addition, it affects the balance between LPA fees and deputyship fees. The reason behind this is that one of tasks that OPG currently do is the deputyship is partly subsidised by the LPA fee so depending on what that kind of balance is and kind of how much they subsidise e.g., the deputyship fee. Also the other reason they need to forecast is because they need to make sure they hve got enough staff in order to bond supervise the 50,000 plus deputyships are kind of and under active supervision.
@@ -152,17 +208,11 @@ The active caseload there is not a reason they need to forecast bar is because t
     3. Childern born with a disability and they do not have anybody there especially make the Court of Protection to act on their behalf and have a deputyships. The deputyship can be a family member or power of atherney or local authority, financial advisor, and soliciter to act on behalf and mange their affairs. The difference in here is that the Court of Protection made the decision for ordering the deputyship and they do not have any choice about it.
     
 &nbsp;    
-&nbsp;
-
-&nbsp;
-
-
-
 
 ## Deputyship Forecasting Model
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. 
 
-- **If we imagine that water is flowing out of the bath through the plug hole, that is what the termination date is showing. So we have these people here who had died and the death of clients mainly changed their status from Active to being Closed. So to work out the active caseload each year, we need to work out how many new cases are going to be added and how many cases are going to be terminated. Those are the two key things that we need to know and then we can run the model forward in that way. 
+**If we imagine that water is flowing out of the bath through the plug hole, that is what the termination date is showing. So we have these people here who had died and the death of clients mainly changed their status from Active to being Closed. So to work out the active caseload each year, we need to work out how many new cases are going to be added and how many cases are going to be terminated. Those are the two key things that we need to know and then we can run the model forward in that way. 
 
 Here we break down how the stopped-flow technique can be related to the bathtub model and how it might apply to understanding and calculating the rate of new deputyships orders in the Office of Public Guardian (OPG) for active supervision with termination dates due to death or order closure. In summary, the stopped-flow technique and the bathtub model analogy provide insights into dynamic systems, whether in chemical reactions or administrative processes like managing deputyships orders. By applying these concepts, the OPG can better understand and manage its caseload, ensuring effective supervision and timely responses to changing circumstances.
 
@@ -201,8 +251,10 @@ For the vast majority of people, a deputyship is generated because they do not h
 
 &nbsp;
 &nbsp; 
+
 <a name="data-sources"></a> 
 # Data Sources
+
 The evidence is suggesting that the deputyship data is now being recorded in Sirius . Previously I had noted that deputyship “orders” had been recorded in the Sirius data that we received but this no longer seems to be the case, and what was recorded was not the level of detail previously available from CASREC (the database that previously captured deputyship data). 
 
 For the previous data, please look at a file called “order1” derived from CASREC to give you an indication of the data fields actually required. What is needed is to obtain all of the data required to update the model.
@@ -210,20 +262,6 @@ For the previous data, please look at a file called “order1” derived from CA
 We would need to find useful information like when the order was made whether it's still active or not and we could work out the age of a **P: Protective People**.
 
 The data should enables us to work out what the size of the active caseload is but also to work out the termination rate, how quickly people flow off the active caseload, so this whole issue with mortality rates. The termination refer to those records whether somebody dies or just leaves but the order is just not renewed. Thus, we would need to bounce calculator as well and that was very age dependent, generally the younger somebody is that termination rate is going to be lower.
-
-
-## S3 Bucket Access
-Data from the current python script lands here: 
-s3://alpha-opg-analytical/sirius_data_cuts_3/
-
-## Current Python Script
-https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/opg-analytical-endpoint-3.py
-
-
-## Data Engineering Database Access 
--	sirius-prod (raw data, includes LPA and deputyship data), 
--	Solicitors Regulation Authority, 
--	curated data warehouse tables. 
 
 
 
@@ -511,8 +549,6 @@ Essentially all what is happening in the charts is to work out how many deputysh
 In fact, for childern up to age 18 is more a nive extracolation of this figures and not worth doing much more coplicated work on that, as the number are very small and so it is a simple exponential smoothing forecasting.
 
 &nbsp;
-&nbsp;
-## ######################################################################## ##
 &nbsp; 
 <a name="calc-model"></a> 
 # Model Calculation - details of model calculation.
@@ -530,45 +566,36 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 
 &nbsp;
 &nbsp;
-&nbsp;
-## ######################################################################## ##
-&nbsp;
-&nbsp;
-## ######################################################################## ##
+
 &nbsp;
 # __Technical Guidance__
 <a name="start"></a> 
 ## Getting started
 
 &nbsp;
-
-&nbsp;
-&nbsp;
-## ######################################################################## ##
-
-
-&nbsp;
 <a name="run-model"></a> 
 ## Running the model
 - step by step instructions
 
-&nbsp;
-<a name="pack"></a> 
-## Loading python packages
 
 &nbsp;
-<a name="setup"></a> 
-## Setting up a Python virtual environment
+<a name="data-setup"></a> 
+# Data setup
+- step by step instructions Data Engineering in Jupyter Lab
 
-&nbsp;
-<a name="ap-s3"></a> 
-## Analytical Platform (AP) and AWS S3 access
-- instructions on setting up AP and s3 access
 
-&nbsp;
-<a name="github"></a> 
-## Accessing the model from Github and Error handelling solutions
-- Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+## S3 Bucket Access
+Data from the current python script lands here: 
+s3://alpha-opg-analytical/sirius_data_cuts_3/
+
+## Current Python Script
+https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/opg-analytical-endpoint-3.py
+
+
+## Data Engineering Database Access 
+-	sirius-prod (raw data, includes LPA and deputyship data), 
+-	Solicitors Regulation Authority, 
+-	curated data warehouse tables. 
 
 &nbsp;
 <a name="data-mart"></a> 
@@ -578,7 +605,6 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 <a name="howto-d-m"></a> 
 # How to Data Modelling
 - Data Modelling using Create-a-Derived-Table (CaDT)
-
 
 &nbsp;
 <a name="0how2"></a> 
@@ -591,37 +617,153 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 &nbsp;
 <a name="2how2"></a> 
 + *3 - Lookup Tables (seed in CaDT)*
+Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
 
+⚠️ Seeds must not contain sensitive data. ⚠️
+    
+The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
+
+**Selecting seeds to run**
+Specific seeds can be run using the --select flag to dbt seed. Example:
+```console
+>> cd mojap_derived_tables
+>> dbt seed 
+>> dbt seed --select "...__..."    
+```
 &nbsp;
 <a name="3how2"></a> 
 + *4 - Macros (macros in CaDT)*
+Macros in Jinja are pieces of code that can be reused multiple times 
+– they are analogous to "functions" in other programming languages, and are extremely useful if you find yourself repeating code across multiple models. 
+Macros are defined in .sql files, in the macros directory (create-a-derived-table/mojap_derived_tables/macros/income/income__get_latest_snapshot.sql).
+
+The base derived tables should be to get the up-dated data through a macro "income__get_latest_snapshot" to get the most recent data from the FamilyMan derived tables by passing extract_date to the sql code.
+    
+The following code shows the macro, I wrote to filter the source derived table based on the most up-to-date data created by data engineering team:
+    
+```console
+
+{% macro income__get_latest_snapshot(tables) %}
+
+{% set latest_common_export_date_query %}
+with exports as (
+{%- for table_name in tables %}
+select distinct mojap_snapshot_date
+from {{ source('familyman_derived_live_v4', table_name) }}
+{%- if not loop.last %}intersect{% endif -%}
+{% endfor %}
+)
+select max(mojap_snapshot_date) AS latest_glueexporteddate
+from exports
+{% endset %}
+
+{% set results = run_query(latest_common_export_date_query) %}
+
+{% if execute %}
+  {% if results|length > 0 %}
+  {% set result = results.columns[0].values()[0] %}
+  {% else %}
+  {% set result = null %}
+  {% endif %}
+{% else %}
+{% set result = null %}
+{% endif %}
+
+{{ return(result) }}
+
+{% endmacro %}
+```
+   
+#### Set variables at the top of a model
+{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
+
 
 &nbsp;
 <a name="4how2"></a> 
 + *5 - Running Updates*
+**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
+
+**2. Check and run the seeds (using "dbt seed").**
 
 &nbsp;
 <a name="5how2"></a> 
 + *6 - Connection with Python code in Jupyter Lab* 
-
-
+To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
+For more information see below.
+https://docs.getdbt.com/reference/dbt-commands
 
 &nbsp;
 &nbsp;
+
+
 &nbsp;
-<a name="ap-detailed"></a> 
-# Managing files on the Analytical Platform
-- a detailed instructions on setting up AP, Git and s3 access
+<a name="ap-s3"></a> 
+## Analytical Platform (AP) and AWS S3 access
+- instructions on setting up AP and s3 access
+Go the the repo in Git:
+https://github.com/moj-analytical-services/OPG
+
+Open Terminal:
+```console
+git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.git
+```
+
+If there is any error then follow the instruction below:
+Create and add JupyterLab SSH key to GitHub
+
+&nbsp;
+<a name="setup"></a> 
+## Setting up a Python virtual environment
+```console
+pip install -r requirements.txt
+```
+    
+```python 
+!. venv/bin/activate
+#!pip install arrow-pd-parser
+``` 
+
+
+&nbsp;
+<a name="github"></a> 
+## Accessing the model from Github and Error handelling solutions
+- Pulling the OPG repo to your local area of the AP from GitHub
+When working on your models it is likely that your branch will get out of date with the main branch. 
+To update you branch with the latest changes from main open a terminal and run the following:
+
+Check your working tree, commit/push any changes if required:
+
+```console
+git status
+```
+
+Switch to the main branch and collect the latest changes, if any
+
+```console
+git switch main
+git fetch
+git pull
+```
+
+Switch back to your branch and merge in the changes from main
+
+```console
+git checkout -b <your initial>/model-a-development
+git switch <your initial>/model-a-development
+git merge main -m "update branch with main"
+```
 
 &nbsp;
 <a name="python-pack"></a> 
 # Python libraries and versions 
 - details of python version and package versions used
 
-&nbsp;
-<a name="data-setup"></a> 
-# Data setup
-- step by step instructions Data Engineering in Jupyter Lab
+<a name="pack"></a> 
+## Loading python packages
+Before you can run this project, you need to install some Python packages using the terminal:
+```python 
+
+```
 
 &nbsp;
 <a name="export"></a> 
@@ -635,15 +777,78 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 <a name="plot"></a> 
 # Plotting The Forecasted vs Actual values
 
+## Visualizing cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
+
+**Conditional Formatting:**
+Highlight key insights from your cohort table using conditional formatting.
+Select your cohort data.
+Click on Home > Conditional Formatting > Color Scales.
+Choose a color scale that suits your data.
+Adjust the scale to enhance the contrast between high and low rates.
+Colors will reveal patterns in customer retention.
+
+**Charting and Graphing:**
+Excel offers a range of charting and graphing options to visualize your cohort analysis results.
+
+**Create:**
+Line Charts: Represent how metrics change over time within different cohorts.
+Bar Graphs: Compare metrics across different cohorts.
+
+**Heatmaps:**
+Show variations in metrics by color intensity.
+Visualizations make it easier to identify trends and patterns within your data2.
+Remember to organize your data with the necessary attributes and timestamps, define your cohorts, and calculate relevant metrics before creating visualizations.
+
+
+**an example of a cohort line chart?**
+
+A cohort analysis chart is a powerful tool for understanding user behavior over time. It allows you to group users based on specific characteristics (such as acquisition date) and track their actions or metrics over subsequent periods. Let’s take a look at an example of a cohort analysis chart:
+
+**Example Cohort Analysis Chart (Weekly Revenue per Group):**
+
+In this chart, we’ll focus on revenue generated by cohorts of customers acquired in specific weeks.
+The vertical axis represents the cohorts, with the oldest cohorts at the top and the newest ones at the bottom.
+Each row corresponds to a cohort of customers who started using a product or service during a particular week.
+The horizontal axis represents time (e.g., weeks, months) after the cohort’s acquisition.
+The cells in the chart display the revenue generated by each cohort during each time period.
+Here’s a simplified representation of how the chart might look:
+
+Week 1   Week 2   Week 3   Week 4   ...   Week N
+-------------------------------------------------
+Cohort 1:   $100     $120     $110     $130          ...
+Cohort 2:   $80      $90      $100     $95           ...
+Cohort 3:   $150     $140     $160     $155          ...
+...         ...      ...      ...      ...           ...
+Cohort M:   $200     $210     $220     $205          ...
+
+Each cell shows the revenue generated by a specific cohort during a particular week.
+You can read across the rows to see how a cohort’s revenue changes over time.
+Reading from top to bottom allows you to compare different cohorts during a specific time period.
+Diagonally, you get a snapshot of how each cohort performs at a specific point in time.
+In this example, you’d analyze how revenue evolves for each cohort as weeks progress. This information can guide strategic decisions, such as optimizing marketing efforts, improving product features, or addressing customer retention.
+
+Remember that cohort analysis can be customized based on the specific metrics you’re interested in (e.g., user engagement, churn rate, conversion rate). The key is to segment users into meaningful groups and track their behavior over time to uncover valuable insights1. 
+
+
 &nbsp;
 <a name="processflow"></a> 
 # Process flow Diagrams
 - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
+The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
 
+*under constuction!
+
+&nbsp;
 &nbsp;
 <a name="parameters"></a> 
 # Parameters
 - model parameters explained
+
+&nbsp;
+<a name="old-model"></a>   
+# Previous implementation of the model 
+- instructions on how the previous model was implemented
+
 
 &nbsp;
 <a name="logging"></a> 
@@ -664,12 +869,95 @@ In fact, for childern up to age 18 is more a nive extracolation of this figures 
 <a name="risks"></a> 
 # Risks
 - a link to the risk register log
+*What are the common challenges in LPA forecasting?
 
-&nbsp;
+## Risk of usig excel model: 
+Remember that Excel has limitations for complex forecasting models, especially when dealing with large datasets. WE might switch to more sophisticated modeling, consider using specialized statistical software or programming languages like Python or R.
+
+## Risk, assumptions, and challenges forecasting for LPA
+*When it comes to forecasting for Deputyship applications, there are several challenges that organizations and individuals may encounter. Let’s explore some of these common challenges:
+
+### Legal Validity and Challenges:
+1. Lack of Capacity: 
+An LPA must be created by someone with the required mental capacity as defined in the Mental Capacity Act 2005. If there are doubts about the donor’s capacity during the creation of the LPA, it can lead to legal challenges1.
+2. Fraud or Duress: 
+LPAs created fraudulently or under duress can be challenged. If an LPA is suspected to be invalid due to coercion or deception, legal action may follow1.
+3. Attorney Suitability and Abuse:
+4. Unsuitable Attorneys: 
+Sometimes, appointed attorneys may not act in the best interests of the donor. Relatives or concerned parties can challenge an LPA if they believe an attorney is unsuitable.
+5. Abuse of Position: 
+If an attorney abuses their position (e.g., mismanaging finances, neglecting the donor’s welfare), it can lead to disputes and legal challenges1.
+6. Notification and Objection:
+7. Notification Process: 
+When someone creates an LPA, they can list individuals to be notified by the Office of the Public Guardian (OPG). These notified individuals have the chance to object to the registration of the LPA.
+8. Relatives’ Awareness: 
+In some cases, relatives may not know that the donor has made an LPA until later, which can complicate matters if they wish to challenge it1.
+9. Personality Clashes and Autonomy:
+10. Reasonable Grounds: 
+Challenges must have genuine and reasonable grounds. A mere personality clash with an attorney is not sufficient to have them removed. Autonomy in choosing attorneys is essential.
+11. Balancing Autonomy and Protection: 
+Balancing the individual’s autonomy to choose attorneys with the need to protect their interests can be challenging1.
+12. Complex Application Process:
+13. Errors in Completion: 
+Completing the LPA application correctly is crucial. Errors can lead to delays or rejection by the OPG. Avoiding common mistakes during the application process is essential2.
+14. Health and Welfare LPAs:
+15. Timing: 
+Health and welfare LPAs only take effect once the donor has lost mental capacity. Forecasting the timing of capacity loss accurately can be challenging.
+16. Changing Circumstances: 
+Health conditions and circumstances can change, affecting the applicability of health and welfare LPAs1.
+In summary, LPA forecasting involves legal, practical, and ethical considerations. Organizations and individuals must navigate these challenges to ensure effective decision-making and protection for donors.
+
+
+
+### Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. Here are some strategies to consider:
+
+
+#### Understand Capacity Fluctuations:
+Recognize that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
+Monitor the individual’s cognitive abilities and assess their capacity periodically.
+
+#### Historical Data Analysis:
+Examine historical LPA applications to identify patterns related to capacity fluctuations.
+Look for trends in the timing of capacity loss or improvement.
+Consider whether certain age groups or health conditions are more prone to fluctuations.
+
+#### Segmentation by Risk Factors:
+Divide your data into segments based on risk factors (e.g., age, health status).
+Analyze how capacity fluctuations vary across these segments.
+Adjust your forecasting models accordingly for each segment.
+
+#### Probabilistic Models:
+Use probabilistic models to account for uncertainty.
+Bayesian models, Markov models, or survival analysis can incorporate changing probabilities of capacity loss.
+These models allow you to update predictions as new information becomes available.
+
+#### Scenario-Based Forecasting:
+Create scenarios that simulate different capacity trajectories. For example:
+- Stable Capacity: Assume capacity remains stable over time.
+- Gradual Decline: Assume a gradual decline in capacity.
+- Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
+- Forecast LPAs under each scenario and assess their impact.
+- Collaborate with Healthcare Professionals:
+- Consult with healthcare providers who can assess capacity objectively.
+- Obtain medical opinions and consider their insights in your forecasting process.
+#### Sensitivity Analysis:
+- Test the sensitivity of your forecasts to capacity fluctuations.
+- Vary the assumptions about capacity loss rates and observe the impact on LPA applications.
+- Educate Attorneys and Donors:
+- Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
+- Encourage them to review and update LPAs periodically to reflect changing circumstances.
+- Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. 
+
+
 &nbsp;
 <a name="qa"></a> 
 # Quality Assurance (QA)
 - directions to the folder that holds the logs and evidence of initial model v1 QA
+
+**Optimisations of the SQL Query Checks:**
+1. Avoid nested joins: Instead of nesting multiple joins, we can perform them in a single level, which can improve readability and potentially performance.
+2. Simplify aggregation: Instead of using the GROUP BY clause at the top level, we use it within the TRANSFORM clause, simplifying the query structure.
+3. Optimize join conditions: Ensure that join conditions are efficient and necessary indexes are in place for better performance. However, this depends on the database system and schema.
 
 ## Data Quality Assurance
 
@@ -691,11 +979,176 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Future Development 
 - instructions on how to do some potential model developments
 
+&nbsp;  
+<a name="ap-detailed"></a> 
+# Managing files on the Analytical Platform
+- a detailed instructions on setting up AP, Git and s3 access
+At the beginning of every session on the AP:
+
+1\. Log into the Analytical Platform
+
+<https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
+
+2\. Log into AWS:
+
+<https://alpha-analytics-moj.eu.auth0.com/login?state=VqVz4r7DsapzNRWrZ1HqTXJ3SzYoJjVx&client=NpfImg4P3ynU6HFx7ivYmqUZWQHfwi3Y&protocol=samlp>
+
+Log into Github:
+
+<https://github.com/moj-analytical-services>
+
+Guidance on coding standards and platform guidance are pinned to the top of the front page.
+
+```
+To create a repo
+
+1\. Log in to Github
+
+2\. Create new repository
+
+3\. Add folders in standard configuration
+
+Clone the repo in Jupyter
+
+1\. Open Jupyter from the Analytical Platform control panel
+
+2\. Clone the Github repo from the shell by typing:
+
+git clone <git@github.com>:moj-anlaytical-services/&lt;your repo&gt;.git
+
+This downloads the repository if not in the local system. It also allows the AP to co-ordinate updates to the Github when you “push” updates to Github. You should see the repo as a folder both in R-Studio and Jupyter.
+
+Or clone the repo in R-Studio
+
+On Github, click the Clone or Download button and copy the SSH key.
+
+In R, go to the Git panel:
+
+File -> New project-> Version control -> Git
+
+Paste SSH key here.
+
+The repo should be seen in the local folder path and a Git tab should appear in the top right window.
+
+Git commands in the Jupyter UNIX shell
+
+git status
+
+Shows a status report of all the files added to the current tracked list as well as any known untracked files.
+
+git branch
+
+Shows all local branches (branches in your UNIX shell)
+
+git branch -a
+
+Shows all available branches
+
+git branch &lt;branch name&gt;
+
+Creates a new local branch with specified name
+
+git branch -d &lt;branch name&gt;
+
+Deletes local branch of specified name
+
+git checkout &lt;branch name&gt;
+
+Makes &lt;branch name&gt; the current branch. Existing adds will be remembered. Any further adds will be to this branch only.
+
+git checkout -b &lt;branch name&gt;
+
+Creates a new branch with the specified name and makes that branch the current branch (i.e. simultaneously performs a branch and a checkout.
+
+git add &lt;filename1&gt; &lt;filename2&gt;
+
+Adds listed files to the tracked list (if not on the list already) and adds the same files to a list for the next commit
+
+git add -u
+
+Adds all tracked files to the list for the next commit
+
+git add &lt;folder name&gt;/\*
+
+Adds the specified folder and all files and folders therein to the tracked list and to the list for the next commit.
+
+git fetch
+
+Checks what changes have been made to your repo at GitHub
+
+git commit -m “&lt;message&gt;”
+
+Commits all adds since the last commit to the bundle to be pushed to GitHub. Specified message to appear on GitHub with this commit.
+
+git push origin &lt;GitHub branch name&gt;
+
+Pushes everything in the latest commit to the specified branch on GitHub (or creates a new branch there, if not already created).
+
+git pull origin &lt;GitHub branch name&gt;
+
+Pulls new content from the specified GitHub branch into the current local branch.
+
+The Git flow
+
+Step 0: Clone an existing repository from GitHub. (See above).
+
+Step 1: Create a new local branch (and optionally view current status report).
+
+git branch tmp1
+
+git checkout tmp1
+
+(git status)
+
+Step 2: Add modified files (and optionally view current status report).
+
+git add -u
+
+(git status)
+
+Step 3: Commit added files to the commit bundle.
+
+git commit -m “This is my latest commit”
+
+git (status)
+
+Step 4: Push commit bundle to GitHub.
+
+git push origin tmp1_GH
+
+Step 5: Login to GitHub, view changes and pull the new branch into the master. (See ‘Compare and Pull Request’ and the ‘Merge Pull Request’ buttons. Delete the temporary branch.
+
+Step 6. Return to Jupyter and leave the local temporary branch.
+
+git checkout master
+
+Step 7: Pull the master from GitHub into the local master clone.
+
+git pull origin master
+
+Step 8: Delete the local temporary branch.
+
+git branch -d tmp1
+
+AP guidance:
+
+<https://moj-analytical-services.github.io/platform_user_guidance/quick-start.html>
+
+AP principles guidance:
+
+<https://github.com/moj-analytical-services/data_warehouse_database_template>
+
+ETL Manager guidance:
+
+<https://github.com/moj-analytical-services/etl_manager>
+
+Robin’s data engineering principles:
+
+<https://docs.google.com/document/d/1tJShbVnZqW8X8ULCAsHVx1y6dbFp1MFsnWFxBBzvpw8/edit?ts=5b90f868#heading=h.h191f44swt4c>
+
+The general Git flow
+
+<https://docs.google.com/presentation/d/1dRhbprKugJUrN39AKdmSitSaw7dnRaAZROJlymXSQ-U/edit?usp=sharing>
+```
 
 &nbsp;
-<a name="old-model"></a>   
-# Previous implementation of the model 
-- instructions on how the previous model was implemented
-
-
-&nbsp;  

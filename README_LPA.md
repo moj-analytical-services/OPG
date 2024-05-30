@@ -1325,9 +1325,8 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Future Development 
 - instructions on how to do some potential model developments
 
-
-
-### Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
+## Bayesian models
+Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
 
 
 #### Understanding Bayesian Models:
