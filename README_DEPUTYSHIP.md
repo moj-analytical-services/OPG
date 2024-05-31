@@ -143,7 +143,7 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 &nbsp;  
 <a name="aim"></a>         
 # Aim 
-- The aim of this project is to Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
+- The aim of this project is Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
 - This model should provide input for the OPG projects in term of resource managment (staff and income).
  
 &nbsp;
