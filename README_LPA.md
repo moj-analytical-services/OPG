@@ -100,12 +100,13 @@ https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
 <a name="summ"></a>
 # Demand Forecasting for LPA Model
-The forecast method used for the Demand Forecasting for LPA Model in summerised below:
-- To estimate the the number of the active caseloads for those people who have got LPAs and their order status is registered by OPG and provide forecast demands for the number of LPA demands in 5-10 years. 
-
-## Business Need (Priority: Business As Usual)
-- Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
-- Short term forecasting is a critical function supporting plans for resources needed to handle applications and  calls etc and in-year monitoring of external impacts particularly around broadcast / media events, and early indications of the impact of marketing events.
+**Lasting Powers of Attorney (LPAs)**:
+   - **Definition**: LPAs are legal documents where an individual (the donor) nominates someone (the attorney) to make decisions on their behalf if they lose mental capacity.
+   - **Creation**: LPAs are set up while the donor still has mental capacity.
+   - **Types**: There are two types of LPAs: one for financial decisions and another for health and care decisions.
+   - **Flexibility**: LPAs offer flexibility, allowing individuals to choose and trust their attorneys.
+   
+The forecast method used for the Demand Forecasting for LPA Model should be able to estimate the the number of the active caseloads for those people who have got LPAs and their order status is registered by OPG and provide forecast demands for the number of LPA demands in 5-10 years. 
 
 
 &nbsp;
@@ -121,17 +122,11 @@ The forecast method used for the Demand Forecasting for LPA Model in summerised 
 &nbsp; 
 <a name="outputs"></a>
 # Outputs
-1. Short Term LPA Forecast: 
+1. **Short Term LPA Forecast**: 
     projections of 12 months or less of LPA applications received and numbers registered as a month profile. Frequency (to be agreed). Supports long term forecast.
 
-2. Long Term LPA Forecast: 
-    It is necessary to forecast LPA income, and forecast trends in deputyships an investigations. Long term projections (5 years +). Annual numbers of LPA applications received and registered with uncertainty ranges. Frequency: Annual updates. 
-
-3. Long Term Deputyships Forecast: 
-    necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.  
-
-4. Long Term Investigations Forecast: 
-    necessary to understand resource demands (and costs) of expected increasing numbers of investigations from the rapidly rising numbers of existing LPA holders. Long term projections (5 years +) . Numbers pf projections split by origin LPAs, Deputyships , EPA and others.   
+2. **Long Term LPA Forecast**: 
+    It is necessary to forecast LPA income, and forecast trends in deputyships an investigations. Long term projections (5 years +). Annual numbers of LPA applications received and registered with uncertainty ranges. Frequency: Annual updates.
 
 &nbsp;
 <a name="high-process-flow"></a>
@@ -146,18 +141,19 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 - The aim of this project is to Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
 - This model should provide input for the OPG projects in term of resource managment (staff and income).
 
-## Business Needs
-Analytical resource is required to support OPGs plans to develop a fully digital LPA. Specifically : 
-
-1. To explore what impact, under a range of options, would fully digital LPAs have on overall  demand ?
-2. What will be the residual need for paper applications ?
-3. What impact will fully digital LPAs have on LPA demand across a range of protected characteristics  
-
 &nbsp;
 <a name="objectives"></a> 
 # Objectives
 1. Forecasted figures for Living LPAs 
 2. Trends and pattern of the LPA orders
+
+## Business Needs
+- Analytical resource is required to support OPGs plans to develop a fully digital LPA. Specifically: 
+    1. To explore what impact, under a range of options, would fully digital LPAs have on overall demand?
+    2. What will be the residual need for paper applications?
+    3. What impact will fully digital LPAs have on LPA demand across a range of protected characteristics  
+- Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
+- Short term forecasting is a critical function supporting plans for resources needed to handle applications and  calls etc and in-year monitoring of external impacts particularly around broadcast / media events, and early indications of the impact of marketing events.
 
 ## MLPA Project Data Requirements (OPG Data):
 1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
@@ -185,19 +181,13 @@ In the spreadsheet the green tabs were from the workshop – the information has
 
 ## FULLY DIGITAL LPAS - Development Work
 1. Develop assumptions for the impact of fully digital LPAs on the long term LPA forecast under a range of options. See project notes on FULLY DIGITAL LPAs.
-
 2. Extend forecast of the impact of fully digital LPAs on demand to impact on deputyships and investigations.
-
 3. Explore potential improvements to assumptions on the risk of investigations . See project notes on INVESTIGATIONS: Developing Insights and Practical Applications To Improve Safeguarding. 
-
 4. Update to Missing Persons Deputyships.
-
 5. Build insights on OPG Customer Segmentation Forecasts into Long Term LPA Forecast.
-
 6. Develop geographic LPA demand forecasts.
 
 ## Future Development
-   
 1. Invest in automating and improving data pipelines to improve data quality and timeliness
     - Optimise the SQL scripts and use Parallelisation in CaDT
 3. Automate models 
@@ -220,9 +210,8 @@ In the spreadsheet the green tabs were from the workshop – the information has
     2. Can digital services provide a way to access harder to reach customers ? Where might changes to digital access be needed? 
     3. What might be potential barriers to access ? (eg noteable low use in rural areas).
     4. Incorporating Covid period uncertanties around data and how to apply this to the cohort model for forecasting LPA?
-## Key Deliverables
 
-Likely to include:
+## Key Deliverables
 1. Adaptation of the long term and short term LPA forecasts to include scenario based assumptions on how fully digital LPAs will impact on LPA take-up. These scenarios will also Impact on Deputyship and Investigations Forecasts.
 
 2. Forecasts of future applications by type (fully digital, and paper) including residual numbers of paper applications
@@ -241,16 +230,96 @@ DWP (need contact) rollout of digital services eg carer allowance (below)
 In OPG’s strategy team we’re starting the work to prepare OPG’s overarching 3-5yr strategy, the first phase of which is collecting a range of evidence. Just wondered what suitable documents you might have that outline analysis on unmet need, fees, horizon scanning etc. 
 
 
-### POTENTIAL UNMET NEED FOR LPAS
+## POTENTIAL UNMET NEED FOR LPAS
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
 - Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
-### WHY DON’T PEOPLE TAKE OUT LPAs
-- It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
-- Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
-- A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 
+## Potential Unmet Need for LPAs
+- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
+- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
+- Existing OPG customers differ from communities with higher unmet needs.
+
+## Modernising LPAs
+- This policy change will transform how customers purchase LPAs and how the OPG interacts with them.
+- Long-term strategic concerns include assessing the impact on overall LPA demand and adapting to changing circumstances.
+
+### Implications of modernising LPAs
+Modernising Lasting Powers of Attorney (LPAs) can have significant implications for both individuals and the Office of the Public Guardian (OPG):
+
+1. **Accessibility and Ease of Use**:
+   - **Positive Implication**: Modernization aims to make LPAs more accessible and user-friendly. Simplified processes, digital platforms, and clearer guidance can encourage more people to create LPAs.
+   - **Challenges**: Ensuring that the modernized system accommodates diverse needs (including those of older adults and people with disabilities) is crucial.
+
+2. **Increased Adoption**:
+   - **Positive Implication**: Streamlined procedures may lead to increased adoption of LPAs. More people will proactively plan for their future decision-making.
+   - **Challenges**: Raising awareness about the importance of LPAs remains essential. Many individuals still lack information about their benefits.
+
+3. **Cost and Affordability**:
+   - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
+   - **Challenges**: Balancing affordability while maintaining the quality of service is critical. Some individuals may still find fees prohibitive.
+
+4. **Digital Transformation**:
+   - **Positive Implication**: Digital platforms allow online creation, registration, and management of LPAs. This convenience can encourage more people to engage.
+   - **Challenges**: Ensuring data security, privacy, and accessibility for all, especially those without digital literacy, is essential.
+
+5. **Efficiency and Timeliness**:
+   - **Positive Implication**: Streamlined processes can expedite LPA creation and registration.
+   - **Challenges**: Managing increased demand efficiently and avoiding delays in processing are key considerations.
+
+6. **Monitoring and Oversight**:
+   - **Positive Implication**: Modernization can enhance oversight, ensuring attorneys and deputies act in the best interests of the person they represent.
+   - **Challenges**: Balancing oversight without creating unnecessary bureaucracy is crucial.
+
+7. **Legal Clarity and Consistency**:
+   - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
+   - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
+
+8. **Impact on OPG Resources**:
+   - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
+   - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
+
+In summary, modernising LPAs presents opportunities for better accessibility, efficiency, and user experience. However, addressing challenges related to awareness, affordability, and equitable access remains crucial. The OPG must strike a balance between innovation and maintaining its core mission of safeguarding vulnerable individuals. 
+
+
+## Why Don't People Take Out LPAs?
+- Reasons are multifaceted and complex.
+It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
+- Factors explored include age, ethnicity, geographic location, household income, mental health status, awareness, digital capability, and access to services.
+Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
+- A behavioral model suggests that taking out an LPA depends on four conditions: Need, Drive, Awareness, and Accessibility.
+A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
+
+## What happens if I don't have an LPA?
+1. **Loss of Decision-Making Control**:
+   - Without an LPA, you won't have designated attorneys to make decisions on your behalf if you become mentally incapacitated.
+   - Critical decisions related to your finances, health, and welfare may be left unresolved.
+
+2. **Court-Appointed Deputyship**:
+   - If you lack an LPA and lose mental capacity, someone (usually a family member or friend) may need to apply to the Court of Protection to become your deputy.
+   - The deputy will have legal authority to make decisions for you, but this process can be time-consuming and costly.
+
+3. **Limited Autonomy**:
+   - The court-appointed deputy may not always make decisions aligned with your preferences or values.
+   - You lose the autonomy to choose who represents you during incapacity.
+
+4. **Financial and Legal Challenges**:
+   - Managing your financial affairs becomes complicated without an LPA.
+   - Accessing bank accounts, paying bills, and handling property matters can be challenging.
+
+5. **Healthcare Decisions**:
+   - Without a health and welfare LPA, medical decisions (such as treatment options, care preferences, and end-of-life choices) may be made by healthcare professionals or family members without your input.
+
+6. **Risk of Delay and Disputes**:
+   - If disputes arise among family members regarding decision-making, the court may need to intervene.
+   - This can lead to delays and emotional strain during an already difficult time.
+
+7. **Costs and Burden on Loved Ones**:
+   - Applying for deputyship involves legal fees, court costs, and ongoing supervision fees.
+   - Loved ones may bear the burden of managing your affairs if you lack an LPA.
+
+In summary, having an LPA ensures that your wishes are respected even if you lose mental capacity. It provides peace of mind and empowers trusted individuals to act on your behalf. 
 ### MODERNISING LPAS: 
 - This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
 - Again it is hard to summarise such a complex policy effect but some of the long term strategic concerns might be: 
