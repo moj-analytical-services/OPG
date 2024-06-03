@@ -118,9 +118,9 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 &nbsp;
 <a name="inputs"></a>
 # Inputs
-1. The deputyships orders made for each individual cases by the Court of Protection from CASRAC and Sirius databases
-2. Financial information for the deputyship demands for each indiviual/case
-3. ONS polulation Projection (e.g., Mortality Rate)
+1. The deputyships orders are made for each individual cases by the Court of Protection from CASRAC and Sirius databases
+2. Financial information for the deputyship demands is for each indiviual/case
+3. ONS polulation Projection data (e.g., Mortality Rate)
 4. Family Survay Data
 5. Indidual information
 7. Number of LPA application (to be suntracted for the polulation to provide number of deputyships)
@@ -255,7 +255,7 @@ The key points in modelling:
 * Ref: https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_%28Physical_and_Theoretical_Chemistry%29/Kinetics/02%3A_Reaction_Rates/2.01%3A_Experimental_Determination_of_Kinetics/2.1.06%3A_Stopped_Flow
 
 
-It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that is why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputy ships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
+It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that is why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputyships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
 
 For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
 
