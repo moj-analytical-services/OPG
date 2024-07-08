@@ -243,13 +243,13 @@ In OPG’s strategy team we’re starting the work to prepare OPG’s overarchin
 
 ### POTENTIAL UNMET NEED FOR LPAS
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
-- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
-- A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
+- A simple behavioural model to help understand why people do not take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 
 ### MODERNISING LPAS: 
 - This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
@@ -933,15 +933,33 @@ A limiting factor in modelling numbers of surving LPA holders aged 90+ has been 
 for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
 surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
 
-For the 2018 LPA forecast , Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
+For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
 a standard log power law that best fits existing mortality rates to age. 
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
 &nbsp;
 
+&nbsp;
+## Donor Prediction
+### Question: 
+- what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
+- convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
+
+* ref: LPA MODEL / Predicted
+
+### Calculation:
+- UPDATED FORECAST: AVERAGE DAILY RECEIPTS
+    - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
+    - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day . If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
+    - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
+    - However, the impact of the broadcast event in November 2023 remains uknown and introduces additional short and long term uncertainty into the daily  LPA receipts forecast, as does uncertainty around the longer term impact of suppressed demand. 
+
+**The corresponding excel formula:**
 
 
+&nbsp;
+&nbsp;
 &nbsp;
 <a name="data-setup"></a> 
 # Data setup
@@ -1325,9 +1343,8 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Future Development 
 - instructions on how to do some potential model developments
 
-
-
-### Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
+## Bayesian models
+Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
 
 
 #### Understanding Bayesian Models:
