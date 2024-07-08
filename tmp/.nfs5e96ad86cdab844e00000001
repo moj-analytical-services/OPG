@@ -1,0 +1,7 @@
+[2024-07-08 10:24:21.729+0000] [INFO    ] *** Hello from opg-analytical.py ***
+[2024-07-08 10:24:21.730+0000] [INFO    ] uuid: our tag is [5fe74ecf-6641-4c61-aacd-fd5b9adce2c9]
+[2024-07-08 10:24:21.856+0000] [INFO    ] pandas: reading NSPL database
+[2024-07-08 12:37:17.840+0000] [INFO    ] pandas: reading NSPL database
+[2024-07-08 12:37:44.236+0000] [INFO    ] pandas: renaming NSPL fields
+[2024-07-08 12:37:45.068+0000] [INFO    ] pandas: squashing NSPL postcodes
+[2024-07-08 12:37:46.005+0000] [INFO    ] pandas: reading WIMD data

@@ -226,14 +226,24 @@ In the spreadsheet the green tabs were from the workshop – the information has
 
 
 ## POTENTIAL UNMET NEED FOR LPAS
-- Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
-- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
-- A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
-
-## Potential Unmet Need for LPAs
 - Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
 - Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
 - Existing OPG customers differ from communities with higher unmet needs.
+- Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
+- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+- A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
+
+### WHY DON’T PEOPLE TAKE OUT LPAs
+- It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
+- Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
+- A simple behavioural model to help understand why people do not take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
+
+### MODERNISING LPAS: 
+- This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
+- Again it is hard to summarise such a complex policy effect but some of the long term strategic concerns might be: 
+    - How this will impact overall LPA demand in the longer term; plausible arguments can be made for demand increasing (assuming LPAs are made more accessible eg not requiring a printer) or reducing (where digital capability or need to employ a solicitor becomes an issue). It would probably be best to characterise the potential impact on LPA demand as highly uncertain. 
+    - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
+    - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
 
 ### REMISSIONS AND EXEMPTIONS FOR FEES
 - The OPG means test has not been updated for more than a decade; attempts to update it previously have proved problematic for a variety of reasons;
