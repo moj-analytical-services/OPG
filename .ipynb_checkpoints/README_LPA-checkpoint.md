@@ -243,13 +243,13 @@ In OPG’s strategy team we’re starting the work to prepare OPG’s overarchin
 
 ### POTENTIAL UNMET NEED FOR LPAS
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
-- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas , whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
-- A simple behavioural model to help understand why people don’t take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
+- A simple behavioural model to help understand why people do not take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 
 ### MODERNISING LPAS: 
 - This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
@@ -1325,9 +1325,8 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Future Development 
 - instructions on how to do some potential model developments
 
-
-
-### Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
+## Bayesian models
+Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
 
 
 #### Understanding Bayesian Models:

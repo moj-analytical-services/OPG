@@ -118,11 +118,11 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 &nbsp;
 <a name="inputs"></a>
 # Inputs
-1. The deputyships orders made for each individual cases by the Court of Protection from CASRAC and Sirius databases
-2. Financial information for the deputyship demands for each indiviual/case
-3. ONS polulation Projection (e.g., Mortality Rate)
+1. The deputyships orders are made for each individual cases by the Court of Protection from CASRAC and Sirius databases
+2. Financial information for the deputyship demands is for each indiviual/case
+3. ONS polulation Projection data (e.g., Mortality Rate)
 4. Family Survay Data
-5. Indidual information
+5. Individual information
 7. Number of LPA application (to be suntracted for the polulation to provide number of deputyships)
 
 &nbsp; 
