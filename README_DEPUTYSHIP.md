@@ -348,7 +348,6 @@ It is like LPA data in the sense that if somebody might have the order of renewe
 For example, when the Term date (termination date) is empty, this would suggest that this initial order made in 2006 and was never terminated. Then, for some reason or other, a replacement order was made in 2011. The assupmtion could be a reason they required a new deputy to act on their behalf. So they went back to the Court of Protection for an update to the deputieship order. 
 But effectively what we can infer from this, assuming that these are just the two data points that we have for this person, this person with this case reference, is that the original order was made in 2006. And then it was updated in 2011, and that order has been in place. Subsequently, and so you know this data, I think was received in 2022. So this has been a long term deputyship order, so this is probably somebody has needed a deputy ship since birth, probably or since they were quite young. 
 
-
 The termination date is not always filled by a date, the reason is there might be an active orders for this case. Therefore, we could sort the records to see if they are Closed because, there's been some amendment to the order, so there is not a termination date as the deputyship has not been terminated, the person has not died or anything like that. Therefore, the case has gone back to the Court of Protection. A replacement order has been made and in this case. As can be seen in the records for this person, there was a new property and affairs deputyship order was actually made in. There is also a whole history here for this person here, e.g., the order was originally made in 1996 and then it was a replacement order was made in 2010 and then again, a further order was made in 2018. So in fact there have been three orders in this particular individual's case, but the order has been live throughout this whole period. The Closed status in here simply refers to the fact that the previous orders are now closed and now this is the active order. 
 
 Example:
@@ -413,7 +412,6 @@ But that is only true for general fee payers. If they are a minimal fee payer, t
 
 The deputyship model, at the moment, is essentially does it in exactly the same way as the LPA model. So, it is a basically applying survival rates to a kind of it takes the sort of the numbers of new deputyships by single years. Here and then it ages them each subsequent year in the model to kind of.
 So if we sort of pick a pick a higher number down here, if we talk at say 66 year olds, you know each year the numbers drop because the expected number that are going to terminate in each of those years reduces that number so. Obviously that adds a level of complication to the model that might not be necessary. 
-
 A simpler way to do this is, to add the number of new starters / new deputyships to the active caseload, and a simpler way to do it might simply be to say. And then simply each year, assume that a certain proportion, which we calculate from the termination rates to work out a percentage termination rate. 
 Leave that population so we assume that, we add in 50 cases age 29 to the active caseload and we assume that 1% of those that population will terminate by the following year. And then so that updates it for the next year and then we do the same thing for the next year. So that gives you a new active caseload we add in what we expect the new cases to be that year and then we assume another 1% will terminate. Rather than the way we have done it, which is sort of try to work out sort of cohort based sort of termination rates. Our forecast of the caseload by, minimal, general and remissions / exemptions because those numbers are much smaller, it would be easier just to apply Percentage termination rates at each step in the process, rather than a cohort based model which would make it more complicated.
 So instead of trying to say if we started with 1000 people, how many do we expect to die after one year, two year, three-year, four years and five years? Because we have a survival rate for that.
@@ -452,14 +450,14 @@ In theory, these variables are used to identify all those cases with a complete 
 
 - For each client they should have their own caserecnumber (its also known directly as 'court number' in Sirius), multiple orders can be attached to each court number, but the earliest date for a given court number will give the first order. However, there is some vagueness over which date you choose as the 'start date', since there are multiple points when a date is recorded, e.g., made, issued, when opg assign a risk level etc.
 
-- Look at the schema on Athena (CoP -> Sirius/OPG), you can add in fields that you want for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
+- By looking at the schema on Athena (CoP -> Sirius/OPG), add in fields for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
 
-- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG havent prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
+- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG haven't prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
 
-- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted
+- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted.
 
-## Supervision caseflow report update
-The follwoing text is written by Stuart Stach and I categorised the information he provided below: 
+### Supervision caseflow report update
+The following text is written by Stuart Stach and I categorised the information he provided below: 
 *Note: we would need to finalise the plan and objectives and get back to him.
 
 - Missing Records (more dependence on CASREC migrated data):
@@ -500,6 +498,9 @@ To try and mitigate this I have matched the old CASREC excel spreadsheet report 
 - 'ACTIVE' client was set as deceased due to Deputy error:
 Another fun issue is that I can see a number of clients which are 'ACTIVE' but apparently have a dateofdeath attached to them in. There were a couple more of these supposedly dead but active clients that I have manually cleansed because there was a note attached to their orders notifying the client was set as deceased due to Deputy error.... so it would seem that Sirius doesn't have the capability of removing erroneous death notifications? either way, in the spreadsheet I have supplied, there are **13 ACTIVE clients with termination dates due to client being dead...these might not be correct and should probably be manually checked along with the 79 clients with no termination reason.**
 
+- Lack of documentation and meta-data for the deputyship and supervision data as well as no derived table:
+As I mentioned earlier, OPG team - Greg Lilley, they've highlighted it as a Risk, since within OPG has the single point of failure for OPG getting supervision data outside of digital's pre-written reports.
+
 &nbsp;
 
 
@@ -528,9 +529,7 @@ Initially, it then sort of reflects something about the difference in the type o
 
 Because of these difference between cases, it could be very difficult to apply sort of simple mortality rates (as we did in LPA) to this deputyship dataset, because it's not the same sort of population.
 
-We could simplify the model, so rather than putting such complexity of this a bit and made this a bit too complicated whereas the model, at the moment, tries to again treat the data as a cohort type of way where we sort of terminate people turning on their age overtime, 
-
-but in reality it might be better as there is an argument that we could look a simple age-specific termination rate as that is not time-dependant, e.g., we simply consider if somebody is aged 50 or 60, what percentage of them terminate in any one year, rather than doing it in the sort of the cohort-based fashion and the reason for doing that might be that we could then track them over time better, so we can look if there are trends in the sort of termination rates which is much harder to pick out if we do it in this sort of cohort type of way so again there's sort of room for simplification in this.
+We could simplify the model, so rather than putting such complexity of this a bit and made this a bit too complicated whereas the model, at the moment, tries to again treat the data as a cohort type of way where we sort of terminate people turning on their age overtime, but in reality it might be better as there is an argument that we could look a simple age-specific termination rate as that is not time-dependant, e.g., we simply consider if somebody is aged 50 or 60, what percentage of them terminate in any one year, rather than doing it in the sort of the cohort-based fashion and the reason for doing that might be that we could then track them over time better, so we can look if there are trends in the sort of termination rates which is much harder to pick out if we do it in this sort of cohort type of way so again there's sort of room for simplification in this.
 
 
 *Note: We would need to work out what volumes of active caseload terminations that deputyship has.*
