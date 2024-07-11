@@ -884,7 +884,11 @@ if __name__ == "__main__":
 &nbsp;
 &nbsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 &nbsp;
+=======
+
+>>>>>>> main
 =======
 
 >>>>>>> main
@@ -895,10 +899,13 @@ if __name__ == "__main__":
 
 &nbsp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 &nbsp;
+=======
+>>>>>>> main
 =======
 >>>>>>> main
 <a name="run-model"></a> 
@@ -946,11 +953,19 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 <a name="2how2"></a> 
 + *3 - Lookup Tables (seed in CaDT)*
 Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
+<<<<<<< HEAD
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
     
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
+=======
+
+⚠️ Seeds must not contain sensitive data. ⚠️
+    
+The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
+
+>>>>>>> main
 **Selecting seeds to run**
 Specific seeds can be run using the --select flag to dbt seed. Example:
 ```console
@@ -1312,9 +1327,15 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Managing files on the Analytical Platform
 - a detailed instructions on setting up AP, Git and s3 access
 At the beginning of every session on the AP:
+<<<<<<< HEAD
 
 1\. Log into the Analytical Platform
 
+=======
+
+1\. Log into the Analytical Platform
+
+>>>>>>> main
 <https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
 
 2\. Log into AWS:

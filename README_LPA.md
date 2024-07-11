@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # OPG: Demand Forecast modelling for LPA Documentation
 This document serves as a user guide to the OPG LPA Forecasting Model in Python, held in this repository: 
+=======
+# Demand Forecast modelling for LPA in OPG
+This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
+>>>>>>> main
 =======
 # Demand Forecast modelling for LPA in OPG
 This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
@@ -240,6 +245,7 @@ In the spreadsheet the green tabs were from the workshop – the information has
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
@@ -252,10 +258,15 @@ In the spreadsheet the green tabs were from the workshop – the information has
     - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
     - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
 =======
+=======
+>>>>>>> main
 ## Potential Unmet Need for LPAs
 - Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
 - Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
 - Existing OPG customers differ from communities with higher unmet needs.
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 
 ### REMISSIONS AND EXEMPTIONS FOR FEES
@@ -601,6 +612,7 @@ from {{ source('familyman_derived_live_v4', table_name) }}
 select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
+<<<<<<< HEAD
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -644,6 +656,51 @@ https://docs.getdbt.com/reference/dbt-commands
 <a name="data-mart"></a> 
 # Data Marts (the old Demand Forecasting for LPA Model)
 
+=======
+
+{% set results = run_query(latest_common_export_date_query) %}
+
+{% if execute %}
+  {% if results|length > 0 %}
+  {% set result = results.columns[0].values()[0] %}
+  {% else %}
+  {% set result = null %}
+  {% endif %}
+{% else %}
+{% set result = null %}
+{% endif %}
+
+{{ return(result) }}
+
+{% endmacro %}
+```
+   
+#### Set variables at the top of a model
+{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
+
+
+&nbsp;
+<a name="4how2"></a> 
++ *5 - Running Updates*
+**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
+
+**2. Check and run the seeds (using "dbt seed").**
+
+&nbsp;
+<a name="5how2"></a> 
++ *6 - Connection with Python code in Jupyter Lab* 
+To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
+For more information see below.
+https://docs.getdbt.com/reference/dbt-commands
+
+&nbsp;
+&nbsp;
+
+&nbsp;
+<a name="data-mart"></a> 
+# Data Marts (the old Demand Forecasting for LPA Model)
+
+>>>>>>> main
 ## Meta data for the LPA source data
 
 ```sql
@@ -1224,6 +1281,7 @@ a standard log power law that best fits existing mortality rates to age.
 clearly not possible.
 &nbsp;
 
+<<<<<<< HEAD
 &nbsp;
 ## Donor Prediction
 
@@ -1255,6 +1313,10 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
 
 &nbsp;
 &nbsp;
+=======
+
+
+>>>>>>> main
 &nbsp;
 <a name="ap-s3"></a> 
 ## Analytical Platform (AP) and AWS S3 access

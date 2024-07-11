@@ -231,6 +231,7 @@ In the spreadsheet the green tabs were from the workshop – the information has
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
@@ -243,10 +244,15 @@ In the spreadsheet the green tabs were from the workshop – the information has
     - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
     - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
 =======
+=======
+>>>>>>> main
 ## Potential Unmet Need for LPAs
 - Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
 - Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
 - Existing OPG customers differ from communities with higher unmet needs.
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 
 ### REMISSIONS AND EXEMPTIONS FOR FEES
@@ -281,11 +287,19 @@ In the spreadsheet the green tabs were from the workshop – the information has
 &nbsp; 
 <a name="Background"></a> 
 # Background Knowledge
+<<<<<<< HEAD
 
 ## What has been achieved so far?  
 1. We have previously been asked to develop scenario based forecasts for the take-up of online LPAs under a range of alternative assumptions. 
 2. To support the consultation on modernising LPAs we have explored patterns in take-up of online applications. 
 
+=======
+
+## What has been achieved so far?  
+1. We have previously been asked to develop scenario based forecasts for the take-up of online LPAs under a range of alternative assumptions. 
+2. To support the consultation on modernising LPAs we have explored patterns in take-up of online applications. 
+
+>>>>>>> main
 ### Implications of modernising LPAs
 Modernising Lasting Powers of Attorney (LPAs) can have significant implications for both individuals and the Office of the Public Guardian (OPG):
 
@@ -1215,6 +1229,7 @@ a standard log power law that best fits existing mortality rates to age.
 clearly not possible.
 &nbsp;
 
+<<<<<<< HEAD
 &nbsp;
 ## Donor Prediction
 
@@ -1246,6 +1261,10 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
 
 &nbsp;
 &nbsp;
+=======
+
+
+>>>>>>> main
 &nbsp;
 <a name="ap-s3"></a> 
 ## Analytical Platform (AP) and AWS S3 access
