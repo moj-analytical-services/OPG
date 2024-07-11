@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # OPG: Demand Forecast modelling for LPA Documentation
 This document serves as a user guide to the OPG LPA Forecasting Model in Python, held in this repository: 
 =======
@@ -10,6 +11,10 @@ This document serves as a specification documentation and user guide to forecast
 # Demand Forecast modelling for LPA in OPG
 This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
 >>>>>>> main
+=======
+# Demand Forecast modelling for LPA in OPG
+This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
 #==============================================================================
@@ -240,6 +245,12 @@ In the spreadsheet the green tabs were from the workshop – the information has
 
 
 ## POTENTIAL UNMET NEED FOR LPAS
+<<<<<<< HEAD
+=======
+- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
+- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
+- Existing OPG customers differ from communities with higher unmet needs.
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
 - Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
@@ -316,6 +327,7 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
 2. **Increased Adoption**:
    - **Positive Implication**: Streamlined procedures may lead to increased adoption of LPAs. More people will proactively plan for their future decision-making.
    - **Challenges**: Raising awareness about the importance of LPAs remains essential. Many individuals still lack information about their benefits.
+<<<<<<< HEAD
 
 3. **Cost and Affordability**:
    - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
@@ -337,6 +349,29 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
    - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
    - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
 
+=======
+
+3. **Cost and Affordability**:
+   - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
+   - **Challenges**: Balancing affordability while maintaining the quality of service is critical. Some individuals may still find fees prohibitive.
+
+4. **Digital Transformation**:
+   - **Positive Implication**: Digital platforms allow online creation, registration, and management of LPAs. This convenience can encourage more people to engage.
+   - **Challenges**: Ensuring data security, privacy, and accessibility for all, especially those without digital literacy, is essential.
+
+5. **Efficiency and Timeliness**:
+   - **Positive Implication**: Streamlined processes can expedite LPA creation and registration.
+   - **Challenges**: Managing increased demand efficiently and avoiding delays in processing are key considerations.
+
+6. **Monitoring and Oversight**:
+   - **Positive Implication**: Modernization can enhance oversight, ensuring attorneys and deputies act in the best interests of the person they represent.
+   - **Challenges**: Balancing oversight without creating unnecessary bureaucracy is crucial.
+
+7. **Legal Clarity and Consistency**:
+   - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
+   - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 8. **Impact on OPG Resources**:
    - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
    - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
@@ -533,6 +568,7 @@ from attributes
             ['receiptdate', 'uid', 'type', 'casesubtype', 'status', 'donor_postcode', 'donor_gender', 'age'].
             
         - Sort by the unique id and count how many application
+<<<<<<< HEAD
 
         - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
 
@@ -566,6 +602,41 @@ I’m currently making a few changes to the data model which should make it easi
 <a name="0how2"></a> 
 + *1 - Data Sources and Pipelines* 
 
+=======
+
+        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
+
+        - How many certificate provider (cp) for each lpa application?
+
+        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
+        - In terms of the two ways that you use dob that we could include in the underlying tables:
+            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
+            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
+
+            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
+ 
+            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
+            
+            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
+            
+            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
+
+In response to the points below:
+
+•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
+
+•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
+
+•	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
+
+I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
+
+
+&nbsp;
+<a name="0how2"></a> 
++ *1 - Data Sources and Pipelines* 
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 &nbsp;
 <a name="1how2"></a> 
 + *2 - Data Modelling using Create-a-Derived-Table (CaDT)* 
@@ -613,6 +684,7 @@ select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -657,6 +729,8 @@ https://docs.getdbt.com/reference/dbt-commands
 # Data Marts (the old Demand Forecasting for LPA Model)
 
 =======
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -700,7 +774,10 @@ https://docs.getdbt.com/reference/dbt-commands
 <a name="data-mart"></a> 
 # Data Marts (the old Demand Forecasting for LPA Model)
 
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 ## Meta data for the LPA source data
 
 ```sql
@@ -1282,6 +1359,7 @@ clearly not possible.
 &nbsp;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 &nbsp;
 ## Donor Prediction
 
@@ -1317,6 +1395,10 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
 
 
 >>>>>>> main
+=======
+
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 &nbsp;
 <a name="ap-s3"></a> 
 ## Analytical Platform (AP) and AWS S3 access

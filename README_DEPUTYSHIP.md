@@ -127,7 +127,7 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 2. Financial information for the deputyship demands is for each indiviual/case
 3. ONS polulation Projection data (e.g., Mortality Rate)
 4. Family Survay Data
-5. Indidual information
+5. Individual information
 7. Number of LPA application (to be suntracted for the polulation to provide number of deputyships)
 
 &nbsp; 
@@ -885,6 +885,7 @@ if __name__ == "__main__":
 &nbsp;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 &nbsp;
 =======
 
@@ -892,6 +893,9 @@ if __name__ == "__main__":
 =======
 
 >>>>>>> main
+=======
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 &nbsp;
 # __Technical Guidance__
 <a name="start"></a> 
@@ -900,6 +904,7 @@ if __name__ == "__main__":
 &nbsp;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -908,6 +913,8 @@ if __name__ == "__main__":
 >>>>>>> main
 =======
 >>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 <a name="run-model"></a> 
 ## Running the model
 - step by step instructions
@@ -954,11 +961,15 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 + *3 - Lookup Tables (seed in CaDT)*
 Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
     
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
+<<<<<<< HEAD
 =======
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
@@ -966,6 +977,8 @@ The dbt seed command will load csv files located in the seed-paths directory of 
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
 >>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 **Selecting seeds to run**
 Specific seeds can be run using the --select flag to dbt seed. Example:
 ```console
@@ -1178,9 +1191,15 @@ Remember that cohort analysis can be customized based on the specific metrics yo
 # Process flow Diagrams
 - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
 The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
+<<<<<<< HEAD
+
+*under constuction!
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 *under constuction!
 
+&nbsp;
 &nbsp;
 &nbsp;
 <a name="parameters"></a> 
@@ -1328,6 +1347,7 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 - a detailed instructions on setting up AP, Git and s3 access
 At the beginning of every session on the AP:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 1\. Log into the Analytical Platform
 
@@ -1336,6 +1356,11 @@ At the beginning of every session on the AP:
 1\. Log into the Analytical Platform
 
 >>>>>>> main
+=======
+
+1\. Log into the Analytical Platform
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 <https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
 
 2\. Log into AWS:
