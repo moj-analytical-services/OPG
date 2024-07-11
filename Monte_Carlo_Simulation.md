@@ -1,5 +1,10 @@
 # Monte Carlo Simulation
-
+- a method of estimating the value of an unknown quantity using principlles of inferential statistics:
+    - inferential statistics:
+        - population: a set of examples
+        - sample: a proper subset of population
+        - key fact: a random sample tends to exhibit the same properties as the polulation from which is drown
+    - similar to random walk
 The provided VBA code below is written by Peter Sheir to implement a form of a Monte Carlo simulation for OPG exel-based model. 
 Monte Carlo simulations are used to model the probability of different outcomes in a process that cannot easily be predicted due to the intervention of random variables. 
 It is a technique used to understand the impact of risk and uncertainty in prediction and forecasting models.

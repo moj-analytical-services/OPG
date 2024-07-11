@@ -942,6 +942,13 @@ clearly not possible.
 
 &nbsp;
 ## Donor Prediction
+
+Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
+
+In terms of how to apply all of this to the long term LPA model, look at the following points:
+- Convert the receipts forecast to an annual total by multiplying by the number of working days . If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
+- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
+
 ### Question: 
 - what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
 - convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
@@ -949,7 +956,11 @@ clearly not possible.
 * ref: LPA MODEL / Predicted
 
 ### Calculation:
+- Naïve extrapolation, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
+
+
 - UPDATED FORECAST: AVERAGE DAILY RECEIPTS
+    - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
     - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
     - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day . If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
     - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
