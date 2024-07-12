@@ -1,18 +1,13 @@
-# Demand Forecast modelling for Deputyship in OPG
+# OPG: Demand Forecast modelling for Deputyship Documentation
 This document serves as a user guide to the OPG deputyship Forecasting Model in Python, held in this repository: 
 https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 
-&nbsp;
-```python
-"""
-==============================================================================
- OPG Demand Forecast modelling for Deputyship
- @author: Leila Yousefi
- MoJ Modelling Hub
-==============================================================================
-""" 
-```
 
+#==============================================================================
+# @author: Dr. Leila Yousefi 
+# MoJ Modelling Hub
+#==============================================================================
+&nbsp;
 &nbsp;
 
 # Contents
@@ -37,6 +32,7 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 # [Objectives](#objectives)
 &nbsp;   
 # [Background Knowledge](#background)
+# [Background Knowledge](#background)
 &nbsp;
 # [Control Assumptions and Sensitivity Analysis](#control-assumptions)
 &nbsp;
@@ -59,11 +55,15 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;
 # [Python libraries and versions](#pythobpack) - details of python version and package versions used
 &nbsp;
+# [Python libraries and versions](#pythobpack) - details of python version and package versions used
+&nbsp;
 ## [Setting up a Python virtual environment](#setup) 
 &nbsp;
 ## [Analytical Platform (AP) and AWS S3 access](#ap-s3) - instructions on setting up AP and s3 access
 &nbsp;
 ## [Accessing the model from Github and Error handelling solutions](#github) - Pulling the Income-Profile-Forecast-Model repo to your local area of the AP from GitHub
+&nbsp;
+# [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
 &nbsp;
 # [Data setup](#data-setup) - step by step instructions Data Engineering in Jupyter Lab
 &nbsp;
@@ -79,6 +79,8 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 + [*6 - Connection with Python code in Jupyter Lab*](#5how2)
 
 
+
+
 &nbsp;
 # [Exporting Output into CSV and Excel](#export)
 &nbsp;
@@ -89,6 +91,9 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 # [Process flow Diagrams](#processflow) - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow 
 &nbsp;
 # [Parameters](#parameters) - model parameters explained
+&nbsp;
+# [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
+&nbsp; 
 &nbsp;
 # [Previous implementation of the model](#old-model) - instructions on how the previous model was implemented
 &nbsp; 
@@ -106,6 +111,8 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 &nbsp;   
 &nbsp;
 # [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access 
+&nbsp;
+# [Managing files on the Analytical Platform](#ap-detailed) - a detailed instructions on setting up AP, Git and s3 access 
 &nbsp; 
 &nbsp; 
 
@@ -114,6 +121,7 @@ https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 The forecast method used for the Demand Forecasting for Deputyship Model in summerised below:
 - To estimate the the number of the active caseloads for those people who have got deputyships and their order status is still active, so they all subject to active supervision by OPG and provide forecast demands for the number of client under active supersion in 5-10 years. 
 - It is necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.
+- It is necessary to forecast income from cases under active supervision, changes in the age structure of supervised cases and impact on remissions and exemptions; necessary to forecast investigations arising from deputyships. Long term projections (5 years +). Annual numbers of new deputyship cases, and numbers of cases under active supervision. Frequency: annual updates.
 
 &nbsp;
 <a name="inputs"></a>
@@ -121,7 +129,11 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 1. The deputyships orders are made for each individual cases by the Court of Protection from CASRAC and Sirius databases
 2. Financial information for the deputyship demands is for each indiviual/case
 3. ONS polulation Projection data (e.g., Mortality Rate)
+1. The deputyships orders are made for each individual cases by the Court of Protection from CASRAC and Sirius databases
+2. Financial information for the deputyship demands is for each indiviual/case
+3. ONS polulation Projection data (e.g., Mortality Rate)
 4. Family Survay Data
+5. Individual information
 5. Individual information
 7. Number of LPA application (to be suntracted for the polulation to provide number of deputyships)
 
@@ -130,6 +142,8 @@ The forecast method used for the Demand Forecasting for Deputyship Model in summ
 # Outputs
 1. Forecasted figures for those caseloads under active supervisons of deputyship 
 2. Trends and pattern of new deputyship orders
+3. Long Term Deputyships Forecast
+  
 3. Long Term Deputyships Forecast
   
 
@@ -144,11 +158,14 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 <a name="aim"></a>         
 # Aim 
 - The aim of this project is Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
+- The aim of this project is Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
 - This model should provide input for the OPG projects in term of resource managment (staff and income).
  
 &nbsp;
 <a name="objectives"></a> 
 # Objectives
+
+## Key Objectives:
 
 ## Key Objectives:
 1. The current active caseload, i.e., those cases under active supervision
@@ -206,7 +223,57 @@ In the spreadsheet the green tabs were from the workshop – the information has
     - Contribute to delivery of wider modelling hub vision
     - maximise benefits from the hub, in particular  
 
+## MLPA Project Data Requirements (OPG Data):
+1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
+2. Understand the expected source of the required data for highest priority requirements
+3. Understand how we access the required data and who owns it
+4. Explore options for how we store and report on the data
+
+## Data Requirements & Prioritisation Questions
+1. What is the data and does it currently exist?
+2. Where is/will the data be held?
+3. What is the justification for needing this data?
+4. What priority is this data in the overall context?
+5. Must have in place for day one of private beta (October 2024)
+6. Must have in place before full go-live (initial target April 2025)
+7. Nice to have at some point in the future
+
+*Note:* 
+The links to the workshop presentation slides as this may provide some further context:
+https://justiceuk.sharepoint.com/:x:/s/MLPAModelOfficeDatarequirements/EQlqQ6r-a3NOm_9mSKlhd2gBmA9PUDMy0tjOyP-yxvK3dQ?CID=0815868E-19DB-4742-A5E3-2552C35614D2&wdLOR=c754D2377-1644-496B-A2FE-3C389D82AFA6 
+
+https://justiceuk.sharepoint.com/:p:/s/MLPAModelOfficeDatarequirements/Eb-Tacu42N9Cq6TDk2oRgRIBDMa3Q0wTSEUa02VrzpmGKg?CID=CBF3B356-D9AE-4AD8-BE69-BDAB70A97D69&wdLOR=c5BF25DD4-1AE4-4375-8564-951C3018AA71
+
+Please note that individual data points have not yet been identified and will be our next step in this process (along with understanding which data tables/source these data points sit).
+In the spreadsheet the green tabs were from the workshop – the information has collated into a summary tab which is easier to navigate (blue tab), so I would advise you to refer to the summary tab (the green tabs hold further information/discussion points for each of the data requirements – these may help understanding (the summary tab contains links to these). 
+
+## FULLY DIGITAL LPAS - Development Work
+1. Develop assumptions for the impact of fully digital Deputyships on the long term Deputyship forecast under a range of options. See project notes on FULLY DIGITAL Deputyships.
+
+2. Extend forecast of the impact of fully digital Deputyships on demand to impact on LPAs and investigations.
+
+3. Explore potential improvements to assumptions on the risk of investigations. See project notes on INVESTIGATIONS: Developing Insights and Practical Applications To Improve Safeguarding. 
+
+4. Update to Missing Persons Deputyships.
+
+5. Build insights on OPG Customer Segmentation Forecasts into Long Term Deputyship Forecast.
+
+6. Develop geographic Deputyship demand forecasts.
+
+## Future Development
+1. Invest in automating and improving data pipelines to improve data quality and timeliness
+    - Optimise the SQL scripts and use Parallelisation in CaDT
+2. Automate models 
+    - Quicker, more flexible models in AP 
+    - Review models and improve methodology 
+3. New tools, models and products 
+    - Investment in wider portfolio of products and tools to deliver insight/analysis and to improve modelling  
+4. Wider Modelling Hub vision
+    - Contribute to delivery of wider modelling hub vision
+    - maximise benefits from the hub, in particular  
+
 &nbsp; 
+<a name="background"></a> 
 <a name="background"></a> 
 # Background Knowledge
 
@@ -218,10 +285,12 @@ In the spreadsheet the green tabs were from the workshop – the information has
     3. Childern born with a disability and they do not have anybody there especially make the Court of Protection to act on their behalf and have a deputyships. The deputyship can be a family member or power of atherney or local authority, financial advisor, and soliciter to act on behalf and mange their affairs. The difference in here is that the Court of Protection made the decision for ordering the deputyship and they do not have any choice about it.
     
 &nbsp;    
+&nbsp;    
 
 ## Deputyship Forecasting Model
 Basically, the way the deputyships is forecasted is similar to a stopped-flow model, essentially we have got the active caseload in the middle, which is the kind of expert thank OPG synchronising it and we have got he got new cases flowing in aa new orders that the Court of Protection is making and then you got those cases that are terminated. They might terminate for a number of reasons, generally the people die and sometimes it might not be it might just simply be that the order is not renewed.  It is unlike the power of authorny which is lasting, e.g., if they have got a power of attheney unless they seek to remove that, which they can do e.g., if they divorced or just they do not want it anymore or their attorney dies or needed a new one. Thus, with the deputyship, they have to be renewed so the Court of Protection has to renew it and it has generally done about every three years. People could flow off the active caseload for number reasons: that is generally when people die but it could also be the court order is not renewed but you know the reasons why that would happen and they are pretty limited so this would normally give a deputyship to somebody unless they really lost capacity, so I suppose they could have a situation where somebody is in a coma or something else and when they recover and regain their consciousness or something else and then they do not need one anymore. Thus, they could have a situation like that and those cases that are flowing off and the balance between those cases coming on and those cases are flowing off is what is really the active caseloads in the middle. 
 
+**If we imagine that water is flowing out of the bath through the plug hole, that is what the termination date is showing. So we have these people here who had died and the death of clients mainly changed their status from Active to being Closed. So to work out the active caseload each year, we need to work out how many new cases are going to be added and how many cases are going to be terminated. Those are the two key things that we need to know and then we can run the model forward in that way. 
 **If we imagine that water is flowing out of the bath through the plug hole, that is what the termination date is showing. So we have these people here who had died and the death of clients mainly changed their status from Active to being Closed. So to work out the active caseload each year, we need to work out how many new cases are going to be added and how many cases are going to be terminated. Those are the two key things that we need to know and then we can run the model forward in that way. 
 
 Here we break down how the stopped-flow technique can be related to the bathtub model and how it might apply to understanding and calculating the rate of new deputyships orders in the Office of Public Guardian (OPG) for active supervision with termination dates due to death or order closure. In summary, the stopped-flow technique and the bathtub model analogy provide insights into dynamic systems, whether in chemical reactions or administrative processes like managing deputyships orders. By applying these concepts, the OPG can better understand and manage its caseload, ensuring effective supervision and timely responses to changing circumstances.
@@ -256,14 +325,17 @@ The key points in modelling:
 
 
 It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that is why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputyships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
+It is exactly analogous to basically a bath that is being filled up with water with a tap, and water is flowing out of the bath at the same time. So what we have got is the active caseload, which is the water in the bath. The water that is flowing into the bath is the new deputyships. So these are the new cases that are being added to the active case load. So that is why we need to know to understand the trend in the active caseload is. So we can **predict how many new deputyships they are going to be? What is the flow of water going to be into this bath over the next five years?** And that generally there has been the assumption built into the model, which is how it links to the LPA stuff. The rate at which new Deputyships are generated. Is is going to be related to how many people do not have an LPA. 
 
 For the vast majority of people, a deputyship is generated because they do not have an LPA. It is not entirely the case because obviously you have children, so you have children under the age of 18 who could never take out an LPA, but that number is quite small. However, there might also be adults, who do not have mental capacity, who may be required to take out or have a deputyship once they reached the age of 80. 
 
 &nbsp;
 &nbsp; 
 
+
 <a name="data-sources"></a> 
 # Data Sources
+
 
 The evidence is suggesting that the deputyship data is now being recorded in Sirius . Previously I had noted that deputyship “orders” had been recorded in the Sirius data that we received but this no longer seems to be the case, and what was recorded was not the level of detail previously available from CASREC (the database that previously captured deputyship data). 
 
@@ -451,11 +523,16 @@ In theory, these variables are used to identify all those cases with a complete 
 - For each client they should have their own caserecnumber (its also known directly as 'court number' in Sirius), multiple orders can be attached to each court number, but the earliest date for a given court number will give the first order. However, there is some vagueness over which date you choose as the 'start date', since there are multiple points when a date is recorded, e.g., made, issued, when opg assign a risk level etc.
 
 - By looking at the schema on Athena (CoP -> Sirius/OPG), add in fields for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
+- By looking at the schema on Athena (CoP -> Sirius/OPG), add in fields for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
 
+- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG haven't prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
 - The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG haven't prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
 
 - There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted.
+- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted.
 
+### Supervision caseflow report update
+The following text is written by Stuart Stach and I categorised the information he provided below: 
 ### Supervision caseflow report update
 The following text is written by Stuart Stach and I categorised the information he provided below: 
 *Note: we would need to finalise the plan and objectives and get back to him.
@@ -501,6 +578,9 @@ Another fun issue is that I can see a number of clients which are 'ACTIVE' but a
 - Lack of documentation and meta-data for the deputyship and supervision data as well as no derived table:
 As I mentioned earlier, OPG team - Greg Lilley, they've highlighted it as a Risk, since within OPG has the single point of failure for OPG getting supervision data outside of digital's pre-written reports.
 
+- Lack of documentation and meta-data for the deputyship and supervision data as well as no derived table:
+As I mentioned earlier, OPG team - Greg Lilley, they've highlighted it as a Risk, since within OPG has the single point of failure for OPG getting supervision data outside of digital's pre-written reports.
+
 &nbsp;
 
 
@@ -530,6 +610,7 @@ Initially, it then sort of reflects something about the difference in the type o
 Because of these difference between cases, it could be very difficult to apply sort of simple mortality rates (as we did in LPA) to this deputyship dataset, because it's not the same sort of population.
 
 We could simplify the model, so rather than putting such complexity of this a bit and made this a bit too complicated whereas the model, at the moment, tries to again treat the data as a cohort type of way where we sort of terminate people turning on their age overtime, but in reality it might be better as there is an argument that we could look a simple age-specific termination rate as that is not time-dependant, e.g., we simply consider if somebody is aged 50 or 60, what percentage of them terminate in any one year, rather than doing it in the sort of the cohort-based fashion and the reason for doing that might be that we could then track them over time better, so we can look if there are trends in the sort of termination rates which is much harder to pick out if we do it in this sort of cohort type of way so again there's sort of room for simplification in this.
+We could simplify the model, so rather than putting such complexity of this a bit and made this a bit too complicated whereas the model, at the moment, tries to again treat the data as a cohort type of way where we sort of terminate people turning on their age overtime, but in reality it might be better as there is an argument that we could look a simple age-specific termination rate as that is not time-dependant, e.g., we simply consider if somebody is aged 50 or 60, what percentage of them terminate in any one year, rather than doing it in the sort of the cohort-based fashion and the reason for doing that might be that we could then track them over time better, so we can look if there are trends in the sort of termination rates which is much harder to pick out if we do it in this sort of cohort type of way so again there's sort of room for simplification in this.
 
 
 *Note: We would need to work out what volumes of active caseload terminations that deputyship has.*
@@ -551,7 +632,7 @@ To date this is a sort of summation of new deputyships orders, that there are ob
 
 As can be seen, there is a bit of a bimodal peak in the sort of 18 to 24, that may be partly due to risky behaviour, but it also could be whether one of the very first things the soldiers join the forces in the UK is that they are required to fill out their well and power attorney because if they go into a compat zone and injured or died or they might lose mental capacity, so they need somebody to act on their behalf and if they do not do that then obviously that might require them to have deputyship as well so that may be why there is also a peek here. However, in fact that we know 18 to 24 year olds often show more risky behaviour that is why they are in a group that has the highest accident rate with driving. For example, they do crashed their car and they had a brain injury such that they are going to require deputyships as can been seen in the figures. 
 
-The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship.  That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
+The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship. That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
 
 Essentially all what is happening in the charts is to work out how many deputyships are here as a ratio or percentage of rate compared to the number of non-LPA holders and this information is used in the controlled assumptions. Then, to generate a forecast for the number of new deputyships per 100,000 of the population without an LPA. Thus, if we generate that as a rate then could apply that for the LPA to create forecasts of the size of population without an LPA. We have got rate and population to be multiplied with each other in order to estimate the number of new deputyships. For instance, if there are estimsting that there would be four new deputyships in 2030, 100,000 of polulation without LPA, thus, we can work out how many new deputyships we expecting in 2030 and how many left without LPA? 
 
@@ -870,6 +951,309 @@ if __name__ == "__main__":
         
     shutil.rmtree('tmp',ignore_errors=True)
 ```
+```python
+"""
+==============================================================================
+ OPG Supervision Caseflow Report
+ @author: Stuart Stach
+ MoJ Data Science Hub
+==============================================================================
+""" 
+
+import os
+import shutil
+from datetime import datetime,timedelta
+import pydbtools
+import pandas as pd
+import boto3
+import numpy as np
+import logging
+import botocore
+import s3fs
+from dateutil.relativedelta import relativedelta
+
+def create_log(name):
+    #initialise the logger and create the logfile
+    logfile = os.getcwd()+'/tmp/{}.log'.format(name)
+    
+    log = logging.getLogger(name)
+    log.setLevel(logging.DEBUG)
+    
+    fh = logging.FileHandler(logfile,mode='a')
+    fh.setLevel(logging.DEBUG)
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(message)s')
+    ch.setFormatter(formatter)
+    fh.setFormatter(formatter)
+    log.addHandler(ch)
+    log.addHandler(fh)
+
+    log.info("*** Hello from {}.py ***".format(name))
+    return log
+
+def retrieve_gedates(log, tables):
+    """Find latest glue export dates for annual report tables"""
+
+    # Choose the most recent available source data
+    target_date = pydbtools.read_sql_query(f"""
+        SELECT max(glueexporteddate) AS glueexporteddate 
+        FROM opg_sirius_prod.cases""")['glueexporteddate'][0]
+    
+    log.info('pydbtools: Last glue export date seems to be {}'.format(target_date))
+
+    # What is the most recent glue export datetime for each table of interest?
+    glueexporteddates = {}
+    
+    log.info('pydbtools: looking for contemporary glue exports of {} tables ...'.format(len(tables)))
+
+    for table in tables: 
+        query = f"""SELECT MAX(glueexporteddate) AS glueexporteddate 
+                    FROM opg_sirius_prod.{table} 
+                    WHERE glueexporteddate <= DATE('{target_date}')"""
+        glueexporteddate = pydbtools.read_sql_query(query)['glueexporteddate'][0]
+        log.info("pydbtools: using '{}' table glue export from {} in Sirius".format(table, glueexporteddate))
+        glueexporteddates[table] = glueexporteddate
+    
+    return(glueexporteddates)
+
+def retrieve_clients(log,glueexporteddates):
+    
+    query = (f"""
+        with active_fee_reductions AS (
+            SELECT
+                fp.client_id,
+                SUBSTRING(fre.type, 1, 1) || LOWER(SUBSTRING(fre.type, 2)) AS discounttype,
+                fre.startdate AS startdate,
+                fre.enddate AS enddate,
+                fp.payment_method
+            FROM opg_sirius_prod.fee_reduction fre
+            INNER JOIN opg_sirius_prod.finance_client fp ON fp.id = fre.finance_client_id
+                AND fp.glueexporteddate = DATE('{str(glueexporteddates['finance_client'])}')
+            INNER JOIN (
+                SELECT
+                    MAX(fr.id) AS id,
+                    fr.finance_client_id
+                FROM opg_sirius_prod.fee_reduction fr
+                WHERE fr.enddate >= current_date
+                  AND fr.startdate <= current_date
+                  AND fr.deleted = FALSE
+                  AND fr.glueexporteddate = DATE('{str(glueexporteddates['fee_reduction'])}')
+                GROUP BY fr.finance_client_id
+            ) ids ON ids.id = fre.id
+            WHERE fre.glueexporteddate = DATE('{str(glueexporteddates['fee_reduction'])}')
+        ),
+
+        earliest_orderdate AS (
+            SELECT 
+                MIN(c.orderdate) as orderdate,
+                c.client_id
+            FROM opg_sirius_prod.cases c
+            WHERE c.glueexporteddate = DATE('{str(glueexporteddates['cases'])}')
+            GROUP BY c.client_id
+        ),
+
+        earliest_receiptdate AS (
+            SELECT 
+                MIN(c.receiptdate) as receiptdate,
+                c.client_id
+            FROM opg_sirius_prod.cases c
+            WHERE c.glueexporteddate = DATE('{str(glueexporteddates['cases'])}')
+                AND c.receiptdate IS NOT NULL
+            GROUP BY c.client_id
+        ),
+
+        regain AS (
+            SELECT
+                c.client_id,
+                c.statusdate
+            FROM opg_sirius_prod.cases c
+            WHERE c.glueexporteddate = DATE('{str(glueexporteddates['cases'])}')
+                AND c.orderclosurereason = 'CLIENT REGAINED CAPACITY'
+        ),
+
+        order_list AS (
+            SELECT
+                c.client_id as client_id,
+                c.caserecnumber as court_number,
+                ARRAY_AGG(c.id) AS order_ids,
+                ARRAY_AGG(c.casesubtype) AS order_types,
+                ARRAY_AGG(CAST(c.orderdate AS varchar)) AS order_made_dates,
+                ARRAY_AGG(CAST(c.orderissuedate AS varchar)) AS order_issue_dates,
+                ARRAY_AGG(CAST(c.orderexpirydate AS varchar)) AS order_expiry_dates,
+                ARRAY_AGG(c.orderclosurereason) AS order_closure_reason,
+                ARRAY_AGG(c.orderstatus) AS order_statuses,
+                ARRAY_AGG(CAST(c.statusdate AS varchar)) AS order_status_dates
+            FROM opg_sirius_prod.cases c
+            WHERE c.glueexporteddate = DATE('{str(glueexporteddates['cases'])}')
+                AND c.casetype = 'ORDER'
+            GROUP BY c.client_id, c.caserecnumber
+        )
+
+        SELECT
+            c.caserecnumber AS court_number,
+            p.id AS client_id,
+            p.firstname AS client_forename,
+            p.surname AS client_surname,
+            p.dob AS client_dob,
+            p.clientaccommodation AS client_accommodation,
+            p.maritalstatus AS client_maritalstatus,
+            p.clientstatus AS client_status,
+            CASE
+                WHEN p.dateofdeath IS NOT NULL THEN p.dateofdeath
+                WHEN p.clientstatus != 'ACTIVE' AND rc.statusdate IS NOT NULL THEN rc.statusdate
+                WHEN p.dateofdeath IS NULL AND dn.datenotified IS NOT NULL THEN dn.datenotified
+                ELSE NULL
+            END AS termination_date,
+            p.dateofdeath AS client_date_of_death,
+            a.postcode AS client_postcode,
+            p.risk_score AS CREC,
+            dep.deputytype AS feepayer_deputy_type,
+            eo.orderdate AS earliest_order_made_date,
+            CAST(er.receiptdate AS DATE) AS earliest_receipt_date,
+            afr.discounttype AS feereductiontype,
+            afr.startdate AS awardstartdate,
+            afr.enddate AS awardenddate,
+            c.id as order_id,
+            c.casesubtype as order_type,
+            c.orderstatus as order_status,
+            level.supervisionlevel as case_sup_level,
+            level.assetlevel as assets_level,
+            c.orderdate as order_made_date,
+            c.orderissuedate as order_issue_date,
+            c.orderexpirydate as order_expiry_date,
+            c.orderclosurereason as order_closure_reason,
+            CAST(c.statusdate AS varchar) as order_status_date
+
+
+        FROM opg_sirius_prod.persons p
+        LEFT JOIN opg_sirius_prod.addresses a on p.id = a.person_id
+            AND a.glueexporteddate = DATE('{str(glueexporteddates['addresses'])}')
+        LEFT JOIN opg_sirius_prod.persons dep ON dep.id = p.feepayer_id
+            AND dep.glueexporteddate = DATE('{str(glueexporteddates['persons'])}')
+        LEFT JOIN opg_sirius_prod.death_notifications dn on dn.person_id = p.id
+            AND dn.glueexporteddate = DATE('{str(glueexporteddates['death_notifications'])}')
+        LEFT JOIN active_fee_reductions afr ON afr.client_id = p.id
+        LEFT JOIN earliest_orderdate eo ON eo.client_id = p.id
+        LEFT JOIN earliest_receiptdate er ON er.client_id = p.id
+        LEFT JOIN regain rc ON rc.client_id = p.id
+        LEFT JOIN opg_sirius_prod.cases c ON p.id = c.client_id
+            AND c.glueexporteddate = DATE('{str(glueexporteddates['cases'])}')
+            AND lower(c.type) = 'order'
+        LEFT JOIN (
+            SELECT mr.order_id, MAX(mr.createddate) mostrecent
+            FROM opg_sirius_prod.supervision_level_log mr
+            WHERE mr.glueexporteddate = DATE('{str(glueexporteddates['supervision_level_log'])}')
+                and mr.supervisionlevel is not null
+            GROUP BY mr.order_id
+        ) mostrecents ON c.id = mostrecents.order_id 
+        LEFT JOIN opg_sirius_prod.supervision_level_log level ON mostrecents.order_id = level.order_id
+        AND mostrecents.mostrecent = level.createddate
+        AND level.glueexporteddate = DATE('{str(glueexporteddates['supervision_level_log'])}')
+        WHERE p.glueexporteddate = DATE('{str(glueexporteddates['persons'])}')
+            AND p.type = 'actor_client'
+        ORDER BY c.caserecnumber, c.orderdate ASC""")
+
+    query = " ".join(query.split()) 
+    log.info("pydbtools: our SQL query is: '" + query + "'")
+
+    # Send query to Athena, capture response in a pandas data frame
+    cases = pydbtools.read_sql_query(query) 
+    #log.info("pydbtools: received [" + str(1 + cases.index.max()) + "] records")
+    
+    return(cases)
+
+if __name__ == "__main__":
+    shutil.rmtree('tmp',ignore_errors=True)
+    os.makedirs('tmp', exist_ok=True)
+
+    name = 'supervision_clients_caseflow'
+    log = create_log(name)
+
+    tables = ['supervision_level_log',
+              'cases',
+              'persons',
+              'death_notifications',
+              'fee_reduction',
+              'finance_client',
+              'addresses']
+
+    glueexporteddates = retrieve_gedates(log, tables)
+    
+    caseload = retrieve_clients(log,glueexporteddates)
+    
+    # -only include clients who joined within data retention period
+    # -put this into the original sql query...not here
+    seven_yrs_ago = datetime.now().date() - relativedelta(years=7)
+    caseload_retention = caseload.loc[caseload.earliest_order_made_date > seven_yrs_ago].copy()
+    
+    # -read the uploaded old CASREC equivalent report...this should be unnecessary
+    casrec_report = pd.read_excel('s3://alpha-opg-mi-dashboard/Supervisions/caseload_flow/order1.xlsx')
+    casrec_report['Made Date'] = pd.to_datetime(casrec_report['Made Date'], format ='%Y-%m-%d', errors='coerce').dt.date
+
+    # -match the CASREC excel sheet to the sirius data pull
+    case_casrec = caseload_retention.merge(casrec_report, left_on = ['court_number','order_made_date'], right_on = ['Case','Made Date'],how = 'left')
+    #case_casrec = case_casrec.groupby(['court_number']).reset_index()
+    
+    # -where sirius is missing termination dates and reasons - retrieve from casrec report
+    case_casrec['termination_date'] = pd.to_datetime(case_casrec['termination_date'], errors = 'coerce')
+    
+    case_casrec['from_casrec'] = np.where(((case_casrec['client_status'] == 'CLOSED') &\
+                                           pd.isnull(case_casrec['termination_date']) &\
+                                           pd.notnull(case_casrec['Desc.1'])), True, False)
+    
+    case_casrec['client_status'] = np.where(case_casrec['from_casrec'],
+                                            case_casrec['Desc.1'],
+                                            case_casrec['client_status'])
+    
+    case_casrec['termination_date'] = np.where(case_casrec['from_casrec'],
+                                               pd.to_datetime(case_casrec['Term Date'],
+                                                              format = '%d/%m/%Y'),
+                                               case_casrec['termination_date'])
+    
+    case_casrec['termination_date'] = pd.to_datetime(case_casrec['termination_date']).dt.date
+    
+    # -two clients have dateofdeaths confirmed placed by deputy mistake - remove these manually
+    case_casrec.loc[case_casrec['client_id'] == 46671511, 
+                    ['client_date_of_death','termination_date']] = np.nan
+    case_casrec.loc[case_casrec['client_id'] == 20086536,
+                    ['client_date_of_death','termination_date']] = np.nan  
+    
+    case_casrec.sort_values(by=['court_number','order_made_date'],inplace=True)
+    
+    with pd.ExcelWriter('./tmp/supervision_clients_caseflow.xlsx') as writer:  
+        case_casrec.to_excel(writer, sheet_name='clients',index=False)
+        
+    s3r = boto3.resource('s3')
+    bucket_name = 'alpha-opg-mi-dashboard'
+    tday = datetime.today().strftime('%Y%m%d')
+
+    s3dir = 'Supervisions/caseflow'
+    s3logdir = s3dir+'/logs'
+    filename = 'supervision_clients_caseflow_'+tday+'.xlsx'
+    logfilename = 'supervision_clients_caseflow_'+tday+'.log'
+    s3file = "{}/{}".format(s3dir,filename)
+    s3logfile = "{}/{}".format(s3logdir,logfilename)
+
+    try: 
+        response = s3r.Object(bucket_name,s3file).put(Body=open('./tmp/supervision_clients_caseflow.xlsx', 'rb'))
+        log.info(f'Uploaded report to {s3file}')
+    except botocore.exceptions.ClientError as err:
+        log.info('Error Message: {}'.format(err.response['Error']['Message']))
+        log.info('Request ID: {}'.format(err.response['ResponseMetadata']['RequestId']))
+        log.info('Http code: {}'.format(err.response['ResponseMetadata']['HTTPStatusCode']))
+
+    try:
+        log.info(f'Uploading logfile to {s3logfile}')
+        response = s3r.Object(bucket_name,s3logfile).put(Body=open('./tmp/supervision_clients_caseflow.log', 'rb'))
+        shutil.rmtree('tmp',ignore_errors=True)
+    except botocore.exceptions.ClientError as err:
+        log.info('Error Message: {}'.format(err.response['Error']['Message']))
+        log.info('Request ID: {}'.format(err.response['ResponseMetadata']['RequestId']))
+        log.info('Http code: {}'.format(err.response['ResponseMetadata']['HTTPStatusCode'])) 
+        
+    shutil.rmtree('tmp',ignore_errors=True)
+```
 
 &nbsp; 
 <a name="model"></a> 
@@ -878,19 +1262,61 @@ if __name__ == "__main__":
 
 &nbsp;
 &nbsp;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+&nbsp;
+=======
 
+>>>>>>> main
+=======
+
+>>>>>>> main
+=======
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 &nbsp;
 # __Technical Guidance__
 <a name="start"></a> 
 ## Getting started
 
 &nbsp;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+
+&nbsp;
+=======
+>>>>>>> main
+=======
+>>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 <a name="run-model"></a> 
 ## Running the model
 - step by step instructions
 
 
 &nbsp;
+<a name="data-setup"></a> 
+# Data setup
+- step by step instructions Data Engineering in Jupyter Lab
+
+
+## S3 Bucket Access
+Data from the current python script lands here: 
+s3://alpha-opg-analytical/sirius_data_cuts_3/
+
+## Current Python Script
+https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/opg-analytical-endpoint-3.py
+
+
+## Data Engineering Database Access 
+-	sirius-prod (raw data, includes LPA and deputyship data), 
+-	Solicitors Regulation Authority, 
+-	curated data warehouse tables. 
 <a name="data-setup"></a> 
 # Data setup
 - step by step instructions Data Engineering in Jupyter Lab
@@ -930,11 +1356,25 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 <a name="2how2"></a> 
 + *3 - Lookup Tables (seed in CaDT)*
 Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
     
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
+<<<<<<< HEAD
+=======
+
+⚠️ Seeds must not contain sensitive data. ⚠️
+    
+The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
+
+>>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 **Selecting seeds to run**
 Specific seeds can be run using the --select flag to dbt seed. Example:
 ```console
@@ -989,10 +1429,57 @@ from exports
 #### Set variables at the top of a model
 {% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
 
+Macros in Jinja are pieces of code that can be reused multiple times 
+– they are analogous to "functions" in other programming languages, and are extremely useful if you find yourself repeating code across multiple models. 
+Macros are defined in .sql files, in the macros directory (create-a-derived-table/mojap_derived_tables/macros/income/income__get_latest_snapshot.sql).
+
+The base derived tables should be to get the up-dated data through a macro "income__get_latest_snapshot" to get the most recent data from the FamilyMan derived tables by passing extract_date to the sql code.
+    
+The following code shows the macro, I wrote to filter the source derived table based on the most up-to-date data created by data engineering team:
+    
+```console
+
+{% macro income__get_latest_snapshot(tables) %}
+
+{% set latest_common_export_date_query %}
+with exports as (
+{%- for table_name in tables %}
+select distinct mojap_snapshot_date
+from {{ source('familyman_derived_live_v4', table_name) }}
+{%- if not loop.last %}intersect{% endif -%}
+{% endfor %}
+)
+select max(mojap_snapshot_date) AS latest_glueexporteddate
+from exports
+{% endset %}
+
+{% set results = run_query(latest_common_export_date_query) %}
+
+{% if execute %}
+  {% if results|length > 0 %}
+  {% set result = results.columns[0].values()[0] %}
+  {% else %}
+  {% set result = null %}
+  {% endif %}
+{% else %}
+{% set result = null %}
+{% endif %}
+
+{{ return(result) }}
+
+{% endmacro %}
+```
+   
+#### Set variables at the top of a model
+{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
+
 
 &nbsp;
 <a name="4how2"></a> 
 + *5 - Running Updates*
+**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
+
+**2. Check and run the seeds (using "dbt seed").**
 **1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
 
 **2. Check and run the seeds (using "dbt seed").**
@@ -1003,7 +1490,12 @@ from exports
 To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
 For more information see below.
 https://docs.getdbt.com/reference/dbt-commands
+To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
+For more information see below.
+https://docs.getdbt.com/reference/dbt-commands
 
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 
@@ -1023,7 +1515,33 @@ git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.g
 If there is any error then follow the instruction below:
 Create and add JupyterLab SSH key to GitHub
 
+<a name="ap-s3"></a> 
+## Analytical Platform (AP) and AWS S3 access
+- instructions on setting up AP and s3 access
+Go the the repo in Git:
+https://github.com/moj-analytical-services/OPG
+
+Open Terminal:
+```console
+git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.git
+```
+
+If there is any error then follow the instruction below:
+Create and add JupyterLab SSH key to GitHub
+
 &nbsp;
+<a name="setup"></a> 
+## Setting up a Python virtual environment
+```console
+pip install -r requirements.txt
+```
+    
+```python 
+!. venv/bin/activate
+#!pip install arrow-pd-parser
+``` 
+
+
 <a name="setup"></a> 
 ## Setting up a Python virtual environment
 ```console
@@ -1064,12 +1582,45 @@ git checkout -b <your initial>/model-a-development
 git switch <your initial>/model-a-development
 git merge main -m "update branch with main"
 ```
+<a name="github"></a> 
+## Accessing the model from Github and Error handelling solutions
+- Pulling the OPG repo to your local area of the AP from GitHub
+When working on your models it is likely that your branch will get out of date with the main branch. 
+To update you branch with the latest changes from main open a terminal and run the following:
+
+Check your working tree, commit/push any changes if required:
+
+```console
+git status
+```
+
+Switch to the main branch and collect the latest changes, if any
+
+```console
+git switch main
+git fetch
+git pull
+```
+
+Switch back to your branch and merge in the changes from main
+
+```console
+git checkout -b <your initial>/model-a-development
+git switch <your initial>/model-a-development
+git merge main -m "update branch with main"
+```
 
 &nbsp;
 <a name="python-pack"></a> 
 # Python libraries and versions 
 - details of python version and package versions used
 
+<a name="pack"></a> 
+## Loading python packages
+Before you can run this project, you need to install some Python packages using the terminal:
+```python 
+
+```
 <a name="pack"></a> 
 ## Loading python packages
 Before you can run this project, you need to install some Python packages using the terminal:
@@ -1142,19 +1693,84 @@ In this example, you’d analyze how revenue evolves for each cohort as weeks pr
 Remember that cohort analysis can be customized based on the specific metrics you’re interested in (e.g., user engagement, churn rate, conversion rate). The key is to segment users into meaningful groups and track their behavior over time to uncover valuable insights1. 
 
 
+## Visualizing cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
+
+**Conditional Formatting:**
+Highlight key insights from your cohort table using conditional formatting.
+Select your cohort data.
+Click on Home > Conditional Formatting > Color Scales.
+Choose a color scale that suits your data.
+Adjust the scale to enhance the contrast between high and low rates.
+Colors will reveal patterns in customer retention.
+
+**Charting and Graphing:**
+Excel offers a range of charting and graphing options to visualize your cohort analysis results.
+
+**Create:**
+Line Charts: Represent how metrics change over time within different cohorts.
+Bar Graphs: Compare metrics across different cohorts.
+
+**Heatmaps:**
+Show variations in metrics by color intensity.
+Visualizations make it easier to identify trends and patterns within your data2.
+Remember to organize your data with the necessary attributes and timestamps, define your cohorts, and calculate relevant metrics before creating visualizations.
+
+
+**an example of a cohort line chart?**
+
+A cohort analysis chart is a powerful tool for understanding user behavior over time. It allows you to group users based on specific characteristics (such as acquisition date) and track their actions or metrics over subsequent periods. Let’s take a look at an example of a cohort analysis chart:
+
+**Example Cohort Analysis Chart (Weekly Revenue per Group):**
+
+In this chart, we’ll focus on revenue generated by cohorts of customers acquired in specific weeks.
+The vertical axis represents the cohorts, with the oldest cohorts at the top and the newest ones at the bottom.
+Each row corresponds to a cohort of customers who started using a product or service during a particular week.
+The horizontal axis represents time (e.g., weeks, months) after the cohort’s acquisition.
+The cells in the chart display the revenue generated by each cohort during each time period.
+Here’s a simplified representation of how the chart might look:
+
+Week 1   Week 2   Week 3   Week 4   ...   Week N
+-------------------------------------------------
+Cohort 1:   $100     $120     $110     $130          ...
+Cohort 2:   $80      $90      $100     $95           ...
+Cohort 3:   $150     $140     $160     $155          ...
+...         ...      ...      ...      ...           ...
+Cohort M:   $200     $210     $220     $205          ...
+
+Each cell shows the revenue generated by a specific cohort during a particular week.
+You can read across the rows to see how a cohort’s revenue changes over time.
+Reading from top to bottom allows you to compare different cohorts during a specific time period.
+Diagonally, you get a snapshot of how each cohort performs at a specific point in time.
+In this example, you’d analyze how revenue evolves for each cohort as weeks progress. This information can guide strategic decisions, such as optimizing marketing efforts, improving product features, or addressing customer retention.
+
+Remember that cohort analysis can be customized based on the specific metrics you’re interested in (e.g., user engagement, churn rate, conversion rate). The key is to segment users into meaningful groups and track their behavior over time to uncover valuable insights1. 
+
+
 &nbsp;
 <a name="processflow"></a> 
 # Process flow Diagrams
 - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
 The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
+<<<<<<< HEAD
+
+*under constuction!
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 *under constuction!
 
 &nbsp;
 &nbsp;
+&nbsp;
 <a name="parameters"></a> 
 # Parameters
 - model parameters explained
+
+&nbsp;
+<a name="old-model"></a>   
+# Previous implementation of the model 
+- instructions on how the previous model was implemented
+
 
 &nbsp;
 <a name="old-model"></a>   
@@ -1261,10 +1877,95 @@ Create scenarios that simulate different capacity trajectories. For example:
 - Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. 
 
 
+*What are the common challenges in LPA forecasting?
+
+## Risk of usig excel model: 
+Remember that Excel has limitations for complex forecasting models, especially when dealing with large datasets. WE might switch to more sophisticated modeling, consider using specialized statistical software or programming languages like Python or R.
+
+## Risk, assumptions, and challenges forecasting for LPA
+*When it comes to forecasting for Deputyship applications, there are several challenges that organizations and individuals may encounter. Let’s explore some of these common challenges:
+
+### Legal Validity and Challenges:
+1. Lack of Capacity: 
+An LPA must be created by someone with the required mental capacity as defined in the Mental Capacity Act 2005. If there are doubts about the donor’s capacity during the creation of the LPA, it can lead to legal challenges1.
+2. Fraud or Duress: 
+LPAs created fraudulently or under duress can be challenged. If an LPA is suspected to be invalid due to coercion or deception, legal action may follow1.
+3. Attorney Suitability and Abuse:
+4. Unsuitable Attorneys: 
+Sometimes, appointed attorneys may not act in the best interests of the donor. Relatives or concerned parties can challenge an LPA if they believe an attorney is unsuitable.
+5. Abuse of Position: 
+If an attorney abuses their position (e.g., mismanaging finances, neglecting the donor’s welfare), it can lead to disputes and legal challenges1.
+6. Notification and Objection:
+7. Notification Process: 
+When someone creates an LPA, they can list individuals to be notified by the Office of the Public Guardian (OPG). These notified individuals have the chance to object to the registration of the LPA.
+8. Relatives’ Awareness: 
+In some cases, relatives may not know that the donor has made an LPA until later, which can complicate matters if they wish to challenge it1.
+9. Personality Clashes and Autonomy:
+10. Reasonable Grounds: 
+Challenges must have genuine and reasonable grounds. A mere personality clash with an attorney is not sufficient to have them removed. Autonomy in choosing attorneys is essential.
+11. Balancing Autonomy and Protection: 
+Balancing the individual’s autonomy to choose attorneys with the need to protect their interests can be challenging1.
+12. Complex Application Process:
+13. Errors in Completion: 
+Completing the LPA application correctly is crucial. Errors can lead to delays or rejection by the OPG. Avoiding common mistakes during the application process is essential2.
+14. Health and Welfare LPAs:
+15. Timing: 
+Health and welfare LPAs only take effect once the donor has lost mental capacity. Forecasting the timing of capacity loss accurately can be challenging.
+16. Changing Circumstances: 
+Health conditions and circumstances can change, affecting the applicability of health and welfare LPAs1.
+In summary, LPA forecasting involves legal, practical, and ethical considerations. Organizations and individuals must navigate these challenges to ensure effective decision-making and protection for donors.
+
+
+
+### Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. Here are some strategies to consider:
+
+
+#### Understand Capacity Fluctuations:
+Recognize that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
+Monitor the individual’s cognitive abilities and assess their capacity periodically.
+
+#### Historical Data Analysis:
+Examine historical LPA applications to identify patterns related to capacity fluctuations.
+Look for trends in the timing of capacity loss or improvement.
+Consider whether certain age groups or health conditions are more prone to fluctuations.
+
+#### Segmentation by Risk Factors:
+Divide your data into segments based on risk factors (e.g., age, health status).
+Analyze how capacity fluctuations vary across these segments.
+Adjust your forecasting models accordingly for each segment.
+
+#### Probabilistic Models:
+Use probabilistic models to account for uncertainty.
+Bayesian models, Markov models, or survival analysis can incorporate changing probabilities of capacity loss.
+These models allow you to update predictions as new information becomes available.
+
+#### Scenario-Based Forecasting:
+Create scenarios that simulate different capacity trajectories. For example:
+- Stable Capacity: Assume capacity remains stable over time.
+- Gradual Decline: Assume a gradual decline in capacity.
+- Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
+- Forecast LPAs under each scenario and assess their impact.
+- Collaborate with Healthcare Professionals:
+- Consult with healthcare providers who can assess capacity objectively.
+- Obtain medical opinions and consider their insights in your forecasting process.
+#### Sensitivity Analysis:
+- Test the sensitivity of your forecasts to capacity fluctuations.
+- Vary the assumptions about capacity loss rates and observe the impact on LPA applications.
+- Educate Attorneys and Donors:
+- Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
+- Encourage them to review and update LPAs periodically to reflect changing circumstances.
+- Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. 
+
+
 &nbsp;
 <a name="qa"></a> 
 # Quality Assurance (QA)
 - directions to the folder that holds the logs and evidence of initial model v1 QA
+
+**Optimisations of the SQL Query Checks:**
+1. Avoid nested joins: Instead of nesting multiple joins, we can perform them in a single level, which can improve readability and potentially performance.
+2. Simplify aggregation: Instead of using the GROUP BY clause at the top level, we use it within the TRANSFORM clause, simplifying the query structure.
+3. Optimize join conditions: Ensure that join conditions are efficient and necessary indexes are in place for better performance. However, this depends on the database system and schema.
 
 **Optimisations of the SQL Query Checks:**
 1. Avoid nested joins: Instead of nesting multiple joins, we can perform them in a single level, which can improve readability and potentially performance.
@@ -1296,9 +1997,21 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Managing files on the Analytical Platform
 - a detailed instructions on setting up AP, Git and s3 access
 At the beginning of every session on the AP:
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 1\. Log into the Analytical Platform
 
+=======
+
+1\. Log into the Analytical Platform
+
+>>>>>>> main
+=======
+
+1\. Log into the Analytical Platform
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 <https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
 
 2\. Log into AWS:
@@ -1463,4 +2176,5 @@ The general Git flow
 <https://docs.google.com/presentation/d/1dRhbprKugJUrN39AKdmSitSaw7dnRaAZROJlymXSQ-U/edit?usp=sharing>
 ```
 
+&nbsp;
 &nbsp;

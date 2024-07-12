@@ -1,7 +1,15 @@
-# Demand Forecast modelling for LPA in OPG
-This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
-https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
+
+**# OPG: Demand Forecast modelling for LPA Documentation
+**This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
+
+https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
+&nbsp;
+
+#==============================================================================
+# @author: Dr. Leila Yousefi 
+# MoJ Modelling Hub
+#==============================================================================
 &nbsp;
 &nbsp;
 
@@ -107,6 +115,13 @@ https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
    - **Flexibility**: LPAs offer flexibility, allowing individuals to choose and trust their attorneys.
    
 The forecast method used for the Demand Forecasting for LPA Model should be able to estimate the the number of the active caseloads for those people who have got LPAs and their order status is registered by OPG and provide forecast demands for the number of LPA demands in 5-10 years. 
+**Lasting Powers of Attorney (LPAs)**:
+   - **Definition**: LPAs are legal documents where an individual (the donor) nominates someone (the attorney) to make decisions on their behalf if they lose mental capacity.
+   - **Creation**: LPAs are set up while the donor still has mental capacity.
+   - **Types**: There are two types of LPAs: one for financial decisions and another for health and care decisions.
+   - **Flexibility**: LPAs offer flexibility, allowing individuals to choose and trust their attorneys.
+   
+The forecast method used for the Demand Forecasting for LPA Model should be able to estimate the the number of the active caseloads for those people who have got LPAs and their order status is registered by OPG and provide forecast demands for the number of LPA demands in 5-10 years. 
 
 
 &nbsp;
@@ -125,7 +140,15 @@ The forecast method used for the Demand Forecasting for LPA Model should be able
 1. **Short Term LPA Forecast**: 
     - projections of 12 months or less of LPA applications received and numbers registered as a month profile. 
     - Frequency (to be agreed). Supports long term forecast.
+1. **Short Term LPA Forecast**: 
+    - projections of 12 months or less of LPA applications received and numbers registered as a month profile. 
+    - Frequency (to be agreed). Supports long term forecast.
 
+2. **Long Term LPA Forecast**: 
+    - It is necessary to forecast LPA income, and forecast trends in deputyships an investigations. 
+    - Long term projections (5 years +). 
+    - Annual numbers of LPA applications received and registered with uncertainty ranges. 
+    - Frequency: Annual updates.
 2. **Long Term LPA Forecast**: 
     - It is necessary to forecast LPA income, and forecast trends in deputyships an investigations. 
     - Long term projections (5 years +). 
@@ -145,11 +168,37 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 - The aim of this project is to Automation, modernisation, and simplifying the current forecast model as well as migration and transformation of the related data and in the future moving modelling to the Analytical Platform. 
 - This model should provide input for the OPG projects in term of resource managment (staff and income).
 - The main aim of this work is to work out how many people applied for LPA and recieved the power of atthorney and how many applications in a year/month/week by age group since 2007 ages over 19 years old.
+- The main aim of this work is to work out how many people applied for LPA and recieved the power of atthorney and how many applications in a year/month/week by age group since 2007 ages over 19 years old.
 
 &nbsp;
 <a name="objectives"></a> 
 # Objectives
 1. Forecasted figures for Living LPAs 
+2. Trends and patterns of the LPA orders
+3. Data modelling (Dimentional Modelling in CaDT)
+
+
+## Business Needs
+- Analytical resource is required to support OPGs plans to develop a fully digital LPA. Specifically: 
+    1. To explore what impact, under a range of options, would fully digital LPAs have on overall demand?
+    2. What will be the residual need for paper applications?
+    3. What impact will fully digital LPAs have on LPA demand across a range of protected characteristics  
+- Long term forecasts support OPG income forecasts, fee setting and broader strategic decisions and business objectives. 
+- Short term forecasting is a critical function supporting plans for resources needed to handle applications and  calls etc and in-year monitoring of external impacts particularly around broadcast / media events, and early indications of the impact of marketing events.
+
+
+## Key Deliverables
+1. Adaptation of the long term and short term LPA forecasts to include scenario based assumptions on how fully digital LPAs will impact on LPA take-up. These scenarios will also Impact on Deputyship and Investigations Forecasts.
+
+2. Forecasts of future applications by type (fully digital, and paper) including residual numbers of paper applications
+
+3. Background analysis of online applicants to inform assumptions on digital take-up (see what has been achieved so far). Integration with work by Lisa Moretti (OPGs Digital Sociologist) and Behavioural modelling.
+
+*Notes:
+1. Need to work closely with Jude Rattle (OPG/MOJ Digital), Samera Aslam, and Mandy Roper
+2. Recent improvements making records of online applications mandatory within Sirius will help significantly with this (however, this also limits analysis of historic data. 
+
+
 2. Trends and patterns of the LPA orders
 3. Data modelling (Dimentional Modelling in CaDT)
 
@@ -204,7 +253,26 @@ In the spreadsheet the green tabs were from the workshop – the information has
     
 ### Ongoing Development
 1. Invest in automating, data modelling, improving data pipelines to improve data quality and timeliness
+## Modernising LPAs
+- This policy change will transform how customers purchase LPAs and how the OPG interacts with them.
+- Long-term strategic concerns include assessing the impact on overall LPA demand and adapting to changing circumstances.
+- This will be a major change in how customers will be required to purchase an LPA and how OPG interacts with customers in the future.
+- Again it is hard to summarise such a complex policy effect but some of the long term strategic concerns might be: 
+    - How this will impact overall LPA demand in the longer term; plausible arguments can be made for demand increasing (assuming LPAs are made more accessible eg not requiring a printer) or reducing (where digital capability or need to employ a solicitor becomes an issue). It would probably be best to characterise the potential impact on LPA demand as highly uncertain. 
+    - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
+    - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs; this has not really been tested (I think ?). 
+    
+### Ongoing Development
+1. Invest in automating, data modelling, improving data pipelines to improve data quality and timeliness
     - Optimise the SQL scripts and use Parallelisation in CaDT
+    - The intention of the data modelling work we’re doing with OPG is that we can create a data warehouse which consolidates all the different processing that’s done across different teams into a single set of tables that are available to the whole organisation.
+   
+2. To support work on the impact of fully digital LPAs it would be useful to additionally explore: 
+    - If the rollout of the online tool increased LPA take-up (i.e., was there a digital dividend)? 
+    - Can digital services provide a way to access harder to reach customers ? Where might changes to digital access be needed? 
+    - What might be potential barriers to access ? (e.g., noteable low use in rural areas).
+    - Incorporating Covid period uncertanties around data and how to apply this to the cohort model for forecasting LPA?
+    
     - The intention of the data modelling work we’re doing with OPG is that we can create a data warehouse which consolidates all the different processing that’s done across different teams into a single set of tables that are available to the whole organisation.
    
 2. To support work on the impact of fully digital LPAs it would be useful to additionally explore: 
@@ -217,8 +285,10 @@ In the spreadsheet the green tabs were from the workshop – the information has
     - Quicker, more flexible models in AP 
     - Review models and improve methodology 
     
+    
 4. New tools, models and products 
     - Investment in wider portfolio of products and tools to deliver insight/analysis and to improve modelling  
+    
     
 5. Wider Modelling Hub vision
     - Contribute to delivery of wider modelling hub vision
@@ -226,16 +296,15 @@ In the spreadsheet the green tabs were from the workshop – the information has
 
 
 ## POTENTIAL UNMET NEED FOR LPAS
-- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
-- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
-- Existing OPG customers differ from communities with higher unmet needs.
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
 - Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
+    - Existing OPG customers differ from communities with higher unmet needs.
 
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
+- A simple behavioural model to help understand why people do not take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 - A simple behavioural model to help understand why people do not take out LPAs might summarise the decision purchase an LPA is dependant on 4 key conditions being met ; Need , Drive,  Awareness and Accessibility. The paper summarises this as a Venn Diagram.
 
 ### MODERNISING LPAS: 
@@ -269,6 +338,7 @@ In the spreadsheet the green tabs were from the workshop – the information has
 - Strategically it is useful to understand the causes of uncertainty and risks around LPA demand.
 - Current horizon scanning tries to reflect both the impact and probability of events on LPA demand . Currently three events are identified as having the potential to have a large impact on LPA demand with a high probability in the short to medium term; these are MLPAs, Suppressed demand due to the pandemic and the cost of living crisis. 
 - Other potential risks to LPA demand and OPG more generally might include:
+    - Cyber Risk, generally or more specifically on Government Systems including OPG systems. Risk likely increased with MLPAs, AI and broader geo-political events.
     - Cyber Risk, generally or more specifically on Government Systems including OPG systems. Risk likely increased with MLPAs, AI and broader geo-political events.
     - Evidence of LPA market saturation becomes more pronounced 
     - Worsening of geo-political events and disruptive impact on the UK economy worsens the current cost of living crisis reducing LPA demand.
@@ -313,6 +383,29 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
    - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
    - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
 
+=======
+
+3. **Cost and Affordability**:
+   - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
+   - **Challenges**: Balancing affordability while maintaining the quality of service is critical. Some individuals may still find fees prohibitive.
+
+4. **Digital Transformation**:
+   - **Positive Implication**: Digital platforms allow online creation, registration, and management of LPAs. This convenience can encourage more people to engage.
+   - **Challenges**: Ensuring data security, privacy, and accessibility for all, especially those without digital literacy, is essential.
+
+5. **Efficiency and Timeliness**:
+   - **Positive Implication**: Streamlined processes can expedite LPA creation and registration.
+   - **Challenges**: Managing increased demand efficiently and avoiding delays in processing are key considerations.
+
+6. **Monitoring and Oversight**:
+   - **Positive Implication**: Modernization can enhance oversight, ensuring attorneys and deputies act in the best interests of the person they represent.
+   - **Challenges**: Balancing oversight without creating unnecessary bureaucracy is crucial.
+
+7. **Legal Clarity and Consistency**:
+   - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
+   - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 8. **Impact on OPG Resources**:
    - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
    - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
@@ -372,7 +465,92 @@ In summary, having an LPA ensures that your wishes are respected even if you los
 - The complete LPA database to 18th March is located here in 10 csv files . The newest data is contained in part 10 and the oldest on part 1 etc.
 - The old data was located in Dom1: S:\hq\102PF\Shared\CJG\FMDU\Data Share Area\OPGDOCS\LPA Data\LPA Data To March 2024
 
+- The complete LPA database to 18th March is located here in 10 csv files . The newest data is contained in part 10 and the oldest on part 1 etc.
+- The old data was located in Dom1: S:\hq\102PF\Shared\CJG\FMDU\Data Share Area\OPGDOCS\LPA Data\LPA Data To March 2024
+
 ## Meta data and Variable selection and Data Cleaning for the LPA data in Data Warehouse:
+https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
+
+
+&nbsp;
+&nbsp; 
+&nbsp;
+<a name="data-setup"></a> 
+# Data setup
+- step by step instructions Data Engineering in Jupyter Lab:
+https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
+
+
+## MLPA Project Data Requirements (OPG Data):
+1. Understand and agree what data is required for the MLPA Model Office/ Private Beta (and for the wider MLPA project), and prioritisation
+2. Understand the expected source of the required data for highest priority requirements
+3. Understand how we access the required data and who owns it
+4. Explore options for how we store and report on the data
+
+## Data Requirements & Prioritisation Questions
+1. What is the data and does it currently exist?
+2. Where is/will the data be held?
+3. What is the justification for needing this data?
+4. What priority is this data in the overall context?
+5. Must have in place for day one of private beta (October 2024)
+6. Must have in place before full go-live (initial target April 2025)
+7. Nice to have at some point in the future
+
+
+&nbsp;
+<a name="howto-d-m"></a> 
+# How to Data Modelling
+
+## Dimensional modeling
+- Dimensional modeling is a data modeling technique where you break data up into “facts” and “dimensions” to organize and describe entities within your data warehouse. The result is a staging layer in the data warehouse that cleans and organizes the data into the business end of the warehouse that is more accessible to data consumers.
+- By breaking your data down into clearly defined and organized entities, your consumers can make sense of what that data is, what it’s used for, and how to join it with new or additional data. Ultimately, using dimensional modeling for your data can help create the appropriate layer of models to expose in an end business intelligence (BI) tool.
+- The ultimate goal of dimensional modeling is to be able to categorize your data into their fact or dimension models, making them the key components to understand.
+- A fact is a collection of information that typically refers to an action, event, or result of a business process. As such, people typically liken facts to verbs. In terms of a real business, some facts may look like account creations, payments, or emails sent. It’s important to note that fact tables act as a historical record of those actions. You should almost never overwrite that data when it needs updating. Instead, you add new data as additional rows onto that table.
+- A dimension is a collection of data that describe who or what took action or was affected by the action. Dimensions are typically likened to nouns. They add context to the stored events in fact tables. In terms of a business, some dimensions may look like users, accounts, customers, and invoices. A noun can take multiple actions or be affected by multiple actions. It’s important to call out: a noun doesn’t become a new thing whenever it does something. As such, when updating dimension tables, you should overwrite that data instead of duplicating them, like you would in a fact table.
+- Pre-cloud data warehouses, there were two dominant design options, star schemas and snowflake schemas, that were used to concretely separate out the lines between fact and dimension tables. 
+    - In a star schema, there’s one central fact table that can join to relevant dimension tables.
+    - A snowflake schema is simply an extension of a star schema; dimension tables link to other dimension tables making it form a snowflake-esque shape.
+
+### The dimensional modeling design process
+- According to the Kimball Group, the official(™) four-step design process is:
+     1. selecting a business process to analyse, 
+     2. declaring the grain, 
+     3. Identifying the dimensions, 
+     4. Identifying the facts. 
+
+- Coming back down to planet Earth, your design process is how you make decisions about:
+    - Whether something should be a fact or a dimension
+    - Whether you should keep fact and dimension tables separate or create wide, joined tables
+    - This is something that data philosophers and thinkers could debate long after we’re all gone, but let’s explore some of the major questions to hold you over in the meantime.
+- Should this entity be a fact or dimension?
+    - Time to put on your consultant hat because that dreaded answer is coming: it depends. This is what makes dimensional modeling a challenge!
+    - Kimball would say that a fact must be numeric. The inconvenient truth is: an entity can be viewed as a fact or a dimension depending on the analysis you are trying to run.
+
+- Advantages of dimensional modeling
+    - More accessibility: Since the output of good dimensional modeling is a data mart, the tables created are easier to understand and more accessible to end consumers.
+    - More flexibility: Easy to slice, dice, filter, and view your data in whatever way suits your purpose.
+    - Performance: Fact and dimension models are typically materialised as tables or incremental models. Since these often form the core understanding of a business, they are queried often. Materialising them as tables allows them to be more performant in downstream BI platforms.
+
+- Disadvantages of dimensional modeling
+    - Navigating ambiguity: You need to rely on your understanding of your data and stakeholder wants to model your data in a comprehensible and useful way. What you know about your data and what people really need out of the data are two of the most fundamental and difficult things to understand and balance as a data person.
+    - Utility limited by your BI tool: Some BI tools don’t handle joins well, which can make queries from separated fact and dimensional tables painful. Other tools have long query times, which can make querying from ultra-wide tables not fun.
+
+*Ref: https://docs.getdbt.com/terms/dimensional-modeling
+
+- Guide structure overview
+- We'll walk through our topics in the same order that our data would move through transformation:
+    - Dig into how we structure the files, folders, and models for our three primary layers in the models directory, which build on each other:
+    - Staging — creating our atoms, our initial modular building blocks, from source data
+    - Intermediate — stacking layers of logic with clear and specific purposes to prepare our staging models to join into the entities we want
+    - Marts — bringing together our modular pieces into a wide, rich vision of the entities our organization cares about
+    - Explore how these layers fit into the rest of the project:
+    - Review the overall structure comprehensively
+    - Expand on YAML configuration in-depth
+    - Discuss how to use the other folders in a dbt project: tests, seeds, and analyses
+
+**We have got two options for data modelling:
+
+1. Data modelling using queries of the warehouse tables directly from Python/R.
 https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
 
@@ -542,6 +720,41 @@ I’m currently making a few changes to the data model which should make it easi
 <a name="0how2"></a> 
 + *1 - Data Sources and Pipelines* 
 
+=======
+
+        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
+
+        - How many certificate provider (cp) for each lpa application?
+
+        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
+        - In terms of the two ways that you use dob that we could include in the underlying tables:
+            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
+            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
+
+            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
+ 
+            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
+            
+            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
+            
+            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
+
+In response to the points below:
+
+•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
+
+•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
+
+•	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
+
+I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
+
+
+&nbsp;
+<a name="0how2"></a> 
++ *1 - Data Sources and Pipelines* 
+
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 &nbsp;
 <a name="1how2"></a> 
 + *2 - Data Modelling using Create-a-Derived-Table (CaDT)* 
@@ -631,6 +844,52 @@ https://docs.getdbt.com/reference/dbt-commands
 <a name="data-mart"></a> 
 # Data Marts (the old Demand Forecasting for LPA Model)
 
+=======
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+
+{% set results = run_query(latest_common_export_date_query) %}
+
+{% if execute %}
+  {% if results|length > 0 %}
+  {% set result = results.columns[0].values()[0] %}
+  {% else %}
+  {% set result = null %}
+  {% endif %}
+{% else %}
+{% set result = null %}
+{% endif %}
+
+{{ return(result) }}
+
+{% endmacro %}
+```
+   
+#### Set variables at the top of a model
+{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
+
+
+&nbsp;
+<a name="4how2"></a> 
++ *5 - Running Updates*
+**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
+
+**2. Check and run the seeds (using "dbt seed").**
+
+&nbsp;
+<a name="5how2"></a> 
++ *6 - Connection with Python code in Jupyter Lab* 
+To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
+For more information see below.
+https://docs.getdbt.com/reference/dbt-commands
+
+&nbsp;
+&nbsp;
+
+&nbsp;
+<a name="data-mart"></a> 
+# Data Marts (the old Demand Forecasting for LPA Model)
+
 ## Meta data for the LPA source data
 
 ```sql
@@ -669,6 +928,13 @@ Select
     r3_dob, # the third 
     r4_dob, # the fourth 
     cases_glueexporteddate, # date of lpa application cases extracted (e.g., 18/03/2024) # this useful to index the 10th file
+    cp1_firstname, # certificate provider (cp) first name # can be a doctor or family/neighbor of donor # when donor and attorney signed needed to be withnessed and the person is an cp = to
+    sign the document and assert the attorny
+    cp1_surname, # certificate provider (cp)s second name 
+    cp1_adr_lines_1, # certificate provider (cp)s the first line of address 
+    cp1_adr_lines_2, # certificate provider (cp)s the second line of address 
+    cp1_adr_lines_3, # certificate provider (cp)s the third line of address
+    cp1_pcode, # certificate provider (cp)s postcode
     cp1_firstname, # certificate provider (cp) first name # can be a doctor or family/neighbor of donor # when donor and attorney signed needed to be withnessed and the person is an cp = to
     sign the document and assert the attorny
     cp1_surname, # certificate provider (cp)s second name 
@@ -728,6 +994,10 @@ Select
 - details of model scripts.
 
 ## Long-Term Forecasting (Cohort-Based Model)
+# Implementing the Demand Forecasting for LPA Model 
+- details of model scripts.
+
+## Long-Term Forecasting (Cohort-Based Model)
 Cohort-based forecasting is a method used to predict future trends in customer behavior based on historical data. Unlike traditional forecasting methods that rely solely on aggregated data, cohort-based forecasting breaks down customer data into smaller groups with similar characteristics and looks at each group individually.
 * ref: https://kohort.io/the-metrics-blog/cohort-based-forecasting-what-is-it-and-what-do-you-mean-its-kinda-like-football
 
@@ -736,7 +1006,9 @@ These models are typically trained on time series data containing subscriptions 
 * ref: https://towardsdatascience.com/forecasting-with-cohort-based-models-e71003bc7ecd
 
 ### Key concepts related to cohort-based forecasting:
+### Key concepts related to cohort-based forecasting:
 
+- Cohorts: By definition, a cohort is a “group of people with a shared characteristic, usually age.” In the context of subscription services, cohorts represent users who registered on a specific date. For example:
 - Cohorts: By definition, a cohort is a “group of people with a shared characteristic, usually age.” In the context of subscription services, cohorts represent users who registered on a specific date. For example:
 The “cohort of 2019–01–01” consists of all users registered on January 1, 2019.
 The “cohort of 2019” includes all users registered during the entire year 2019.
@@ -747,6 +1019,7 @@ Premiums: Refers to paid subscriptions.
 Typically, users first register and then buy a subscription, sometimes on the same day, while other times only after using the product at no cost for a while. Many companies follow a “freemium” business model or offer free trial periods for their products.
 
 When analysing cohorts, we often observe that they behave similarly. For instance:
+When analysing cohorts, we often observe that they behave similarly. For instance:
 When plotting the premiums of multiple cohorts with different registration dates by upgrade date, we notice that they have similar shapes.
 The similarity becomes even more evident when we plot the same cohorts by age (days since registration).
 Additionally, cohorts may generate premiums long after registration, as indicated by the long tails in the cohort curves over time2. This understanding of cohort behavior allows companies to make more accurate forecasts and tailor their strategies accordingly. In summary, cohort-based models provide an alternative approach to forecasting by considering user cohorts and their behavior over time. By doing so, companies can gain valuable insights and improve their subscription forecasts.
@@ -755,7 +1028,10 @@ Additionally, cohorts may generate premiums long after registration, as indicate
 
 ### Implementing cohort-based forecasting
 The break it down implementing cohort-based forecasting for LPA applications in the OPG using Excel involves several steps:
+### Implementing cohort-based forecasting
+The break it down implementing cohort-based forecasting for LPA applications in the OPG using Excel involves several steps:
 
+#### Data Collection and Preparation:
 #### Data Collection and Preparation:
 **Gather historical data on LPA applications** 
 including registration dates, upgrade dates (when the LPA is granted), and other relevant information.
@@ -764,12 +1040,14 @@ including registration dates, upgrade dates (when the LPA is granted), and other
 with each row representing an LPA application and columns for relevant attributes (e.g., registration date, upgrade date, user details).
 
 #### Creating Cohorts:
+#### Creating Cohorts:
 **Define cohorts based on registration dates.** 
 For example, create cohorts for each month or quarter.
 
 **Calculate the age of each cohort **
 (i.e., the number of days since registration).
 
+#### Calculating Metrics:
 #### Calculating Metrics:
 For each cohort, calculate key metrics such as:
 
@@ -836,22 +1114,31 @@ Prophet is robust to missing data and handles holidays and special events well.
 
 
 ## Short-Term Forecasting (Exponential Smoothing):
+
+
+
+
+## Short-Term Forecasting (Exponential Smoothing):
 *Collaborate with legal experts and domain specialists to refine approaches. Additionally, consider ensemble methods (combining multiple models) for robustness.
 
+### Exponential Smoothing:
 ### Exponential Smoothing:
 Exponential smoothing methods(e.g., Holt-Winters, ETS (Error, Trend, Seasonality)) are suitable for short-term forecasting.
 These models adaptively weigh recent observations, emphasizing recent trends and seasonality.
 Incorporate COVID-19 impact variables (e.g., lockdowns, vaccination rates) as additional inputs.
 
 ### Machine Learning Techniques:
+### Machine Learning Techniques:
 Random Forests and Gradient Boosting can handle nonlinear relationships and feature interactions.
 Train these models using historical LPA data, including COVID-19-related features.
 Evaluate model performance using metrics like RMSE, MAPE, and R-squared.
 
 ### Uncertainty Modeling:
+### Uncertainty Modeling:
 To address data uncertainty, use Bayesian Structural Time Series (BSTS) models.
 BSTS captures both observed and unobserved components, allowing for better handling of irregularities caused by external events (like COVID-19).
 
+#### Bayesian Structural Time Series (BSTS): 
 #### Bayesian Structural Time Series (BSTS): 
 BSTS is a powerful method for modeling and forecasting time series data. 
 
@@ -1204,15 +1491,44 @@ A limiting factor in modelling numbers of surving LPA holders aged 90+ has been 
 for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
 surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
 
-For the 2018 LPA forecast , Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
+For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
 a standard log power law that best fits existing mortality rates to age. 
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
 &nbsp;
 
+&nbsp;
+## Donor Prediction
+
+Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
+
+In terms of how to apply all of this to the long term LPA model, look at the following points:
+- Convert the receipts forecast to an annual total by multiplying by the number of working days . If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
+- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
+
+### Question: 
+- what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
+- convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
+
+* ref: LPA MODEL / Predicted
+
+### Calculation:
+- Naïve extrapolation, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
 
 
+- UPDATED FORECAST: AVERAGE DAILY RECEIPTS
+    - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
+    - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
+    - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day . If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
+    - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
+    - However, the impact of the broadcast event in November 2023 remains uknown and introduces additional short and long term uncertainty into the daily  LPA receipts forecast, as does uncertainty around the longer term impact of suppressed demand. 
+
+**The corresponding excel formula:**
+
+
+&nbsp;
+&nbsp;
 &nbsp;
 <a name="ap-s3"></a> 
 ## Analytical Platform (AP) and AWS S3 access
@@ -1275,6 +1591,7 @@ git merge main -m "update branch with main"
 # Python libraries and versions 
 - details of python version and package versions used
 
+&nbsp;
 &nbsp;
 <a name="pack"></a> 
 ## Loading python packages
@@ -1493,6 +1810,8 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Future Development 
 - instructions on how to do some potential model developments
 
+## Bayesian models
+Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
 ## Bayesian models
 Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
 
