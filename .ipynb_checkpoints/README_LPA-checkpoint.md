@@ -375,10 +375,6 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
    - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
    - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
 
-<<<<<<< HEAD
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 8. **Impact on OPG Resources**:
    - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
    - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
@@ -688,8 +684,6 @@ I’m currently making a few changes to the data model which should make it easi
 <a name="0how2"></a> 
 + *1 - Data Sources and Pipelines* 
 
-=======
-
         - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
 
         - How many certificate provider (cp) for each lpa application?
@@ -713,7 +707,6 @@ In response to the points below:
 
 •	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
 
-=======
 
         - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
 
@@ -1458,7 +1451,7 @@ clearly not possible.
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days . If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
+- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 

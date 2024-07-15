@@ -375,10 +375,6 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
    - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
    - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
 
-<<<<<<< HEAD
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 8. **Impact on OPG Resources**:
    - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
    - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
@@ -688,7 +684,29 @@ I’m currently making a few changes to the data model which should make it easi
 <a name="0how2"></a> 
 + *1 - Data Sources and Pipelines* 
 
-=======
+        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
+
+        - How many certificate provider (cp) for each lpa application?
+
+        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
+        - In terms of the two ways that you use dob that we could include in the underlying tables:
+            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
+            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
+
+            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
+ 
+            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
+            
+            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
+            
+            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
+
+In response to the points below:
+
+•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
+
+•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
+
 
         - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
 
@@ -713,32 +731,6 @@ In response to the points below:
 
 •	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
 
-=======
-
-        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
-
-        - How many certificate provider (cp) for each lpa application?
-
-        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
-        - In terms of the two ways that you use dob that we could include in the underlying tables:
-            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
-            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
-
-            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
- 
-            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
-            
-            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
-            
-            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
-
-In response to the points below:
-
-•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
-
-•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
-
->>>>>>> main
 •	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
 
 I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
@@ -793,12 +785,6 @@ from {{ source('familyman_derived_live_v4', table_name) }}
 select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -1445,24 +1431,19 @@ a standard log power law that best fits existing mortality rates to age.
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
-&nbsp;
 
+&nbsp;
 &nbsp;
 &nbsp;
 
 # ======================================================================================================= #
 ## Prediction
 
-
-
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
-<<<<<<< HEAD
 - Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
-=======
-- Convert the receipts forecast to an annual total by multiplying by the number of working days . If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
->>>>>>> 075a75650ff545f50012e9804138ec5d5f33c7d2
+
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 
