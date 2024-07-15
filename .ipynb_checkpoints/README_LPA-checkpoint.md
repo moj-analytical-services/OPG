@@ -1,31 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-# OPG: Demand Forecast modelling for LPA Documentation
-This document serves as a user guide to the OPG LPA Forecasting Model in Python, held in this repository: 
-=======
 # Demand Forecast modelling for LPA in OPG
 This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
->>>>>>> main
-=======
-# Demand Forecast modelling for LPA in OPG
-This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
->>>>>>> main
-=======
-# Demand Forecast modelling for LPA in OPG
-This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
-# Demand Forecast modelling for LPA in OPG
-This document serves as a specification documentation and user guide to forecasting model for Living Power of Attorney (LPA) applications in the Office of the Public Guardian (OPG) implemented in jupter lab, excel, and held in this repository: 
->>>>>>> main
 https://github.com/moj-analytical-services/OPG/blob/main/LPA_Data.ipynb
 
-#==============================================================================
-# @author: Dr. Leila Yousefi 
-# MoJ Modelling Hub
-#==============================================================================
 &nbsp;
 &nbsp;
 
@@ -250,24 +226,14 @@ In the spreadsheet the green tabs were from the workshop – the information has
 
 
 ## POTENTIAL UNMET NEED FOR LPAS
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
-- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
-- Existing OPG customers differ from communities with higher unmet needs.
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
-- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
-- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
-- Existing OPG customers differ from communities with higher unmet needs.
->>>>>>> main
+Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
 - Highlights specific geographic areas where LPA take up is low and indicators of potential need for an LPA, such as high dementia prevalence, are relatively high.
-- Conclusions on high levels of unmet need depend strongly on how potential need is defined . Focusing on specific conditions such as dementia and stroke tends to locate areas of highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
+- Conclusions on high levels of unmet need depend strongly on how potential need is defined. Focusing on specific conditions such as dementia and stroke tends to locate areas of
+highest unmet need within urban ethnic diverse and often low income areas, whilst using age as the key indicator tends to locate most unmet need in coastal locations. Currently OPG comms have tended to target areas with higher numbers of lower income ethnically diverse communities.
+Existing OPG customers differ from communities with higher unmet needs.
 - A more general finding from this research was that the higher the level of potential unmet need within communities the more different these communities look when compared with existing OPG customers.    
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### WHY DON’T PEOPLE TAKE OUT LPAs
 - It is difficult to summarise this but it is clear that the reasons are complex and multifaceted.
 - Factors that have been explored for which there are plausible explanations include age, ethnicity, geographic location , household income / wealth status, physical and mental health status, awareness and responsiveness to information, digital capability and access to services,  Isolation not just geographically but within communities.
@@ -279,17 +245,6 @@ In the spreadsheet the green tabs were from the workshop – the information has
     - How this will impact overall LPA demand in the longer term; plausible arguments can be made for demand increasing (assuming LPAs are made more accessible eg not requiring a printer) or reducing (where digital capability or need to employ a solicitor becomes an issue). It would probably be best to characterise the potential impact on LPA demand as highly uncertain. 
     - Following the uncertainty in demand , would be uncertainty around income and how OPG plans for this , and what impact this might have on fees for both LPAs and Deputyships in order to rebalance its books.
     - Whether MLPAs are compatible with the broader aim of widening the appeal of LPAs ; this has not really been tested (I think ?). 
-=======
-=======
->>>>>>> main
-## Potential Unmet Need for LPAs
-- Geographic disparities exist in LPA uptake. Some areas have low adoption rates, while others show indicators of potential need (e.g., high dementia prevalence).
-- Defining potential need varies: Focusing on specific conditions (like dementia) or using age as an indicator leads to different conclusions.
-- Existing OPG customers differ from communities with higher unmet needs.
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> main
 
 ### REMISSIONS AND EXEMPTIONS FOR FEES
 - The OPG means test has not been updated for more than a decade; attempts to update it previously have proved problematic for a variety of reasons;
@@ -338,8 +293,6 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
 2. **Increased Adoption**:
    - **Positive Implication**: Streamlined procedures may lead to increased adoption of LPAs. More people will proactively plan for their future decision-making.
    - **Challenges**: Raising awareness about the importance of LPAs remains essential. Many individuals still lack information about their benefits.
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 3. **Cost and Affordability**:
    - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
@@ -361,51 +314,6 @@ Modernising Lasting Powers of Attorney (LPAs) can have significant implications 
    - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
    - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
 
-=======
-
-3. **Cost and Affordability**:
-   - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
-   - **Challenges**: Balancing affordability while maintaining the quality of service is critical. Some individuals may still find fees prohibitive.
-
-4. **Digital Transformation**:
-   - **Positive Implication**: Digital platforms allow online creation, registration, and management of LPAs. This convenience can encourage more people to engage.
-   - **Challenges**: Ensuring data security, privacy, and accessibility for all, especially those without digital literacy, is essential.
-
-5. **Efficiency and Timeliness**:
-   - **Positive Implication**: Streamlined processes can expedite LPA creation and registration.
-   - **Challenges**: Managing increased demand efficiently and avoiding delays in processing are key considerations.
-
-6. **Monitoring and Oversight**:
-   - **Positive Implication**: Modernization can enhance oversight, ensuring attorneys and deputies act in the best interests of the person they represent.
-   - **Challenges**: Balancing oversight without creating unnecessary bureaucracy is crucial.
-
-=======
-
-3. **Cost and Affordability**:
-   - **Positive Implication**: Modernization could potentially reduce administrative costs, benefiting both users and the OPG.
-   - **Challenges**: Balancing affordability while maintaining the quality of service is critical. Some individuals may still find fees prohibitive.
-
-4. **Digital Transformation**:
-   - **Positive Implication**: Digital platforms allow online creation, registration, and management of LPAs. This convenience can encourage more people to engage.
-   - **Challenges**: Ensuring data security, privacy, and accessibility for all, especially those without digital literacy, is essential.
-
-5. **Efficiency and Timeliness**:
-   - **Positive Implication**: Streamlined processes can expedite LPA creation and registration.
-   - **Challenges**: Managing increased demand efficiently and avoiding delays in processing are key considerations.
-
-6. **Monitoring and Oversight**:
-   - **Positive Implication**: Modernization can enhance oversight, ensuring attorneys and deputies act in the best interests of the person they represent.
-   - **Challenges**: Balancing oversight without creating unnecessary bureaucracy is crucial.
-
->>>>>>> main
-7. **Legal Clarity and Consistency**:
-   - **Positive Implication**: Clearer guidelines and standardized practices can improve consistency.
-   - **Challenges**: Ensuring that legal changes align with societal shifts and evolving needs is essential.
-
-<<<<<<< HEAD
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 8. **Impact on OPG Resources**:
    - **Positive Implication**: Efficient processes may allow OPG staff to focus on critical casework.
    - **Challenges**: Adequate staffing and training are necessary to handle increased demand and address complex cases.
@@ -602,8 +510,6 @@ from attributes
             ['receiptdate', 'uid', 'type', 'casesubtype', 'status', 'donor_postcode', 'donor_gender', 'age'].
             
         - Sort by the unique id and count how many application
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
 
@@ -637,70 +543,6 @@ I’m currently making a few changes to the data model which should make it easi
 <a name="0how2"></a> 
 + *1 - Data Sources and Pipelines* 
 
-=======
-
-        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
-
-        - How many certificate provider (cp) for each lpa application?
-
-        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
-        - In terms of the two ways that you use dob that we could include in the underlying tables:
-            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
-            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
-
-            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
- 
-            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
-            
-            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
-            
-            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
-
-In response to the points below:
-
-•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
-
-•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
-
-=======
-
-        - Dermine Whether the application type [casesubtype] is hw=health and welfare or pfa=property and finance
-
-        - How many certificate provider (cp) for each lpa application?
-
-        - Location based data and geographical data for the donor can be used to identify the financial situation and wherether they are located in England or Wales
-        - In terms of the two ways that you use dob that we could include in the underlying tables:
-            - To impute missing ages by giving them the most common age for that year of receipt. How does date of birth factor into this if you already have individual age values? 
-            - There are already unique identifiers in the data for individual donors and ones which link the same person together across different donor_id values. What does your derived identifier using dob, gender and postcode do that these don’t? If you’ve identified a flaw in the existing IDs it could be that it would be more useful to add your derived ID to the underlying tables.
-
-            - Peter mentioned a few of points on what we would like to see included in the Sirius data as follwoing in response to the above queries suggested by Phil:
- 
-            •	It is really helpful to have built in geographic location data linked to the donors postcode that we can use off-the-shelf so to speak. However, our use of postcode data is not limited to this and we are still developing ways in which specific postcodes can add significant value to the analysis of LPA customers. Examples include, but are not limited to for instance, measures of distance where individual postcodes can be linked to grid references; customer segmentation (CAMEO and Output Area Classifiers are already included) is an area of huge potential and we would want the flexibility to add new predictive tools as these become available. Retaining individual postcode data is therefore something of a priority for us.
-            
-            •	In principle, providing age by single year rather than date of birth would be ok. However, please can you describe how age is calculated? For forecasting and modelling purposes we need to calculate age at date of receipt in single years. It would not be sufficient to calculate age in another way, for instance on application, as applications can often take several years before they are received. This shouldn’t in theory be an issue with MLPAs where the application and receipt by OPG ought to occur at the same time but this will remain an issue with the relatively large volume of legacy LPAs which are likely to be received for a number of years, post MLPA implementation. It would also not be sufficient to try and recalculate age on receipt by using age on application (for instance) and add the additional time to receipt as this would be inaccurate in some cases. Alternatively providing the date of birth would allow us to calculate the donors age appropriate to the purpose required.
-            
-            •	The unique donor identifier. Grateful if you can provide details of this (e.g., variable name) as I don’t believe we currently receive this, but it would be useful to do so. 
-
-In response to the points below:
-
-•	Happy to add postcode to the data for development purposes. Our main objective is to ensure that any additional measures that are derived from the source data are all included in the data warehouse for use by others. But agree it makes sense for you to have them for the purpose of developing new measures on the basis that you can then provide us with any finalised code to add into the warehouse tables. I’ll look at adding this in a separate table where we keep variables that are used for development purposes but aren’t intended to be used as part of the end user model.
-
-•	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
-
->>>>>>> main
-•	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
-
-I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
-
-
-&nbsp;
-<a name="0how2"></a> 
-+ *1 - Data Sources and Pipelines* 
-
-<<<<<<< HEAD
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 &nbsp;
 <a name="1how2"></a> 
 + *2 - Data Modelling using Create-a-Derived-Table (CaDT)* 
@@ -747,9 +589,6 @@ from {{ source('familyman_derived_live_v4', table_name) }}
 select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -793,61 +632,6 @@ https://docs.getdbt.com/reference/dbt-commands
 <a name="data-mart"></a> 
 # Data Marts (the old Demand Forecasting for LPA Model)
 
-=======
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
-
-{% set results = run_query(latest_common_export_date_query) %}
-
-{% if execute %}
-  {% if results|length > 0 %}
-  {% set result = results.columns[0].values()[0] %}
-  {% else %}
-  {% set result = null %}
-  {% endif %}
-{% else %}
-{% set result = null %}
-{% endif %}
-
-{{ return(result) }}
-
-{% endmacro %}
-```
-   
-#### Set variables at the top of a model
-{% set ... %} can be used to create a new variable, or update an existing one. We recommend setting variables at the top of a model, rather than hardcoding it inline. This is a practice borrowed from many other coding languages, since it helps with readability, and comes in handy if you need to reference the variable in more than one place.
-
-
-&nbsp;
-<a name="4how2"></a> 
-+ *5 - Running Updates*
-**1. Check the lookup tables (located in seed directory in CaDT) as inputs in the Model are fed  and have properly updated. It may mean linking the seeds tables and especially FAM ID convertor csv file to the newest version of the source table based on snapshot date in the written macro in CaDT.**
-
-**2. Check and run the seeds (using "dbt seed").**
-
-&nbsp;
-<a name="5how2"></a> 
-+ *6 - Connection with Python code in Jupyter Lab* 
-To connect the CaDT data models to Jupyter lab, use temp table ans read query in Python.
-For more information see below.
-https://docs.getdbt.com/reference/dbt-commands
-
-&nbsp;
-&nbsp;
-
-&nbsp;
-<a name="data-mart"></a> 
-# Data Marts (the old Demand Forecasting for LPA Model)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 ## Meta data for the LPA source data
 
 ```sql
@@ -1421,58 +1205,16 @@ A limiting factor in modelling numbers of surving LPA holders aged 90+ has been 
 for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
 surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
 
-For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
+For the 2018 LPA forecast , Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
 a standard log power law that best fits existing mortality rates to age. 
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
 &nbsp;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-&nbsp;
-<<<<<<< HEAD
-## Donor Prediction
-
-Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
-
-In terms of how to apply all of this to the long term LPA model, look at the following points:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days . If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
-- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
-
-### Question: 
-- what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
-- convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
-
-* ref: LPA MODEL / Predicted
-
-### Calculation:
-- Naïve extrapolation, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
-
-
-- UPDATED FORECAST: AVERAGE DAILY RECEIPTS
-    - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
-    - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
-    - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day . If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
-    - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
-    - However, the impact of the broadcast event in November 2023 remains uknown and introduces additional short and long term uncertainty into the daily  LPA receipts forecast, as does uncertainty around the longer term impact of suppressed demand. 
-
-**The corresponding excel formula:**
 
 
 &nbsp;
-&nbsp;
-=======
-
-
->>>>>>> main
-=======
-
-
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-&nbsp;
-=======
->>>>>>> main
 <a name="ap-s3"></a> 
 ## Analytical Platform (AP) and AWS S3 access
 - instructions on setting up AP and s3 access

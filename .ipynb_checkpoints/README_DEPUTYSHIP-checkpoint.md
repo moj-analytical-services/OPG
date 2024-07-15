@@ -1,12 +1,7 @@
-# OPG: Demand Forecast modelling for Deputyship Documentation
+# Demand Forecast modelling for Deputyship in OPG
 This document serves as a user guide to the OPG deputyship Forecasting Model in Python, held in this repository: 
 https://github.com/moj-analytical-services/OPG/blob/main/Deputyship_Data.ipynb
 
-
-#==============================================================================
-# @author: Dr. Leila Yousefi 
-# MoJ Modelling Hub
-#==============================================================================
 &nbsp;
 ```python
 """
@@ -455,11 +450,11 @@ In theory, these variables are used to identify all those cases with a complete 
 
 - For each client they should have their own caserecnumber (its also known directly as 'court number' in Sirius), multiple orders can be attached to each court number, but the earliest date for a given court number will give the first order. However, there is some vagueness over which date you choose as the 'start date', since there are multiple points when a date is recorded, e.g., made, issued, when opg assign a risk level etc.
 
-- By looking at the schema on Athena (CoP -> Sirius/OPG), add in fields for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
+- Look at the schema on Athena (CoP -> Sirius/OPG), you can add in fields that you want for each order/client. It's just a bit awkward, because orders and lpas share tables, i.e. orders are in the 'cases' tables as well as lpas. Thus, as the casrec migration wasn't particularly elegant, there are a lot of fields not relevant to each type of 'case', or fields that have similar names etc.
 
-- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG haven't prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
+- The annual reports is supervision data, however, there isn't a derived table for caseload though, I think the plan is to basically create one at some point. OPG havent prioritised it, but the code will give you will basically be the similar logic to whatever the derived table uses.
 
-- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted.
+- There was an issue in that digital didn't bring ALL data across to Sirius from Casrec, due to data retention laws, so any case where no action had been on that order for 7 years, those were effectively deleted
 
 ### Supervision caseflow report update
 The following text is written by Stuart Stach and I categorised the information he provided below: 
@@ -502,9 +497,6 @@ To try and mitigate this I have matched the old CASREC excel spreadsheet report 
 
 - 'ACTIVE' client was set as deceased due to Deputy error:
 Another fun issue is that I can see a number of clients which are 'ACTIVE' but apparently have a dateofdeath attached to them in. There were a couple more of these supposedly dead but active clients that I have manually cleansed because there was a note attached to their orders notifying the client was set as deceased due to Deputy error.... so it would seem that Sirius doesn't have the capability of removing erroneous death notifications? either way, in the spreadsheet I have supplied, there are **13 ACTIVE clients with termination dates due to client being dead...these might not be correct and should probably be manually checked along with the 79 clients with no termination reason.**
-
-- Lack of documentation and meta-data for the deputyship and supervision data as well as no derived table:
-As I mentioned earlier, OPG team - Greg Lilley, they've highlighted it as a Risk, since within OPG has the single point of failure for OPG getting supervision data outside of digital's pre-written reports.
 
 &nbsp;
 
@@ -556,7 +548,7 @@ To date this is a sort of summation of new deputyships orders, that there are ob
 
 As can be seen, there is a bit of a bimodal peak in the sort of 18 to 24, that may be partly due to risky behaviour, but it also could be whether one of the very first things the soldiers join the forces in the UK is that they are required to fill out their well and power attorney because if they go into a compat zone and injured or died or they might lose mental capacity, so they need somebody to act on their behalf and if they do not do that then obviously that might require them to have deputyship as well so that may be why there is also a peek here. However, in fact that we know 18 to 24 year olds often show more risky behaviour that is why they are in a group that has the highest accident rate with driving. For example, they do crashed their car and they had a brain injury such that they are going to require deputyships as can been seen in the figures. 
 
-The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship. That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
+The model, the essence of the way it works is a basic assumption that if they have a power of attorney they do not need a deputyship and when they do not have a power attorney, they are at risk of needing a deputyship.  That assumptions is probably reasonable for most deputyships. Having said that, it does not cover every cases because it does not cover for those adults who could never get a power attorney so they are then at risk of needing her attention or for those children because they could never have a power of attorney as well in both cases they tend to be younger so again unlike power of attorney which tend to be very skewed towards older people. However, you could see the same sort of similarity in deputyships as well that they tend to be much older because most of the cases are people who have already taken out a deputyship but it is a bit bimodal as we could get a lot of deputyships for younger adults and not so many children. Thus, there is a bit of bimodality in there as well simply because and others younger people do nt have power of attorney often said of engaging more risky type behaviour OK I can binding motorbikes or jumping out aeroplanes or something and so berries he got a bit of bimodality around people are kind of in their early 20s because they had some sort of injury or life limiting injury that means they also require a deputyship.  The way the model is working at most cases is simply trying to obtain that estimate of how many living people have got power attorney away from the subtract that from the population to work out what is the population that do nt have have a power attorney and therefore might be at risk of needing a deputyship and in the other cases for the younger groups, and for the children, it it just sort of naive extrapolation. 
 
 Essentially all what is happening in the charts is to work out how many deputyships are here as a ratio or percentage of rate compared to the number of non-LPA holders and this information is used in the controlled assumptions. Then, to generate a forecast for the number of new deputyships per 100,000 of the population without an LPA. Thus, if we generate that as a rate then could apply that for the LPA to create forecasts of the size of population without an LPA. We have got rate and population to be multiplied with each other in order to estimate the number of new deputyships. For instance, if there are estimsting that there would be four new deputyships in 2030, 100,000 of polulation without LPA, thus, we can work out how many new deputyships we expecting in 2030 and how many left without LPA? 
 
@@ -883,45 +875,13 @@ if __name__ == "__main__":
 
 &nbsp;
 &nbsp;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-&nbsp;
-=======
 
->>>>>>> main
-=======
-
->>>>>>> main
-=======
-
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
-
->>>>>>> main
 &nbsp;
 # __Technical Guidance__
 <a name="start"></a> 
 ## Getting started
 
 &nbsp;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-&nbsp;
-=======
->>>>>>> main
-=======
->>>>>>> main
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 <a name="run-model"></a> 
 ## Running the model
 - step by step instructions
@@ -967,31 +927,11 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 <a name="2how2"></a> 
 + *3 - Lookup Tables (seed in CaDT)*
 Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
     
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-⚠️ Seeds must not contain sensitive data. ⚠️
-    
-The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
-
->>>>>>> main
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
->>>>>>> main
 **Selecting seeds to run**
 Specific seeds can be run using the --select flag to dbt seed. Example:
 ```console
@@ -1204,21 +1144,9 @@ Remember that cohort analysis can be customized based on the specific metrics yo
 # Process flow Diagrams
 - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
 The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-*under constuction!
-=======
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
 
 *under constuction!
 
-&nbsp;
-=======
-
-*under constuction!
-
->>>>>>> main
 &nbsp;
 &nbsp;
 <a name="parameters"></a> 
@@ -1365,27 +1293,9 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 # Managing files on the Analytical Platform
 - a detailed instructions on setting up AP, Git and s3 access
 At the beginning of every session on the AP:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 1\. Log into the Analytical Platform
 
-=======
-
-1\. Log into the Analytical Platform
-
->>>>>>> main
-=======
-
-1\. Log into the Analytical Platform
-
->>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
-=======
-
-1\. Log into the Analytical Platform
-
->>>>>>> main
 <https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
 
 2\. Log into AWS:
