@@ -989,8 +989,19 @@ def create_log(name):
     log.addHandler(ch)
     log.addHandler(fh)
 
+<<<<<<< HEAD
+&nbsp;
+&nbsp;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+&nbsp;
+=======
+=======
     log.info("*** Hello from {}.py ***".format(name))
     return log
+>>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
 def retrieve_gedates(log, tables):
     """Find latest glue export dates for annual report tables"""
@@ -1002,6 +1013,22 @@ def retrieve_gedates(log, tables):
     
     log.info('pydbtools: Last glue export date seems to be {}'.format(target_date))
 
+<<<<<<< HEAD
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+=======
+
+>>>>>>> main
+&nbsp;
+# __Technical Guidance__
+<a name="start"></a> 
+## Getting started
+
+&nbsp;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     # What is the most recent glue export datetime for each table of interest?
     glueexporteddates = {}
     
@@ -1016,6 +1043,7 @@ def retrieve_gedates(log, tables):
         glueexporteddates[table] = glueexporteddate
     
     return(glueexporteddates)
+>>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
 def retrieve_clients(log,glueexporteddates):
     
@@ -1053,6 +1081,20 @@ def retrieve_clients(log,glueexporteddates):
             GROUP BY c.client_id
         ),
 
+<<<<<<< HEAD
+&nbsp;
+=======
+>>>>>>> main
+=======
+>>>>>>> main
+=======
+>>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+=======
+>>>>>>> main
+<a name="run-model"></a> 
+## Running the model
+- step by step instructions
+=======
         earliest_receiptdate AS (
             SELECT 
                 MIN(c.receiptdate) as receiptdate,
@@ -1062,6 +1104,7 @@ def retrieve_clients(log,glueexporteddates):
                 AND c.receiptdate IS NOT NULL
             GROUP BY c.client_id
         ),
+>>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
         regain AS (
             SELECT
@@ -1358,13 +1401,17 @@ https://github.com/moj-analytical-services/opg-data-processing/blob/sirius-prod/
 Seeds are lookup tables easily created from a .csv file. Put the .csv in the ./mojap_derived_tables/seeds/ directory and follow the same directory structure requirements and naming conventions as for models. As with marts models, your seeds should have property files that have the same filename as the seed. Seeds can be accessed by anyone with standard database access and so must not contain sensitive data. Generally, seeds shouldn’t contain more than 1000 rows, they don’t contain complex data types, and they don’t change very often. You can deploy a seed with more than 1000 rows, but it’s not reccomended and it will take quite a long time to build.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+=======
+>>>>>>> main
 
 ⚠️ Seeds must not contain sensitive data. ⚠️
     
 The dbt seed command will load csv files located in the seed-paths directory of your dbt project into the data warehouse.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -1375,6 +1422,8 @@ The dbt seed command will load csv files located in the seed-paths directory of 
 >>>>>>> main
 =======
 >>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+=======
+>>>>>>> main
 **Selecting seeds to run**
 Specific seeds can be run using the --select flag to dbt seed. Example:
 ```console
@@ -1752,6 +1801,7 @@ Remember that cohort analysis can be customized based on the specific metrics yo
 - proccess flow diagrames of inputs/outputs for the pre-model and model, and the python function process flow. 
 The following image demonestrates a proccess flow diagrames of main inputs/outputs for the Demand Forecasting for LPA Model.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 *under constuction!
 =======
@@ -1760,6 +1810,11 @@ The following image demonestrates a proccess flow diagrames of main inputs/outpu
 *under constuction!
 
 &nbsp;
+=======
+
+*under constuction!
+
+>>>>>>> main
 &nbsp;
 &nbsp;
 <a name="parameters"></a> 
@@ -1999,6 +2054,7 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 At the beginning of every session on the AP:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 1\. Log into the Analytical Platform
 
@@ -2012,6 +2068,11 @@ At the beginning of every session on the AP:
 1\. Log into the Analytical Platform
 
 >>>>>>> 6961f849829f6440d6b7317b17aa4054e5ec68e7
+=======
+
+1\. Log into the Analytical Platform
+
+>>>>>>> main
 <https://alpha-analytics-moj.eu.auth0.com/login?state=EIOAObXDnk0d1tFgU6fbtnk1ditbmwoc&client=oUb1V330oXKyMpTagAYDzWDY10U4ffWF&protocol=oauth2&prompt=true&scope=openid%20email%20profile%20offline_access&response_type=code&redirect_uri=https%3A%2F%2Fcpanel-master.services.alpha.mojanalytics.xyz%2Fcallback&sessionKey=oidc%3Aalpha-analytics-moj.eu.auth0.com>
 
 2\. Log into AWS:
