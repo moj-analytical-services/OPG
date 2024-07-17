@@ -1479,6 +1479,51 @@ In terms of how to apply all of this to the long term LPA model I would suggest 
 
 **The corresponding excel formula:**
 
+- create a drop down list with average daily receipts of LPA application in 2024 in the range say from 4000 – 7000 in increments of 100? Then this should be used as an estimate to apply unceratinty and to be converted into an age specific annual donor forecast?
+- drop-down list for average daily receipts of LPA applications in 2024:
+
+- Average daily receipts Drop-Down List
+
+- To apply uncertainty, you can use statistical methods or assumptions based on historical data. For instance:
+    - Calculate the standard deviation or variance of past LPA application receipts.
+    - Apply a percentage uncertainty (e.g., ±5%).
+    - Adjust the average daily receipts accordingly.
+    
+- Convert to Age-Specific Annual Donor Forecast:
+     - Determine the age groups you want to consider (50-70).
+     - Estimate the proportion of LPA applicants in each age group.
+     - Multiply the average daily receipts by the proportion for each age group to get the annual donor forecast.
+
+## ######################################## ##
+ListBox53_Change Macro:
+This macro is designed to run when the value in a list box (presumably named “List Box 53”) changes.
+Here’s a step-by-step breakdown:
+It scrolls the active window up and down.
+Copies the range of cells from G564 to J579.
+Pastes the copied range starting from cell G563.
+Sets the cell values in G563 and G564 to specific text (“Increase 2024 Actuals 1%” and “Increase 2024 Actuals 2%”).
+Continues setting values for cells G565 to G577.
+Calculates a formula in cell B580 using VLOOKUP.
+The macro ends with an attempt to select the “List Box 53” shape.
+ListBox52_Change Macro:
+This macro runs when the value in another list box (presumably named “List Box 52”) changes.
+It sets an action for the list box (not specified in the code).
+Scrolls the active window.
+Selects a range of cells.
+Attempts to maximize the application window.
+How to Use:
+
+Assigning the Macros:
+Open your Excel workbook.
+If you haven’t already, insert a list box (named “List Box 53”) and another one (named “List Box 52”).
+Right-click each list box, choose “Properties,” and assign the corresponding macro to it (i.e., ListBox53_Change for “List Box 53” and ListBox52_Change for “List Box 52”).
+Changing List Box Values:
+When you change the value in “List Box 53,” the ListBox53_Change macro will execute.
+It will perform the actions described above.
+Similarly, changing the value in “List Box 52” triggers the ListBox52_Change macro.
+Customization:
+Adjust the cell references, text values, and other parameters in the macros to fit your specific requirements.
+Ensure that the named list boxes exist in your worksheet.
 # ======================================================================================================= #
 &nbsp;
 &nbsp;
