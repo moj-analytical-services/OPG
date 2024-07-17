@@ -731,7 +731,6 @@ In response to the points below:
 
 •	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
 
->>>>>>> main
 •	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
 
 I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
@@ -786,12 +785,6 @@ from {{ source('familyman_derived_live_v4', table_name) }}
 select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -1438,20 +1431,19 @@ a standard log power law that best fits existing mortality rates to age.
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
-&nbsp;
 
+&nbsp;
 &nbsp;
 &nbsp;
 
 # ======================================================================================================= #
 ## Prediction
 
-
-
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
 - Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
+
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 
@@ -1541,7 +1533,7 @@ Ensure that the named list boxes exist in your worksheet.
 Go the the repo in Git:
 https://github.com/moj-analytical-services/OPG
 
-Open Terminal:
+- Open Terminal:
 ```console
 git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.git
 ```
