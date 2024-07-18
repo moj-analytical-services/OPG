@@ -731,6 +731,7 @@ In response to the points below:
 
 •	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
 
+>>>>>>> main
 •	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
 
 I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
@@ -785,6 +786,12 @@ from {{ source('familyman_derived_live_v4', table_name) }}
 select max(mojap_snapshot_date) AS latest_glueexporteddate
 from exports
 {% endset %}
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
 {% set results = run_query(latest_common_export_date_query) %}
 
@@ -1133,16 +1140,16 @@ Specific Key Assumptions that control expected demand, LPA market size and satur
 
 * ref: 'LPA MODEL': 	Mortality Statistics	MALE: ESTIMATED AGE SPECIFIC SURVIVAL		FEMALE: ESTIMATED AGE SPECIFIC SURVIVAL
 
-Copy Nemerical Values in column C and transpose paste in column F		Copy Nemerical Values in column C and transpose paste in column F
+Copied Nemerical Values in column C and transpose paste in column F
 
-* ref: Source: Office for National Statistics: 		Source: Office for National Statistics: nationallifetables3yearenglandandwales.xlsx		nationallifetables3yearenglandandwales.xlsx		Sheet: '2020-2022'		Sheet: '2020-2022'	Released: 11 January 2024		Released: 11 January 2024
+* ref: Source: Office for National Statistics: nationallifetables3yearenglandandwales.xlsx		Sheet: '2020-2022'	Released: 11 January 2024
 
-* ref: Downloaded from: National life tables: England and Wales - Office for National Statistics		National life tables: England and Wales - Office for National Statistics
+* ref: Source: National life tables: England and Wales - Office for National Statistics
 
 * ref: The best source of information for the ONS mortality statistics which are here: Mortality rates (qx), by single year of age - Office for National Statistics (ons.gov.uk)
 
 #### risks in Mortality Statistics
-The main issue with these figures is that they are only provided separately for England , and separately for Wales , and not as a combined rate for England and Wales. This is frustrating but comparing the rates the differences are extremely small so probably would not make any practical difference if we chose to use the figures for just England.
+The main issue with these figures is that they are only provided separately for England, and separately for Wales, and not as a combined rate for England and Wales. This is frustrating but comparing the rates the differences are extremely small so probably would not make any practical difference if we chose to use the figures for just England.
 
 To be clear what these figures are showing are equivalent to the mortality rates in columns O and P on the Mortality Statistics sheet in the model. Looking at the mortality rates in the model in column O for example showing male morality at age 18 this gives a figure of 0.3 per 1000 adults or 0.0003 (ie 0.3/1000). The equivalent figure in the ONS mortality tables for males aged 18 for 2017-2019 is 0.00039 so slightly higher. The actual ONS mortality rates suggest that the model currently over-estimates mortality rates for donors aged 90 and over so it will be useful to update these.
 
@@ -1248,8 +1255,7 @@ Meta data and Variable selection and Data Cleaning for the Mortality statastics 
 
 ### Goal: percentage of people are died in one year
 #### What proportion of the UK population are likely to buy LPA and still alive?
-*How many people are still alive (Living Donors bought LPA)*
-*Based on ONS Data of Population of Engalnd and Wales, how many people are still alive and how many of them are dead?*
+*Based on ONS Data of Population of Engalnd and Wales, how many people (Living Donors bought LPA) are still alive and how many of them are dead?*
 *e.g., if there are 1000 people and 100 of them are still alive and bought LPA,
 so there are 900 of them still didn't buy LPA.
 
@@ -1261,8 +1267,7 @@ they allow comparisons between populations with different age structures, includ
 
 *if a 1000 40 years old male bought an LPA in 2008, what proportion of are still alove today?
 
-#The model taking each age categories (categorical variable) and assumed that they are 
-singe age-specifics in the age category 18 to 90 and provide figure what percentage of people for male died within one year?
+The model taking each age categories (categorical variable) and assumed that they are singe age-specifics in the age category 18 to 90 and provide figure what percentage of people for male died within one year?
 
 e.g., in the 15-19 age category, 0.3 percent of males died within one year in the UK and 0.03 per 1000
 
@@ -1431,58 +1436,42 @@ a standard log power law that best fits existing mortality rates to age.
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
-
 &nbsp;
+
 &nbsp;
 &nbsp;
 
 # ======================================================================================================= #
 ## Prediction
 
+
+
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
 - Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
-
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 
 - what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
 - convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
 
-* ref: LPA MODEL / Predicted
+* ref: LPA MODEL / Predicted , LPA Control Assumption Tab
 
 ### Calculation:
 
-1. Calculate the most recent **quarterly receipts forecast**:
+- Calculate the most recent **quarterly receipts forecast**:
     - The way to calculate average daily receipts each month is to simply sum the total number of receipts each month and divide by the number of working days in that month; there are some useful simple online calculators for working days to help with this , such as below:
         Business Days Calculator – Count Workdays (timeanddate.com)
-    - I know that this sounds simplistic but previously had previously tried to average across all days in which receipts were recorded each month, but this causes problems as there are often a small number of receipts recorded on Saturdays and Sundays, and public holidays that clearly distort any averages. So for simplicity I now simply use only standard working days each month as the denominator.   
-
-Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
-
-In terms of how to apply all of this to the long term LPA model I would suggest the following:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
-
-- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
-
-
-2. **Naïve extrapolation**, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
-
-
-3. **UPDATED FORECAST: AVERAGE DAILY RECEIPTS**
-    - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
-    - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
-    - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day . If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
-    - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
-    - However, the impact of the broadcast event in November 2023 remains uknown and introduces additional short and long term uncertainty into the daily  LPA receipts forecast, as does uncertainty around the longer term impact of suppressed demand. 
-
-**The corresponding excel formula:**
-
-- create a drop down list with average daily receipts of LPA application in 2024 in the range say from 4000 – 7000 in increments of 100? Then this should be used as an estimate to apply unceratinty and to be converted into an age specific annual donor forecast?
-- drop-down list for average daily receipts of LPA applications in 2024:
-
+    - I know that this sounds simplistic but previously had previously tried to average across all days in which receipts were recorded each month, but this causes problems as there are often a small number of receipts recorded on Saturdays and Sundays, and public holidays that clearly distort any averages. So for simplicity, we used only standard working days each month as the denominator. 
+    
 - Average daily receipts Drop-Down List
+    - Used a drop-down list in the excel model under the LPA Control Assumption Tab for average daily receipts of LPA applications in 2024
+    - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
+    - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day. 
+    - If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
+    - If, as expected, the impact of suppressed demand reduces during 2024/25 but the impact of the broadcast event remains high or is sustained over a longer period this would similarly bring the forecast daily receipt average back to a total of around 5600. 
+    - However, the impact of the broadcast event in November 2023 remains uknown and introduces additional short and long term uncertainty into the daily LPA receipts forecast, as does uncertainty around the longer term impact of suppressed demand. 
 
 - To apply uncertainty, you can use statistical methods or assumptions based on historical data. For instance:
     - Calculate the standard deviation or variance of past LPA application receipts.
@@ -1493,6 +1482,30 @@ In terms of how to apply all of this to the long term LPA model I would suggest 
      - Determine the age groups you want to consider (50-70).
      - Estimate the proportion of LPA applicants in each age group.
      - Multiply the average daily receipts by the proportion for each age group to get the annual donor forecast.
+     
+     
+Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
+
+In terms of how to apply all of this to the long term LPA model I would suggest the following:
+- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
+
+- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
+
+
+2. **Naïve extrapolation**, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
+    - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
+
+3. **UPDATED FORECAST: AVERAGE DAILY RECEIPTS**
+
+
+**The corresponding excel formula:**
+
+- create a drop down list with average daily receipts of LPA application in 2024 in the range say from 4000 – 7000 in increments of 100? 
+- Then this should be used as an estimate to apply unceratinty and to be converted into an age specific annual donor forecast?
+
+
+
+
 
 ## ######################################## ##
 ListBox53_Change Macro:
@@ -1533,7 +1546,7 @@ Ensure that the named list boxes exist in your worksheet.
 Go the the repo in Git:
 https://github.com/moj-analytical-services/OPG
 
-- Open Terminal:
+Open Terminal:
 ```console
 git clone git@github.com:moj-analytical-services/Income_Profile_Forecast_Model.git
 ```
@@ -1609,7 +1622,7 @@ Before you can run this project, you need to install some Python packages using 
 <a name="plot"></a> 
 # Plotting The Forecasted vs Actual values
 
-## Visualizing cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
+## Visualising cohort data in Excel can help you gain insights and identify patterns over time. Here are some steps to visualize your cohort analysis results:
 
 **Conditional Formatting:**
 Highlight key insights from your cohort table using conditional formatting.
@@ -1702,8 +1715,6 @@ Remember that Excel has limitations for complex forecasting models, especially w
 ## Risk, assumptions, and challenges forecasting for LPA
 *When it comes to forecasting for Lasting Power of Attorney (LPA) applications, there are several challenges that organizations and individuals may encounter. 
 
-Let’s explore some of these common challenges:
-
 ### Legal Validity and Challenges:
 1. Lack of Capacity: 
 An LPA must be created by someone with the required mental capacity as defined in the Mental Capacity Act 2005. If there are doubts about the donor’s capacity during the creation of the LPA, it can lead to legal challenges1.
@@ -1736,11 +1747,11 @@ In summary, LPA forecasting involves legal, practical, and ethical consideration
 
 
 
-### Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. Here are some strategies to consider:
-
+### Addressing capacity fluctuations in forecasting, especially in the context of Lasting Power of Attorney (LPA) applications, is crucial for accurate predictions. 
+Here are some strategies to consider:
 
 #### Understand Capacity Fluctuations:
-Recognize that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
+Recognise that mental capacity can change over time due to various factors (e.g., health conditions, aging, stress).
 Monitor the individual’s cognitive abilities and assess their capacity periodically.
 
 #### Historical Data Analysis:
@@ -1750,7 +1761,7 @@ Consider whether certain age groups or health conditions are more prone to fluct
 
 #### Segmentation by Risk Factors:
 Divide your data into segments based on risk factors (e.g., age, health status).
-Analyze how capacity fluctuations vary across these segments.
+Analyse how capacity fluctuations vary across these segments.
 Adjust your forecasting models accordingly for each segment.
 
 #### Probabilistic Models:
@@ -1764,15 +1775,16 @@ Create scenarios that simulate different capacity trajectories. For example:
 - Gradual Decline: Assume a gradual decline in capacity.
 - Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
 - Forecast LPAs under each scenario and assess their impact.
-- Collaborate with Healthcare Professionals:
-- Consult with healthcare providers who can assess capacity objectively.
-- Obtain medical opinions and consider their insights in your forecasting process.
+- Collaborate with government Professionals:
+- Consult with policy makers who can assess capacity objectively.
+- Obtain expert opinions and consider their insights in your forecasting process.
+
 #### Sensitivity Analysis:
 - Test the sensitivity of your forecasts to capacity fluctuations.
 - Vary the assumptions about capacity loss rates and observe the impact on LPA applications.
 - Educate Attorneys and Donors:
-- Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
-- Encourage them to review and update LPAs periodically to reflect changing circumstances.
+    - Educate attorneys (appointed individuals) and donors (those creating the LPAs) about capacity fluctuations.
+    - Encourage them to review and update LPAs periodically to reflect changing circumstances.
 - Remember that capacity fluctuations are inherent in LPA forecasting, and no model can predict with absolute certainty. However, by incorporating flexibility and considering different scenarios, you can improve the accuracy of your forecasts. 
 
 
@@ -1790,7 +1802,7 @@ Create scenarios that simulate different capacity trajectories. For example:
 ## Data Quality Assurance
 
 ### AQA Template
-https://aqa-website.apps.live.cloud-platform.service.justice.gov.uk/tools.html
+https://justiceuk.sharepoint.com/:x:/r/sites/Incomeanalysisteam/_layouts/15/Doc.aspx?sourcedoc=%7B2b29773e-4bf0-43b5-8aa1-fd47969a147b%7D&action=edit&wdPreviousSession=4b98e954-59d6-0ebe-121d-cc9a55652228
 
 *Note:Data and Analysis have just relaunched their website and are changing the AQA process, so this is likely to change. 
 

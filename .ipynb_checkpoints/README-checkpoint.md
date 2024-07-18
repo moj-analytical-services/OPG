@@ -69,15 +69,12 @@ The **Lasting Power of Attorney (LPA)** and **Deputyship** serve similar purpose
 In summary, an LPA offers more flexibility, is quicker to implement, and allows you to choose trusted individuals. Deputyship involves court oversight, is more complex, and occurs after you've lost mental capacity. 
 
 
-<<<<<<< HEAD
 # AQA
-
+For the QA log, please have a look at the follwoing worksheet:
 https://justiceuk.sharepoint.com/:x:/r/sites/Incomeanalysisteam/_layouts/15/Doc.aspx?sourcedoc=%7B2b29773e-4bf0-43b5-8aa1-fd47969a147b%7D&action=edit&wdPreviousSession=4b98e954-59d6-0ebe-121d-cc9a55652228
 
-=======
->>>>>>> 460ae4060501c8bed7396e0dd0f17b383b42546c
 
-* ref:
+# Refrences
 - (1) How we do investigations at OPG – Office of the Public Guardian. https://publicguardian.blog.gov.uk/2019/06/18/how-we-do-investigations-at-opg/.
 - (2) Lasting powers of attorney and deputyships: thematic review. https://www.sra.org.uk/sra/research-publications/lasting-powers-of-attorney-deputyships-review/.
 - (3) What are the Differences Between an LPA and Deputyship. https://www.wilsonbrowne.co.uk/news/differences-between-lpa-and-deputyship/.
