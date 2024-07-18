@@ -1820,8 +1820,8 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 - instructions on how to do some potential model developments
 
 ## Bayesian models
-- Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. 
-- Applying uncertainty around volatile data volatilty affected by covid pandemic for LPA application demand in log-term forecasting model.
+- Incorporating uncertainly friendly models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. 
+- Applying uncertainty around volatile data (application demands) affected by COVID pandemic in log-term time series forecasting model.
 
 #### Understanding Bayesian Models:
 - Bayesian models are based on Bayes’ theorem, which updates our beliefs (probabilities) based on new evidence.
@@ -1877,100 +1877,100 @@ Remember that Bayesian models provide a flexible framework for incorporating pri
 
 
 
-### While Bayesian models offer several advantages, they also come with limitations, especially when applied to Lasting Power of Attorney (LPA) forecasting. Let’s explore some of these limitations:
-#### Computational Complexity:
-Bayesian models involve complex calculations, especially when estimating posterior distributions using Markov Chain Monte Carlo (MCMC) methods.
-For large datasets or high-dimensional models, the computational burden can be significant.
+### Bayesian models Limitation:
+While Bayesian models offer several advantages, they also come with limitations, especially when applied to LPA forecasting as followings:
+- Computational Complexity:
+    - Bayesian models involve complex calculations, especially when estimating posterior distributions using Markov Chain Monte Carlo (MCMC) methods.
+    - For large datasets or high-dimensional models, the computational burden can be significant.
 
-#### Subjectivity in Prior Selection:
-Bayesian models require specifying prior distributions for model parameters.
-The choice of priors can impact the results, and different analysts may choose different priors based on their beliefs or domain knowledge.
-Subjective priors can introduce bias if not carefully considered.
+- Subjectivity in Prior Selection:
+    - Bayesian models require specifying prior distributions for model parameters.
+    - The choice of priors can impact the results, and different analysts may choose different priors based on their beliefs or domain knowledge.
+    - Subjective priors can introduce bias if not carefully considered.
 
-#### Data Requirements:
-Bayesian models perform well when sufficient data is available.
-Sparse or noisy data can lead to unreliable posterior estimates.
-In the case of LPAs, historical data may be limited, especially for specific subgroups (e.g., rare health conditions).
+- Data Requirements:
+    - Bayesian models perform well when sufficient data is available.
+    - Sparse or noisy data can lead to unreliable posterior estimates.
+    - In the case of LPAs, historical data may be limited, especially for specific subgroups (e.g., rare health conditions).
 
-#### Model Misspecification:
-If the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations), the results may be misleading.
-Model misspecification can lead to biased parameter estimates.
+- Model Misspecification:
+    - If the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations), the results may be misleading.
+    - Model misspecification can lead to biased parameter estimates.
 
-#### Assumptions of Independence:
-Many Bayesian models assume independence between observations.
-In reality, dependencies may exist (e.g., correlations between LPAs within the same family).
-Ignoring dependencies can affect the accuracy of forecasts.
+- Assumptions of Independence:
+    - Many Bayesian models assume independence between observations.
+    - In reality, dependencies may exist (e.g., correlations between LPAs within the same family).
+    - Ignoring dependencies can affect the accuracy of forecasts.
 
-#### Interpretability:
-Bayesian models provide posterior distributions, which are more informative than point estimates.
-However, interpreting complex posterior distributions can be challenging for non-experts.
-Communicating uncertainty effectively to stakeholders may require additional effort.
+- Interpretability:
+    - Bayesian models provide posterior distributions, which are more informative than point estimates.
+    - However, interpreting complex posterior distributions can be challenging for non-experts.
+    - Communicating uncertainty effectively to stakeholders may require additional effort.
 
-#### Limited Excel Integration:
-Implementing Bayesian models directly in Excel can be cumbersome due to its limitations in handling probabilistic calculations.
-Specialized statistical software (e.g., Python, R) is better suited for Bayesian modeling.
+- Limited Excel Integration:
+    - Implementing Bayesian models directly in Excel can be cumbersome due to its limitations in handling probabilistic calculations.
+    - Specialised statistical software (e.g., Python, R) is better suited for Bayesian modeling.
 
-#### Assumption of Stationarity:
-Some Bayesian time series models assume stationarity (constant statistical properties over time).
-In practice, capacity fluctuations may exhibit non-stationary behavior (e.g., trends, seasonality).
+- Assumption of Stationarity:
+    - Some Bayesian time series models assume stationarity (constant statistical properties over time).
+    - In practice, capacity fluctuations may exhibit non-stationary behaviour (e.g., trends, seasonality).
 
-#### Model Complexity vs. Parsimony:
-Bayesian models can become overly complex if too many parameters are included.
-Balancing model complexity with parsimony is essential to avoid overfitting.
+- Model Complexity vs. Parsimony:
+    - Bayesian models can become overly complex if too many parameters are included.
+    - Balancing model complexity with parsimony is essential to avoid overfitting.
 
-#### Updating Models Over Time:
-Incorporating new data into Bayesian models requires re-estimating posterior distributions.
-Real-time updates can be computationally intensive.
-Despite these limitations, Bayesian models remain valuable tools for handling uncertainty, incorporating prior knowledge, and making informed predictions. When using Bayesian methods, it’s essential to address these challenges appropriately and communicate results transparently. 
-
-
-
-**How can I address model misspecification in Bayesian LPA forecasting?
-What are the alternatives to MCMC for estimating posterior distributions?
-Can you explain how to perform sensitivity analysis on priors in a Bayesian model?What are the legal implications of capacity fluctuations in LPAs?
-Can you provide an example of a sensitivity analysis for LPA applications?**
+- Updating Models Over Time:
+    - Incorporating new data into Bayesian models requires re-estimating posterior distributions.
+    - Real-time updates can be computationally intensive.
+    - Despite these limitations, Bayesian models remain valuable tools for handling uncertainty, incorporating prior knowledge, and making informed predictions. 
 
 
 
-### Model Misspecification in Bayesian LPA Forecasting:
+### Addressing model misspecification in Bayesian LPA forecasting?
+- What are the alternatives to MCMC for estimating posterior distributions?
+- Can you explain how to perform sensitivity analysis on priors in a Bayesian model?
+- What are the legal implications of capacity fluctuations in LPAs?
+- Can you provide an example of a sensitivity analysis for LPA applications?**
+
+
+- Model Misspecification in Bayesian LPA Forecasting:
 Model misspecification occurs when the chosen Bayesian model does not accurately represent the underlying process (e.g., capacity fluctuations).To address this:
 
-#### Prior Sensitivity Analysis: 
+- Prior Sensitivity Analysis: 
 Explore different prior distributions for model parameters. Assess how changes in priors impact the posterior distribution and predictions.
 
-#### Alternative Models: 
+- Alternative Models: 
 Consider alternative Bayesian models (e.g., different likelihood functions, non-parametric models) and compare their performance.
 
-#### Gaussian-Process Approximations: 
+- Gaussian-Process Approximations: 
 Use Gaussian-process approximations to improve posterior estimates12.
 
 #### Alternatives to MCMC for Estimating Posterior Distributions:
+- While MCMC is widely used, other methods exist:
+    - Variational Inference: Solves an optimization problem to approximate the posterior faster than simple MCMC.
+    - Importance Sampling: Estimates properties of posteriors by sampling from an approximation.
+    - Analytical Solutions: In some cases, posterior distributions can be computed analytically34.
 
-#### While MCMC is widely used, other methods exist:
-Variational Inference: Solves an optimization problem to approximate the posterior faster than simple MCMC.
-Importance Sampling: Estimates properties of posteriors by sampling from an approximation.
-Analytical Solutions: In some cases, posterior distributions can be computed analytically34.
-
-#### Performing Sensitivity Analysis on Priors in a Bayesian Model:
+- Performing Sensitivity Analysis on Priors in a Bayesian Model:
 Sensitivity analysis assesses how changes in priors affect model outcomes.
 
 ##### Steps:
-Define a range of prior values (e.g., mean, variance).
-Run the model with different priors.
-Observe how posterior distributions and predictions vary.
-Compare estimated parameters and make conclusions based on context5.
-Legal Implications of Capacity Fluctuations in LPAs:
-LPAs grant decision-making authority to attorneys when the donor lacks capacity.
-Legal implications:
-Freezing of Accounts: Without an LPA, banks may freeze accounts if a signatory lacks capacity.
-Deputyship Applications: If no LPA exists, a third party can apply to be appointed as a deputy by the Court of Protection.
-Business LPAs: For business accounts, lacking an LPA can impact financial operations678.
-Example of Sensitivity Analysis for LPA Applications:
-Suppose we have an LPA model with priors for mean1 and mean2 (related to capacity).
-Vary the priors (e.g., mean1, tau1, tau2) within reasonable ranges.
-Observe how estimated parameters (e.g., A, mean1) change.
-Conclude based on the impact of different priors on LPA decisions5.
-Remember that sensitivity analysis helps assess the robustness of Bayesian models and informs decision-making. 
+- Define a range of prior values (e.g., mean, variance).
+- Run the model with different priors.
+- Observe how posterior distributions and predictions vary.
+- Compare estimated parameters and make conclusions based on context5.
+- Legal Implications of Capacity Fluctuations in LPAs:
+- LPAs grant decision-making authority to attorneys when the donor lacks capacity.
+- Legal implications:
+- Freezing of Accounts: Without an LPA, banks may freeze accounts if a signatory lacks capacity.
+- Deputyship Applications: If no LPA exists, a third party can apply to be appointed as a deputy by the Court of Protection.
+- Business LPAs: For business accounts, lacking an LPA can impact financial operations678.
+- Example of Sensitivity Analysis for LPA Applications:
+- Suppose we have an LPA model with priors for mean1 and mean2 (related to capacity).
+- Vary the priors (e.g., mean1, tau1, tau2) within reasonable ranges.
+- Observe how estimated parameters (e.g., A, mean1) change.
+- Conclude based on the impact of different priors on LPA decisions5.
+- Remember that sensitivity analysis helps assess the robustness of Bayesian models and informs decision-making. 
 
 
 
@@ -2017,7 +2017,7 @@ Remember that Bayesian models allow us to treat missing data as parameters, leve
 
 
 
-### Multiple imputation (MI) is a powerful technique for handling missing data, and incorporating it into a Bayesian framework provides a robust and flexible approach. Let’s explore how to perform multiple imputation within a Bayesian context:
+### Multiple imputation (MI) is a powerful technique for handling missing data, and incorporating it into a Bayesian framework provides a robust and flexible approach. 
 
 
 #### Conceptual Understanding of Missing Data:
