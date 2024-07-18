@@ -1773,7 +1773,7 @@ These models allow you to update predictions as new information becomes availabl
 Create scenarios that simulate different capacity trajectories. For example:
 - Stable Capacity: Assume capacity remains stable over time.
 - Gradual Decline: Assume a gradual decline in capacity.
-- Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., stroke, accident).
+- Sudden Decline: Consider sudden capacity loss due to unforeseen events (e.g., covid, death).
 - Forecast LPAs under each scenario and assess their impact.
 - Collaborate with government Professionals:
 - Consult with policy makers who can assess capacity objectively.
@@ -1820,44 +1820,42 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 - instructions on how to do some potential model developments
 
 ## Bayesian models
-Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
-## Bayesian models
-Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. Let’s explore how Bayesian methods can be applied to LPA forecasting:
-
+- Incorporating Bayesian models in Lasting Power of Attorney (LPA) forecasting can enhance accuracy and provide a probabilistic framework for handling uncertainty. 
+- Applying uncertainty around volatile data volatilty affected by covid pandemic for LPA application demand in log-term forecasting model.
 
 #### Understanding Bayesian Models:
-Bayesian models are based on Bayes’ theorem, which updates our beliefs (probabilities) based on new evidence.
-These models incorporate prior knowledge (prior distribution) and update it with observed data to obtain a posterior distribution.
-In the context of LPA forecasting, Bayesian models allow us to quantify uncertainty and make informed predictions.
+- Bayesian models are based on Bayes’ theorem, which updates our beliefs (probabilities) based on new evidence.
+- These models incorporate prior knowledge (prior distribution) and update it with observed data to obtain a posterior distribution.
+- In the context of LPA forecasting, Bayesian models allow us to quantify uncertainty and make informed predictions.
 
 #### Dynamic Linear Models (DLMs):
-DLMs are a class of Bayesian state space models commonly used for time series forecasting.
+- DLMs are a class of Bayesian state space models commonly used for time series forecasting.
+- DLMs can handle time-varying parameters, seasonality, and irregularities in data.
+- They consist of two components:
+    - State Equation: Describes how the underlying state (e.g., capacity fluctuations) evolves over time.
+    - Observation Equation: Relates the observed data (e.g., LPA applications) to the underlying state.
 
-#### They consist of two components:
-State Equation: Describes how the underlying state (e.g., capacity fluctuations) evolves over time.
-Observation Equation: Relates the observed data (e.g., LPA applications) to the underlying state.
-DLMs can handle time-varying parameters, seasonality, and irregularities in data.
 
 ### Steps to Incorporate Bayesian Models:
 
 #### Prior Specification:
-Define prior distributions for model parameters (e.g., capacity loss rates, trend coefficients).
-Priors can be informative (based on domain knowledge) or non-informative (flat priors).
+- Define prior distributions for model parameters (e.g., capacity loss rates, trend coefficients).
+- Priors can be informative (based on domain knowledge) or non-informative (flat priors).
 
 #### Likelihood Function:
-Specify the likelihood function that relates observed data to the model parameters.
-For LPA forecasting, this could be based on historical LPA application data.
+- Specify the likelihood function that relates observed data to the model parameters.
+- For LPA forecasting, this could be based on historical LPA application data.
 
 #### Posterior Inference:
-Use Bayes’ theorem to update the prior distribution based on observed data.
-Markov Chain Monte Carlo (MCMC) methods or variational inference can estimate the posterior distribution.
+- Use Bayes’ theorem to update the prior distribution based on observed data.
+- Markov Chain Monte Carlo (MCMC) methods or variational inference can estimate the posterior distribution.
 
 #### Prediction:
-Simulate from the posterior distribution to obtain predictive samples.
-These samples represent possible future scenarios, accounting for uncertainty.
-Model Selection:
+- Simulate from the posterior distribution to obtain predictive samples.
+- These samples represent possible future scenarios, accounting for uncertainty.
 
-#### Choose an appropriate DLM structure:
+
+#### Model Selection: Choose an appropriate DLM structure:
 Local Level Model: Represents a random walk (e.g., gradual capacity decline).
 Local Linear Trend Model: Includes both level and slope components.
 Seasonal Models: Capture seasonal patterns.
