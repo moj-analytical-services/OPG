@@ -9,6 +9,7 @@
 &nbsp;
 
 # Contents
+
 * The instructions on how to do some potential model developments.
 
 * How to incorporate covid period demands and uncertainty around the data in long-term and short-term forecasting of demands (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) to provide accurate forecats for the LPA demands?
@@ -17,13 +18,33 @@
 
 * Which AI / Machine Learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
+* OPG strategy: 
+- Definition of supervision: The definition of supervision going forward will therefore be the ongoing monitoring and tailored oversight that the OPG provides to deputies appointed by the Court of Protection and Guardians, appointed by the High Court to ensure that they carry out their responsibilities in the best interests of P or the missing persons or the person they are deputy or guardian for. This includes, but is not limited to, ensuring compliance with their court order, assessing that they are acting in accordance with the requirements of the Mental Capacity Act 2005 or guardianship, missing persons 2017 and overseeing adherence to the deputy standards for deputies.  
+- Interpretation of Statutory function: Compliance - lay public authority, professional and health and welfare or personal welfare cases and property and financial AFFAIRS. and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
+- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking: provide experts etc.
+- Manage any kind of prioritisation and understanding resource and to be involved in any deadline setting in OPG.
+    1. **L priority** guardianships work, simply because we have only ever had a handful of cases.
+    4. **M priority**: fees, although it's medium priority here and here it only mentions supervision fees only because it's the policy strategy for supervision.
+    3. **H priority**: Evidence-led policymaking - it is important to build a high quality, high quality evidence base that we can use and draw on to develop and design our policies. A high quality evidence base around Public authority deputyships, professional deputyships and health and welfare or personal welfare deputyships, monitoring and evaluation and then third is sort of longer term aspiration is around establishing the OPG as a thought leader and with the ones that are high priority and this is the bit where it would be really good to get your thoughts on how best to take it forward. And so figuring out what we have at the moment in terms of data, what are the gaps when it comes to supervision and deputyships and how can we fill those in order to improve our evidence base and increase our evidence base for it comes to supervision and deputyships and guardianships too and then monitoring evaluation is and that one's a bit more around understanding the impact of our policies because that is one of the things that's missing at the moment and it is also about tracking the implementation of our policies as well.
+    4. There is an urgent need to provide a report, data requirement, and update the forecasting models.
+    5. What are the data requirement and scope to work around fees and minister ideas? 
+    6. In terms of the data requirements and it would be really helpful to understand what data is currently available in that space or deputyships, whether and it is around a sort of anything related to protected characteristics, whether it is possible to link that or demographics. And then the other aspect is now forecasting really helpful to understand sort of what our deputyships or caseload will look like going forward and how that would look as well, because that will help us plan our policy work and going forward in terms of what areas we should be focusing on. To break down deputyship volumes by demographics and age and gender and location and deprivation by data engineering.
+    7. In terms of governance, at the moment when it comes to supervision, it has a slightly different governance arrangement compared with other policy work and the OPG which goes through the policy Implementation Committee and Executive Committee where it needs to be escalated. To pick policy and implementation Committee and Xcode Executive Committee and every month there will be a policy working group.
+    8. To consider from other parts of the organisation and what this all bigger picture big ticket items that we need to think about as well and it is the quarterly advisory group that,, we need to close down the current governance route before the new one can be put in place and that is take the transition in the transition period at the moment.
+    9.  The vast majority of cases with deputyships people live in care homes. Thus, we could be more accurate with the LPA data about inferring kind of characteristics because people, those private households. So, collect that data up front if we need it rather than trying to model.
+    10. Investigate more regarding where supervision fees are subsidised by our enhanced LPA fee. Also understanding the level of legal challenge to it and considering the legal risks.
+    11. Concern around scope for looking at and fees, and who pays a fee and what fee they pay, then you know the moment the data is not adequate to be able to do that.
+    12. There are a Cost recovery model when it comes to fees, we need to understand the cost of our services. This is being led by OPG finance colleagues and MoJ as well, Pippa Jones. Legal will be heavily involved in the fees, work and generally across all of our policy work. 
+    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose. because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
+    
 
 &nbsp;
+&nbsp;
+
+# Methodology
+**Strategies for incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG:**
 *Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; 
 forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
-
-&nbsp;
-**Strategies for incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG:**
 
 - Data Analysis: 
     - Begin by analysing historical data, but with a focus on identifying patterns that emerged specifically during the COVID period. 
