@@ -13,7 +13,7 @@
 #### Dynamic Linear Models (DLMs):
 - DLMs are a class of Bayesian state space models commonly used for time series forecasting.
 - DLMs can handle time-varying parameters, seasonality, and irregularities in data.
-- They consist of two components:
+- DLMs consist of two components:
     - State Equation: Describes how the underlying state (e.g., capacity fluctuations) evolves over time.
     - Observation Equation: Relates the observed data (e.g., LPA applications) to the underlying state.
 
