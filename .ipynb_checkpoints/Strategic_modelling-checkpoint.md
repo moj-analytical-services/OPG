@@ -758,3 +758,159 @@ Validate the model using a hold-out sample or cross-validation to ensure that it
 #### Iterative Refinement: 
 It is often an iterative process and may need to go back and forth adjusting the parameters and refitting the model until you find the best parameters for your specific dataset.
 
+
+# ##################################################################### #
+
+# ##################################################################### #
+# Uncertainty in Demand Forecasting:
+
+- The sources of uncertainty are missing information, unreliable information, conflicting information, noisy information, and confusing information.
+
+- Forecasting plays a crucial role in managing demand uncertainty. It involves estimating future demand based on historical data, market trends, and other relevant factors. Accurate forecasting enables businesses to make informed decisions regarding production, procurement, and inventory management.
+
+- Demand uncertainty refers to the external factors that cause demand to unexpectedly increase or decrease. This situation can be caused by a public health crisis or even a sudden shift in the customers' tastes.
+
+- Deterministic risk considers the impact of a single risk scenario, whereas probabilistic risk considers all possible scenarios, their likelihood and associated impacts. The opposite of probabilistic is “deterministic”, which uses exact numbers to approximate uncertain amounts, often some historical average. A symptom of a probabilistic plan or forecast is that its results are generally also expressed as probability distributions.
+
+- Calculate uncertainty by subtracting your average measurement by each measurement calculated, squaring each result and calculating the average of those numbers. With this variance result, calculate its standard deviation by finding the square root of your result. The final result is the uncertainty level of your equation.
+
+
+
+# ##################################################################### #
+# Different type of forecast (Point / Range (Short-Long) / Demand)
+- Point Forecast: associate the future with a single expected outcome, usually an average expected value (not to be confused with the most likely outcome). Example: We forecast to sell 1000 units next month. Probabilistic Forecast: allocates a probability for different events to happen.
+
+- A point forecast only provides a partial view of the future, such as (i.e., the most likely demand in the upcoming time). In contrast, a probability forecast provides even the proper insight and the outcome of demand ( i.e., how much is the risk of demand shortage).
+
+- Range forecasts are more realistic and informative than point forecasts, as they capture the uncertainty and variability of the future, and they can help you assess the risks and opportunities of different scenarios. However, range forecasts also have some challenges. Range forecasts are a type of forecast that can help assess the risks and opportunities of different scenarios by capturing the uncertainty and variability of the future. They can be more realistic and informative than point forecasts.
+    - Short-range forecasts typically look ahead three to twelve months, while long-range forecasts look ahead one to five years.
+    - Short range forecasts are based off of observed and extrapolated data and how systems are moving. Long range forecasting are created off of computer models.
+
+- However, demand forecasting is also subject to uncertainty, which can arise from various factors such as market fluctuations, customer behavior, seasonal variations, or external shocks.
+- The Probabilistic forecasting tool (Monte Carlo) creates reliable forecasts at a fraction of the effort of traditional methods. It also has the added benefit of obtaining “estimate input data” from existing team processes, reducing the frequency or eliminating the need for expensive estimation sessions
+
+
+# ##################################################################### #
+# Economic & Finance: Forecasting productivity
+
+- To forecast of productivity based on average historical growth rates as well as judgments about factors that may cause productivity to deviate from its historical trend in the short-term.
+- The most common approach for forecasting productivity is to estimate the trend growth in productivity using aggregate data.
+- Productivity growth is very volatile and has undergone large historical shifts with productivity growth averaging around 1% between 1800-1950 followed by an increase in the average annual growth to 3% between 1950-1975. Since the mid-1970’s productivity growth has gradually declined in many developed economies; see panel B of Figure 7. In the decade since 2009, 2% annual productivity growth was an upper bound for most G7 countries.
+- Test for shifts in productivity growth rates in other advanced economies did not find evidence of a changes in productivity growth until well after the financial crisis in 2007
+
+- A more recent approach by Martinez et al. (2021) allows for a time-varying long-run trend in UK productivity. They show that are able to broadly replicate the OBR’s forecasts using a quasi-transformed autoregressive model with one lag, a constant, and a trend. The estimated long-run trend is just over 2% per year through 2007 Q4 which is consistent with the OBR’s assumptions about the long-run growth rate of productivity (OBR, 2019). However, it is possible to dramatically improve upon OBR’s forecasts in real-time by allowing for the long-term trend forecast to adjust based on more recent historical patterns. By taking a local average of the last four years of growth rates, Martinez et al. (2021) generate productivity forecasts whose RMSE is on average more than 75% smaller than OBR’s forecasts extending five-years-ahead and is 84% smaller at the longest forecast horizon.
+
+## Demand Planning Tips for Calculating Forecast Uncertainty
+1. Set expectations about error: Sometimes  managers have unreasonable expectations about reducing forecast error to zero. You can point out that error is only one of the dimensions on which a forecasting process must be judged; you may be doing fine on both timeliness and cost. Also point out that zero error is no more realistic a goal than 100% conversion of prospects into customers, perfect supplier performance, or zero stock price volatility.
+
+2. Track down sources of error: Double check the accuracy of demand histories. Use statistical methods to identify outliers in demand histories and react appropriately, replacing verified anomalies with more typical values and omitting data from before major changes in the character of the demand. If you use a collaborative forecasting process, compare its accuracy against a purely statistical approach to identify items for which collaboration does not reduce error.
+
+3. Evaluate the error of alternative statistical methods: There may be off-the-shelf techniques that do better than your current methods, or do better for some subsets of your items. The key is to be empirical, using the idea of holdout analysis. Gather your data and do a “bake off” between different methods to see which work better for you. If you are not already using statistical forecasting methods, compare them against whoever’s “golden gut” is your current standard. Use the naïve forecast as a benchmark in the comparisons.
+
+4. Investigate the use of new data sources: Especially if you have items that are heavily promoted, test out statistical methods that incorporate promotional data into the forecasting process. Also check whether information from outside your company can be exploited; for instance, see whether macroeconomic indicators for your sector can be combined with company data to improve forecast accuracy (this is usually done using a method called multiple regression analysis).
+
+5. Use prediction intervals: Plots of prediction intervals can improve your feel for the uncertainty in your forecasts, helping you select items for additional scrutiny. While it’s true that what you don’t know can hurt you, it’s also true that knowing what you don’t know can help you.
+
+### Criteria for Assessing Forecasts:
+Forecast error alone is not reason enough to reject forecasting as a management tool. To twist a famous aphorism by George Box, “All forecasts are wrong, but some are useful.” Of course, business professionals will always search for ways to make forecasts more useful. This usually involves work to reduce forecast error. But while forecast accuracy is the most obvious criterion by which to judge forecasts, but it is not the only one. Here’s a list of criteria for evaluating forecasts:
+
+### Accuracy:
+Forecasts of future values should, in retrospect, be very close to the actual values that eventually reveal themselves. But there may be diminishing returns to squeezing another half percent of accuracy out of forecasts otherwise good enough to use in decision making.
+
+### Timeliness: 
+Fighter pilots refer to the OODA Loop (Observe, Orient, Decide, and Act) and the “need to get inside the enemy’s OODA loop” so they can shoot first. Businesses too have decision cycles. Delivering a perfectly accurate forecast the day after it was needed is not helpful. Better is a good forecast that arrives in time to be useful.
+
+### Cost: 
+Forecasting data, models, processes and people all cost money.  A less expensive forecast might be fueled by data that are readily available; more expensive would be a forecast that runs on data that have to be collected in a special process outside the scope of a firm’s information infrastructure.  A classic, off-the-shelf forecasting technique will be less costly to acquire, feed and exploit than a complex, custom, consultant-supplied method. Forecasts could be mass-produced by software overseen by a single analyst, or they might emerge from a collaborative process requiring time and effort from large groups of people, such as district sales managers, production teams, and others. Technically advanced forecasting techniques often require hiring staff with specialized technical expertise, such as a master’s degree in statistics, who tend to cost more than staff with less advanced training.
+
+### Credibility: 
+Ultimately, some executive has to accept and act on each forecast. Executives have a tendency to distrust or ignore recommendations that they can neither understand nor explain to the next person above them in the hierarchy. For many, believing in a “black box” is too severe a test of faith, and they reject the black box’s forecasts in favor of something more transparent.
+
+### Sources of Forecast Error
+1. The data that goes into a forecasting model
+2. The model itself
+3. The context of the forecasting exercise
+
+#### There are several ways in which data problems can lead to forecast error.
+
+- Gross errors: 
+Wrong data produce wrong forecasts. We have seen an instance in which computer records of product demand were wrong by a factor of two! Those involved spotted that problem immediately, but a less egregious situation can easily slip through to poison the forecasting process. In fact, just organizing, acquiring and checking data is often the largest source of delay in the implementation of forecasting software. Many data problems seem to derive from the data having been unimportant until a forecasting project made them important.
+
+- Anomalies: 
+Even with perfectly curated forecasting databases, there are often “needle in a haystack” type data problems. In these cases, it is not data errors but demand anomalies that contribute to forecast error. In a set of, say, 50,000 products, some number of items are likely to have odd details that can distort forecasts.
+
+- Holdout analysis is a simple but powerful method of analysis:
+To see how well a method forecasts, use it with older known data to forecast newer data, then see how it would have turned out! For instance, suppose you have 36 months of demand data and need to forecast 3 months ahead. You can simulate the forecasting process by holding out (i.e., hiding) the most recent 3 months of data, forecasting using only data from months 1 to 33, then comparing the forecasts for months 34-36 against the actual values in months 34-36. Sliding simulation merely repeats the holdout analysis, sliding along the demand history. The example above used the first 33 months of data to get 3 estimates of forecast error. Suppose we start the process by using the first 12 months to forecast the next 3. Then we slide forward and use the first 13 months to forecast the next 3. We continue until finally we use the first 35 months to forecast the last month, giving us one more estimate of the error we make when forecasting one month ahead. Summarizing all the 1-step ahead, 2-step ahead and 3-step ahead forecast errors provides a way to calculate prediction intervals.
+
+### Calculating Prediction Intervals
+
+- The final step in calculating prediction intervals is to convert the estimates of average absolute error into the upper and lower limits of the prediction interval. The prediction interval at any future time is computed as:
+     - Prediction interval = Forecast ± Multiplier x Average absolute error.
+
+- The final step is the choice of the multiplier. 
+The typical approach is to imagine some probability distribution of error around the forecast, then estimate the ends of the prediction interval using appropriate percentiles of that distribution. Usually, the assumed distribution of error is the Normal distribution, also called the Gaussian distribution or the “bell-shaped curve”.
+
+### Use of Prediction Intervals
+- The most immediate, informal use of prediction intervals is to convey a sense of how “squishy” a forecast is. 
+- Prediction intervals that are wide compared to the size of the forecasts indicate high uncertainty.
+
+- There are two more formal uses in demand forecasting: 
+    - Hedging your bets: 
+        The forecast values themselves approximate the most likely values of future demand. A more ominous way to say the same thing is that there is about a 50% chance that the actual value will be above (or below) the forecast. If the forecast is being used to plan future production (or raw materials purchase or hiring), you might want to build in a cushion to keep from being caught short if demand spikes (assuming that under-building is worse than over-building). If the forecast is converted from units to dollars for revenue projections, you might want to use a value below the forecast to be conservative in projecting cash flow. In either case, you first have to choose the coverage of the prediction interval. A 90% prediction interval is a range of values that covers 90% of the possibilities. This implies that there is a 5% chance of a value falling above the upper limit of the 90% prediction interval. In other words, the upper limit of a 90% prediction interval marks the 95th percentile of the distribution of predicted demand at that time period. Similarly, there is a 5% chance of falling below the lower limit, which marks the 5th percentile of the demand distribution.
+
+    - Guiding forecast adjustment: 
+        It is quite common for statistical forecasts to be revised by some sort of collaborative process. These adjustments are based on information not recorded in an item’s demand history, such as intelligence about competitor actions. Sometimes they are based on a more vaporous source, such as sales force optimism. When the adjustments are made on-screen for all to see, the prediction intervals provide a useful reference: If someone wants to move the forecasts outside the prediction intervals, they are crossing a fact-based line and should have a good story to justify their argument that things will be really different in the future.
+
+### Prediction Intervals and Inventory Optimisation
+
+- Finally, the concept behind prediction intervals play an essential role in a problem related to demand forecasting: Inventory Optimization.
+The core analytic task in setting reorder points (also called Mins) is to forecast total demand over a replenishment lead time. This total is called the lead time demand. When on-hand inventory falls down to or below the reorder point, a replenishment order is triggered. If the reorder point is high enough, there will be an acceptably small risk of a stockout, i.e., of lead time demand driving inventory below zero and creating either lost sales or backorders.
+
+- SDP_Screenshot new statistical methods planning 
+New statistical methods, and we can start planning more effectively.
+
+- The forecasting task is to determine all the possible values of cumulative demand over the lead time and their associated probabilities of occurring. In other words, the basic task is to determine a prediction interval for some future random variable. Suppose you have computed a 90% prediction interval for lead time demand. Then the upper end of the interval represents the 95th percentile of the distribution. Setting the reorder point at this level will accommodate 95% of the possible lead time demand values, meaning there will be only a 5% chance of stocking out before replenishment arrives to re-stock the shelves. Thus there is an intimate relationship between prediction intervals in demand forecasting and calculation of reorder points in inventory optimization.
+
+
+# ##################################################################### #
+# Data-driven Forecasting methods to consider uncertainty:
+
+
+*ref: https://www.sciencedirect.com/science/article/pii/S0169207021001758?via%3Dihub
+*ref: https://forecasting-encyclopedia.com/theory.html#Forecasting_on_distributed_systems
+## ##################################################################### ##
+## Scenarios and judgmental forecasting
+
+
+## ##################################################################### ##
+## Multi-step ahead forecasting
+
+
+## ##################################################################### ##
+## Agent-based models
+
+
+## ##################################################################### ##
+## Age-specific Forecasting: Models for population processes
+Over the past two centuries, formal demography has established its own, discipline-specific body of methods for predicting (or projecting15) populations. Population sciences, since their 17th century beginnings, have been traditionally very empirically focused, with strong links with probability theory (Courgeau, 2012). Given the observed regularities in population dynamics, and that populations are somewhat better predictable than many other socio-economic processes, with reasonable horizons possibly up to one generation ahead (Keyfitz, 1972, 1981), demographic forecasts have become a bestselling product of the discipline (Xie, 2000). Since the 20th century, methodological developments in human demography have been augmented by the work carried out in mathematical biology and population ecology (Caswell, 2019a).
+
+The theoretical strength of demography also lies almost exclusively in the formal mathematical description of population processes (Burch, 2018), typically growth functions and structural changes. Historically, such attempts started from formulating the logistic model of population dynamics, inspired by the Malthusian theory (Pearl & Reed, 1920; Verhulst, 1845). Lotka (1907)’s work laid the foundations of the stable population theory with asymptotic stability under constant vital rates, subsequently extended to modelling of interacting populations by using differential equations (Lotka, 1925; V Volterra, 1926). By the middle of the 20th century, the potential and limitations of demographic forecasting methods were already well recognised in the literature (Brass, 1974; Hajnal, 1955).
+
+In the state-of-the-art demographic forecasting, the core engine is provided by matrix algebra. The most common approach relies on the cohort-component models, which combine the assumptions on fertility, mortality and migration, in order to produce future population by age, sex, and other characteristics. In such models, the deterministic mechanism of population renewal is known, and results from the following demographic accounting identity (population balancing equation, see Rees & Wilson, 1973; Bryant & Zhang, 2018):
+ , where  P t is the population vector structured by age (and other characteristics), and G is an appropriately chosen growth matrix (Leslie matrix), closely linked with the life table while reflecting the relationship above, expressed in terms of rates rather than events (Caswell, 2019a; Leslie, 1945, 1948; Preston, Heuveline, & Guillot, 2000).
+
+In the cohort-component approach, even though the mechanism of population change is known, the individual components still need forecasting. The three main drivers of population dynamics — fertility, mortality, and migration — differ in terms of their predictability (National Research Council, 2000): mortality, which is mainly a biological process moderated by medical technology, is the most predictable; migration, which is purely a social and behavioural process is the least; while the predictability of fertility — part-biological, part-behavioural – is in the middle (for component forecasting methods, see §3.6.3, §3.6.4, and §3.6.5). In practical applications, the components can be either projected deterministically, following judgment-based or expert assumptions (for example, Lutz, Butz, & Samir, 2017), or extrapolated by using probabilistic methods, either for the components or for past errors of prediction (Alho & Spencer, 1985, 2005; De Beer, 2008). An impetus to the use of stochastic methods has been given by the developments in the UN World Population Prospects (Azose, Ševčı́ková, & Raftery, 2016; Gerland et al., 2014). Parallel, theoretical advancements included a stochastic version of the stable population theory (Keiding & Hoem, 1976), as well as coupling of demographic uncertainty with economic models (Alho, Hougaard Jensen, & Lassila, 2008).
+
+Since its original formulation, the cohort-component model has been subject to several extensions (see, for example, Stillwell & Clarke, 2011). The multiregional model (Rogers, 1975) describes the dynamics of multiple regional populations at the same time, with regions linked through migration. The multistate model (Schoen, 1987) generalises the multiregional analysis to any arbitrary set of states (such as educational, marital, health, or employment statuses, and so on; see also state-space models in §2.3.6). The multiregional model can be in turn generalised to include multiple geographic levels of analysis in a coherent way (Kupiszewski & Kupiszewska, 2011). Recent developments include multifocal analysis, with an algebraic description of kinship networks (Caswell, 2019b, 2020). For all these extensions, however, data requirements are very high: such models require detailed information on transitions between regions or states in a range of different breakdowns. For pragmatic reasons, microsimulation-based methods offer an appealing alternative, typically including large-sample Monte Carlo simulations of population trajectories based on available transition rates (Bélanger & Sabourin, 2017; Zaidi, Harding, & Williamson, 2009).
+
+Aside of a few extensions listed above, the current methodological developments in the forecasting of human populations are mainly concentrated on the approaches for predicting individual demographic components (see §3.6.3, §3.6.4, and §3.6.5), rather than the description of the population renewal mechanism. Still, the continuing developments in population ecology, for example on the algebraic description of transient and asymptotic population growth (Nicol-Harper et al., 2018), bear substantial promise of further advancements in this area, which can be additionally helped by strengthened collaboration between modellers and forecasters working across the disciplinary boundaries on the formal descriptions of the dynamics of human, as well as other populations.
+
+
+## ##################################################################### ##
+## Bagging for time series forecasting:
+For data-driven methods, to forecasting and simulation time series and deal with predictors ensembles, bagging has shown as a powerful tool.
+A general framework for ensemble forecasting methods involves four main stages: (i) data treatment, (ii) resampling, (iii) forecasting, and (iv) aggregation. However, for time series, bootstrap should be done carefully, as the serial dependence and non-stationarity must be considered.
+
+The bagging can handle all of three sources of uncertainty: model form, data, and parameter, Petropoulos et al. (2018a) showed that simply tackling model uncertainty is enough for achieving a superior performance, leading to the proposal of a Bootstrap Model Combination (BMC) approach, where different model forms are identified in the ensemble and fitted to the original data.
+
+## ##################################################################### ##
