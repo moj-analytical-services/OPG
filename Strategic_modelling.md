@@ -8,6 +8,7 @@
 &nbsp;
 &nbsp;
 
+
 # Contents
 
 * The instructions on how to do some potential model developments.
@@ -20,9 +21,9 @@
 
 * OPG strategy: 
 - Definition of supervision: The definition of supervision going forward will therefore be the ongoing monitoring and tailored oversight that the OPG provides to deputies appointed by the Court of Protection and Guardians, appointed by the High Court to ensure that they carry out their responsibilities in the best interests of P or the missing persons or the person they are deputy or guardian for. This includes, but is not limited to, ensuring compliance with their court order, assessing that they are acting in accordance with the requirements of the Mental Capacity Act 2005 or guardianship, missing persons 2017 and overseeing adherence to the deputy standards for deputies.  
-- Interpretation of Statutory function: Compliance - lay public authority, professional and health and welfare or personal welfare cases and property and financial AFFAIRS. and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
-- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking: provide experts etc.
-- Manage any kind of prioritisation and understanding resource and to be involved in any deadline setting in OPG.
+- Interpretation of Statutory function: Compliance - lay public authority, professional, health, welfare or personal welfare cases, property, financial AFFAIRS, and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
+- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking, providing experts etc.
+- Manage any kind of prioritisation. understanding resource, and to be involved in any deadline setting in OPG.
     1. **L priority** guardianships work, simply because we have only ever had a handful of cases.
     4. **M priority**: fees, although it's medium priority here and here it only mentions supervision fees only because it's the policy strategy for supervision.
     3. **H priority**: Evidence-led policymaking - it is important to build a high quality, high quality evidence base that we can use and draw on to develop and design our policies. A high quality evidence base around Public authority deputyships, professional deputyships and health and welfare or personal welfare deputyships, monitoring and evaluation and then third is sort of longer term aspiration is around establishing the OPG as a thought leader and with the ones that are high priority and this is the bit where it would be really good to get your thoughts on how best to take it forward. And so figuring out what we have at the moment in terms of data, what are the gaps when it comes to supervision and deputyships and how can we fill those in order to improve our evidence base and increase our evidence base for it comes to supervision and deputyships and guardianships too and then monitoring evaluation is and that one's a bit more around understanding the impact of our policies because that is one of the things that's missing at the moment and it is also about tracking the implementation of our policies as well.
@@ -35,7 +36,7 @@
     10. Investigate more regarding where supervision fees are subsidised by our enhanced LPA fee. Also understanding the level of legal challenge to it and considering the legal risks.
     11. Concern around scope for looking at and fees, and who pays a fee and what fee they pay, then you know the moment the data is not adequate to be able to do that.
     12. There are a Cost recovery model when it comes to fees, we need to understand the cost of our services. This is being led by OPG finance colleagues and MoJ as well, Pippa Jones. Legal will be heavily involved in the fees, work and generally across all of our policy work. 
-    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose. because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
+    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
     
 
 &nbsp;
@@ -78,11 +79,11 @@ forecasting is not about predicting the future with certainty but about preparin
 
 * ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
 
-**Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
+**Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for LPA demands can significantly enhance your understanding of demand patterns. 
 
 *Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
-*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
+*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (LPA) applications in OPG in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
 
 # External Factors: 
 How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel?
@@ -943,4 +944,19 @@ A general framework for ensemble forecasting methods involves four main stages: 
 
 The bagging can handle all of three sources of uncertainty: model form, data, and parameter, Petropoulos et al. (2018a) showed that simply tackling model uncertainty is enough for achieving a superior performance, leading to the proposal of a Bootstrap Model Combination (BMC) approach, where different model forms are identified in the ensemble and fitted to the original data.
 
+## ##################################################################### ##
+## Clustering-based forecasting
+The robustness of the forecasting process depends mainly on the characteristics of the target variable. In cases of high nonlinear and volatile time series, a forecasting model may not be able to fully capture and simulate the special characteristics, a fact that may lead to poor forecasting accuracy (Pradeepkumar & Ravi, 2017). Contemporary research has proposed some approaches to increase the forecasting performance (Sardinha-Lourenço, Andrade-Campos, Antunes, & Oliveira, 2018). Clustering-based forecasting refers to the application of unsupervised machine learning in forecasting tasks. The scope is to increase the performance by employing the information of data structure and of the existing similarities among the data entriee.
+
+### Pattern Sequence Based Forecasting (PSF)
+
+It takes univariate time series data as input and assist to forecast its future values. This algorithm forecasts the behavior of time series based on similarity of pattern sequences. Initially, clustering is done with the labeling of samples from database. The labels associated with samples are then used for forecasting the future behaviour of time series data.
+
+The Algorithm Pattern Sequence based Forecasting (PSF) was first proposed by Martinez Alvarez, et al., 2008 and then modified and suggested improvement by Martinez Alvarez, et al., 2011. The technical detailes are mentioned in referenced articles. PSF algorithm consists of various statistical operations like:
+
+Data Normalization/ Denormalization
+Calculation of optimum Window size (W)
+Calculation of optimum cluster size (k)
+Pattern Sequence based Forecasting
+RMSE/MAE Calculation, etc..
 ## ##################################################################### ##
