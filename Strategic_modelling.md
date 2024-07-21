@@ -8,6 +8,7 @@
 &nbsp;
 &nbsp;
 
+
 # Contents
 
 * The instructions on how to do some potential model developments.
@@ -20,9 +21,9 @@
 
 * OPG strategy: 
 - Definition of supervision: The definition of supervision going forward will therefore be the ongoing monitoring and tailored oversight that the OPG provides to deputies appointed by the Court of Protection and Guardians, appointed by the High Court to ensure that they carry out their responsibilities in the best interests of P or the missing persons or the person they are deputy or guardian for. This includes, but is not limited to, ensuring compliance with their court order, assessing that they are acting in accordance with the requirements of the Mental Capacity Act 2005 or guardianship, missing persons 2017 and overseeing adherence to the deputy standards for deputies.  
-- Interpretation of Statutory function: Compliance - lay public authority, professional and health and welfare or personal welfare cases and property and financial AFFAIRS. and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
-- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking: provide experts etc.
-- Manage any kind of prioritisation and understanding resource and to be involved in any deadline setting in OPG.
+- Interpretation of Statutory function: Compliance - lay public authority, professional, health, welfare or personal welfare cases, property, financial AFFAIRS, and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
+- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking, providing experts etc.
+- Manage any kind of prioritisation. understanding resource, and to be involved in any deadline setting in OPG.
     1. **L priority** guardianships work, simply because we have only ever had a handful of cases.
     4. **M priority**: fees, although it's medium priority here and here it only mentions supervision fees only because it's the policy strategy for supervision.
     3. **H priority**: Evidence-led policymaking - it is important to build a high quality, high quality evidence base that we can use and draw on to develop and design our policies. A high quality evidence base around Public authority deputyships, professional deputyships and health and welfare or personal welfare deputyships, monitoring and evaluation and then third is sort of longer term aspiration is around establishing the OPG as a thought leader and with the ones that are high priority and this is the bit where it would be really good to get your thoughts on how best to take it forward. And so figuring out what we have at the moment in terms of data, what are the gaps when it comes to supervision and deputyships and how can we fill those in order to improve our evidence base and increase our evidence base for it comes to supervision and deputyships and guardianships too and then monitoring evaluation is and that one's a bit more around understanding the impact of our policies because that is one of the things that's missing at the moment and it is also about tracking the implementation of our policies as well.
@@ -35,7 +36,7 @@
     10. Investigate more regarding where supervision fees are subsidised by our enhanced LPA fee. Also understanding the level of legal challenge to it and considering the legal risks.
     11. Concern around scope for looking at and fees, and who pays a fee and what fee they pay, then you know the moment the data is not adequate to be able to do that.
     12. There are a Cost recovery model when it comes to fees, we need to understand the cost of our services. This is being led by OPG finance colleagues and MoJ as well, Pippa Jones. Legal will be heavily involved in the fees, work and generally across all of our policy work. 
-    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose. because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
+    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
     
 
 &nbsp;
@@ -78,11 +79,11 @@ forecasting is not about predicting the future with certainty but about preparin
 
 * ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
 
-**Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
+**Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for LPA demands can significantly enhance your understanding of demand patterns. 
 
 *Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
-*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
+*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (LPA) applications in OPG in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
 
 # External Factors: 
 How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel?
@@ -800,6 +801,12 @@ It is often an iterative process and may need to go back and forth adjusting the
 
 - A more recent approach by Martinez et al. (2021) allows for a time-varying long-run trend in UK productivity. They show that are able to broadly replicate the OBR’s forecasts using a quasi-transformed autoregressive model with one lag, a constant, and a trend. The estimated long-run trend is just over 2% per year through 2007 Q4 which is consistent with the OBR’s assumptions about the long-run growth rate of productivity (OBR, 2019). However, it is possible to dramatically improve upon OBR’s forecasts in real-time by allowing for the long-term trend forecast to adjust based on more recent historical patterns. By taking a local average of the last four years of growth rates, Martinez et al. (2021) generate productivity forecasts whose RMSE is on average more than 75% smaller than OBR’s forecasts extending five-years-ahead and is 84% smaller at the longest forecast horizon.
 
+The range-based (RB) volatility models is a general term for the models constructed with high and low prices, and most often with their difference i.e., the price range. A short review and classification of such models is contained in §2.3.14. From practical point of view, it is important that low and high prices are almost always available with daily closing prices for financial series. The price range (or its logarithm) is a significantly more efficient estimator of volatility than the estimator based on closing prices (Alizadeh et al., 2002). Similarly the co-range (the covariance based on price ranges) is a significantly more efficient estimator of the covariance of returns than the estimator based on closing prices (Brunetti & Lildholdt, 2002). For these reasons models based on the price range and the co-range better describe variances and covariances of financial returns than the ones based on closing prices.
+
+## GARCH: Financial time series forecasting with range-based volatility models
+The forecasts of volatility of financial returns from the univariate RB models are more accurate than the forecasts from standard GARCH models based on closing prices (see, for example, Mapa (2003) for the GARCH-PARK-R model; Chou (2005) for the CARR model; Fiszeder (2005) for the GARCH-TR model; Brandt & Jones (2006) for the REGARCH model; Chen et al. (2008) for the TARR model; Lin et al. (2012) for the STARR model; Fiszeder & Perczak (2016) for the GARCH model estimated with low, high and closing prices during crisis periods; Molnár (2016) for the RGARCH model)
+
+
 ## Demand Planning Tips for Calculating Forecast Uncertainty
 1. Set expectations about error: Sometimes  managers have unreasonable expectations about reducing forecast error to zero. You can point out that error is only one of the dimensions on which a forecasting process must be judged; you may be doing fine on both timeliness and cost. Also point out that zero error is no more realistic a goal than 100% conversion of prospects into customers, perfect supplier performance, or zero stock price volatility.
 
@@ -863,6 +870,9 @@ The typical approach is to imagine some probability distribution of error around
 
 ### Prediction Intervals and Inventory Optimisation
 
+#### Python code:
+*ref: https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
+
 - Finally, the concept behind prediction intervals play an essential role in a problem related to demand forecasting: Inventory Optimization.
 The core analytic task in setting reorder points (also called Mins) is to forecast total demand over a replenishment lead time. This total is called the lead time demand. When on-hand inventory falls down to or below the reorder point, a replenishment order is triggered. If the reorder point is high enough, there will be an acceptably small risk of a stockout, i.e., of lead time demand driving inventory below zero and creating either lost sales or backorders.
 
@@ -891,7 +901,28 @@ New statistical methods, and we can start planning more effectively.
 
 
 ## ##################################################################### ##
-## Age-specific Forecasting: Models for population processes
+# Age-specific Forecasting: 
+
+## naive freezing of age-specific rates
+, and those that can differ greatly in method complexity (see also §2.5.2). A recent survey of fertility forecasting practice in European statistical offices (Gleditsch & Syse, 2020) found that forecasts tend to be deterministic and make use of expert panels (see §2.11.4). Expert elicitation techniques are gaining in sophistication, highlighted by the protocol of Statistics Canada (Dion, Galbraith, & Sirag, 2020) which requests a full probability distribution of the TFR.
+
+A promising avenue is the development of forecasting methods that incorporate birth order (parity) information, supported by evidence from individual-level analyses (for example, Fiori, Graham, & Feng, 2014). 
+
+- Another underexplored area is the integration of survey data into fertility forecasting models, which tend to use vital statistics alone when they are of sufficient quality (see Rendall, Handcock, & Jonsson, 2009; Zhang & Bryant, 2019 for Bayesian fertility estimation with imperfect census data). 
+
+- To predict the effect of COVID-19 on US fertility in the absence of vital statistics, Wilde, Chen, & Lohmann (2020) use Google data to. 
+
+- investigation of the possible long-term impacts of delayed motherhood in high-income countries, alongside developments in assisted reproduction technology such as egg freezing, is required (see, for example, Sobotka & Beaujouan, 2018).
+
+- Bayesian hierarchical models is useful for forecasting data structured by age (Raymer & Wiśniowski, 2018). In some cases, the methods additionally involve selection and combining forecasts through Bayesian model selection and averaging (Bijak, 2010 see also §2.5 and §2.6). Such models can be expected to produce reasonable forecasts (and errors) for up to a decade ahead (Bijak & Wiśniowski, 2010), although this depends on the migration flows being forecast, with some processes (e.g., family migration) more predictable than other (e.g., asylum). Another recognised problem with models using covariates is that those can be endogenous to migration (e.g., population) and also need predicting, which necessitates applying structured models to prevent uncertainty from exploding.
+
+- The methodological gaps and current work in migration forecasting concentrate in a few key areas, notably including causal (mechanistic) forecasting based on the process of migrant decision making (Willekens, 2018); as well as early warnings and ‘nowcasting’ of rapidly changing trends, for example in asylum migration (Napierała, Hilton, Forster, Carammia, & Bijak, 2021). In the context of early warnings, forays into data-driven methods for changepoint detection, possibly coupled with the digital trace and other high-frequency ‘Big data’, bear particular promise. At the same time, coherent uncertainty description across a range of time horizons, especially in the long range (Azose & Raftery, 2015), remains a challenge, which needs addressing for the sake of proper calibration of errors in the population forecasts, to which these migration components contribute.
+
+## time-series extrapolation
+time-series extrapolation approach has the advantage of obtaining a forecast probability distribution rather than a deterministic point forecast and, also, enable the determination of forecast intervals
+
+## Models for population processes
+
 Over the past two centuries, formal demography has established its own, discipline-specific body of methods for predicting (or projecting15) populations. Population sciences, since their 17th century beginnings, have been traditionally very empirically focused, with strong links with probability theory (Courgeau, 2012). Given the observed regularities in population dynamics, and that populations are somewhat better predictable than many other socio-economic processes, with reasonable horizons possibly up to one generation ahead (Keyfitz, 1972, 1981), demographic forecasts have become a bestselling product of the discipline (Xie, 2000). Since the 20th century, methodological developments in human demography have been augmented by the work carried out in mathematical biology and population ecology (Caswell, 2019a).
 
 The theoretical strength of demography also lies almost exclusively in the formal mathematical description of population processes (Burch, 2018), typically growth functions and structural changes. Historically, such attempts started from formulating the logistic model of population dynamics, inspired by the Malthusian theory (Pearl & Reed, 1920; Verhulst, 1845). Lotka (1907)’s work laid the foundations of the stable population theory with asymptotic stability under constant vital rates, subsequently extended to modelling of interacting populations by using differential equations (Lotka, 1925; V Volterra, 1926). By the middle of the 20th century, the potential and limitations of demographic forecasting methods were already well recognised in the literature (Brass, 1974; Hajnal, 1955).
@@ -913,4 +944,19 @@ A general framework for ensemble forecasting methods involves four main stages: 
 
 The bagging can handle all of three sources of uncertainty: model form, data, and parameter, Petropoulos et al. (2018a) showed that simply tackling model uncertainty is enough for achieving a superior performance, leading to the proposal of a Bootstrap Model Combination (BMC) approach, where different model forms are identified in the ensemble and fitted to the original data.
 
+## ##################################################################### ##
+## Clustering-based forecasting
+The robustness of the forecasting process depends mainly on the characteristics of the target variable. In cases of high nonlinear and volatile time series, a forecasting model may not be able to fully capture and simulate the special characteristics, a fact that may lead to poor forecasting accuracy (Pradeepkumar & Ravi, 2017). Contemporary research has proposed some approaches to increase the forecasting performance (Sardinha-Lourenço, Andrade-Campos, Antunes, & Oliveira, 2018). Clustering-based forecasting refers to the application of unsupervised machine learning in forecasting tasks. The scope is to increase the performance by employing the information of data structure and of the existing similarities among the data entriee.
+
+### Pattern Sequence Based Forecasting (PSF)
+
+It takes univariate time series data as input and assist to forecast its future values. This algorithm forecasts the behavior of time series based on similarity of pattern sequences. Initially, clustering is done with the labeling of samples from database. The labels associated with samples are then used for forecasting the future behaviour of time series data.
+
+The Algorithm Pattern Sequence based Forecasting (PSF) was first proposed by Martinez Alvarez, et al., 2008 and then modified and suggested improvement by Martinez Alvarez, et al., 2011. The technical detailes are mentioned in referenced articles. PSF algorithm consists of various statistical operations like:
+
+Data Normalization/ Denormalization
+Calculation of optimum Window size (W)
+Calculation of optimum cluster size (k)
+Pattern Sequence based Forecasting
+RMSE/MAE Calculation, etc..
 ## ##################################################################### ##
