@@ -1464,6 +1464,14 @@ During the current COVID-19 pandemic, several attempts have been made to anticip
 
 *ref: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7817405/
 
+
+
+### ################################################## ###
+
+**Age-specific**
+- **People age 65 and older and babies younger than 6 months have a higher than average risk of serious COVID-19 illness.
+
+
 ### ################################################## ###
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
@@ -1473,11 +1481,12 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
 
 ### Question: 
 - what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
-- convert those into donor forecasts for 2024 and 25 and then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
+- convert those into donor forecasts for 2024 and 25 and then basically use the control assumptions to look at what that then means in terms of remaining customers, etc.
 
 * ref: LPA MODEL / Predicted - LPA Control Assumption Tab
 
 ### Calculation:
+- calculate the impact of event uncertainty in short-term forecast and apply the un
 
 **To apply uncertainty on avaerage daily demands and using Naïve extrapolation for future pandemic demands based on COVID-19 data age-specific reflect the uncertainty around the receipts forecast for next year update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast model.**
 
