@@ -437,8 +437,7 @@ Remember that while Bayesian multiple imputation is a powerful tool, understandi
 # LSTM
 **How to use LSTM method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?**
 
-*Using the LSTM (Long Short-Term Memory) method for forecasting LPA demands can be particularly effective for capturing complex patterns and dealing with uncertainties, 
-such as those introduced during the COVID-period. 
+*Using the LSTM (Long Short-Term Memory) method for forecasting LPA demands can be particularly effective for capturing complex patterns and dealing with uncertainties, such as those introduced during the COVID-period. 
 
 **Applying LSTM for both short-term and long-term forecasting:
 
@@ -868,7 +867,23 @@ The typical approach is to imagine some probability distribution of error around
     - Guiding forecast adjustment: 
         It is quite common for statistical forecasts to be revised by some sort of collaborative process. These adjustments are based on information not recorded in an item’s demand history, such as intelligence about competitor actions. Sometimes they are based on a more vaporous source, such as sales force optimism. When the adjustments are made on-screen for all to see, the prediction intervals provide a useful reference: If someone wants to move the forecasts outside the prediction intervals, they are crossing a fact-based line and should have a good story to justify their argument that things will be really different in the future.
 
+### Formula for Prediction Intervals
+https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
+
+#### Method 1: RMSFE
+The first method that we can use is called RMSFE(root mean squared forecasting error). RMSFE is very similar to RMSE. The only difference is that RMSFE has to be calculated on residual terms from predictions on unseen data (ie. Validation or Test set).
+
+It’s important to note that we can only use this method if we assume that the residuals of our validation predictions are normally distributed. To see if this is the case, we will use a PP-plot and test its normality with the Anderson-Darling, Kolmogorov-Smirnov, and D’Agostino K-squared tests.
+
+The PP-plot(Probability-to-Probability) plots the data sample against the normal distribution plot in such a way that if normally distributed, the data points will form a straight line.
+
+The three normality tests determine how likely a data sample is from a normally distributed population using p-values. The null hypothesis for each test is that “the sample came from a normally distributed population”. This means that if the resulting p-values are below a chosen alpha value, then the null hypothesis is rejected. Thus there is evidence to suggest that the data comes from a non-normal distribution. For this article, we will use an Alpha value of 0.01.
+
 ### Prediction Intervals and Inventory Optimisation
+
+
+
+
 
 #### Python code:
 *ref: https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
