@@ -1209,7 +1209,7 @@ DIVIDED BY (the total SUM of 'Population Forecast Model Input' (age specific for
 * NOTE: The dependencies tables: 
 
 ## Assumed Potential Maximum Market
-For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine theerfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current  maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
+For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine therfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
 
 * ref: LPA MODEL / Assumed Potential Maximum Market
 
@@ -1425,12 +1425,9 @@ If the applications are for male = 1 then MALE: ESTIMATED AGE SPECIFIC SURVIVAL 
 #### For information on registration delays for a range of causes, see: 
     https://webarchive.nationalarchives.gov.uk/ukgwa/20160106020016/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/impact-of-registration-delays-on-mortality-statistics/index.html
 
-A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates 
-for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
-surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
+A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
 
-For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
-a standard log power law that best fits existing mortality rates to age. 
+For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on a standard log power law that best fits existing mortality rates to age. 
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
@@ -1476,7 +1473,7 @@ During the current COVID-19 pandemic, several attempts have been made to anticip
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
+- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over the last couple of years.
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 
@@ -1489,6 +1486,9 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
 - calculate the impact of event uncertainty in short-term forecast and apply the un
 
 - To calculate uncertainty, used the result of the STDEV.P function in a formula that divides the standard deviation by the mean of the data. This will give you the percentage of uncertainty associated with the data.
+Coefficient of Variation is the standardized standard deviation. We calculate the standard deviation, but then scale it with the mean of the series to guard against scale dependency.
+This shows the variability of a time series. If COV^2 is high, that means that the variability in the series is also high.
+covid_cov = covid_std_dev_demand / covid_mean_demand
 
 https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
 
@@ -1595,7 +1595,28 @@ In terms of how to apply all of this to the long term LPA model:
 https://deep-and-shallow.com/2020/10/07/forecast-error-measures-intermittent-demand/
 
 
+## To measure and calculate the impact of COVID-19 on short-term demand forecasting and apply this uncertainty to long-term forecasting, you can follow these steps:
 
+1. Data Collection and Analysis
+Historical Data: Gather historical data on the number of Living Power of Attorney (LPA) registrations across different age groups.
+COVID-19 Impact Data: Collect data on how COVID-19 affected LPA registrations. This could include changes in registration rates during the pandemic.
+2. Short-Term Forecasting
+Model Selection: Use models like ARIMA (AutoRegressive Integrated Moving Average), exponential smoothing, or machine learning models to forecast short-term demand. These models can incorporate recent trends and seasonality.
+Incorporate COVID-19 Variables: Include variables that capture the impact of COVID-19, such as lockdown periods, infection rates, and economic indicators.
+3. Quantifying Uncertainty
+Scenario Analysis: Develop different scenarios (e.g., optimistic, pessimistic, and most likely) to understand the range of possible outcomes.
+Confidence Intervals: Calculate confidence intervals for your forecasts to quantify the uncertainty.
+4. Long-Term Forecasting
+Baseline Forecast: Create a baseline long-term forecast using historical data and trends.
+Adjust for COVID-19 Impact: Adjust the baseline forecast by incorporating the uncertainty from the short-term forecasts. This can be done by applying a proportionate adjustment based on the observed impact during the pandemic2.
+5. Age Group Analysis
+Segmented Forecasting: Perform separate forecasts for different age groups to account for varying behaviors and impacts.
+Demographic Trends: Consider demographic trends and how they might influence future LPA registrations.
+6. Validation and Adjustment
+Model Validation: Validate your models using out-of-sample data to ensure accuracy.
+Continuous Monitoring: Continuously monitor actual registrations against forecasts and adjust models as needed.
+Example Application
+For instance, if you observed a 20% increase in LPA registrations during the pandemic for a specific age group, you might apply a similar adjustment to your long-term forecast for that age group, while considering other factors like economic recovery and changes in public awareness.
 
 ## ######################################## ##
 ListBox53_Change Macro:
