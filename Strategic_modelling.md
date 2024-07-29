@@ -472,7 +472,7 @@ Regularly update your model with new data to capture the latest trends and impro
 
 - Interpretation: 
 - Interpret the model’s outputs carefully, considering the confidence intervals or prediction intervals to understand the range of possible future scenarios.
-- **LSTM models are powerful because they can capture long-term dependencies and are capable of learning patterns in time series data, which is essential when dealing with the irregularities and uncertainties of the COVID-period123. 
+- **LSTM models are powerful because they can capture long-term dependencies and are capable of learning patterns in time series data, which is essential when dealing with the irregularities and uncertainties of the COVID-period. 
 - To monitor the performance of your LSTM model and be prepared to adjust the architecture or retrain the model as more data becomes available or as the situation evolves.
 
 **How to choose the right architecture for my LSTM model?
@@ -549,24 +549,24 @@ Choosing the right smoothing factor (α) for exponential smoothing is crucial as
 
 ##### Understand the Range: 
 The smoothing factor α ranges from 0 to 1. A value close to 1 gives more weight to recent observations, making the forecast more responsive to changes. 
-Conversely, a value close to 0 makes the forecast more stable and less sensitive to recent fluctuations1.
+Conversely, a value close to 0 makes the forecast more stable and less sensitive to recent fluctuations.
 
 ##### Historical Data Analysis: Look at your historical data. If the data shows that recent trends are a good predictor of future values, 
 consider a higher α. If the data is more random or if older values are also important, consider a lower α2.
 
 ##### Error Measurement: 
 Use error metrics such as Mean Squared Error (MSE) to evaluate the accuracy of forecasts with different α values. 
-The α that minimizes the error is typically the best choice3.
+The α that minimizes the error is typically the best choice.
 
 ##### Trial and Error: 
-Start with a value of α, such as 0.5, and adjust it incrementally. Observe how these adjustments affect the forecast accuracy and adjust accordingly4.
+Start with a value of α, such as 0.5, and adjust it incrementally. Observe how these adjustments affect the forecast accuracy and adjust accordingly.
 
 ##### Model Validation: 
-Validate your chosen α by comparing the model’s forecasts against actual outcomes. Adjust the α if the model’s performance can be improved1.
+Validate your chosen α by comparing the model’s forecasts against actual outcomes. Adjust the α if the model’s performance can be improved.
 
 ##### Consider External Factors: 
 If your model needs to respond quickly to external shocks, such as those caused by the COVID-period, a higher α might be necessary. 
-However, be cautious as a high α can also make the model react to random noise2.
+However, be cautious as a high α can also make the model react to random noise.
 
 ##### Use Optimization Techniques: 
 Some software packages can automatically optimize α based on historical data. 
@@ -973,5 +973,5 @@ Data Normalization/ Denormalization
 Calculation of optimum Window size (W)
 Calculation of optimum cluster size (k)
 Pattern Sequence based Forecasting
-RMSE/MAE Calculation, etc..
+RMSE/MAE Calculation, etc.
 ## ##################################################################### ##
