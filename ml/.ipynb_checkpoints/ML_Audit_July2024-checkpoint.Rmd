@@ -1,0 +1,868 @@
+---
+title: "R Notebook for ML Audit"
+author: Martin Shepperd
+date: 22/07/2024
+output: 
+  pdf_document: default
+  html_notebook: default
+---
+
+# An audit of machine learning experiments on software defect prediction
+
+
+## Overview
+
+This Notebook contains the R code to clean and analyse the audit data as part of our intended submission to IST.  
+
+ML_Audit_20240722.csv is the most recent raw data file.  
+
+## Initialisation
+
+
+```{r, message=FALSE, warning=FALSE}
+# Load required libraries
+library(binom)         # To compute the exact binomial CI for TotProbs (count data)
+library(boot)          # For bootstrapping the CIs
+library(car)           # Check multicollinearity
+library(effsize)       # Effect sizes
+library(esc)           # More effect sizes
+library(glmnet)        # For ridge, lasso and elastic net regression
+library(Hmisc)         # Useful robust stats and imputation
+library(janitor)       # Cleaning incl var names from the imported csv
+library(lubridate)     # Dates
+library(MASS)          # For stepwise regression and VIF checking
+library(scales)        # To provide better labels and ticks for scatterplots
+library(skimr)         # For descriptive stats
+library(stringr)       # For string handling/pattern matching
+library(tidyverse)     # ggplot2 etc etc
+```
+
+```{r}
+# Some constants for visualisations etc
+PlotAlpha <- 0.7       # Fill transparency for boxplots, violinplots, etc
+CIlineWidth <- 0.6     # Thickness of plots showing confidence interval lines
+
+# Set a seed for reproducibility
+set.seed(123)
+```
+
+Declare cleaning functions
+
+```{r}
+cleanYNandNA <- function(cv)
+# Function for character vector cv
+# to convert diff cases, 0 and 1, etc to Y and N
+{
+  # If empty replace with NA
+  na_if(cv, "")
+  # Convert everything to uppercase
+  cv <- toupper(cv)
+  
+  # Check for variants of Y and N
+  cv[cv=="YES"] <- "Y"
+  cv[cv=="NO"] <- "N"
+  cv[cv=="1"] <- "Y"
+  cv[cv=="0"] <- "N" 
+  
+  # Check for variants of NA
+  cv[cv=="N/A"] <- NA
+  
+  return(cv)      
+}
+
+cleanQmark2NA <- function(cv)
+# Find question marks and replace with NA
+{
+  if (class(cv)=="character") {na_if(cv, "?")}
+  return(cv)
+}
+```
+
+Declare median CI and bootstrap functions (to show on some plots)
+```{r}
+# Function to calculate median confidence intervals
+median_ci <- function(x, conf = 0.95) {
+  n <- length(x)
+  m <- median(x)
+  stderr <- sd(x) / sqrt(n)
+  error <- qnorm((1 + conf) / 2) * stderr
+  return(c(m - error, m + error))
+}
+
+# Function to calculate bootstrapped confidence intervals
+bootstrap_ci <- function(data, n_bootstrap = 1000, conf_level = 0.95) {
+    boot_obj <- boot(data, statistic = median_function, R = n_bootstrap)
+    ci <- boot.ci(boot_obj, type = "perc", conf = conf_level)
+    return(ci)
+   # return(ci$percent[4:5])  # Return lower and upper percentiles
+}
+
+```
+
+Performance metric analysis for different regression models eg stepwise, ridge and elastic net.
+```{r}
+# Calculate performance metrics for non-traditional regression methods
+calculate_metrics <- function(actual, predicted) {
+  mse <- mean((actual - predicted)^2)
+  rmse <- sqrt(mse)
+  mae <- mean(abs(actual - predicted))
+  list(MSE = mse, RMSE = rmse, MAE = mae) 
+}  
+```
+
+
+## Fetch and clean the data
+
+Fetch the data as a csv file.  Presently, ML_Audit_2024072.csv is the most recent file.
+
+```{r}
+# Read audit data to a dataframe
+auditDF <- read.csv(file.choose(),header = T)
+
+# Tidy names - all to lower camelcase
+auditDF %>% clean_names(case="lower_camel")
+```
+
+
+### Get rid of redundant or non-varying variables
+
+```{r}
+# These variables either don't vary or are not needed for our analysis
+drops <- c("ReviewStage","Completed","EmptyCells","Link","Available","Predatory")
+auditDF <- auditDF[ , !(names(auditDF) %in% drops)]
+```
+
+
+### Check for missing values, clean Ys and Ns, etc
+
+```{r}
+# Check for NAs by all variables
+colSums(is.na(auditDF))
+
+# Clean vars
+auditDF$Location <- cleanYNandNA(auditDF$Location)
+auditDF$Spread <- cleanYNandNA(auditDF$Spread)
+auditDF$RandomBenchmark <- cleanYNandNA(auditDF$RandomBenchmark)
+auditDF$StatInference <- cleanYNandNA(auditDF$StatInference)
+
+auditDF$ImbalancedMethod <- cleanYNandNA(auditDF$ImbalancedMethod)
+auditDF$AdjustSig <- cleanYNandNA(auditDF$AdjustSig)
+auditDF$CrossValidation <- cleanYNandNA(auditDF$CrossValidation)
+
+auditDF$DataLink <- cleanYNandNA(auditDF$DataLink)
+auditDF$CodeLink <- cleanYNandNA(auditDF$CodeLink)
+auditDF$BrokenLink <- cleanYNandNA(auditDF$BrokenLink)
+
+# Clean TestsCt to deal with ? BUT need in long run to get Checkers to add actual figures
+auditDF$TestsCt <- as.integer(cleanQmark2NA(auditDF$TestsCt))
+
+# Conditionally edit TestsCt to make sure is NA if no stat inference 
+sum(auditDF$StatInference == "N" & ! is.na(auditDF$TestsCt))
+auditDF <- within(auditDF, TestsCt[StatInference == 'N' & ! is.na(TestsCt)] <- NA)
+
+# Likewise AdjustSig
+sum(auditDF$StatInference == "N" & ! is.na(auditDF$AdjustSig))
+auditDF <- within(auditDF, AdjustSig[StatInference == 'N' & ! is.na(AdjustSig)] <- NA)
+
+#AUC or MCC implies a RandomBenchmark
+paste("There are",sum(auditDF$RandomBenchmark == "N" & auditDF$MCC>0),"violations of MCC used and RandomBenchmark=F")
+paste("There are",sum(auditDF$RandomBenchmark == "N" & auditDF$AUC>0),"violations of AUC used and RandomBenchmark=F")
+auditDF <- within(auditDF, {RandomBenchmark[RandomBenchmark == 'N' & MCC>0] <- 'Y'})
+auditDF <- within(auditDF, {RandomBenchmark[RandomBenchmark == 'N' & AUC>0] <- 'Y'})
+
+# Clean m and n
+# Turn ? into NA and the variables into integers
+auditDF$m <- as.integer(cleanQmark2NA(auditDF$m))
+auditDF$n <- as.integer(cleanQmark2NA(auditDF$n))
+
+# Clean Reproducibility answers that have ?s
+auditDF$RawAvailability <- as.integer(cleanQmark2NA(auditDF$RawAvailability))
+auditDF$ExtractionAvailability <- as.integer(cleanQmark2NA(auditDF$ExtractionAvailability))
+auditDF$ExtractionPersistence <-
+  as.integer(cleanQmark2NA(auditDF$ExtractionPersistence))
+auditDF$ExtractionFlexibility <- 
+  as.integer(cleanQmark2NA(auditDF$ExtractionFlexibility))
+
+# Clean and normalise total reproducibility score
+auditDF$TotalRepro <- auditDF$TotalRepro/27
+
+```
+
+```{r}
+# make factors
+auditDF$Checker <- as.factor(auditDF$Checker)
+auditDF$PredictionType <- as.factor(auditDF$PredictionType)
+# Make year a factor (but convert back for normalised citation analysis)
+auditDF$Year <- as.factor(auditDF$Year)
+
+auditDF$OpenAccess <- as.factor(auditDF$OpenAccess)
+auditDF$DocumentType <- as.factor(auditDF$DocumentType)
+auditDF$Tortured <- as.factor(auditDF$Tortured)
+auditDF$Location <- as.factor(auditDF$Location)
+auditDF$Spread <- as.factor(auditDF$Spread)
+auditDF$RandomBenchmark <-as.factor(auditDF$RandomBenchmark)
+auditDF$StatInference <- as.factor(auditDF$StatInference)
+auditDF$ImbalancedMethod <- as.factor(auditDF$ImbalancedMethod)
+auditDF$AdjustSig <- as.factor(auditDF$AdjustSig)
+auditDF$CrossValidation <- as.factor(auditDF$CrossValidation)
+auditDF$DataLink <- as.factor(auditDF$DataLink)
+auditDF$CodeLink <- as.factor(auditDF$CodeLink)
+auditDF$BrokenLink <- as.factor(auditDF$BrokenLink)
+
+# Structure of cleaned data frame
+glimpse(auditDF)
+```
+## Analysis
+
+### Descriptives and univariate analysis
+
+```{r}
+# Use describe from Hmisc and skim from skimr
+# Store output as there's rather a lot!
+sink(file = "describe_auditDF_output.txt")
+describe(auditDF)
+sink(file = NULL)
+sink(file = "skim_auditDF_output.txt")
+skim(auditDF)
+sink(file = NULL)
+```
+
+#### Some biliographic data
+
+Describing the papers:
+
+```{r}
+# How many journals?
+table(auditDF$DocumentType)
+
+# How many distinct sources (journals or conferences?
+unique(auditDF$SourceTitle)
+
+# How long in pages?
+summary(auditDF$PageCt)
+# Do a paper length histogram
+ggplot(auditDF, aes(x=PageCt)) + 
+  geom_histogram(aes(y=after_stat(density)), binwidth=4, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+  geom_density(alpha=.2, fill="blue") +
+  labs(x="Distribution of paper page count")
+ggsave("PageHist.png")
+```
+
+What about Open Publishing?
+
+```{r}
+# Counts for types of Open Access
+table(auditDF$OpenAccess)
+```
+And citation counts
+
+```{r}
+skim(auditDF$CitedBy)
+
+# Do a citation count histogram
+ggplot(auditDF, aes(x=CitedBy)) + 
+  geom_histogram(aes(y=..density..), binwidth=5, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+  geom_density(alpha=.2, fill="blue") +
+  labs(x="Paper citation count", y="Density")
+ggsave("CiteHist.png")
+
+# Violinplot of citation count
+ggplot(auditDF, aes(x="", y=CitedBy)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=FALSE) +
+  labs(y="Citations per Paper", x="") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()) +
+  coord_cartesian(xlim = c(0.5, 1.5))  # Adjust the x-axis limits to control the width
+ggsave("CiteViolin.png")
+
+# Side by side boxplots by year
+ggplot(auditDF, aes(x=Year, y=CitedBy)) +
+  geom_boxplot(notch = FALSE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Citation Count")
+ggsave("CiteBoxplots.png")
+
+# Correlation between Citations and Reproducibility
+cor(auditDF$CitedBy,auditDF$TotalRepro, method = "spearman")
+```
+
+And self citation counts ...
+
+```{r}
+# Summary stats for self-cited
+summary(auditDF$SelfCited)
+
+# Distribution of self citation counts 
+ggplot(auditDF, aes(x=SelfCited)) + 
+  geom_histogram(aes(y=..density..), binwidth=2, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+  geom_density(alpha=.2, fill="blue") +
+  labs(x="Paper self-citation counts", y="Density")
+ggsave("SelfCitedHist.png")
+
+# Violinplot of self citation count
+ggplot(auditDF, aes(x="", y=SelfCited)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=FALSE) +
+  labs(y="Self-citations per Paper", x="") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()) +
+  coord_cartesian(xlim = c(0.5, 1.5)) +  # Adjust the x-axis limits to control the width
+  scale_y_continuous(breaks = seq(0, max(auditDF$SelfCited), by = 2))
+ggsave("SelfCitedViolin.png")
+
+```
+
+And adjust for years since publication (with and without self-citations).
+
+```{r}
+# Convert Year to numeric
+auditDF$Year <- as.numeric(as.character(auditDF$Year))
+current_year <- 2023    # Current year for reference
+
+# (i) Normalize CitedBy by years since published
+auditDF$CitedByYear <- with(auditDF, CitedBy / (current_year - Year + 1))
+
+# (ii) Subtract SelfCited from CitedBy and normalize
+auditDF$NonSelfCitedByYear <- with(auditDF, (CitedBy - SelfCited) / (current_year - Year + 1))
+
+# Convert back again
+auditDF$Year <- as.factor(as.character(auditDF$Year))
+
+# Correlation between Citation Rates and Reproducibility
+print("Spearman regression for cites, cites/yr, cites-self_cites/yr vs reproducibility")
+cor(auditDF$CitedBy,auditDF$TotalRepro, method = "spearman")
+cor(auditDF$CitedByYear, auditDF$TotalRepro, method = "spearman")
+cor(auditDF$NonSelfCitedByYear, auditDF$TotalRepro, method = "spearman")
+```
+They all seem fairly weak relationships and I lose confidence when normalising by year makes almost no difference.
+
+And visualise the normalised variables.
+
+```{r}
+summary(auditDF$CitedByYear)
+summary(auditDF$NonSelfCitedByYear)
+
+# Distribution of normalised by year citation counts 
+ggplot(auditDF, aes(x=CitedByYear)) + 
+  geom_histogram(aes(y=..density..), binwidth=2, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+  geom_density(alpha=.2, fill="blue") +
+  labs(x="Normalised citation counts", y="Density")
+ggsave("CitesNormalisedHist.png")
+
+# Violinplot of normalised by year citation count
+ggplot(auditDF, aes(x="", y=CitedByYear)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=FALSE) +
+  labs(y="Normalised citation counts", x="") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()) +
+  coord_cartesian(xlim = c(0.5, 1.5)) +  # Adjust the x-axis limits to control the width
+  scale_y_continuous(breaks = seq(0, max(auditDF$CitedByYear), by = 5))
+ggsave("CitesNormalisedViolin.png")
+
+# Could add non-self citation plots 
+# but seems no real point :-(
+```
+
+
+### Experimental Design
+
+```{r}
+# Look at Dataset and Classifier counts
+
+paste("Dataset count: "); round(summary(auditDF$DatasetsCt))
+paste("Learners count: "); round(summary(auditDF$LearnersCt))
+paste("Metrics count: "); round(summary(auditDF$MetricsCt))
+```
+
+More experimental design details ...
+
+```{r}
+# How many studies use some imbalanced data preprocessing?
+summary(auditDF$ImbalancedMethod)
+
+# cross-validation
+summary(auditDF$CrossValidation)
+```
+For ImbalancedMethod NAs arise when the paper is looking at regression rather than classification.
+
+For CV we have 7=?, 24=N, 66=Y and 4= NAs.  The NAs arise when essentially the style of algorithm or experiment means the test and training divide is fixed e.g., time order as in JIT prediction.  The ?s arise when the checker is unable to determine whether a cross-validation strategy has been used and indicates problems with the experiment reporting.  
+
+```{r}
+# For classic CV what size are the folds and how many repetitions?
+summary(auditDF$m)
+summary(auditDF$n)
+
+# Frequency of different fold sizes and repetitions
+table(as.factor(auditDF$m))
+table(as.factor(auditDF$n))
+```
+Next what accuracy metrics?
+
+```{r}
+# Check frequency of metric use
+noquote(paste("F1",sum(auditDF$F1)))
+noquote(paste("MCC",sum(auditDF$MCC)))
+noquote(paste("AUC",sum(auditDF$AUC)))
+noquote(paste("Accuracy",sum(auditDF$Accuracy)))
+noquote(paste("Precision",sum(auditDF$Precision)))
+noquote(paste("Recall",sum(auditDF$Recall)))
+noquote(paste("Specificity",sum(auditDF$Specificity)))
+noquote(paste("Other",sum(auditDF$Other)))
+```
+
+```{r}
+# Check for chance corrected metrics ie AUC or MCC
+sum(auditDF$AUC > 0 | auditDF$MCC> 0)
+```
+
+Reporting multiple results e.g., from folds or bootstraps
+
+```{r}
+# Reporting location and spread
+table(auditDF$Location,auditDF$Spread, useNA = "ifany")
+
+contingency_table <- table(auditDF$Location, auditDF$Spread, useNA = "ifany")
+
+# Print the table using ftable for better formatting
+ftable(contingency_table)
+```
+
+How widespread is the use of statistical inference?  And how many tests?
+
+```{r}
+table(auditDF$StatInference)
+table(auditDF$StatInference,auditDF$AdjustSig)
+
+# How many stat tests
+skim(auditDF$TestsCt)
+```
+
+```{r}
+#How many tests?
+summary(auditDF$TestsCt)
+```
+
+### Experiment Reproducibility
+
+```{r}
+round(summary(auditDF$TotalRepro),2)
+
+# Do a reproducibility histogram
+ggplot(auditDF, aes(x=TotalRepro)) + 
+  geom_histogram(aes(y=..density..), binwidth = 0.1, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+   geom_density(alpha=.2, fill="blue") +
+  labs(x="Paper reproducibility scores")
+ggsave("ReproHist.png")
+```
+
+```{r}
+# Split the papers into tertiles by TotalRepro
+# As suggested by Gelman and Park (2009) amongst others
+auditDF$ReproLevel <- cut(auditDF$TotalRepro,
+                          breaks=quantile(auditDF$TotalRepro, 
+                                            probs=seq(0, 1, by=1/3), na.rm=TRUE),
+                          include.lowest=TRUE,
+                          labels=c("T1", "T2", "T3"))
+
+# Convert ReproLevel to a factor
+auditDF$ReproLevel <- as.factor(auditDF$ReproLevel)
+```
+
+
+#### Modelling Reproducibility
+
+```{r}
+# And jumping ahead there's a relationship between length and reproducibility
+cor(auditDF$PageCt,auditDF$TotalRepro, use = "complete.obs")
+# And to be safe here's the Spearman correlation
+cor(auditDF$PageCt,auditDF$TotalRepro, use = "complete.obs", method = "spearman")
+
+# Scatterplot
+ggplot(auditDF, aes(x=PageCt, y=TotalRepro)) + 
+  geom_point(size=1.5, shape=23) +
+  labs(y="Reproducibility Score", x="Page Count") +
+  geom_smooth() +
+  geom_hline(aes(yintercept = median(TotalRepro)), color="orange", linetype="twodash") +
+  geom_vline(aes(xintercept = median(PageCt, na.rm=TRUE)), color="orange", linetype="twodash")
+ggsave("PageReproScatter.png")
+```
+
+What about differences between conference and journal papers?
+
+```{r}
+# Side by side boxplots by journal/conf
+ggplot(auditDF, aes(x=DocumentType, y=TotalRepro)) +
+  geom_boxplot(notch = TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Reproducibility Score")
+ggsave("DocTypeBoxplots.png")
+```
+
+Are open access papers more reproducible?
+
+```{r}
+# Side by side boxplots by open access type
+ggplot(auditDF, aes(x=OpenAccess, y=TotalRepro)) +
+  geom_boxplot(notch = TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Reproducibility Score", x="Open Access Type")
+ggsave("OpenAccessBoxplots.png")
+
+# Side by side boxplots by year
+ggplot(auditDF, aes(x=Year, y=TotalRepro)) +
+  geom_boxplot(notch = FALSE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Reproducibility Score", x="Publication Year")
+ggsave("YearReproducibilityBoxplots.png")
+
+```
+#### Open science
+
+```{r}
+# Accessible data
+table(auditDF$DataLink)
+
+# Accessible code
+table(auditDF$CodeLink)
+
+# Broken links
+table(auditDF$BrokenLink)
+table(auditDF$Year,auditDF$BrokenLink)
+```
+
+#### Open science and reproducibility
+
+```{r}
+# A not v surprising connection between open code and reproducibility
+table(auditDF$ReproLevel, auditDF$CodeLink)
+
+# Publication type and tertile
+table(auditDF$ReproLevel,auditDF$DocumentType)
+```
+
+
+
+### Experimental errors and distributions
+
+Cross validation (usually)    
+Benchmarks and better than random  
+Not using debunked metrics   
+Multiple statistical tests without correction  
+Spread as well centre  
+Low reproducibility
+No link to data
+No link to code
+Behind a 'paywall'
+
+```{r}
+# How many paper errors?  
+
+# Look at the the frequencies and distributions of errors
+auditDF$CVprob <- with(auditDF, ifelse(CrossValidation %in% c("N","?"), 1, 0)) 
+pr1 <- sum(auditDF$CVprob, na.rm = TRUE)
+paste0("CV probs: ", pr1)
+
+auditDF$Randprob <- with(auditDF, ifelse((AUC + MCC < 1), 1, 0)) 
+pr2 <- sum(auditDF$Randprob, na.rm = TRUE)
+paste0("No random: ", pr2)
+
+auditDF$BadMprob <- with(auditDF, ifelse((F1 + Accuracy > 0), 1, 0)) 
+pr3 <- sum(auditDF$BadMprob, na.rm = TRUE)
+paste0("Bad metrics: ", pr3)
+
+auditDF$AdjustProb <- with(auditDF, ifelse((AdjustSig=="N"), 1, 0))
+pr4 <- sum(auditDF$AdjustProb, na.rm = TRUE)
+paste0("No correction: ", pr4)
+
+auditDF$NoVarProb <- with(auditDF, ifelse((Spread=="N"), 1, 0))
+pr5 <- sum(auditDF$NoVarProb, na.rm = TRUE)
+paste0("No spread: ", pr5)
+
+auditDF$LowReproProb <- with(auditDF, ifelse(TotalRepro<0.5, 1, 0))
+pr6 <- sum(auditDF$LowReproProb, na.rm = TRUE)
+paste0("Low repro: ", pr6)
+
+auditDF$NotOpenPubProb <- with(auditDF, ifelse(OpenAccess=="Green-No" | auditDF$OpenAccess=="No",1,0))
+pr7 <- sum(auditDF$NotOpenPubProb, na.rm = TRUE)
+paste0("Not open publishing: ", pr7)
+
+auditDF$NotOpenDataProb <- with(auditDF, ifelse(DataLink=="N",1,0))
+pr8 <- sum(auditDF$NotOpenDataProb, na.rm = TRUE)
+paste0("Not open data: ", pr8)
+
+auditDF$NotOpenCodeProb <- with(auditDF, ifelse(CodeLink=="N",1,0))
+pr9 <- sum(auditDF$NotOpenCodeProb, na.rm = TRUE)
+paste0("Not open code: ", pr9)
+
+# Compute problems per paper
+auditDF$TotProbs <- rowSums(cbind(auditDF$CVprob,auditDF$Randprob,
+                                  auditDF$BadMprob,auditDF$AdjustProb,
+                                  auditDF$NoVarProb,auditDF$LowReproProb,
+                                  auditDF$NotOpenPubProb, auditDF$NotOpenDataProb,
+                                  auditDF$NotOpenCodeProb), na.rm=TRUE)
+# Total number of problems
+OverallTotProbs <- pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9
+paste0("Overall total problems in audit: ", OverallTotProbs)
+
+# How many papers without any problems
+cat("How many papers without problems:",sum(auditDF$TotProbs < 1))    
+
+# Split into tertiles again (as per TotalRepro)
+auditDF$ProbLevel <- cut(auditDF$TotProbs,
+                          breaks=quantile(auditDF$TotProbs, 
+                                            probs=seq(0, 1, by=1/3), na.rm=TRUE),
+                          include.lowest=TRUE,
+                          labels=c("T1", "T2", "T3"))
+
+# Convert ReproLevel to a factor
+auditDF$ProbLevel <- as.factor(auditDF$ProbLevel)
+table(auditDF$ProbLevel)  # Count per tertile
+```
+NB The tertiles have different counts due to many ties.
+
+
+Visualise problem counts
+
+```{r}
+# Analyse distribution of total problems per paper
+summary(auditDF$TotProbs)
+
+# Show distribution
+ggplot(auditDF, aes(x=TotProbs)) + 
+  geom_histogram(aes(y=..density..), binwidth = 1, 
+                 colour="black", fill="grey", na.rm = TRUE) +
+  geom_density(alpha=.2, fill="blue") +
+  labs(x="Problems per Paper") +
+  scale_x_continuous(breaks = seq(0, 8, by=1))
+ggsave("ProbsHist.png")
+
+# Violinplot of problem count per paper
+ggplot(auditDF, aes(x="", y=TotProbs)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=FALSE) +
+  labs(y="Issues per paper", x="") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()) +
+  coord_cartesian(xlim = c(0.5, 1.5)) +  # Adjust the x-axis limits to control the width
+  scale_y_continuous(breaks = seq(0, max(auditDF$TotProbs), by = 2))  
+ggsave("ProbsViolin.png")
+
+```
+
+#### Modelling the incidence of experimental problems
+
+```{r}
+# Correlation with citations 
+cor(auditDF$TotProbs,auditDF$CitedBy, method = "spearman")
+cor(auditDF$TotProbs,auditDF$CitedByYear, method = "spearman")
+```
+
+```{r}
+# Visualise the relationship
+# Scatterplot of problems and citations
+ggplot(auditDF, aes(x=CitedByYear, y=TotProbs, color=DocumentType)) + 
+  geom_point(size=1.5, shape=23) +
+  labs(y="Total problem count", x="Citations per year") +
+  geom_smooth(aes(group = 1)) +
+  scale_y_continuous(breaks = breaks_pretty()                  
+)
+ggsave("CitesProbScatter.png")
+
+# Compare tertiles
+ggplot(auditDF, aes(x=ProbLevel, y=CitedByYear)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=TRUE) +
+  labs(y="Citations per year", x="Issues Tertile") +
+  theme(axis.ticks.x = element_blank()) +
+  scale_y_continuous(breaks = seq(0, max(auditDF$CitedByYear), by = 4))  
+ggsave("ProbTertileCiteViolin.png")
+```
+
+
+
+```{r} 
+# Side by side boxplots and violinplots by journal/conf
+ggplot(auditDF, aes(x=DocumentType, y=TotProbs)) +
+  geom_boxplot(notch=TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Problem count by paper")
+ggsave("ProbCtDocTypeBoxplots.png")
+
+# Visualise the confidence limits on the violin plot because the notches are close
+# Apply the median_ci function to each group and convert result table to matrix
+ci_result <- auditDF %>%
+  group_by(DocumentType) %>%
+  summarise(
+    median_ci_low = median_ci(TotProbs, conf = 0.95)[1],
+    median_ci_high = median_ci(TotProbs, conf = 0.95)[2]
+  )
+ci_matrix <- as.matrix(ci_result[, c("median_ci_low", "median_ci_high")])
+
+# Now to do the violin plot
+ggplot(auditDF, aes(x=DocumentType, y=TotProbs)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch=TRUE) +
+  labs(x="Publication Type", y="Total Issue Count per Paper") +
+  geom_hline(yintercept=ci_matrix[1,2], 
+             linetype="dashed", color="darkorange", size=CIlineWidth) +
+  geom_hline(yintercept=ci_matrix[1,1], 
+             linetype="dashed", color="darkorange", size=CIlineWidth) +
+  geom_hline(yintercept=ci_matrix[2,2], 
+             linetype="dotted", color="blue", size=CIlineWidth) +
+  geom_hline(yintercept=ci_matrix[2,1], 
+             linetype="dotted", color="blue", size=CIlineWidth)
+ggsave("ProbCtDocTypeVplots.png")
+```
+
+Now look at access type.
+
+```{r}
+# Side by side boxplots and violinplots by open access
+ggplot(auditDF, aes(x=OpenAccess, y=TotProbs)) +
+  geom_boxplot(notch = TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Issue count by paper")
+ggsave("ProbCtOABoxplots.png")
+
+ggplot(auditDF, aes(x=OpenAccess, y=TotProbs)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch = FALSE) +
+  labs(x="Access Category", y="Total Issue Count per Paper")
+ggsave("ProbCtOAVplots.png")
+
+# NB notches are hard to interpret and overlap
+# So try to collapse into 2 levels (Open=Y or N)
+auditDF <- auditDF %>%
+  mutate(Open = case_when(
+    OpenAccess %in% c("Gold", "Green") ~ "Y",
+    OpenAccess %in% c("Green-No", "No") ~ "N"
+  ))
+table(auditDF$Open)
+ggplot(auditDF, aes(x=Open, y=TotProbs)) +
+  geom_boxplot(notch = TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Issue count by paper")
+```
+
+
+#### Changes over time
+
+```{r}
+# Are we getting better?
+# Side by side boxplots and violin plots by year
+ggplot(auditDF, aes(x=Year, y=TotProbs)) +
+  geom_boxplot(notch=TRUE, fill="grey", alpha=PlotAlpha) +
+  labs(y="Problem count by paper")
+ggsave("ProbCtYearBoxplots.png")
+
+# Compute CIs to annotate the violin plots
+
+ggplot(auditDF, aes(x=Year, y=TotProbs)) + 
+  geom_violin(trim=TRUE, fill="grey", alpha=PlotAlpha) +
+  geom_boxplot(width=0.1, notch = FALSE) +
+  labs(x="Publication Year", y="Total Issue Count per Paper")
+ggsave("ProbCtYearVplots.png")
+
+# Compare other summary stats
+tapply(auditDF$TotProbs, auditDF$DocumentType, summary)
+```
+
+#### Relationship between reproducibility and problems
+
+```{r}
+# Scatterplot of reproducibility and problems
+ggplot(auditDF, aes(x=TotalRepro, y=TotProbs, color=Open)) + 
+  geom_point(size=1.5, shape=23) +
+  labs(y="Total problem count", x="Reproducibility score") +
+  geom_smooth(aes(group = 1)) +
+  scale_y_continuous(breaks = breaks_pretty()                  
+)
+ggsave("ReproProbOpenScatter.png")
+
+# Scatterplot of reproducibility and problems
+ggplot(auditDF, aes(x=TotalRepro, y=TotProbs, color=DocumentType)) + 
+  geom_point(size=1.5, shape=23) +
+  labs(y="Total problem count", x="Reproducibility score") +
+  geom_smooth(aes(group = 1)) +
+  scale_y_continuous(breaks = breaks_pretty()                  
+)
+ggsave("ReproProbDocTypeScatter.png")
+
+
+# Contingency table of reproducibility and problems tertiles
+table(auditDF$ReproLevel,auditDF$ProbLevel)
+```
+
+#### Cross correlations
+
+```{r}
+# Correlation with reproducibility
+#cor(auditDF$TotProbs,auditDF$TotalRepro, method = "spearman")
+
+selected_vars <- auditDF[, c("TotProbs", "TotalRepro", "PageCt", "CitedBy", "DatasetsCt", "LearnersCt")]
+
+# Compute the correlation matrix
+cor_matrix <- cor(selected_vars, use = "complete.obs")
+print(cor_matrix)
+
+# Optionally, visualize the correlation matrix using a heatmap
+
+# Melt the correlation matrix into a long format
+cor_matrix_melted <- melt(cor_matrix)
+cor_matrix_melted$value <- round(cor_matrix_melted$value, 2)
+
+# Create a heatmap
+ggplot(cor_matrix_melted, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  geom_text(aes(label = value), color = "black") +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0, limit = c(-1, 1), space = "Lab", 
+                       name = "Correlation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  labs(title = "Correlation Matrix Heatmap",
+       x = "Variables",
+       y = "Variables")
+```
+
+### Building a regression model
+
+As a very simple start build a linear model without interaction terms.
+
+```{r}
+# Set up target variable vector
+y <- auditDF$TotProbs
+
+# Create the initial model with all potential predictors and interaction terms
+initial_model <- lm(TotProbs ~ Open + DataLink + CodeLink + TotalRepro + DocumentType + PageCt + CitedBy, data = auditDF)
+
+summary(initial_model)
+plot(initial_model)
+
+# Perform stepwise regression
+stepwise_model <- stepAIC(initial_model, direction = "both", trace = FALSE)
+
+# Summary of the final model
+summary(stepwise_model)
+plot(stepwise_model)
+
+# Check for multicollinearity using the Variance Inflation Factor (VIF)
+vif(initial_model)
+vif(stepwise_model)
+
+# Performance metrics for each model
+initial_metrics <- calculate_metrics(y, predict(initial_model))
+stepwise_metrics <- calculate_metrics(y, predict(stepwise_model))
+
+# Plotting Actual vs. Predicted
+plot(y, predict(initial_model), main = "Initial Model", xlab = "Actual", ylab = "Predicted")
+abline(0, 1, col = "red")
+plot(y, predict(stepwise_model), main = "Stepwise Model", xlab = "Actual", ylab = "Predicted")
+abline(0, 1, col = "red")
+```
+
+A quick look at more sophisticated regression methods (ridge, lasso and elastic net) suggests no benefit, they're probably underfitting as a relatively small sample so CV may not work well plus little multicollinearity which would be the usual reason for deploying them.
