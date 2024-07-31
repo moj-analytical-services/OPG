@@ -9,7 +9,10 @@
 &nbsp;
 
 # Contents
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 * The instructions on how to do some potential model developments.
 
 * How to incorporate covid period demands and uncertainty around the data in long-term and short-term forecasting of demands (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) to provide accurate forecats for the LPA demands?
@@ -18,6 +21,16 @@
 
 * Which AI / Machine Learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
+<<<<<<< HEAD
+
+&nbsp;
+*Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; 
+forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
+
+&nbsp;
+# **Strategies for incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG:**
+
+=======
 * OPG strategy: 
 - Definition of supervision: The definition of supervision going forward will therefore be the ongoing monitoring and tailored oversight that the OPG provides to deputies appointed by the Court of Protection and Guardians, appointed by the High Court to ensure that they carry out their responsibilities in the best interests of P or the missing persons or the person they are deputy or guardian for. This includes, but is not limited to, ensuring compliance with their court order, assessing that they are acting in accordance with the requirements of the Mental Capacity Act 2005 or guardianship, missing persons 2017 and overseeing adherence to the deputy standards for deputies.  
 - Interpretation of Statutory function: Compliance - lay public authority, professional and health and welfare or personal welfare cases and property and financial AFFAIRS. and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
@@ -46,6 +59,7 @@
 *Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; 
 forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
 
+>>>>>>> main
 - Data Analysis: 
     - Begin by analysing historical data, but with a focus on identifying patterns that emerged specifically during the COVID period. 
     - This includes changes in application rates, processing times, and any other relevant metrics.
@@ -78,7 +92,11 @@ forecasting is not about predicting the future with certainty but about preparin
 
 * ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
 
+<<<<<<< HEAD
+# Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
+=======
 **Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
+>>>>>>> main
 
 *Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
@@ -123,6 +141,29 @@ How to incorporate external factors to deal with covid-period effects on the out
     - Use real-time data to adjust your forecasts promptly. This helps in responding quickly to sudden changes in external conditions3.
 
 
+<<<<<<< HEAD
+# Incorporating external factors to address the effects of the COVID-period on outcomes into both long-term and short-term forecasting models for LPA demands in Excel requires a structured approach. 
+*How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel? 
+
+## Long-Term Forecasting Using a Cohort Model in Excel
+
+### Identify External Factors: 
+Determine which external factors such as government policies, economic conditions, or public health advisories impacted LPA demands during the COVID period.
+
+### Data Collection: 
+Collect data on these factors for the period you are analysing.
+
+### Cohort Analysis: 
+Group your data into cohorts based on the time period of LPA applications. This could be monthly or quarterly cohorts.
+
+### Regression Analysis: 
+Use regression analysis to understand the impact of external factors on each cohort.
+
+### Adjust Cohorts: 
+Adjust the cohort data based on the regression analysis to reflect the impact of COVID-period effects.
+
+### Forecasting: 
+=======
 **Incorporating external factors to address the effects of the COVID-period on outcomes into both long-term and short-term forecasting models for LPA demands in Excel requires a structured approach.**
 *How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel? 
 
@@ -144,6 +185,7 @@ Use regression analysis to understand the impact of external factors on each coh
 Adjust the cohort data based on the regression analysis to reflect the impact of COVID-period effects.
 
 ## Forecasting: 
+>>>>>>> main
 Use the adjusted cohort data to forecast long-term demand, use Excel’s built-in functions or create a custom model using the cohort data.
 
 ## ####################################################################### ##
@@ -483,7 +525,11 @@ Regularly update your model with new data to capture the latest trends and impro
 Understand the specifics of your forecasting task, including the nature of the LPA demand data, the impact of the COVID-period, and the level of uncertainty.
 
 - Data Preprocessing: 
+<<<<<<< HEAD
+Prepare your data by normalising or standardizing it, and structure it into sequences that are suitable for LSTM.
+=======
 Prepare your data by normalising or standardising it, and structure it into sequences that are suitable for LSTM.
+>>>>>>> main
 
 - Determine Sequence Length: 
 The length of the input sequences should capture the relevant temporal dependencies. For LPA demands, consider the typical cycles and seasonality.
@@ -758,6 +804,8 @@ Validate the model using a hold-out sample or cross-validation to ensure that it
 #### Iterative Refinement: 
 It is often an iterative process and may need to go back and forth adjusting the parameters and refitting the model until you find the best parameters for your specific dataset.
 
+<<<<<<< HEAD
+=======
 
 # ##################################################################### #
 
@@ -959,3 +1007,4 @@ Calculation of optimum cluster size (k)
 Pattern Sequence based Forecasting
 RMSE/MAE Calculation, etc..
 ## ##################################################################### ##
+>>>>>>> main

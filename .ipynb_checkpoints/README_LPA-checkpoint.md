@@ -1847,7 +1847,12 @@ MoJ have been working with the Alan Turing Institute for a while on reissuing th
 &nbsp;
 <a name="future"></a> 
 # Future Development 
+<<<<<<< HEAD
+For the instructions on how to do some potential model developments in applying uncertainty for time series forecastiong see the documentation below:
+https://github.com/moj-analytical-services/OPG/blob/main/Strategic_modelling.md
+=======
 - instructions on how to do some potential model developments
+>>>>>>> main
 
 
 &nbsp;
