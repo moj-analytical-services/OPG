@@ -1,5 +1,5 @@
 # Monte Carlo Simulation
-- a method of estimating the value of an unknown quantity using principlles of inferential statistics:
+- a method of estimating the value of an unknown quantity using principles of inferential statistics:
     - inferential statistics:
         - population: a set of examples
         - sample: a proper subset of population
@@ -13,7 +13,7 @@ To improve the accuracy, we could increase the number of iteration (Currently 50
 
 ## Purpose of the Simulations
 
-The purpose of these simulations is to perform multiple iterations of certain scenarios and record the results. This is often done in the context of risk analysis, forecasting, or optimization where the outcome is uncertain and depends on a set of variable inputs.
+The purpose of these simulations is to perform multiple iterations of certain scenarios and record the results. This is often done in the context of risk analysis, forecasting, or optimisation where the outcome is uncertain and depends on a set of variable inputs.
 
 
 The VBA code below is used to perform simulations on different scenarios in 'LPA Forecast PEOPLE' worksheet in Demand Forecast model for OPG.

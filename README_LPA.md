@@ -731,7 +731,6 @@ In response to the points below:
 
 •	Year of age at receipt is already available. The warehouse currently includes single year of age at the point of receipt, donor signature, registration, and dispatch for LPA cases. Adding a new field for an age at any other relevant date would be fairly trivial if you needed any alternative points.
 
->>>>>>> main
 •	The column parent_id in the Sirius person table is used to link separate records that relate to the same person. In the data model we’ve added a new column called master_id which is parent_id if a person has one, or their person_id if not. This should therefore produce an id that links records together, although as with all these methods it isn’t perfect.
 
 I’m currently making a few changes to the data model which should make it easier for you to add age data in your analysis. As part of this, I’ll also create a donor dimension with the date of birth and postcode information for you to use. Once this is finished, it would probably be worth us having a requirements gathering session where I can talk you through the changes and also see what the next steps might be for any other requirements you have.
@@ -1087,9 +1086,8 @@ BSTS is a powerful method for modeling and forecasting time series data.
 * ref: https://www.activeloop.ai/resources/glossary/bayesian-structural-time-series/
 * ref: https://en.wikipedia.org/wiki/Bayesian_structural_time_series
 * ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
-* ref:
 
-However, like any technique, it has its limitations. Here are some key points to consider:
+### Limitations:
 
 *Computational Complexity:
 Bayesian inference techniques used in BSTS can be computationally intensive, especially for large datasets or complex models.
@@ -1211,7 +1209,7 @@ DIVIDED BY (the total SUM of 'Population Forecast Model Input' (age specific for
 * NOTE: The dependencies tables: 
 
 ## Assumed Potential Maximum Market
-For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine theerfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current  maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
+For single age groups individuals aged 88 have the highest probability of purchasing an LPA. If we imagine therfore that we could theoretically persuade every person aged 88 to purchase an LPA in any given year then the current maximum level of demand amongts other age groups is assummed to be in proportion to LPAs as % of Population Totals (ie the same shape).
 
 * ref: LPA MODEL / Assumed Potential Maximum Market
 
@@ -1427,12 +1425,9 @@ If the applications are for male = 1 then MALE: ESTIMATED AGE SPECIFIC SURVIVAL 
 #### For information on registration delays for a range of causes, see: 
     https://webarchive.nationalarchives.gov.uk/ukgwa/20160106020016/http://www.ons.gov.uk/ons/guide-method/user-guidance/health-and-life-events/impact-of-registration-delays-on-mortality-statistics/index.html
 
-A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates 
-for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of 
-surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
+A limiting factor in modelling numbers of surving LPA holders aged 90+ has been the absence of single age specific mortality rates for this group. Estimates* suggested that previously applied mortality rates were too low increasing the apparent numbers of surviving LPA holder saged 90+ and therefore over-estimating the "sauration of this market.
 
-For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on 
-a standard log power law that best fits existing mortality rates to age. 
+For the 2018 LPA forecast, Age specific mortality rates for those aged 90+ have therefore been extrapolated based on a standard log power law that best fits existing mortality rates to age. 
 
 *numbers of surviving LPA holders were estimated to exceed the total projected  population in each age group which was 
 clearly not possible.
@@ -1442,31 +1437,124 @@ clearly not possible.
 &nbsp;
 
 # ======================================================================================================= #
-## Prediction
+## Data-driven predictive methodologies
+
+During COVID-19, policymakers face new challenges and must make challenging choices. Operational research, sometimes known as the 'science of better', is critical within this decision-making procedure. We predict COVID-19 rate of growth using statistical, machine, and deep learning models, as well as a novel hybrid forecasting technique based on closest neighbours and clustering. We also analyse and estimate extra demand for items and services during the outbreak, utilising auxiliary data (Google Trends) and simulating government choices (lockdown). Our empirical findings can assist policymakers and planners make better judgements in the current and future pandemics.
+
+- challenges associated with identifying and responding to significant changes in the demand patterns during a pandemic.
+- The ability to forecast excess demand during the pandemic early could, however, has significant implications for both OPG and policy makers. This can benefit from a data driven approach to government interventions.
+- via a series of simulations we forecast the excess demand of products and services, i.e. the excess demand that is driven from the growth of COVID-19 case.
+- To identify the most accurate method for forecasting growth rates during a pandemic.
+- used the simple average of forecasts, as it is a simple and effective method for combining forecasts:
+     - An alternative to using a single forecasting method is to average the forecasts obtained from several methods. In this paper we investigate empirically the impact of the number and choice of forecasting methods on the accuracy of simple averages. It is concluded that the forecasting accuracy improves, and that the variability of accuracy among different combinations decreases, as the number of methods in the average increases. Thus, combining forecasts seems to be a reasonable practical alternative when, as is often the case, a “true” model of the data-generating process or a single “best” forecasting method cannot be or is not, for whatever reasons, identified.
+- used MASE as our primary accuracy metric because it is scale-independent and widely accepted metric for forecast evaluations.
+
+*ref: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7413852/
+
+
+### ################################################## ###
+
+During the current COVID-19 pandemic, several attempts have been made to anticipate infection cases, fatalities, and stages of development using a variety of mechanistic, statistical, or time-series models. Some prophecies have affected policies in certain countries. However, forecasting future pandemic advances is severely hampered by the inherent uncertainty grounded in many "unknown unknowns," not only about the contagious virus itself, but also about the intertwined human, social, and political factors that co-evolve and keep the pandemic's future open-ended. These unknown unknowns make accuracy-oriented forecasting unreliable. To deal with the great unpredictability of the pandemic, a heuristic approach and exploratory mentality are required. Based on our COVID-19 forecasting experiences, I propose and support the "predictive monitoring" paradigm, which synthesises prediction.
+
+- The basic obstacle stems from the pandemic's character as a classic "wicked problem" (Rittel and Webber, 1973). Wicked issues are ones that are original, distinct, complicated, and dynamic, with incomplete, contradicting, and shifting needs. Wicked problems are characterised by linked social, economic, and political challenges that emerge in conjunction, as well as customers with diverse perspectives and dynamic reactions in the interinfluence loop.
+- **Predictive monitoring** is used to track changes in projections, which are constantly updated with the most recent data on every working day. It focuses on macro patterns and long-term factors related to the whole pandemic life cycle.
+
+*ref: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7817405/
 
 
 
+### ################################################## ###
+
+**Age-specific**
+- **People age 65 and older and babies younger than 6 months have a higher than average risk of serious COVID-19 illness.
+
+
+### ################################################## ###
 - As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
 In terms of how to apply all of this to the long term LPA model, look at the following points:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over (say) the last couple of years.
+- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age, again over the last couple of years.
 - I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 ### Question: 
 - what the receipt forecasts are likely to be for 2024 and 2025, based on the short term forecast, 
-- convert those into donor forecasts for 2024 and 25 and then that you you could then basically use the control assumptions to look at what that then means in terms of you know remaining customers, etc.
+- convert those into donor forecasts for 2024 and 25 and then basically use the control assumptions to look at what that then means in terms of remaining customers, etc.
 
-* ref: LPA MODEL / Predicted , LPA Control Assumption Tab
+* ref: LPA MODEL / Predicted - LPA Control Assumption Tab
 
 ### Calculation:
+- calculate the impact of event uncertainty in short-term forecast and apply the un
 
+- To calculate uncertainty, used the result of the STDEV.P function in a formula that divides the standard deviation by the mean of the data. This will give you the percentage of uncertainty associated with the data.
+Coefficient of Variation is the standardized standard deviation. We calculate the standard deviation, but then scale it with the mean of the series to guard against scale dependency.
+This shows the variability of a time series. If COV^2 is high, that means that the variability in the series is also high.
+covid_cov = covid_std_dev_demand / covid_mean_demand
+
+https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
+
+### ######################################################################## ###
+**To apply uncertainty on avaerage daily demands and using Naïve extrapolation for future pandemic demands based on COVID-19 data age-specific reflect the uncertainty around the receipts forecast for next year update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term age-specific forecast model.**
+Step-by-Step Guide
+1. Data Collection and Preparation
+- Gather Historical Data:
+    - Collect historical daily demand data, particularly during the COVID-19 pandemic.
+    - Ensure data includes age-specific details if available.
+- Data Cleaning:
+    - Clean the data to handle missing values, outliers, and inconsistencies.
+
+2. Calculate Average Daily Demand and Uncertainty
+- Compute the mean daily demand for each age group over the historical period.
+- Measure Uncertainty:
+    - Use statistical measures such as standard deviation or confidence intervals to quantify uncertainty in the daily demand.
+    - Calculate confidence intervals around your naive forecast. These intervals represent the range within which the actual demand is likely to fall.
+        - Confidence Interval = Mean ± (1.96 × Standard Deviation)
+
+3. Naïve Extrapolation for Future Demands
+- Assume that future demand is similar to the most recent observed demand. For example, if the average daily demand in the last quarter was 100 units, then the Naïve forecast for the next period is also 100 units.
+- Incorporate Uncertainty:
+    - Adjust the Naïve forecast by adding the calculated uncertainty. This can be done using the confidence intervals or other measures of variability.
+    
+4. Age-Specific Forecast Model
+- Update Quarterly:
+    - Since you want to update your forecast quarterly, recalculate the naive forecast and incorporate any new data or insights.
+    - Adjust the confidence intervals or other uncertainty measures accordingly.
+    - Revise the forecasts quarterly with the latest available data to capture recent trends and changes in demand.
+    
+5. Varying Receipts Inputs to Reflect Uncertainty
+- Scenario Analysis:
+    - Generate multiple scenarios based on different levels of demand uncertainty. For instance, create optimistic, pessimistic, and most likely scenarios based on varying receipts inputs.
+- Monte Carlo Simulation:
+    - Use Monte Carlo simulations to model the uncertainty. Generate a range of possible outcomes by varying input parameters within their uncertainty ranges.For example, simulate daily demand by randomly sampling from the distribution defined by the historical data’s mean and standard deviation.
+    - Simulate demand scenarios by randomly sampling from historical data, considering variations and uncertainties.
+- Bootstrap Resampling: 
+    - Generate multiple bootstrapped samples from your historical data and create forecasts for each sample. This provides a distribution of possible outcomes.
+
+6. Long-Term Age-Specific Forecast Model
+- Apply Age-Specific Adjustments:
+    - Reflect different age groups’ demand patterns in your forecast.
+    - Calculate age-specific average demands and uncertainties.
+- Age-Specific Factors: 
+    - Having age-specific data (e.g., different age groups affected differently by COVID-19), apply specific factors to adjust your forecast. For instance, if younger age groups are more resilient, adjust their demand differently than older age groups.
+- Integrate Quarterly Updates:
+    - Ensure that each quarterly update feeds into the long-term forecast model, adjusting both the base demand and the uncertainty measures.
+- Reflect Changes in Receipts:
+    - Adjust the inputs for receipts in the forecast model to reflect the updated estimates and their uncertainties.
+    - Use the results of the scenario analysis or Monte Carlo simulations to update the longer-term forecast.
+- For the longer term, consider building an age-specific forecast model (e.g., using time series methods, regression, or machine learning).
+- Incorporate additional features such as vaccination rates, government policies, and economic indicators.
+- Validate your model’s performance against historical data and refine it as needed.
+- The age-specific adjustments and uncertainty measures will enhance the robustness of your forecasts.
+
+*Note: By applying these steps, you can create a robust framework to incorporate uncertainty into average daily demands and use Naïve extrapolation for future pandemic demands. This approach will allow you to update your age-specific forecast model quarterly, reflecting the variability and uncertainty in receipts inputs, ensuring a more accurate long-term forecast.
+
+### ######################################################################## ###
 - Calculate the most recent **quarterly receipts forecast**:
-    - The way to calculate average daily receipts each month is to simply sum the total number of receipts each month and divide by the number of working days in that month; there are some useful simple online calculators for working days to help with this , such as below:
-        Business Days Calculator – Count Workdays (timeanddate.com)
+    - The way to calculate average daily receipts each month is to simply sum the total number of receipts each month and divide by the number of working days in that month; 
+        - there are some useful simple online calculators for working days to help with this , such as: Business Days Calculator – Count Workdays: https://www.timeanddate.com/date/workdays.html
     - I know that this sounds simplistic but previously had previously tried to average across all days in which receipts were recorded each month, but this causes problems as there are often a small number of receipts recorded on Saturdays and Sundays, and public holidays that clearly distort any averages. So for simplicity, we used only standard working days each month as the denominator. 
     
 - Average daily receipts Drop-Down List
-    - Used a drop-down list in the excel model under the LPA Control Assumption Tab for average daily receipts of LPA applications in 2024
+    - Used a drop-down list in the excel model under the LPA Control Assumption Tab for average daily receipts of LPA applications in 2024.
     - Currently the most plausible scenario is a mid range scenario of 5300 – 5600 daily average receipts. 
     - Prior to the broadcast event in November daily average receipts for 2023/24 were averaging around 5383 per day. 
     - If this were sustained throughout 2024/25 with the addition of a mid range impact from the broadcast event this would increase the daily average receipt volume to around 5600. 
@@ -1486,13 +1574,13 @@ In terms of how to apply all of this to the long term LPA model, look at the fol
      
 Here are the notes for the most recent quarterly receipts forecast. As you can see there are likely to be multiple current influences on demand and it is uncertain how these will eventually play out. Trying to place some notional probabilities on each of these different influences would suggest that currently the most plausible forecasts for average daily receipts is in the range 5300 – 5600 with the average across all scenarios being around 5600. 
 
-In terms of how to apply all of this to the long term LPA model I would suggest the following:
-- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age , again over (say) the last couple of years.
+In terms of how to apply all of this to the long term LPA model:
+- Convert the receipts forecast to an annual total by multiplying by the number of working days. If we used the central estimate of 5600 then multiplying this by 256 which the number of working days in 2024 gives an annual total for receipts of 1,433,600. This can be converted into an estimate of the number of donors based on the ratio of donors to receipts (say) over the last couple of years. And then convert the donor estimate into age specific estimates based on the distribution by age (50 to 70 years old) over the last couple of years.
 
-- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100 , which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
+- I am really keen that we reflect the uncertainty around the receipts forecast for 2024 in the long term model so I would suggest building some functionality into the control assumptions sheet to allow for this. For example creating a drop down list in the control assumptions with average daily receipts in the range say from 4000 – 7000 in increments of 100, which will automatically vary the age specific annual donor estimate for 2024. This would be incredibly useful as it would allow the forecast to be varied as we continue to track this and update quarterly and also to vary the receipts inputs to reflect uncertainty around this estimate which will then also be reflected in the longer term forecast. 
 
 
-2. **Naïve extrapolation**, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, you can apply this technique by assuming that future demand will be the same as the most recent observed value.
+2. **Naïve extrapolation**, also known as the “naïve forecast,” is a straightforward method for demand forecasting. In Excel, apply this technique by assuming that future demand will be the same as the most recent observed value.
     - A naïve extrapolation of the receipts trend immediately before the broadcast event on the 21 November gives us some idea of what receipt volumes might have been between December 2023 and March 2024 and therefore what effect the broadcast had on overall receipt volumes. 
 
 3. **UPDATED FORECAST: AVERAGE DAILY RECEIPTS**
@@ -1500,12 +1588,35 @@ In terms of how to apply all of this to the long term LPA model I would suggest 
 
 **The corresponding excel formula:**
 
-- create a drop down list with average daily receipts of LPA application in 2024 in the range say from 4000 – 7000 in increments of 100? 
-- Then this should be used as an estimate to apply unceratinty and to be converted into an age specific annual donor forecast?
+- create a drop down list with average daily receipts of LPA application in 2024 in the range say from 4000 – 7000 in increments of 100. 
+- Then this should be used as an estimate to apply unceratinty and to be converted into an age-specific annual donor forecast.
+
+#### Forecast Error Measures: Intermittent Demand
+https://deep-and-shallow.com/2020/10/07/forecast-error-measures-intermittent-demand/
 
 
+## To measure and calculate the impact of COVID-19 on short-term demand forecasting and apply this uncertainty to long-term forecasting, you can follow these steps:
 
-
+1. Data Collection and Analysis
+Historical Data: Gather historical data on the number of Living Power of Attorney (LPA) registrations across different age groups.
+COVID-19 Impact Data: Collect data on how COVID-19 affected LPA registrations. This could include changes in registration rates during the pandemic.
+2. Short-Term Forecasting
+Model Selection: Use models like ARIMA (AutoRegressive Integrated Moving Average), exponential smoothing, or machine learning models to forecast short-term demand. These models can incorporate recent trends and seasonality.
+Incorporate COVID-19 Variables: Include variables that capture the impact of COVID-19, such as lockdown periods, infection rates, and economic indicators.
+3. Quantifying Uncertainty
+Scenario Analysis: Develop different scenarios (e.g., optimistic, pessimistic, and most likely) to understand the range of possible outcomes.
+Confidence Intervals: Calculate confidence intervals for your forecasts to quantify the uncertainty.
+4. Long-Term Forecasting
+Baseline Forecast: Create a baseline long-term forecast using historical data and trends.
+Adjust for COVID-19 Impact: Adjust the baseline forecast by incorporating the uncertainty from the short-term forecasts. This can be done by applying a proportionate adjustment based on the observed impact during the pandemic2.
+5. Age Group Analysis
+Segmented Forecasting: Perform separate forecasts for different age groups to account for varying behaviors and impacts.
+Demographic Trends: Consider demographic trends and how they might influence future LPA registrations.
+6. Validation and Adjustment
+Model Validation: Validate your models using out-of-sample data to ensure accuracy.
+Continuous Monitoring: Continuously monitor actual registrations against forecasts and adjust models as needed.
+Example Application
+For instance, if you observed a 20% increase in LPA registrations during the pandemic for a specific age group, you might apply a similar adjustment to your long-term forecast for that age group, while considering other factors like economic recovery and changes in public awareness.
 
 ## ######################################## ##
 ListBox53_Change Macro:

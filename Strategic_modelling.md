@@ -8,7 +8,13 @@
 &nbsp;
 &nbsp;
 
+<<<<<<< HEAD
 # Contents
+=======
+
+# Contents
+
+>>>>>>> main
 * The instructions on how to do some potential model developments.
 
 * How to incorporate covid period demands and uncertainty around the data in long-term and short-term forecasting of demands (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) to provide accurate forecats for the LPA demands?
@@ -17,6 +23,7 @@
 
 * Which AI / Machine Learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
+<<<<<<< HEAD
 
 &nbsp;
 *Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; 
@@ -25,6 +32,36 @@ forecasting is not about predicting the future with certainty but about preparin
 &nbsp;
 # **Strategies for incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG:**
 
+=======
+* OPG strategy: 
+- Definition of supervision: The definition of supervision going forward will therefore be the ongoing monitoring and tailored oversight that the OPG provides to deputies appointed by the Court of Protection and Guardians, appointed by the High Court to ensure that they carry out their responsibilities in the best interests of P or the missing persons or the person they are deputy or guardian for. This includes, but is not limited to, ensuring compliance with their court order, assessing that they are acting in accordance with the requirements of the Mental Capacity Act 2005 or guardianship, missing persons 2017 and overseeing adherence to the deputy standards for deputies.  
+- Interpretation of Statutory function: Compliance - lay public authority, professional, health, welfare or personal welfare cases, property, financial AFFAIRS, and Infrastructure: that is that we develop and build a supervision infrastructure that promotes excellence and sustainability.
+- Policy Objectives: Compliance, Infrastructure, and Evidence-led policymaking, providing experts etc.
+- Manage any kind of prioritisation. understanding resource, and to be involved in any deadline setting in OPG.
+    1. **L priority** guardianships work, simply because we have only ever had a handful of cases.
+    4. **M priority**: fees, although it's medium priority here and here it only mentions supervision fees only because it's the policy strategy for supervision.
+    3. **H priority**: Evidence-led policymaking - it is important to build a high quality, high quality evidence base that we can use and draw on to develop and design our policies. A high quality evidence base around Public authority deputyships, professional deputyships and health and welfare or personal welfare deputyships, monitoring and evaluation and then third is sort of longer term aspiration is around establishing the OPG as a thought leader and with the ones that are high priority and this is the bit where it would be really good to get your thoughts on how best to take it forward. And so figuring out what we have at the moment in terms of data, what are the gaps when it comes to supervision and deputyships and how can we fill those in order to improve our evidence base and increase our evidence base for it comes to supervision and deputyships and guardianships too and then monitoring evaluation is and that one's a bit more around understanding the impact of our policies because that is one of the things that's missing at the moment and it is also about tracking the implementation of our policies as well.
+    4. There is an urgent need to provide a report, data requirement, and update the forecasting models.
+    5. What are the data requirement and scope to work around fees and minister ideas? 
+    6. In terms of the data requirements and it would be really helpful to understand what data is currently available in that space or deputyships, whether and it is around a sort of anything related to protected characteristics, whether it is possible to link that or demographics. And then the other aspect is now forecasting really helpful to understand sort of what our deputyships or caseload will look like going forward and how that would look as well, because that will help us plan our policy work and going forward in terms of what areas we should be focusing on. To break down deputyship volumes by demographics and age and gender and location and deprivation by data engineering.
+    7. In terms of governance, at the moment when it comes to supervision, it has a slightly different governance arrangement compared with other policy work and the OPG which goes through the policy Implementation Committee and Executive Committee where it needs to be escalated. To pick policy and implementation Committee and Xcode Executive Committee and every month there will be a policy working group.
+    8. To consider from other parts of the organisation and what this all bigger picture big ticket items that we need to think about as well and it is the quarterly advisory group that,, we need to close down the current governance route before the new one can be put in place and that is take the transition in the transition period at the moment.
+    9.  The vast majority of cases with deputyships people live in care homes. Thus, we could be more accurate with the LPA data about inferring kind of characteristics because people, those private households. So, collect that data up front if we need it rather than trying to model.
+    10. Investigate more regarding where supervision fees are subsidised by our enhanced LPA fee. Also understanding the level of legal challenge to it and considering the legal risks.
+    11. Concern around scope for looking at and fees, and who pays a fee and what fee they pay, then you know the moment the data is not adequate to be able to do that.
+    12. There are a Cost recovery model when it comes to fees, we need to understand the cost of our services. This is being led by OPG finance colleagues and MoJ as well, Pippa Jones. Legal will be heavily involved in the fees, work and generally across all of our policy work. 
+    13. How many cases there are, the dates they were born, the details about the individuals concerned. Be cautioned linking that on to external data sets without thinking very carefully about, I mean, what can you tell about somebody based on their name and the care home that they are in their age? Manual data collection and missing information in the data and check whether they are fit for the purpose because the alternative was to have a very expensive and complex data collection exercise where you then have to go and ask lots of vulnerable people, all their deputies, lots of personal information about themselves. On the example on the court order, because they might have had a deputyship for 10-15 years or more, whatever their financial status was, then is probably not what it is now.
+    
+
+&nbsp;
+&nbsp;
+
+# Methodology
+**Strategies for incorporating the demands and uncertainties of the COVID period into both long-term and short-term forecasting for LPA applications at the OPG:**
+*Note: By combining these strategies, you can create a more robust and adaptable forecasting model that accounts for the unique challenges posed by the COVID period and beyond; 
+forecasting is not about predicting the future with certainty but about preparing for it with flexibility and insight.
+
+>>>>>>> main
 - Data Analysis: 
     - Begin by analysing historical data, but with a focus on identifying patterns that emerged specifically during the COVID period. 
     - This includes changes in application rates, processing times, and any other relevant metrics.
@@ -57,11 +94,19 @@ forecasting is not about predicting the future with certainty but about preparin
 
 * ref: https://www.mckinsey.com/capabilities/operations/our-insights/ai-driven-operations-forecasting-in-data-light-environments
 
+<<<<<<< HEAD
 # Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for Living Power of Attorney (LPA) demands can significantly enhance your understanding of demand patterns. 
 
 *Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
 
 *how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (Living Power of Authorney (LPA) applications in Office of Public Guardian (OPG)) in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
+=======
+**Incorporating demand intelligence tools, data science models, and machine learning techniques into the long-term and short-term forecasting for LPA demands can significantly enhance your understanding of demand patterns. 
+
+*Which machine learning techniques can be used to incorporate the impact of covid period demands (e.g., mortality rate, population projection, number of LPA applications) and uncertainty around the data in long-term and short-term forecasting of LPA demands to provide accurate forecats for the LPA demands?
+
+*how to Utilise demand intelligence tools and data science models to incorporate real-time data and predictive analytics into forecasts, to help in understanding the impact of covid period on demand (LPA) applications in OPG in long-term forecasting model (e.g.,cohort-based model) and short-term (e.g., exponential smoothing). 
+>>>>>>> main
 
 # External Factors: 
 How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel?
@@ -102,6 +147,7 @@ How to incorporate external factors to deal with covid-period effects on the out
     - Use real-time data to adjust your forecasts promptly. This helps in responding quickly to sudden changes in external conditions3.
 
 
+<<<<<<< HEAD
 # Incorporating external factors to address the effects of the COVID-period on outcomes into both long-term and short-term forecasting models for LPA demands in Excel requires a structured approach. 
 *How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel? 
 
@@ -123,6 +169,29 @@ Use regression analysis to understand the impact of external factors on each coh
 Adjust the cohort data based on the regression analysis to reflect the impact of COVID-period effects.
 
 ### Forecasting: 
+=======
+**Incorporating external factors to address the effects of the COVID-period on outcomes into both long-term and short-term forecasting models for LPA demands in Excel requires a structured approach.**
+*How to incorporate external factors to deal with covid-period effects on the outcome into a LPA demands long-term forecating model using cohort model in excel as well as LPA demands short-term forecating model using exponentional smoothing model in excel? 
+
+# Long-Term Forecasting Using a Cohort Model in Excel
+
+## Identify External Factors: 
+Determine which external factors such as government policies, economic conditions, or public health advisories impacted LPA demands during the COVID period.
+
+## Data Collection: 
+Collect data on these factors for the period you are analysing.
+
+## Cohort Analysis: 
+Group your data into cohorts based on the time period of LPA applications. This could be monthly or quarterly cohorts.
+
+## Regression Analysis: 
+Use regression analysis to understand the impact of external factors on each cohort.
+
+## Adjust Cohorts: 
+Adjust the cohort data based on the regression analysis to reflect the impact of COVID-period effects.
+
+## Forecasting: 
+>>>>>>> main
 Use the adjusted cohort data to forecast long-term demand, use Excel’s built-in functions or create a custom model using the cohort data.
 
 ## ####################################################################### ##
@@ -415,8 +484,12 @@ Remember that while Bayesian multiple imputation is a powerful tool, understandi
 # LSTM
 **How to use LSTM method for the LPA demands short-term and long-term forecasting model to deal with covid-period effects on the outcome and deal with uncertatinty?**
 
+<<<<<<< HEAD
 *Using the LSTM (Long Short-Term Memory) method for forecasting LPA demands can be particularly effective for capturing complex patterns and dealing with uncertainties, 
 such as those introduced during the COVID-period. 
+=======
+*Using the LSTM (Long Short-Term Memory) method for forecasting LPA demands can be particularly effective for capturing complex patterns and dealing with uncertainties, such as those introduced during the COVID-period. 
+>>>>>>> main
 
 **Applying LSTM for both short-term and long-term forecasting:
 
@@ -451,7 +524,11 @@ Regularly update your model with new data to capture the latest trends and impro
 
 - Interpretation: 
 - Interpret the model’s outputs carefully, considering the confidence intervals or prediction intervals to understand the range of possible future scenarios.
+<<<<<<< HEAD
 - **LSTM models are powerful because they can capture long-term dependencies and are capable of learning patterns in time series data, which is essential when dealing with the irregularities and uncertainties of the COVID-period123. 
+=======
+- **LSTM models are powerful because they can capture long-term dependencies and are capable of learning patterns in time series data, which is essential when dealing with the irregularities and uncertainties of the COVID-period. 
+>>>>>>> main
 - To monitor the performance of your LSTM model and be prepared to adjust the architecture or retrain the model as more data becomes available or as the situation evolves.
 
 **How to choose the right architecture for my LSTM model?
@@ -462,7 +539,11 @@ Regularly update your model with new data to capture the latest trends and impro
 Understand the specifics of your forecasting task, including the nature of the LPA demand data, the impact of the COVID-period, and the level of uncertainty.
 
 - Data Preprocessing: 
+<<<<<<< HEAD
 Prepare your data by normalising or standardizing it, and structure it into sequences that are suitable for LSTM.
+=======
+Prepare your data by normalising or standardising it, and structure it into sequences that are suitable for LSTM.
+>>>>>>> main
 
 - Determine Sequence Length: 
 The length of the input sequences should capture the relevant temporal dependencies. For LPA demands, consider the typical cycles and seasonality.
@@ -528,24 +609,24 @@ Choosing the right smoothing factor (α) for exponential smoothing is crucial as
 
 ##### Understand the Range: 
 The smoothing factor α ranges from 0 to 1. A value close to 1 gives more weight to recent observations, making the forecast more responsive to changes. 
-Conversely, a value close to 0 makes the forecast more stable and less sensitive to recent fluctuations1.
+Conversely, a value close to 0 makes the forecast more stable and less sensitive to recent fluctuations.
 
 ##### Historical Data Analysis: Look at your historical data. If the data shows that recent trends are a good predictor of future values, 
 consider a higher α. If the data is more random or if older values are also important, consider a lower α2.
 
 ##### Error Measurement: 
 Use error metrics such as Mean Squared Error (MSE) to evaluate the accuracy of forecasts with different α values. 
-The α that minimizes the error is typically the best choice3.
+The α that minimizes the error is typically the best choice.
 
 ##### Trial and Error: 
-Start with a value of α, such as 0.5, and adjust it incrementally. Observe how these adjustments affect the forecast accuracy and adjust accordingly4.
+Start with a value of α, such as 0.5, and adjust it incrementally. Observe how these adjustments affect the forecast accuracy and adjust accordingly.
 
 ##### Model Validation: 
-Validate your chosen α by comparing the model’s forecasts against actual outcomes. Adjust the α if the model’s performance can be improved1.
+Validate your chosen α by comparing the model’s forecasts against actual outcomes. Adjust the α if the model’s performance can be improved.
 
 ##### Consider External Factors: 
 If your model needs to respond quickly to external shocks, such as those caused by the COVID-period, a higher α might be necessary. 
-However, be cautious as a high α can also make the model react to random noise2.
+However, be cautious as a high α can also make the model react to random noise.
 
 ##### Use Optimization Techniques: 
 Some software packages can automatically optimize α based on historical data. 
@@ -736,4 +817,225 @@ Validate the model using a hold-out sample or cross-validation to ensure that it
 
 #### Iterative Refinement: 
 It is often an iterative process and may need to go back and forth adjusting the parameters and refitting the model until you find the best parameters for your specific dataset.
+<<<<<<< HEAD
 
+=======
+
+
+# ##################################################################### #
+
+# ##################################################################### #
+# Uncertainty in Demand Forecasting:
+
+- The sources of uncertainty are missing information, unreliable information, conflicting information, noisy information, and confusing information.
+
+- Forecasting plays a crucial role in managing demand uncertainty. It involves estimating future demand based on historical data, market trends, and other relevant factors. Accurate forecasting enables businesses to make informed decisions regarding production, procurement, and inventory management.
+
+- Demand uncertainty refers to the external factors that cause demand to unexpectedly increase or decrease. This situation can be caused by a public health crisis or even a sudden shift in the customers' tastes.
+
+- Deterministic risk considers the impact of a single risk scenario, whereas probabilistic risk considers all possible scenarios, their likelihood and associated impacts. The opposite of probabilistic is “deterministic”, which uses exact numbers to approximate uncertain amounts, often some historical average. A symptom of a probabilistic plan or forecast is that its results are generally also expressed as probability distributions.
+
+- Calculate uncertainty by subtracting your average measurement by each measurement calculated, squaring each result and calculating the average of those numbers. With this variance result, calculate its standard deviation by finding the square root of your result. The final result is the uncertainty level of your equation.
+
+
+
+# ##################################################################### #
+# Different type of forecast (Point / Range (Short-Long) / Demand)
+- Point Forecast: associate the future with a single expected outcome, usually an average expected value (not to be confused with the most likely outcome). Example: We forecast to sell 1000 units next month. Probabilistic Forecast: allocates a probability for different events to happen.
+
+- A point forecast only provides a partial view of the future, such as (i.e., the most likely demand in the upcoming time). In contrast, a probability forecast provides even the proper insight and the outcome of demand ( i.e., how much is the risk of demand shortage).
+
+- Range forecasts are more realistic and informative than point forecasts, as they capture the uncertainty and variability of the future, and they can help you assess the risks and opportunities of different scenarios. However, range forecasts also have some challenges. Range forecasts are a type of forecast that can help assess the risks and opportunities of different scenarios by capturing the uncertainty and variability of the future. They can be more realistic and informative than point forecasts.
+    - Short-range forecasts typically look ahead three to twelve months, while long-range forecasts look ahead one to five years.
+    - Short range forecasts are based off of observed and extrapolated data and how systems are moving. Long range forecasting are created off of computer models.
+
+- However, demand forecasting is also subject to uncertainty, which can arise from various factors such as market fluctuations, customer behavior, seasonal variations, or external shocks.
+- The Probabilistic forecasting tool (Monte Carlo) creates reliable forecasts at a fraction of the effort of traditional methods. It also has the added benefit of obtaining “estimate input data” from existing team processes, reducing the frequency or eliminating the need for expensive estimation sessions
+
+
+# ##################################################################### #
+# Economic & Finance: Forecasting productivity
+
+- To forecast of productivity based on average historical growth rates as well as judgments about factors that may cause productivity to deviate from its historical trend in the short-term.
+- The most common approach for forecasting productivity is to estimate the trend growth in productivity using aggregate data.
+- Productivity growth is very volatile and has undergone large historical shifts with productivity growth averaging around 1% between 1800-1950 followed by an increase in the average annual growth to 3% between 1950-1975. Since the mid-1970’s productivity growth has gradually declined in many developed economies; see panel B of Figure 7. In the decade since 2009, 2% annual productivity growth was an upper bound for most G7 countries.
+- Test for shifts in productivity growth rates in other advanced economies did not find evidence of a changes in productivity growth until well after the financial crisis in 2007
+
+- A more recent approach by Martinez et al. (2021) allows for a time-varying long-run trend in UK productivity. They show that are able to broadly replicate the OBR’s forecasts using a quasi-transformed autoregressive model with one lag, a constant, and a trend. The estimated long-run trend is just over 2% per year through 2007 Q4 which is consistent with the OBR’s assumptions about the long-run growth rate of productivity (OBR, 2019). However, it is possible to dramatically improve upon OBR’s forecasts in real-time by allowing for the long-term trend forecast to adjust based on more recent historical patterns. By taking a local average of the last four years of growth rates, Martinez et al. (2021) generate productivity forecasts whose RMSE is on average more than 75% smaller than OBR’s forecasts extending five-years-ahead and is 84% smaller at the longest forecast horizon.
+
+The range-based (RB) volatility models is a general term for the models constructed with high and low prices, and most often with their difference i.e., the price range. A short review and classification of such models is contained in §2.3.14. From practical point of view, it is important that low and high prices are almost always available with daily closing prices for financial series. The price range (or its logarithm) is a significantly more efficient estimator of volatility than the estimator based on closing prices (Alizadeh et al., 2002). Similarly the co-range (the covariance based on price ranges) is a significantly more efficient estimator of the covariance of returns than the estimator based on closing prices (Brunetti & Lildholdt, 2002). For these reasons models based on the price range and the co-range better describe variances and covariances of financial returns than the ones based on closing prices.
+
+## GARCH: Financial time series forecasting with range-based volatility models
+The forecasts of volatility of financial returns from the univariate RB models are more accurate than the forecasts from standard GARCH models based on closing prices (see, for example, Mapa (2003) for the GARCH-PARK-R model; Chou (2005) for the CARR model; Fiszeder (2005) for the GARCH-TR model; Brandt & Jones (2006) for the REGARCH model; Chen et al. (2008) for the TARR model; Lin et al. (2012) for the STARR model; Fiszeder & Perczak (2016) for the GARCH model estimated with low, high and closing prices during crisis periods; Molnár (2016) for the RGARCH model)
+
+
+## Demand Planning Tips for Calculating Forecast Uncertainty
+1. Set expectations about error: Sometimes  managers have unreasonable expectations about reducing forecast error to zero. You can point out that error is only one of the dimensions on which a forecasting process must be judged; you may be doing fine on both timeliness and cost. Also point out that zero error is no more realistic a goal than 100% conversion of prospects into customers, perfect supplier performance, or zero stock price volatility.
+
+2. Track down sources of error: Double check the accuracy of demand histories. Use statistical methods to identify outliers in demand histories and react appropriately, replacing verified anomalies with more typical values and omitting data from before major changes in the character of the demand. If you use a collaborative forecasting process, compare its accuracy against a purely statistical approach to identify items for which collaboration does not reduce error.
+
+3. Evaluate the error of alternative statistical methods: There may be off-the-shelf techniques that do better than your current methods, or do better for some subsets of your items. The key is to be empirical, using the idea of holdout analysis. Gather your data and do a “bake off” between different methods to see which work better for you. If you are not already using statistical forecasting methods, compare them against whoever’s “golden gut” is your current standard. Use the naïve forecast as a benchmark in the comparisons.
+
+4. Investigate the use of new data sources: Especially if you have items that are heavily promoted, test out statistical methods that incorporate promotional data into the forecasting process. Also check whether information from outside your company can be exploited; for instance, see whether macroeconomic indicators for your sector can be combined with company data to improve forecast accuracy (this is usually done using a method called multiple regression analysis).
+
+5. Use prediction intervals: Plots of prediction intervals can improve your feel for the uncertainty in your forecasts, helping you select items for additional scrutiny. While it’s true that what you don’t know can hurt you, it’s also true that knowing what you don’t know can help you.
+
+### Criteria for Assessing Forecasts:
+Forecast error alone is not reason enough to reject forecasting as a management tool. To twist a famous aphorism by George Box, “All forecasts are wrong, but some are useful.” Of course, business professionals will always search for ways to make forecasts more useful. This usually involves work to reduce forecast error. But while forecast accuracy is the most obvious criterion by which to judge forecasts, but it is not the only one. Here’s a list of criteria for evaluating forecasts:
+
+### Accuracy:
+Forecasts of future values should, in retrospect, be very close to the actual values that eventually reveal themselves. But there may be diminishing returns to squeezing another half percent of accuracy out of forecasts otherwise good enough to use in decision making.
+
+### Timeliness: 
+Fighter pilots refer to the OODA Loop (Observe, Orient, Decide, and Act) and the “need to get inside the enemy’s OODA loop” so they can shoot first. Businesses too have decision cycles. Delivering a perfectly accurate forecast the day after it was needed is not helpful. Better is a good forecast that arrives in time to be useful.
+
+### Cost: 
+Forecasting data, models, processes and people all cost money.  A less expensive forecast might be fueled by data that are readily available; more expensive would be a forecast that runs on data that have to be collected in a special process outside the scope of a firm’s information infrastructure.  A classic, off-the-shelf forecasting technique will be less costly to acquire, feed and exploit than a complex, custom, consultant-supplied method. Forecasts could be mass-produced by software overseen by a single analyst, or they might emerge from a collaborative process requiring time and effort from large groups of people, such as district sales managers, production teams, and others. Technically advanced forecasting techniques often require hiring staff with specialized technical expertise, such as a master’s degree in statistics, who tend to cost more than staff with less advanced training.
+
+### Credibility: 
+Ultimately, some executive has to accept and act on each forecast. Executives have a tendency to distrust or ignore recommendations that they can neither understand nor explain to the next person above them in the hierarchy. For many, believing in a “black box” is too severe a test of faith, and they reject the black box’s forecasts in favor of something more transparent.
+
+### Sources of Forecast Error
+1. The data that goes into a forecasting model
+2. The model itself
+3. The context of the forecasting exercise
+
+#### There are several ways in which data problems can lead to forecast error.
+
+- Gross errors: 
+Wrong data produce wrong forecasts. We have seen an instance in which computer records of product demand were wrong by a factor of two! Those involved spotted that problem immediately, but a less egregious situation can easily slip through to poison the forecasting process. In fact, just organizing, acquiring and checking data is often the largest source of delay in the implementation of forecasting software. Many data problems seem to derive from the data having been unimportant until a forecasting project made them important.
+
+- Anomalies: 
+Even with perfectly curated forecasting databases, there are often “needle in a haystack” type data problems. In these cases, it is not data errors but demand anomalies that contribute to forecast error. In a set of, say, 50,000 products, some number of items are likely to have odd details that can distort forecasts.
+
+- Holdout analysis is a simple but powerful method of analysis:
+To see how well a method forecasts, use it with older known data to forecast newer data, then see how it would have turned out! For instance, suppose you have 36 months of demand data and need to forecast 3 months ahead. You can simulate the forecasting process by holding out (i.e., hiding) the most recent 3 months of data, forecasting using only data from months 1 to 33, then comparing the forecasts for months 34-36 against the actual values in months 34-36. Sliding simulation merely repeats the holdout analysis, sliding along the demand history. The example above used the first 33 months of data to get 3 estimates of forecast error. Suppose we start the process by using the first 12 months to forecast the next 3. Then we slide forward and use the first 13 months to forecast the next 3. We continue until finally we use the first 35 months to forecast the last month, giving us one more estimate of the error we make when forecasting one month ahead. Summarizing all the 1-step ahead, 2-step ahead and 3-step ahead forecast errors provides a way to calculate prediction intervals.
+
+### Calculating Prediction Intervals
+
+- The final step in calculating prediction intervals is to convert the estimates of average absolute error into the upper and lower limits of the prediction interval. The prediction interval at any future time is computed as:
+     - Prediction interval = Forecast ± Multiplier x Average absolute error.
+
+- The final step is the choice of the multiplier. 
+The typical approach is to imagine some probability distribution of error around the forecast, then estimate the ends of the prediction interval using appropriate percentiles of that distribution. Usually, the assumed distribution of error is the Normal distribution, also called the Gaussian distribution or the “bell-shaped curve”.
+
+### Use of Prediction Intervals
+- The most immediate, informal use of prediction intervals is to convey a sense of how “squishy” a forecast is. 
+- Prediction intervals that are wide compared to the size of the forecasts indicate high uncertainty.
+
+- There are two more formal uses in demand forecasting: 
+    - Hedging your bets: 
+        The forecast values themselves approximate the most likely values of future demand. A more ominous way to say the same thing is that there is about a 50% chance that the actual value will be above (or below) the forecast. If the forecast is being used to plan future production (or raw materials purchase or hiring), you might want to build in a cushion to keep from being caught short if demand spikes (assuming that under-building is worse than over-building). If the forecast is converted from units to dollars for revenue projections, you might want to use a value below the forecast to be conservative in projecting cash flow. In either case, you first have to choose the coverage of the prediction interval. A 90% prediction interval is a range of values that covers 90% of the possibilities. This implies that there is a 5% chance of a value falling above the upper limit of the 90% prediction interval. In other words, the upper limit of a 90% prediction interval marks the 95th percentile of the distribution of predicted demand at that time period. Similarly, there is a 5% chance of falling below the lower limit, which marks the 5th percentile of the demand distribution.
+
+    - Guiding forecast adjustment: 
+        It is quite common for statistical forecasts to be revised by some sort of collaborative process. These adjustments are based on information not recorded in an item’s demand history, such as intelligence about competitor actions. Sometimes they are based on a more vaporous source, such as sales force optimism. When the adjustments are made on-screen for all to see, the prediction intervals provide a useful reference: If someone wants to move the forecasts outside the prediction intervals, they are crossing a fact-based line and should have a good story to justify their argument that things will be really different in the future.
+
+### Formula for Prediction Intervals
+https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
+
+#### Method 1: RMSFE
+The first method that we can use is called RMSFE(root mean squared forecasting error). RMSFE is very similar to RMSE. The only difference is that RMSFE has to be calculated on residual terms from predictions on unseen data (ie. Validation or Test set).
+
+It’s important to note that we can only use this method if we assume that the residuals of our validation predictions are normally distributed. To see if this is the case, we will use a PP-plot and test its normality with the Anderson-Darling, Kolmogorov-Smirnov, and D’Agostino K-squared tests.
+
+The PP-plot(Probability-to-Probability) plots the data sample against the normal distribution plot in such a way that if normally distributed, the data points will form a straight line.
+
+The three normality tests determine how likely a data sample is from a normally distributed population using p-values. The null hypothesis for each test is that “the sample came from a normally distributed population”. This means that if the resulting p-values are below a chosen alpha value, then the null hypothesis is rejected. Thus there is evidence to suggest that the data comes from a non-normal distribution. For this article, we will use an Alpha value of 0.01.
+
+### Prediction Intervals and Inventory Optimisation
+
+
+
+
+
+#### Python code:
+*ref: https://towardsdatascience.com/time-series-forecasting-prediction-intervals-360b1bf4b085
+
+- Finally, the concept behind prediction intervals play an essential role in a problem related to demand forecasting: Inventory Optimization.
+The core analytic task in setting reorder points (also called Mins) is to forecast total demand over a replenishment lead time. This total is called the lead time demand. When on-hand inventory falls down to or below the reorder point, a replenishment order is triggered. If the reorder point is high enough, there will be an acceptably small risk of a stockout, i.e., of lead time demand driving inventory below zero and creating either lost sales or backorders.
+
+- SDP_Screenshot new statistical methods planning 
+New statistical methods, and we can start planning more effectively.
+
+- The forecasting task is to determine all the possible values of cumulative demand over the lead time and their associated probabilities of occurring. In other words, the basic task is to determine a prediction interval for some future random variable. Suppose you have computed a 90% prediction interval for lead time demand. Then the upper end of the interval represents the 95th percentile of the distribution. Setting the reorder point at this level will accommodate 95% of the possible lead time demand values, meaning there will be only a 5% chance of stocking out before replenishment arrives to re-stock the shelves. Thus there is an intimate relationship between prediction intervals in demand forecasting and calculation of reorder points in inventory optimization.
+
+
+# ##################################################################### #
+# Data-driven Forecasting methods to consider uncertainty:
+
+
+*ref: https://www.sciencedirect.com/science/article/pii/S0169207021001758?via%3Dihub
+*ref: https://forecasting-encyclopedia.com/theory.html#Forecasting_on_distributed_systems
+## ##################################################################### ##
+## Scenarios and judgmental forecasting
+
+
+## ##################################################################### ##
+## Multi-step ahead forecasting
+
+
+## ##################################################################### ##
+## Agent-based models
+
+
+## ##################################################################### ##
+# Age-specific Forecasting: 
+
+## naive freezing of age-specific rates
+, and those that can differ greatly in method complexity (see also §2.5.2). A recent survey of fertility forecasting practice in European statistical offices (Gleditsch & Syse, 2020) found that forecasts tend to be deterministic and make use of expert panels (see §2.11.4). Expert elicitation techniques are gaining in sophistication, highlighted by the protocol of Statistics Canada (Dion, Galbraith, & Sirag, 2020) which requests a full probability distribution of the TFR.
+
+A promising avenue is the development of forecasting methods that incorporate birth order (parity) information, supported by evidence from individual-level analyses (for example, Fiori, Graham, & Feng, 2014). 
+
+- Another underexplored area is the integration of survey data into fertility forecasting models, which tend to use vital statistics alone when they are of sufficient quality (see Rendall, Handcock, & Jonsson, 2009; Zhang & Bryant, 2019 for Bayesian fertility estimation with imperfect census data). 
+
+- To predict the effect of COVID-19 on US fertility in the absence of vital statistics, Wilde, Chen, & Lohmann (2020) use Google data to. 
+
+- investigation of the possible long-term impacts of delayed motherhood in high-income countries, alongside developments in assisted reproduction technology such as egg freezing, is required (see, for example, Sobotka & Beaujouan, 2018).
+
+- Bayesian hierarchical models is useful for forecasting data structured by age (Raymer & Wiśniowski, 2018). In some cases, the methods additionally involve selection and combining forecasts through Bayesian model selection and averaging (Bijak, 2010 see also §2.5 and §2.6). Such models can be expected to produce reasonable forecasts (and errors) for up to a decade ahead (Bijak & Wiśniowski, 2010), although this depends on the migration flows being forecast, with some processes (e.g., family migration) more predictable than other (e.g., asylum). Another recognised problem with models using covariates is that those can be endogenous to migration (e.g., population) and also need predicting, which necessitates applying structured models to prevent uncertainty from exploding.
+
+- The methodological gaps and current work in migration forecasting concentrate in a few key areas, notably including causal (mechanistic) forecasting based on the process of migrant decision making (Willekens, 2018); as well as early warnings and ‘nowcasting’ of rapidly changing trends, for example in asylum migration (Napierała, Hilton, Forster, Carammia, & Bijak, 2021). In the context of early warnings, forays into data-driven methods for changepoint detection, possibly coupled with the digital trace and other high-frequency ‘Big data’, bear particular promise. At the same time, coherent uncertainty description across a range of time horizons, especially in the long range (Azose & Raftery, 2015), remains a challenge, which needs addressing for the sake of proper calibration of errors in the population forecasts, to which these migration components contribute.
+
+## time-series extrapolation
+time-series extrapolation approach has the advantage of obtaining a forecast probability distribution rather than a deterministic point forecast and, also, enable the determination of forecast intervals
+
+## Models for population processes
+
+Over the past two centuries, formal demography has established its own, discipline-specific body of methods for predicting (or projecting15) populations. Population sciences, since their 17th century beginnings, have been traditionally very empirically focused, with strong links with probability theory (Courgeau, 2012). Given the observed regularities in population dynamics, and that populations are somewhat better predictable than many other socio-economic processes, with reasonable horizons possibly up to one generation ahead (Keyfitz, 1972, 1981), demographic forecasts have become a bestselling product of the discipline (Xie, 2000). Since the 20th century, methodological developments in human demography have been augmented by the work carried out in mathematical biology and population ecology (Caswell, 2019a).
+
+The theoretical strength of demography also lies almost exclusively in the formal mathematical description of population processes (Burch, 2018), typically growth functions and structural changes. Historically, such attempts started from formulating the logistic model of population dynamics, inspired by the Malthusian theory (Pearl & Reed, 1920; Verhulst, 1845). Lotka (1907)’s work laid the foundations of the stable population theory with asymptotic stability under constant vital rates, subsequently extended to modelling of interacting populations by using differential equations (Lotka, 1925; V Volterra, 1926). By the middle of the 20th century, the potential and limitations of demographic forecasting methods were already well recognised in the literature (Brass, 1974; Hajnal, 1955).
+
+In the state-of-the-art demographic forecasting, the core engine is provided by matrix algebra. The most common approach relies on the cohort-component models, which combine the assumptions on fertility, mortality and migration, in order to produce future population by age, sex, and other characteristics. In such models, the deterministic mechanism of population renewal is known, and results from the following demographic accounting identity (population balancing equation, see Rees & Wilson, 1973; Bryant & Zhang, 2018):
+ , where  P t is the population vector structured by age (and other characteristics), and G is an appropriately chosen growth matrix (Leslie matrix), closely linked with the life table while reflecting the relationship above, expressed in terms of rates rather than events (Caswell, 2019a; Leslie, 1945, 1948; Preston, Heuveline, & Guillot, 2000).
+
+In the cohort-component approach, even though the mechanism of population change is known, the individual components still need forecasting. The three main drivers of population dynamics — fertility, mortality, and migration — differ in terms of their predictability (National Research Council, 2000): mortality, which is mainly a biological process moderated by medical technology, is the most predictable; migration, which is purely a social and behavioural process is the least; while the predictability of fertility — part-biological, part-behavioural – is in the middle (for component forecasting methods, see §3.6.3, §3.6.4, and §3.6.5). In practical applications, the components can be either projected deterministically, following judgment-based or expert assumptions (for example, Lutz, Butz, & Samir, 2017), or extrapolated by using probabilistic methods, either for the components or for past errors of prediction (Alho & Spencer, 1985, 2005; De Beer, 2008). An impetus to the use of stochastic methods has been given by the developments in the UN World Population Prospects (Azose, Ševčı́ková, & Raftery, 2016; Gerland et al., 2014). Parallel, theoretical advancements included a stochastic version of the stable population theory (Keiding & Hoem, 1976), as well as coupling of demographic uncertainty with economic models (Alho, Hougaard Jensen, & Lassila, 2008).
+
+Since its original formulation, the cohort-component model has been subject to several extensions (see, for example, Stillwell & Clarke, 2011). The multiregional model (Rogers, 1975) describes the dynamics of multiple regional populations at the same time, with regions linked through migration. The multistate model (Schoen, 1987) generalises the multiregional analysis to any arbitrary set of states (such as educational, marital, health, or employment statuses, and so on; see also state-space models in §2.3.6). The multiregional model can be in turn generalised to include multiple geographic levels of analysis in a coherent way (Kupiszewski & Kupiszewska, 2011). Recent developments include multifocal analysis, with an algebraic description of kinship networks (Caswell, 2019b, 2020). For all these extensions, however, data requirements are very high: such models require detailed information on transitions between regions or states in a range of different breakdowns. For pragmatic reasons, microsimulation-based methods offer an appealing alternative, typically including large-sample Monte Carlo simulations of population trajectories based on available transition rates (Bélanger & Sabourin, 2017; Zaidi, Harding, & Williamson, 2009).
+
+Aside of a few extensions listed above, the current methodological developments in the forecasting of human populations are mainly concentrated on the approaches for predicting individual demographic components (see §3.6.3, §3.6.4, and §3.6.5), rather than the description of the population renewal mechanism. Still, the continuing developments in population ecology, for example on the algebraic description of transient and asymptotic population growth (Nicol-Harper et al., 2018), bear substantial promise of further advancements in this area, which can be additionally helped by strengthened collaboration between modellers and forecasters working across the disciplinary boundaries on the formal descriptions of the dynamics of human, as well as other populations.
+
+
+## ##################################################################### ##
+## Bagging for time series forecasting:
+For data-driven methods, to forecasting and simulation time series and deal with predictors ensembles, bagging has shown as a powerful tool.
+A general framework for ensemble forecasting methods involves four main stages: (i) data treatment, (ii) resampling, (iii) forecasting, and (iv) aggregation. However, for time series, bootstrap should be done carefully, as the serial dependence and non-stationarity must be considered.
+
+The bagging can handle all of three sources of uncertainty: model form, data, and parameter, Petropoulos et al. (2018a) showed that simply tackling model uncertainty is enough for achieving a superior performance, leading to the proposal of a Bootstrap Model Combination (BMC) approach, where different model forms are identified in the ensemble and fitted to the original data.
+
+## ##################################################################### ##
+## Clustering-based forecasting
+The robustness of the forecasting process depends mainly on the characteristics of the target variable. In cases of high nonlinear and volatile time series, a forecasting model may not be able to fully capture and simulate the special characteristics, a fact that may lead to poor forecasting accuracy (Pradeepkumar & Ravi, 2017). Contemporary research has proposed some approaches to increase the forecasting performance (Sardinha-Lourenço, Andrade-Campos, Antunes, & Oliveira, 2018). Clustering-based forecasting refers to the application of unsupervised machine learning in forecasting tasks. The scope is to increase the performance by employing the information of data structure and of the existing similarities among the data entriee.
+
+### Pattern Sequence Based Forecasting (PSF)
+
+It takes univariate time series data as input and assist to forecast its future values. This algorithm forecasts the behavior of time series based on similarity of pattern sequences. Initially, clustering is done with the labeling of samples from database. The labels associated with samples are then used for forecasting the future behaviour of time series data.
+
+The Algorithm Pattern Sequence based Forecasting (PSF) was first proposed by Martinez Alvarez, et al., 2008 and then modified and suggested improvement by Martinez Alvarez, et al., 2011. The technical detailes are mentioned in referenced articles. PSF algorithm consists of various statistical operations like:
+
+Data Normalization/ Denormalization
+Calculation of optimum Window size (W)
+Calculation of optimum cluster size (k)
+Pattern Sequence based Forecasting
+RMSE/MAE Calculation, etc.
+## ##################################################################### ##
+>>>>>>> main
